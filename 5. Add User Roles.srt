@@ -1,0 +1,599 @@
+1
+00:00:00,680 --> 00:00:01,730
+Hey, guys, welcome back.
+
+2
+00:00:01,760 --> 00:00:09,580
+So one very important parts of user authorization is knowing what role this users in appointing, though
+
+3
+00:00:09,590 --> 00:00:15,260
+we haven't done anything associated with roles who are more preoccupied with getting the user information,
+
+4
+00:00:15,260 --> 00:00:18,080
+validating it and whether we create the user or not.
+
+5
+00:00:18,560 --> 00:00:26,240
+Now, when it comes to rules, the rules that are allowed need to exist in the system prior to the system
+
+6
+00:00:26,240 --> 00:00:26,930
+being used.
+
+7
+00:00:27,620 --> 00:00:34,880
+So the same way that we would have set up these operations for hotels and countries of less importance
+
+8
+00:00:34,880 --> 00:00:37,130
+really than rules would be.
+
+9
+00:00:37,140 --> 00:00:42,650
+So we want to make sure that the rules are there from the get go so that when the users start registering,
+
+10
+00:00:42,830 --> 00:00:44,540
+the rules are already there.
+
+11
+00:00:45,320 --> 00:00:47,690
+So what we want to do is see them.
+
+12
+00:00:47,690 --> 00:00:52,670
+But instead of ceding them the way that we see the country and who, I'm going to show you the way that
+
+13
+00:00:52,670 --> 00:01:00,260
+we can obstruct that operation from our DB contacts and keep the BB context as light as possible, similar
+
+14
+00:01:00,260 --> 00:01:05,780
+to what I need to do that with our services that we are installing.
+
+15
+00:01:06,110 --> 00:01:08,720
+So what I'm going to do is set up a new folder.
+
+16
+00:01:08,750 --> 00:01:14,270
+I have configurations or that I'm just going to go ahead and add another folder inside that that I'm
+
+17
+00:01:14,270 --> 00:01:15,590
+going to call entities.
+
+18
+00:01:16,160 --> 00:01:22,340
+So configurations for anything that is entity related and then I'm going to add a class and then I want
+
+19
+00:01:22,340 --> 00:01:27,380
+to call this class roll configuration, go ahead and add it.
+
+20
+00:01:27,860 --> 00:01:32,450
+And then this rule configuration class is inheriting from entity.
+
+21
+00:01:33,510 --> 00:01:36,240
+Type configuration.
+
+22
+00:01:38,650 --> 00:01:42,670
+And it will be of the type identity role.
+
+23
+00:01:43,300 --> 00:01:46,920
+All right, go ahead and include any missing references.
+
+24
+00:01:47,350 --> 00:01:49,690
+So we're just listing rule configuration, all that.
+
+25
+00:01:49,690 --> 00:01:54,280
+It's going to be associated with that configuration type.
+
+26
+00:01:54,290 --> 00:02:00,730
+And of course, we have to go ahead and implement whatever this is seeing needs to be implemented,
+
+27
+00:02:02,140 --> 00:02:09,700
+which is our configure function or so it's automatically going to pass or the same builder that is in
+
+28
+00:02:09,700 --> 00:02:12,000
+use on model creating.
+
+29
+00:02:12,610 --> 00:02:22,390
+So then we can actually replicate the code that we have where we say builder DOT has data.
+
+30
+00:02:24,570 --> 00:02:34,030
+And then instead of building the test data, we can go ahead and create new rules, new rule objects.
+
+31
+00:02:34,380 --> 00:02:38,550
+So let me just sort of these quotation marks.
+
+32
+00:02:39,270 --> 00:02:39,600
+All right.
+
+33
+00:02:39,840 --> 00:02:42,150
+So a new identity rule.
+
+34
+00:02:44,140 --> 00:02:46,750
+And we're just going to initialize this object.
+
+35
+00:02:46,780 --> 00:02:53,260
+I'm not going to give it an idea, it was sort of an ad, but the name that's called this one user.
+
+36
+00:02:54,640 --> 00:03:01,120
+And we have to give it a normalized name, which is really just capitalized version of that.
+
+37
+00:03:02,270 --> 00:03:07,430
+The of the name, really, and then I'm also going to give it.
+
+38
+00:03:09,940 --> 00:03:13,570
+Administrator, hospital administrator.
+
+39
+00:03:14,870 --> 00:03:23,130
+And then the normalized is all caps version of the ministry or ministry.
+
+40
+00:03:23,150 --> 00:03:24,950
+So always make sure the spending is right.
+
+41
+00:03:24,980 --> 00:03:29,090
+I've spent these debugging but spilling, so don't be like me.
+
+42
+00:03:30,020 --> 00:03:30,440
+All right.
+
+43
+00:03:31,130 --> 00:03:36,260
+So now that we have this configured method and as many rules as you think you may need, you can go
+
+44
+00:03:36,260 --> 00:03:37,510
+ahead and configure them.
+
+45
+00:03:37,520 --> 00:03:44,570
+But the most important parts of all of that is when we're ready to put it into the system.
+
+46
+00:03:44,570 --> 00:03:46,550
+We need only say builder.
+
+47
+00:03:49,250 --> 00:03:51,590
+Not apply.
+
+48
+00:03:53,040 --> 00:04:03,210
+Sorry, Bill Der not apply configuration, and then I'm just going to see a new role.
+
+49
+00:04:04,270 --> 00:04:05,650
+Configuration.
+
+50
+00:04:09,820 --> 00:04:15,650
+And then include the missing reference store you created and there we go.
+
+51
+00:04:15,880 --> 00:04:21,290
+So you see, that looks much to me that looks much neater than having all of this in this file.
+
+52
+00:04:21,340 --> 00:04:28,090
+Remember that the reason we moved it from the top here above the list was that it was so huge a function
+
+53
+00:04:28,090 --> 00:04:29,620
+because of all these lines.
+
+54
+00:04:29,950 --> 00:04:37,090
+So if you want, you can pause right now and attempt to build other configuration files for country
+
+55
+00:04:37,090 --> 00:04:37,990
+and hotel.
+
+56
+00:04:38,860 --> 00:04:45,370
+All right, so I hope you actually attempted it because I did it right, so I'm not going to ask you
+
+57
+00:04:45,370 --> 00:04:46,030
+to do anything.
+
+58
+00:04:46,030 --> 00:04:49,600
+I'm not going to do so just in case you need some guidance.
+
+59
+00:04:50,020 --> 00:04:55,030
+We I went ahead and created configuration files per type.
+
+60
+00:04:55,420 --> 00:04:55,770
+All right.
+
+61
+00:04:55,780 --> 00:04:58,570
+So we have hotel and we have country and we have rules.
+
+62
+00:04:58,570 --> 00:05:00,160
+So we created a all together.
+
+63
+00:05:00,160 --> 00:05:01,270
+I did country.
+
+64
+00:05:01,630 --> 00:05:02,980
+Same name.
+
+65
+00:05:03,280 --> 00:05:09,410
+Basically, you could copy and paste according to the essential parts control configuration that I into
+
+66
+00:05:09,410 --> 00:05:15,460
+the type configuration relative to country as a contextless and then the same code that was there to
+
+67
+00:05:15,460 --> 00:05:16,360
+create the country's.
+
+68
+00:05:16,360 --> 00:05:18,040
+I just cut and paste.
+
+69
+00:05:18,340 --> 00:05:18,690
+All right.
+
+70
+00:05:18,850 --> 00:05:26,500
+The only thing is that in the previous one we had builder dot entity, something like that, and I removed
+
+71
+00:05:26,500 --> 00:05:27,730
+that DOT entity part.
+
+72
+00:05:27,740 --> 00:05:29,350
+So it's just builder that has data.
+
+73
+00:05:29,350 --> 00:05:36,220
+So you can go ahead and replicate that across both country and hotel.
+
+74
+00:05:36,230 --> 00:05:41,920
+And if you're doing your own thing across any other one, I know you're on model building looks much
+
+75
+00:05:42,130 --> 00:05:42,670
+cleaner.
+
+76
+00:05:43,010 --> 00:05:43,330
+Right.
+
+77
+00:05:43,700 --> 00:05:45,450
+And I think I just put this one.
+
+78
+00:05:45,460 --> 00:05:51,640
+I don't really think it matters where in terms of order, but I just put it on the bottom since that's
+
+79
+00:05:51,640 --> 00:05:54,340
+the order in which everything was being created anyway.
+
+80
+00:05:54,340 --> 00:05:59,170
+So country then hotel, then we have the rules once again.
+
+81
+00:05:59,170 --> 00:06:05,840
+These two are really optional in terms of what's really needed to get the application up and running.
+
+82
+00:06:05,990 --> 00:06:06,160
+Right.
+
+83
+00:06:07,240 --> 00:06:14,440
+So now that we have the rule configuration or seating, we can all just add migration and see added
+
+84
+00:06:14,590 --> 00:06:16,540
+default rules.
+
+85
+00:06:17,260 --> 00:06:25,830
+And that and the resulting migration file has two entries into our rules file.
+
+86
+00:06:25,840 --> 00:06:27,820
+So you see generated its own ID.
+
+87
+00:06:27,820 --> 00:06:30,670
+That's why I didn't bother to modify that.
+
+88
+00:06:30,670 --> 00:06:32,980
+But then we get user and we get administrator.
+
+89
+00:06:33,310 --> 00:06:39,610
+So when we do update database, it will go ahead and do the insert.
+
+90
+00:06:40,330 --> 00:06:43,640
+So once that is done, we have two other changes to make.
+
+91
+00:06:43,660 --> 00:06:50,160
+So one is in the user D to introduce this collection of type string and I'm calling its rolls.
+
+92
+00:06:50,600 --> 00:06:50,870
+Right.
+
+93
+00:06:50,890 --> 00:06:56,950
+So we're giving the user the opportunity to see which rule or rules should this person have.
+
+94
+00:06:57,430 --> 00:06:57,940
+Right.
+
+95
+00:06:58,180 --> 00:07:00,520
+And then in the account controller.
+
+96
+00:07:01,490 --> 00:07:09,740
+Right after we have vetted if the registration attempt was successful or not, are the user creation
+
+97
+00:07:09,740 --> 00:07:14,240
+operation was successful or not run, remember, if it gets beyond that is a statement, it means that
+
+98
+00:07:14,240 --> 00:07:15,210
+it was successful.
+
+99
+00:07:15,500 --> 00:07:24,170
+Then we take the extra step of seeing user manager that not add rules async and we're adding to the
+
+100
+00:07:24,170 --> 00:07:30,010
+user that was just created the role that came in our rules that came in.
+
+101
+00:07:30,020 --> 00:07:39,040
+So if you look at this, it has a few overrides, one over it allows it to or not over the overload.
+
+102
+00:07:39,050 --> 00:07:39,550
+Sorry.
+
+103
+00:07:39,590 --> 00:07:46,010
+So the one overload allows you to just passing in a list of rules that it will just go ahead and add
+
+104
+00:07:46,010 --> 00:07:46,900
+to this user.
+
+105
+00:07:46,910 --> 00:07:53,300
+So once the rule exists, then it will be associated with the user in the bucket once again, built
+
+106
+00:07:53,300 --> 00:07:57,370
+in function, not much code or if needed on our part.
+
+107
+00:07:57,650 --> 00:07:59,070
+So let us do this for a spin.
+
+108
+00:07:59,270 --> 00:08:04,610
+So in Swagga, you see that they are modifying the potential values, right, so that they are showing
+
+109
+00:08:04,610 --> 00:08:07,280
+that they can pass in an area called rules.
+
+110
+00:08:07,730 --> 00:08:11,540
+So the area is the square brackets, whereas an object is occurring.
+
+111
+00:08:12,470 --> 00:08:13,580
+So let's try it out.
+
+112
+00:08:13,970 --> 00:08:20,060
+And I'm going to leave this same user as the same user that we've got success with last time.
+
+113
+00:08:20,570 --> 00:08:21,120
+Right.
+
+114
+00:08:21,260 --> 00:08:25,970
+So that means I should get some validation message to see it shouldn't work, but I'm going to pass
+
+115
+00:08:25,970 --> 00:08:31,890
+in the role of user and when they execute and then here's what I'm getting.
+
+116
+00:08:31,910 --> 00:08:35,600
+So the result is that I have a 400 board request.
+
+117
+00:08:35,900 --> 00:08:37,880
+Duplicate email is the issue.
+
+118
+00:08:37,880 --> 00:08:38,930
+It's already taken.
+
+119
+00:08:38,930 --> 00:08:40,880
+So that validation is working.
+
+120
+00:08:40,890 --> 00:08:52,930
+So let's see, user at hotels, hotel listing, dot com does something different and that's the user.
+
+121
+00:08:53,330 --> 00:08:56,450
+So I'll go ahead and execute.
+
+122
+00:08:56,900 --> 00:09:00,140
+And what I'm getting is not a bad response.
+
+123
+00:09:00,350 --> 00:09:00,800
+All right.
+
+124
+00:09:00,810 --> 00:09:01,600
+That looks good.
+
+125
+00:09:01,850 --> 00:09:05,990
+So let's us see what happened in the database after those operations.
+
+126
+00:09:07,560 --> 00:09:13,170
+So I'm going to kill the execution, go over to the server manager and first, then want to look into
+
+127
+00:09:13,170 --> 00:09:19,020
+user status, I should have at least two users based on my tests so far, and they will go away.
+
+128
+00:09:19,020 --> 00:09:22,350
+I use a total listing and user at example.
+
+129
+00:09:22,800 --> 00:09:23,220
+All right.
+
+130
+00:09:23,230 --> 00:09:24,050
+So that's good.
+
+131
+00:09:24,630 --> 00:09:28,030
+The next one would be the rolls.
+
+132
+00:09:28,050 --> 00:09:31,920
+So I just scaffolded the rules myself.
+
+133
+00:09:31,920 --> 00:09:33,030
+I just see that the rules.
+
+134
+00:09:33,110 --> 00:09:35,040
+And so these other rules that we created.
+
+135
+00:09:35,190 --> 00:09:39,720
+However, the User Roll Association is stored here because it's a many to many.
+
+136
+00:09:39,720 --> 00:09:42,960
+So they're seeing that many users rights have many rules.
+
+137
+00:09:43,350 --> 00:09:43,700
+Right.
+
+138
+00:09:43,740 --> 00:09:51,060
+So that's why we allowed Honoria, because maybe one user might be administrator and user, maybe and
+
+139
+00:09:51,060 --> 00:09:55,440
+supervisor etc, etc. based on this system, it's all context.
+
+140
+00:09:55,440 --> 00:09:55,710
+Right.
+
+141
+00:09:56,340 --> 00:10:03,060
+However, in this table, when we view data, then we should see the user ID associated with the roll.
+
+142
+00:10:03,680 --> 00:10:04,440
+Right.
+
+143
+00:10:04,720 --> 00:10:04,770
+Right.
+
+144
+00:10:04,770 --> 00:10:09,600
+So if we were to just go back and double check, you see that this is the user ID.
+
+145
+00:10:09,600 --> 00:10:12,870
+There was no ending eight F seven.
+
+146
+00:10:13,240 --> 00:10:19,890
+So if I look at that same user ID and if seven and the rules seven, five, five.
+
+147
+00:10:19,890 --> 00:10:24,380
+So you have to go to this one to see which one is seven five five which is user.
+
+148
+00:10:24,600 --> 00:10:25,290
+So that is all.
+
+149
+00:10:25,290 --> 00:10:33,930
+We start integrating rules based authorization into our systems and all our users when they get registered,
+
+150
+00:10:34,320 --> 00:10:37,200
+will get registered with their appropriate rules.

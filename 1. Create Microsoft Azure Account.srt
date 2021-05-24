@@ -1,0 +1,395 @@
+1
+00:00:01,260 --> 00:00:06,450
+Hey, guys, in this video will be creating or Microsoft as your accounts, like I said earlier, we
+
+2
+00:00:06,450 --> 00:00:09,890
+can get started for free to get to this website.
+
+3
+00:00:09,900 --> 00:00:13,690
+We go to Azor Dot Microsoft dot com.
+
+4
+00:00:13,710 --> 00:00:17,580
+And then I guess the road to according to your reason or your language.
+
+5
+00:00:18,030 --> 00:00:21,800
+But this is what the website looks or should look like.
+
+6
+00:00:22,110 --> 00:00:25,620
+And you can read through it to see exactly what Asgeir is all about.
+
+7
+00:00:25,810 --> 00:00:34,650
+It's about being futuristic, allowing more collaboration and operating more seamlessly in a cloud space
+
+8
+00:00:34,690 --> 00:00:40,660
+where there are all over the world and you usually would just choose the region that is closest to you.
+
+9
+00:00:40,680 --> 00:00:50,280
+So I'm actually in the Caribbean region, so my closest region is east to us or east us too.
+
+10
+00:00:50,640 --> 00:00:52,590
+But that's not for this video.
+
+11
+00:00:53,130 --> 00:00:53,700
+This video.
+
+12
+00:00:53,700 --> 00:00:55,110
+We're just creating the O'Collins.
+
+13
+00:00:55,110 --> 00:00:57,960
+We're not setting up anything about regions just yet.
+
+14
+00:00:58,730 --> 00:01:04,290
+So to get started, we can just well, if you have a live account already, then you can just go ahead
+
+15
+00:01:04,290 --> 00:01:08,010
+and send in with that live account where you can just click start free.
+
+16
+00:01:08,580 --> 00:01:14,460
+And here they tell you that you can create a free going to be and you can get started with 12 months
+
+17
+00:01:14,460 --> 00:01:15,460
+of free services.
+
+18
+00:01:15,480 --> 00:01:17,270
+So that's a good deal to me.
+
+19
+00:01:17,520 --> 00:01:23,430
+And if you scroll down, you'll see 12 months of free, popular free services, plus two hundred dollars
+
+20
+00:01:23,430 --> 00:01:26,110
+credits, which will expire in 30 days.
+
+21
+00:01:26,130 --> 00:01:32,880
+So they give it 200 dollars so you can create V virtual machines, you can create resources in the cloud
+
+22
+00:01:32,880 --> 00:01:35,070
+and experiment until that money is up.
+
+23
+00:01:35,400 --> 00:01:37,140
+And that's really just for one month.
+
+24
+00:01:37,140 --> 00:01:43,550
+But then there are certain services that you just get for free for the rest of the year and then you
+
+25
+00:01:43,590 --> 00:01:47,040
+have a few other services that are always free.
+
+26
+00:01:48,060 --> 00:01:52,140
+So what we're going to do is just go ahead and click, start free.
+
+27
+00:01:53,570 --> 00:01:57,260
+And then they'll ask us to sign in with our live accounts.
+
+28
+00:01:57,290 --> 00:02:00,170
+If you have a live account once again, you can go ahead and use that.
+
+29
+00:02:00,380 --> 00:02:03,340
+If you don't have an account, then you can go ahead and create one.
+
+30
+00:02:03,530 --> 00:02:09,280
+And this is a very recent option to sign in with GitHub.
+
+31
+00:02:09,710 --> 00:02:15,970
+So I have a live account that I use, but I'm just going to walk you through the create one first.
+
+32
+00:02:16,730 --> 00:02:21,230
+No, the Levaquin doesn't necessarily have to be at livor at all.
+
+33
+00:02:21,920 --> 00:02:25,340
+It doesn't have to be a traditional Hotmail account.
+
+34
+00:02:25,340 --> 00:02:26,780
+It can be a Gmail account.
+
+35
+00:02:26,780 --> 00:02:33,800
+So I can actually use maybe the same email address I used for getable or email addresses I use when
+
+36
+00:02:33,800 --> 00:02:38,930
+I'm signing up for things I can use that, whether it's Yahoo, Gmail, Hotmail or whatever it is,
+
+37
+00:02:39,200 --> 00:02:40,370
+and just click next.
+
+38
+00:02:41,180 --> 00:02:45,200
+And here it's it's telling me that I already have a Microsoft icon.
+
+39
+00:02:45,200 --> 00:02:46,430
+So that's just driving.
+
+40
+00:02:46,430 --> 00:02:53,720
+My point, though, that once you have an account, an email address, it doesn't have to be a hot meal
+
+41
+00:02:53,720 --> 00:03:00,260
+or a traditional Levaquin, but they are just creating a Microsoft account for you with that email address
+
+42
+00:03:00,500 --> 00:03:03,550
+so you can go ahead and sign up.
+
+43
+00:03:03,710 --> 00:03:06,050
+It's a pretty straightforward process.
+
+44
+00:03:06,920 --> 00:03:08,930
+The account that they said already existed.
+
+45
+00:03:08,930 --> 00:03:12,740
+That's an account I was using to sign up for the free account.
+
+46
+00:03:12,750 --> 00:03:15,530
+So I actually just went ahead and logged in.
+
+47
+00:03:15,530 --> 00:03:21,380
+And because I really didn't setup much more, I think that your registration process is actually going
+
+48
+00:03:21,380 --> 00:03:24,410
+to look very similar to this regardless.
+
+49
+00:03:24,420 --> 00:03:29,500
+So on to get over the hurdle of putting in your email address and proceeding, then you're probably
+
+50
+00:03:29,510 --> 00:03:36,380
+going to end up on a screen like this where you're going to be asked for your demographic information.
+
+51
+00:03:36,380 --> 00:03:43,670
+Just for the record, keeping my country and region is Jamaica and I'm putting in my phone number that
+
+52
+00:03:43,670 --> 00:03:44,450
+I treat next.
+
+53
+00:03:44,690 --> 00:03:52,640
+And then they say, do you want to verify your identity by phone or do you want to buy a card or someone
+
+54
+00:03:52,640 --> 00:03:53,420
+to choose?
+
+55
+00:03:53,420 --> 00:03:57,710
+Takes me by phone and I just got the text.
+
+56
+00:03:57,710 --> 00:03:59,210
+It didn't take long at all.
+
+57
+00:03:59,210 --> 00:04:03,410
+So I'm just going to put in the code and then verify.
+
+58
+00:04:05,210 --> 00:04:09,560
+Now, here's the part that might deter you if you're not prepared for it.
+
+59
+00:04:09,590 --> 00:04:15,770
+They will want to verify your identity by card so you won't be charged unless you upgrade, meaning
+
+60
+00:04:15,920 --> 00:04:18,320
+they have different OILCLOTH subscription plans.
+
+61
+00:04:18,320 --> 00:04:21,320
+So you're signing up for the free subscription plan.
+
+62
+00:04:21,350 --> 00:04:29,300
+Once that free subscription plan is done, then you won't be able to do much on the platform until you
+
+63
+00:04:29,300 --> 00:04:32,690
+sign up for a new subscription plan which coincides that upgrade.
+
+64
+00:04:32,720 --> 00:04:40,610
+So like I said earlier, there is pay as you go and then there's pay as you go test, which is the one
+
+65
+00:04:40,610 --> 00:04:44,240
+item on which is like half the price of the regular pay as you go.
+
+66
+00:04:44,990 --> 00:04:48,590
+So I actually provided my card information when I signed up.
+
+67
+00:04:48,920 --> 00:04:52,760
+And having done that, you can make an agreement.
+
+68
+00:04:52,760 --> 00:04:57,950
+If you don't have a card or you're not comfortable with providing your card details, then I mean,
+
+69
+00:04:58,010 --> 00:04:59,000
+you can stop here.
+
+70
+00:04:59,010 --> 00:04:59,710
+That's fine.
+
+71
+00:05:00,350 --> 00:05:05,390
+Later on, when we're actually deploying to as you can still see what it will look like and see how
+
+72
+00:05:05,390 --> 00:05:06,650
+beneficial it is to you.
+
+73
+00:05:07,760 --> 00:05:13,730
+But if you wish, then you can go ahead and provide your information and then click on the agreement
+
+74
+00:05:13,730 --> 00:05:18,800
+and accept the agreement terms and then you would be in on the platform.
+
+75
+00:05:18,800 --> 00:05:25,010
+So I'm just going to sign into my real account, my quote unquote relection, the one that I use, and
+
+76
+00:05:25,010 --> 00:05:26,450
+show you what a zero looks like.
+
+77
+00:05:27,840 --> 00:05:33,660
+Well, actually, I just stepped in portable dot as dot com, hoping that you would ask me to log in,
+
+78
+00:05:33,660 --> 00:05:39,510
+but I did that and they just rewrote me using the same icon that I was just setting up toward Williams
+
+79
+00:05:39,510 --> 00:05:40,680
+at G.M. dot com.
+
+80
+00:05:40,920 --> 00:05:43,290
+So this dashboard.
+
+81
+00:05:43,300 --> 00:05:45,330
+So this is the Azura dashboard.
+
+82
+00:05:45,500 --> 00:05:46,740
+That's a very basic level.
+
+83
+00:05:46,740 --> 00:05:52,350
+They have a panel to the side here listing out quite a few services that you can get.
+
+84
+00:05:52,650 --> 00:05:57,750
+But then because we didn't complete this little boy, because I didn't complete the setup, at least
+
+85
+00:05:57,750 --> 00:06:02,280
+then when I go to subscriptions, I'm going to see that I have no subscription.
+
+86
+00:06:02,710 --> 00:06:08,840
+So like I will see in the subscription is how they treat you as a customer, whether Europe as you go
+
+87
+00:06:08,850 --> 00:06:10,660
+enterprise or whatever.
+
+88
+00:06:10,680 --> 00:06:18,360
+So if I later on decide that I want to provide my information, I can just come back and click add and
+
+89
+00:06:18,360 --> 00:06:25,380
+then that will bring me to complete the Senate procedure where I actually add the subscription.
+
+90
+00:06:25,410 --> 00:06:27,990
+So this is a free trial, one that we're setting up just now.
+
+91
+00:06:28,710 --> 00:06:29,420
+As you go.
+
+92
+00:06:29,580 --> 00:06:33,390
+You have developer support as you have quite a few of them.
+
+93
+00:06:33,460 --> 00:06:33,790
+All right.
+
+94
+00:06:34,110 --> 00:06:41,090
+So I would probably go with pay as you go, but that that's yeah.
+
+95
+00:06:41,130 --> 00:06:49,380
+This is all in the in the steps of signing up for Azor, and that is if you wish to proceed with that.
+
+96
+00:06:50,280 --> 00:06:56,010
+But then for this detour, really and truly, I just wanted you to get as far as the dashboard so that
+
+97
+00:06:56,010 --> 00:06:58,950
+you can see that this is what a zero looks like.
+
+98
+00:06:59,220 --> 00:07:03,750
+This is really workload management, portelli against against your virtual machines.
+
+99
+00:07:03,990 --> 00:07:09,060
+But for this course, we'll be looking at up services.

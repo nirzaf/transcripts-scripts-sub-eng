@@ -1,0 +1,43 @@
+1
+00:00:00,560 --> 00:00:06,630
+All right, guys, so we're back in our project and our task today is simple, we're just sworn to take
+
+2
+00:00:06,630 --> 00:00:07,950
+in all our changes.
+
+3
+00:00:07,950 --> 00:00:12,930
+So anything with our Atik would have been modified along the way once again and anything with a green
+
+4
+00:00:12,930 --> 00:00:14,190
+plus sign was added.
+
+5
+00:00:14,190 --> 00:00:17,150
+So we can just go ahead and go to get changes.
+
+6
+00:00:17,730 --> 00:00:22,830
+And I'm just going to refresh what I don't need to refresh here all my changes listed.
+
+7
+00:00:23,010 --> 00:00:25,140
+So I'm going to put in my message.
+
+8
+00:00:25,290 --> 00:00:30,600
+And my message is just letting everybody know that I did the country and the hotel get my thoughts.
+
+9
+00:00:30,600 --> 00:00:36,450
+Also fix the units of work by short for dependency injection reference, because remember, we made
+
+10
+00:00:36,450 --> 00:00:41,340
+that modification in the start so I can go ahead and commit and sync.
+
+11
+00:00:43,750 --> 00:00:47,830
+And once that is done, we're ready to move on to our next module.

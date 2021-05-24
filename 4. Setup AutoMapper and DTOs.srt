@@ -1,0 +1,1103 @@
+1
+00:00:01,040 --> 00:00:01,970
+Hey, guys, welcome back.
+
+2
+00:00:02,000 --> 00:00:07,520
+So in this lesson, we're going to be setting up our data transfer objects and we'll be using Autumn
+
+3
+00:00:07,520 --> 00:00:14,820
+Upper to kind of automate the process of linking our detail to our domain objects.
+
+4
+00:00:15,200 --> 00:00:19,720
+So let me give a little background as to what a deal or data transfer object is.
+
+5
+00:00:20,150 --> 00:00:28,190
+No, it really is a part of a pattern where we try to decouple our domain object, meaning remember,
+
+6
+00:00:28,190 --> 00:00:30,760
+this is representing our database table.
+
+7
+00:00:31,130 --> 00:00:34,730
+We try to decouple this from the user interaction.
+
+8
+00:00:34,730 --> 00:00:42,320
+So we don't want users to be interacting directly with this class when they send and receive information
+
+9
+00:00:42,320 --> 00:00:43,270
+through our API.
+
+10
+00:00:43,280 --> 00:00:49,620
+So we have details as kind of like a middle layer, which will enforce certain validations at the front
+
+11
+00:00:49,620 --> 00:00:56,180
+in part, and we can do quite a few things that extends the flexibility so we can use that to kind of
+
+12
+00:00:56,180 --> 00:01:04,100
+sanitize the data before it actually gets over to our data class and by extension, our database.
+
+13
+00:01:04,340 --> 00:01:11,750
+No autum upper is a library that will actually facilitate us creating what we call mappings to say that
+
+14
+00:01:11,780 --> 00:01:14,410
+this detail matches this data class.
+
+15
+00:01:14,870 --> 00:01:19,550
+So let's firstly try to set up a data transfer object.
+
+16
+00:01:19,550 --> 00:01:27,400
+So in our project, I'm going to create a new folder and this folder I'm just going to call it models.
+
+17
+00:01:27,620 --> 00:01:29,110
+The details are like models.
+
+18
+00:01:29,120 --> 00:01:37,250
+So if you're used to using MVC or even Rezo pages or some other non, you're familiar with the word
+
+19
+00:01:37,250 --> 00:01:37,760
+model.
+
+20
+00:01:38,180 --> 00:01:44,000
+These two is just a fancy way of seeing a model, but it's usually use in terms of APIs.
+
+21
+00:01:44,600 --> 00:01:49,250
+So you can name that for the models if you want to name it details so that you know exactly what it
+
+22
+00:01:49,250 --> 00:01:49,480
+is.
+
+23
+00:01:49,490 --> 00:01:54,730
+That's fine, but I'll just stick with models now instead of our models folder.
+
+24
+00:01:55,010 --> 00:02:04,400
+We generally have a number of classes that represent each maybe variation of a request relative to each
+
+25
+00:02:04,700 --> 00:02:05,690
+domain object.
+
+26
+00:02:05,700 --> 00:02:08,300
+So let's start off with country.
+
+27
+00:02:08,300 --> 00:02:12,080
+So country has three fields.
+
+28
+00:02:12,200 --> 00:02:12,610
+All right.
+
+29
+00:02:13,190 --> 00:02:20,050
+So I'm going to create a detail that will allow us to interact with country or have another layer.
+
+30
+00:02:20,480 --> 00:02:25,310
+So I'm going to call it Country DTL, and that's my naming convention.
+
+31
+00:02:25,310 --> 00:02:30,080
+I put on the table to the end of the same name.
+
+32
+00:02:30,500 --> 00:02:33,710
+Right, because I don't want to country here and there.
+
+33
+00:02:33,710 --> 00:02:37,540
+And then I make a modification to one and then it turns out this was the wrong one.
+
+34
+00:02:37,820 --> 00:02:43,430
+So by name, in detail, you can clearly see which one is not the D2 on which one is right.
+
+35
+00:02:43,850 --> 00:02:50,960
+So go ahead, create country detail and really and truly the detail needs to look similar to.
+
+36
+00:02:51,910 --> 00:02:57,010
+The actual domain knowledge you're probably seeing, OK, so why the duplication, because you just
+
+37
+00:02:57,010 --> 00:03:02,200
+created another class in another folder just to give it about the same properties as well.
+
+38
+00:03:02,200 --> 00:03:07,210
+At this point, I did say we can add validation so I can see that the name is required.
+
+39
+00:03:07,890 --> 00:03:08,250
+Right.
+
+40
+00:03:08,280 --> 00:03:15,670
+So that means when a user is going to interact with the detail, this annotation is going to say you
+
+41
+00:03:15,670 --> 00:03:22,150
+cannot send me information for this deal without this value.
+
+42
+00:03:22,810 --> 00:03:31,180
+So if it's not their validation, we can also stipulate other things like the string length.
+
+43
+00:03:32,360 --> 00:03:39,980
+And then we can see maximum length is 150 or whether this is a country so let's say no country should
+
+44
+00:03:39,980 --> 00:03:43,090
+ever have a name longer than 50 characters.
+
+45
+00:03:43,730 --> 00:03:47,530
+I've done my research, but let's just work with 50, right.
+
+46
+00:03:47,780 --> 00:03:54,230
+And if I wanted to give a specific error message, if this was violated, I can send error messages
+
+47
+00:03:54,230 --> 00:03:59,580
+equal to country name is too long.
+
+48
+00:03:59,990 --> 00:04:07,560
+So if this validation for the string length for name is violated, then this is the error message.
+
+49
+00:04:07,590 --> 00:04:16,730
+So you can always annotate the DTL such that when the user is interacting with the DTL, where handling
+
+50
+00:04:17,030 --> 00:04:23,720
+certain things to make sure that we're not exceeding are going outside of the band of what we want our
+
+51
+00:04:23,720 --> 00:04:31,070
+data quality to be after they have successfully gone through this validation, then we will go ahead
+
+52
+00:04:31,070 --> 00:04:34,860
+and do the mapping between the Beatle and the country.
+
+53
+00:04:35,210 --> 00:04:43,370
+So the principle is that the user will never see country will never see the data class and the database
+
+54
+00:04:43,370 --> 00:04:45,050
+will never see the details.
+
+55
+00:04:45,050 --> 00:04:46,720
+So users interact here.
+
+56
+00:04:47,060 --> 00:04:52,990
+And then in the middle we transfer the data from here to here and then pass it onto the database.
+
+57
+00:04:54,380 --> 00:05:00,650
+So other validations that we can add and just add that to short name here.
+
+58
+00:05:00,690 --> 00:05:06,920
+I'll see a sharp name is also required and the maximum length for the short name would be to write an
+
+59
+00:05:07,070 --> 00:05:08,090
+error message.
+
+60
+00:05:08,090 --> 00:05:09,110
+Short name.
+
+61
+00:05:10,370 --> 00:05:17,730
+Our short Clinton, Mrs. Clinton, your name not, is too long.
+
+62
+00:05:18,440 --> 00:05:23,720
+We can always mix and match and jam these up and there are other annotations that we can add along the
+
+63
+00:05:23,720 --> 00:05:23,920
+way.
+
+64
+00:05:23,930 --> 00:05:30,740
+But these two are the ones that I'll use right now for the D to you know, there is also an extension
+
+65
+00:05:30,740 --> 00:05:35,740
+or extending this button a little bit more where we create details per operation.
+
+66
+00:05:35,750 --> 00:05:42,380
+So when we start developing our controller, our controllers will start looking at the different types
+
+67
+00:05:42,380 --> 00:05:44,090
+of operations and verbs.
+
+68
+00:05:44,210 --> 00:05:50,590
+And then what people do are doing some cases that they have a detail per operations.
+
+69
+00:05:50,600 --> 00:05:58,100
+They have a detail for reading, you have a detail for creating, you have a detail for updating, because
+
+70
+00:05:58,310 --> 00:06:02,450
+the reality is that there are some times when you don't need to provide certain information.
+
+71
+00:06:02,450 --> 00:06:05,300
+So somebody is creating a country.
+
+72
+00:06:05,660 --> 00:06:08,390
+I don't need them to have the field for ID.
+
+73
+00:06:08,750 --> 00:06:09,150
+Right.
+
+74
+00:06:09,440 --> 00:06:15,320
+So the detail that I would like them to interact with would be create.
+
+75
+00:06:17,430 --> 00:06:24,600
+Contrary to your and you won't get that opportunity to provide a value for the ID because we really
+
+76
+00:06:24,600 --> 00:06:31,140
+don't need the value for the ID, so generally speaking, you have to have the country or have the best
+
+77
+00:06:31,150 --> 00:06:36,080
+deal and then I have one for free because once again, creates doesn't need the ID.
+
+78
+00:06:36,720 --> 00:06:36,940
+All right.
+
+79
+00:06:36,990 --> 00:06:42,750
+So when we're doing our verbs, you'll actually see the difference between how we use either one.
+
+80
+00:06:42,750 --> 00:06:44,570
+I know what I'm putting it in the same file.
+
+81
+00:06:44,730 --> 00:06:48,240
+Single responsibility pattern can take precedence here.
+
+82
+00:06:48,240 --> 00:06:52,980
+And you do each one in its own file like we did for the domain classes.
+
+83
+00:06:53,250 --> 00:07:00,450
+Or since this is a small application, I just put all the details that are related to one domain inside
+
+84
+00:07:00,450 --> 00:07:04,800
+of the same file, just in separate classes with the appropriate names.
+
+85
+00:07:05,610 --> 00:07:11,540
+So I'm going to pause here and I'm going to challenge you to go ahead and do the same thing for hotel,
+
+86
+00:07:11,550 --> 00:07:17,130
+create the detail and go ahead and put on some validations for the field.
+
+87
+00:07:18,090 --> 00:07:18,160
+Right.
+
+88
+00:07:18,230 --> 00:07:20,160
+So I hope you took on that challenge.
+
+89
+00:07:20,190 --> 00:07:22,940
+And I am here to show you what I did know.
+
+90
+00:07:22,950 --> 00:07:26,280
+If you did it and you have no errors, that's really good.
+
+91
+00:07:27,120 --> 00:07:28,650
+I did it slightly differently.
+
+92
+00:07:28,650 --> 00:07:34,470
+So I'm just going to walk you through the thinking behind what I have done here for the hotel detail.
+
+93
+00:07:34,950 --> 00:07:40,410
+So I flipped the script instead of creating the hotel detail and then creating the create version.
+
+94
+00:07:40,410 --> 00:07:48,000
+What I did was I created the create version and then I let it inherit, let the detail, the biggest
+
+95
+00:07:48,000 --> 00:07:50,940
+one inherit from the create and I'll explain that decision.
+
+96
+00:07:51,420 --> 00:07:56,640
+Now, going back to what we just did with the country, do you notice that we repeated the fields?
+
+97
+00:07:56,640 --> 00:07:57,090
+Right.
+
+98
+00:07:57,300 --> 00:08:00,570
+I yds in one, but not in the other.
+
+99
+00:08:00,750 --> 00:08:04,920
+But then we repeated Neme and actually refactor this one.
+
+100
+00:08:04,920 --> 00:08:07,050
+Also we repeated name and chaat name.
+
+101
+00:08:07,050 --> 00:08:07,360
+Right.
+
+102
+00:08:07,770 --> 00:08:13,230
+So what I did was to see what are the common fields and what are the unique fields otherwise.
+
+103
+00:08:13,230 --> 00:08:19,980
+So I'd, I only really need idee when I am going to do an update or I'm going to look at the details
+
+104
+00:08:19,980 --> 00:08:23,040
+or something that's not a create operation.
+
+105
+00:08:23,040 --> 00:08:23,330
+Right.
+
+106
+00:08:23,700 --> 00:08:31,680
+So I have the create detail, which is going to have all the fields that are absolutely necessary for
+
+107
+00:08:31,680 --> 00:08:32,610
+the creation.
+
+108
+00:08:32,820 --> 00:08:38,130
+There are also absolutely necessary if you're looking for the details or if you're going to do it right.
+
+109
+00:08:38,520 --> 00:08:40,440
+And once again, you have variation.
+
+110
+00:08:40,460 --> 00:08:46,920
+So if it is that you wanted a detail that only allows you to update the name and that's what you want
+
+111
+00:08:46,920 --> 00:08:52,830
+to expose that user behavior to only the name of the country, but not the short name.
+
+112
+00:08:53,060 --> 00:08:59,340
+You know, just for example, seek, then you could create a detail that his update, country name,
+
+113
+00:08:59,340 --> 00:09:02,730
+detail and all it exposes is the name field.
+
+114
+00:09:02,940 --> 00:09:04,450
+So you have all of those options.
+
+115
+00:09:04,450 --> 00:09:06,690
+So I'm not going that granular into it.
+
+116
+00:09:06,930 --> 00:09:13,110
+So what I'm doing is defining one where the ID is not present and that's what will handle the create
+
+117
+00:09:13,110 --> 00:09:17,100
+operations are the non ID required operations.
+
+118
+00:09:17,430 --> 00:09:24,390
+And then I have the best one which is inheriting from the one that has all the other fields.
+
+119
+00:09:24,390 --> 00:09:31,380
+So the best one has ID and it's inheriting so it automatically has access to everything that was defined
+
+120
+00:09:31,620 --> 00:09:32,160
+that way.
+
+121
+00:09:32,160 --> 00:09:37,830
+I don't need to repeat my validations because initially I had the same validations twice in the file
+
+122
+00:09:38,070 --> 00:09:43,080
+and for as many other details as I may have defined, I would have had these validations again and again
+
+123
+00:09:43,080 --> 00:09:43,530
+and again.
+
+124
+00:09:43,980 --> 00:09:46,080
+So that was my thinking here.
+
+125
+00:09:46,920 --> 00:09:51,140
+So I extended that ideology to the hotel detail.
+
+126
+00:09:51,210 --> 00:09:55,320
+So I have the create totally two, which has its validation for the name.
+
+127
+00:09:55,770 --> 00:09:56,220
+Right.
+
+128
+00:09:56,220 --> 00:09:57,660
+I'm sorry, I copied and pasted.
+
+129
+00:09:57,660 --> 00:09:59,820
+I didn't even change this missive.
+
+130
+00:09:59,820 --> 00:10:05,760
+So that's hotel name is too long, address is too long and you have maximum length.
+
+131
+00:10:05,760 --> 00:10:07,050
+You can add minimum length.
+
+132
+00:10:07,050 --> 00:10:14,410
+You probably want to add many moments to short name because they need to provide at least one one character
+
+133
+00:10:14,520 --> 00:10:18,180
+or even name one character is is needed.
+
+134
+00:10:18,630 --> 00:10:19,020
+Right.
+
+135
+00:10:19,950 --> 00:10:27,870
+So going back to a hotel detail, we have that validation for the name of that validation for the address
+
+136
+00:10:28,050 --> 00:10:29,280
+for the rating.
+
+137
+00:10:29,580 --> 00:10:33,240
+And let me just put some space so we can see where everything starts and stops.
+
+138
+00:10:33,840 --> 00:10:34,410
+There we go.
+
+139
+00:10:34,920 --> 00:10:41,310
+So for the rating, it's required and I set our range of one to five because the rating needs to be
+
+140
+00:10:41,340 --> 00:10:45,120
+between a one star rating or a five star rating.
+
+141
+00:10:45,240 --> 00:10:50,400
+Of course, we're using double because you have four point five, four point one, one point five,
+
+142
+00:10:50,400 --> 00:10:57,960
+etc. So the range here just is whatever numeric value is, there needs to be between these numbers and
+
+143
+00:10:57,960 --> 00:11:00,360
+then the country ID is required.
+
+144
+00:11:00,510 --> 00:11:06,240
+No, no, it's have country ID, but unlike the domain class, I didn't define country.
+
+145
+00:11:06,240 --> 00:11:08,690
+And also missing from the create is the ID.
+
+146
+00:11:08,730 --> 00:11:11,580
+So these two are missing because of creation.
+
+147
+00:11:11,580 --> 00:11:12,930
+All I need is the ID.
+
+148
+00:11:13,290 --> 00:11:15,840
+All the database is going to see is the ID.
+
+149
+00:11:15,840 --> 00:11:16,380
+It's not going to.
+
+150
+00:11:16,400 --> 00:11:24,050
+To see the actual entity or anything coming from that field know that field does become necessary.
+
+151
+00:11:24,080 --> 00:11:29,480
+However, when I need to see the detail so like we describe, instead of going and running another query
+
+152
+00:11:29,480 --> 00:11:36,140
+to find out which country has the ID that was provided here, I can just one include and get the country
+
+153
+00:11:36,140 --> 00:11:37,290
+details included.
+
+154
+00:11:37,670 --> 00:11:43,310
+So that is why in the best detail and I don't like calling this one the base usually inherited from
+
+155
+00:11:43,310 --> 00:11:43,910
+the base.
+
+156
+00:11:43,940 --> 00:11:49,730
+So when I said base, I just mean the one that is not necessarily as specific for an operation.
+
+157
+00:11:50,270 --> 00:11:54,410
+So I'm using it loosely, but I'm just explain myself so I don't confuse you guys.
+
+158
+00:11:55,130 --> 00:12:04,480
+So hotel detail is inheriting all the fields that were outlined in the create version of it, but then
+
+159
+00:12:04,490 --> 00:12:11,360
+it includes the ID and it includes an object of type country deal.
+
+160
+00:12:11,900 --> 00:12:16,390
+So it would have been easy enough to just copy the fields over and you wouldn't be wrong.
+
+161
+00:12:16,400 --> 00:12:21,030
+You don't need to specify a foreign Florentin the detail once again, that's customer facing.
+
+162
+00:12:21,050 --> 00:12:25,670
+It's not database centric, so it doesn't really care if it's a foreign car and not to just says, OK,
+
+163
+00:12:25,880 --> 00:12:28,930
+I need an integer because I was defined as I didn't.
+
+164
+00:12:29,510 --> 00:12:36,380
+However, we're not using country because I, DTL should never reference a domain object directly.
+
+165
+00:12:36,380 --> 00:12:41,540
+So details of the details domain object stuff to domain objects.
+
+166
+00:12:41,810 --> 00:12:44,330
+Autum Upper is the only bridge in between the two.
+
+167
+00:12:44,870 --> 00:12:50,690
+So technically speaking, Ardito doesn't even know that it has a domain object.
+
+168
+00:12:50,960 --> 00:12:54,360
+So there should be no correlation with a domain object.
+
+169
+00:12:54,380 --> 00:13:00,110
+And to so the DTA is defined here and the property here is also a DTA.
+
+170
+00:13:00,770 --> 00:13:06,850
+So after all of this, I'm just going to do a builder and see if there's anything out of place and have
+
+171
+00:13:06,860 --> 00:13:07,820
+a successful build.
+
+172
+00:13:07,840 --> 00:13:12,350
+So everything seems to be no, it seems to know where it's supposed to be.
+
+173
+00:13:12,560 --> 00:13:19,520
+I'm going to just add two more things and then we can go ahead and install and configure Autumn Upir.
+
+174
+00:13:19,880 --> 00:13:29,360
+Now, when we look for a country, it is sometimes easy to look for the country or sometimes easier
+
+175
+00:13:29,360 --> 00:13:35,720
+to look for the country and just see the details of all the hotels that are part of this country.
+
+176
+00:13:36,170 --> 00:13:43,100
+So we kind of need that linking here where we're allowed to see the details of the country for any given
+
+177
+00:13:43,100 --> 00:13:43,760
+hotel.
+
+178
+00:13:44,240 --> 00:13:48,140
+But then when a country has multiple hotels, right.
+
+179
+00:13:48,380 --> 00:13:54,470
+We need to be able to say, look for the country with the eighty one and I want to see all the hotels
+
+180
+00:13:54,470 --> 00:13:57,470
+that's out there, which is not uncommon anywhere on the Internet.
+
+181
+00:13:57,470 --> 00:14:02,900
+If you look for, you know, on a booking website, you look at Jamaica, for example, and it's going
+
+182
+00:14:02,900 --> 00:14:04,960
+to show you the list of hotels.
+
+183
+00:14:05,420 --> 00:14:08,600
+So what will you need to do in our domain object?
+
+184
+00:14:08,600 --> 00:14:11,150
+And we'll be replicating that across also.
+
+185
+00:14:11,540 --> 00:14:18,200
+But we need to have a property that is public virtual list.
+
+186
+00:14:18,200 --> 00:14:26,180
+And I'll just use a list because that's an extension of the list type and it's a list of type hotel.
+
+187
+00:14:27,810 --> 00:14:33,970
+All right, and it is going to be called hotels and we get to that property.
+
+188
+00:14:34,320 --> 00:14:38,160
+So this property, we don't need to do our migration for this.
+
+189
+00:14:38,190 --> 00:14:39,870
+This is really not going to go to the beach.
+
+190
+00:14:40,160 --> 00:14:47,580
+This is just in the domain object that when you are getting data for all of these, if it is requested,
+
+191
+00:14:47,580 --> 00:14:52,780
+you can also include the list of hotels associated with the country.
+
+192
+00:14:53,040 --> 00:14:57,000
+So remember, indoor units of work we did see you can do includes.
+
+193
+00:14:57,210 --> 00:15:04,470
+So you could have included the details of our country with any given hotel, or we could look for our
+
+194
+00:15:04,470 --> 00:15:07,030
+country and include the list of hotels.
+
+195
+00:15:07,050 --> 00:15:10,240
+So that's what that property is there for now.
+
+196
+00:15:10,290 --> 00:15:16,830
+What I'm going to do is allow the DTA to actually have that behavior also in our country.
+
+197
+00:15:16,830 --> 00:15:26,310
+Need to you I'm going to place that one inside of the non-specific non operation specific detail and
+
+198
+00:15:26,310 --> 00:15:29,260
+once again, details speak to details.
+
+199
+00:15:29,280 --> 00:15:34,920
+So Hotel DTL, that's the data type we're dealing with and it maps back to hotel.
+
+200
+00:15:34,950 --> 00:15:36,520
+This doesn't need to be virtual.
+
+201
+00:15:37,250 --> 00:15:37,650
+All right.
+
+202
+00:15:37,660 --> 00:15:42,780
+So we have a public we have the potential to look at the country detail and get the list of hotels.
+
+203
+00:15:42,780 --> 00:15:52,140
+Also, the file names have to match between the DTA and our domain object if we want the mapping to
+
+204
+00:15:52,140 --> 00:15:53,420
+work seamlessly.
+
+205
+00:15:53,730 --> 00:16:00,900
+Otherwise, there are a lot of configurations that you have to go and see all this member or this property
+
+206
+00:16:00,960 --> 00:16:01,660
+such as this one.
+
+207
+00:16:01,830 --> 00:16:06,300
+That said, we don't want to go through all of that based on what we're doing here.
+
+208
+00:16:06,330 --> 00:16:11,370
+Everything should map to the other or to its counterpart quite well.
+
+209
+00:16:12,360 --> 00:16:12,680
+All right.
+
+210
+00:16:12,690 --> 00:16:18,090
+So I've been seeing my mom come up, so let's install Autom up here, because that's what we're going
+
+211
+00:16:18,090 --> 00:16:20,070
+to use to do this mapping.
+
+212
+00:16:20,070 --> 00:16:20,320
+Right?
+
+213
+00:16:20,340 --> 00:16:27,510
+So I click on the project, go to get packages, and then we're going to browse and we're searching
+
+214
+00:16:27,510 --> 00:16:29,190
+for auto mopper.
+
+215
+00:16:30,140 --> 00:16:36,950
+And what we really want to be autumn upward dog extensions that Microsoft up dependency injection,
+
+216
+00:16:36,950 --> 00:16:39,900
+because this one is specifically for core.
+
+217
+00:16:40,070 --> 00:16:43,670
+The other one, it's not optimized for Dommett Core.
+
+218
+00:16:43,940 --> 00:16:45,980
+So this is the one that we want.
+
+219
+00:16:46,280 --> 00:16:52,300
+We can just go ahead and install the autumn upir is not the standard.
+
+220
+00:16:52,310 --> 00:16:57,850
+There are other tools out there that do similar things to Autumn Upir, but this one is very popular.
+
+221
+00:16:57,860 --> 00:16:58,750
+I used a lot.
+
+222
+00:16:58,790 --> 00:17:01,790
+It does not field me, at least in very recent times.
+
+223
+00:17:01,790 --> 00:17:02,430
+It does not.
+
+224
+00:17:02,840 --> 00:17:06,380
+So we can get a lot of work done with Autumn Upper.
+
+225
+00:17:06,740 --> 00:17:08,840
+So now that we've installed it.
+
+226
+00:17:08,990 --> 00:17:10,420
+Oh, I thought the sun arrow.
+
+227
+00:17:10,850 --> 00:17:14,120
+No, we need to set up on initialization.
+
+228
+00:17:14,120 --> 00:17:14,390
+Right.
+
+229
+00:17:14,420 --> 00:17:19,640
+So what I want to do is just create a folder and you realize that I love to create folders, just kind
+
+230
+00:17:19,640 --> 00:17:27,440
+of segregate what is happening where some to call this folder configuration the configurations.
+
+231
+00:17:28,220 --> 00:17:35,750
+And in this folder I'm going to create a class that I'm going to call Mumper initialize or.
+
+232
+00:17:36,760 --> 00:17:43,630
+All right, so we have to create the configuration so that autumn up knows how it should behave and
+
+233
+00:17:43,630 --> 00:17:44,870
+what it should pay attention to.
+
+234
+00:17:44,890 --> 00:17:47,380
+So mopper or mopper, initialise.
+
+235
+00:17:47,950 --> 00:17:52,290
+And we're going to inherit from this class called profile.
+
+236
+00:17:52,300 --> 00:17:57,010
+And once I do that, I need to include the using statement for Autumn Upir.
+
+237
+00:17:57,880 --> 00:18:04,720
+And then this allows me to create what I need to create a constructor.
+
+238
+00:18:04,720 --> 00:18:07,680
+So on it's called it will do the initialization.
+
+239
+00:18:08,440 --> 00:18:13,550
+And then in this constructor, I need to define all of the mappings.
+
+240
+00:18:13,570 --> 00:18:13,900
+Right.
+
+241
+00:18:14,260 --> 00:18:22,960
+So in other words, I need to see that this domain is called country and then we go ahead and include
+
+242
+00:18:22,960 --> 00:18:24,380
+any missing library.
+
+243
+00:18:24,430 --> 00:18:25,060
+There we go.
+
+244
+00:18:25,690 --> 00:18:29,950
+Is going to map directly to country old.
+
+245
+00:18:31,690 --> 00:18:34,600
+All right, fine, go ahead and include this.
+
+246
+00:18:36,230 --> 00:18:43,580
+And then we open and close brace, and then I'm just going to follow that up with duct reverse mop,
+
+247
+00:18:43,580 --> 00:18:44,930
+which is also a function.
+
+248
+00:18:45,830 --> 00:18:53,120
+So this is seeing that the country ed class has a direct correlation or the feels, including your needs.
+
+249
+00:18:53,120 --> 00:19:01,160
+A class as a direct have a direct correlation to country deal fields and they go in either direction.
+
+250
+00:19:01,900 --> 00:19:02,530
+All right.
+
+251
+00:19:02,870 --> 00:19:07,010
+And then I'm going to want to do that for all of the details that I have.
+
+252
+00:19:07,040 --> 00:19:07,700
+So that's what I said.
+
+253
+00:19:07,700 --> 00:19:12,290
+You can get granular, but once you get granular, you have to make sure that you're covering the potential
+
+254
+00:19:12,290 --> 00:19:12,920
+mappings.
+
+255
+00:19:12,920 --> 00:19:13,210
+Right.
+
+256
+00:19:13,670 --> 00:19:21,380
+So country to create and country to country and then hotel to hotel DTL.
+
+257
+00:19:24,420 --> 00:19:33,710
+All right, and then the same behavior, same treatment for the hotel to the creator hotel deal.
+
+258
+00:19:34,870 --> 00:19:42,030
+All right, so now that we have the Mumper initial lizer setup, we need to know included in the startup
+
+259
+00:19:42,030 --> 00:19:48,370
+of our application, so we go to Starkel as usual, and then we're going to include a line that I just
+
+260
+00:19:48,370 --> 00:19:58,540
+included right here on the northeast corner where I went to see services that add auto mopper.
+
+261
+00:19:59,470 --> 00:20:06,110
+And then this is going to require me to include something, let me finish writing into it first.
+
+262
+00:20:06,400 --> 00:20:07,210
+All right, there we go.
+
+263
+00:20:08,140 --> 00:20:13,770
+So I need to include or have the using statement for autumn.
+
+264
+00:20:14,020 --> 00:20:14,580
+There we go.
+
+265
+00:20:15,310 --> 00:20:17,080
+So an autumn upir.
+
+266
+00:20:17,320 --> 00:20:28,540
+And I'm going to see type of and I'm going to pass in the data type associated with the map per initialise
+
+267
+00:20:28,540 --> 00:20:31,330
+or so mopper Inish.
+
+268
+00:20:32,660 --> 00:20:34,940
+Get the spelling right, Lizer.
+
+269
+00:20:36,290 --> 00:20:42,830
+And then once again include the missing reference to include using statements.
+
+270
+00:20:44,000 --> 00:20:48,380
+And then one side to that autumn upir is ready and raring to go.
+
+271
+00:20:48,860 --> 00:20:54,430
+So when we're actually developing our endpoints, we'll actually see the power of the awesome upper
+
+272
+00:20:54,440 --> 00:20:58,950
+and hold the details work and how everything relates to the data classes.
+
+273
+00:20:59,000 --> 00:21:02,810
+But it's good to get these configurations out of the way from early.
+
+274
+00:21:02,820 --> 00:21:11,000
+So once you set the standard for your application and to later on, there's not as much rework that
+
+275
+00:21:11,000 --> 00:21:15,440
+needs to be done because that standard has been set for maintaining that standard as your application
+
+276
+00:21:15,440 --> 00:21:19,390
+gets bigger and all of these things are already in place.

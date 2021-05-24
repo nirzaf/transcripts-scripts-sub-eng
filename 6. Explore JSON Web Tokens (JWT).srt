@@ -1,0 +1,243 @@
+1
+00:00:00,620 --> 00:00:07,210
+You guys will come back, so Randall, we want to start discussing our Gece on the Web tokens, but
+
+2
+00:00:07,220 --> 00:00:11,720
+before we go ahead and implement them, unwrite mountains of beautiful code.
+
+3
+00:00:12,020 --> 00:00:19,040
+To do that, I want us to have a full understanding of the purpose that they serve in the whole workflow,
+
+4
+00:00:19,040 --> 00:00:21,980
+the API security and everything.
+
+5
+00:00:22,820 --> 00:00:30,100
+So there is a leading authority, at least in my view, there are leading authority in the form of zero,
+
+6
+00:00:30,110 --> 00:00:31,100
+if I'm not mistaken.
+
+7
+00:00:31,100 --> 00:00:34,970
+They're probably pioneers for this kind of protocol.
+
+8
+00:00:35,180 --> 00:00:41,600
+But you can go to JWT that aisle, and you land on the same page that I have here, where they display
+
+9
+00:00:41,600 --> 00:00:46,310
+to some token and kind of show you the breakdown.
+
+10
+00:00:46,520 --> 00:00:54,920
+So we're going to discuss exactly why tokens are necessary and what exactly they tell basically when
+
+11
+00:00:54,920 --> 00:00:56,140
+when they're being recorded.
+
+12
+00:00:57,440 --> 00:01:06,380
+So let's say, once again, the person attempts to log in to our API or they attempt to access our resource
+
+13
+00:01:06,620 --> 00:01:07,660
+from our API.
+
+14
+00:01:08,480 --> 00:01:10,610
+We have restricted access.
+
+15
+00:01:11,150 --> 00:01:17,720
+So we are telling them that we need to know who you are and what you are able to do.
+
+16
+00:01:18,440 --> 00:01:24,710
+But then I need to make sure that you are somebody who should be able to access my system to begin with.
+
+17
+00:01:24,720 --> 00:01:25,000
+Right.
+
+18
+00:01:25,520 --> 00:01:34,310
+So are talking here pretty much would be issued to them after a successful login attempts so they would
+
+19
+00:01:34,310 --> 00:01:40,430
+pass over their username and password that we already have stored in our system because they're registered.
+
+20
+00:01:40,760 --> 00:01:47,330
+Once we verify that they are who they say they are, we're going to give them a tool can with information
+
+21
+00:01:47,330 --> 00:01:54,710
+that we have on them so that when they are making subsequent requests, they can use this tool kit instead
+
+22
+00:01:54,710 --> 00:01:57,180
+of trying to log in every single time.
+
+23
+00:01:57,620 --> 00:02:04,370
+So this token would represent a hash or some encoded representation of all the information that we have
+
+24
+00:02:04,370 --> 00:02:11,010
+for them that would that could include their username, their password, not their password, back to
+
+25
+00:02:11,330 --> 00:02:18,830
+their username, their email address, if they're different, how long we're allowing them to use this
+
+26
+00:02:18,830 --> 00:02:22,610
+token to access the system, what role they have.
+
+27
+00:02:22,760 --> 00:02:28,610
+And this although one called claims, which means that you are able to do this, but not that sort of.
+
+28
+00:02:28,820 --> 00:02:29,140
+Right.
+
+29
+00:02:29,480 --> 00:02:37,520
+So those are the things that we encode in this huge string and send back to them after they have successfully
+
+30
+00:02:37,520 --> 00:02:38,070
+logged in.
+
+31
+00:02:38,070 --> 00:02:45,440
+Not the benefit of this is that on their side, they don't have to keep on calling the login because
+
+32
+00:02:45,440 --> 00:02:50,940
+remember that we're not keeping the session to know if they were logged in previously or not.
+
+33
+00:02:51,170 --> 00:02:55,550
+So instead of them having to try and log in every single time, they're going to make an API call,
+
+34
+00:02:55,760 --> 00:03:01,850
+they log in once, get this token and then make every other call with this token attached to the request
+
+35
+00:03:02,150 --> 00:03:07,820
+on our side, when we get the request and we see that there is a token, we decode it, validate that
+
+36
+00:03:07,820 --> 00:03:15,030
+it came from us, and then redirect them accordingly or provide the response accordingly.
+
+37
+00:03:15,050 --> 00:03:19,370
+So that is what JWT security is all about.
+
+38
+00:03:20,080 --> 00:03:23,930
+You'll see that this stream is actually color coded red.
+
+39
+00:03:24,140 --> 00:03:27,800
+I think that's I'm going to say lavender and blue.
+
+40
+00:03:28,550 --> 00:03:28,970
+Right.
+
+41
+00:03:29,270 --> 00:03:34,550
+And pretty much each section is explained over here.
+
+42
+00:03:34,560 --> 00:03:40,940
+So this is the heterosexual one which contains what harshing algorithm was used, as well as the type
+
+43
+00:03:40,940 --> 00:03:43,160
+of token which in this case is JWT.
+
+44
+00:03:43,430 --> 00:03:45,880
+The middle section has the payload or the data.
+
+45
+00:03:45,890 --> 00:03:51,410
+So the payload is really to see all of this information is what I know about this user.
+
+46
+00:03:51,410 --> 00:03:56,120
+So the more information we put into it is the bigger the section will get.
+
+47
+00:03:56,420 --> 00:03:56,810
+Right.
+
+48
+00:03:56,990 --> 00:04:02,150
+And over to the right, you see here they're showing you what exactly is included in this payload.
+
+49
+00:04:02,160 --> 00:04:09,230
+So the payload can have the expiration date of the token or date on time because usually you are talking
+
+50
+00:04:09,230 --> 00:04:11,420
+for a finite period of time.
+
+51
+00:04:11,870 --> 00:04:16,250
+So as long as this token is valid, then they don't have to log in again.
+
+52
+00:04:17,240 --> 00:04:21,530
+As soon as it's invalid, then they may want to log in and get their first token and then continue.
+
+53
+00:04:21,560 --> 00:04:24,890
+So that's what that that's the purpose that one serves.
+
+54
+00:04:25,280 --> 00:04:30,980
+And then the parts now with the signature piece of the server is the signature part to verify whether
+
+55
+00:04:30,980 --> 00:04:34,020
+the token contains a valid information or not.
+
+56
+00:04:34,040 --> 00:04:39,590
+So if we issued the token, then we would want to verify that it came from us because anybody can really
+
+57
+00:04:40,070 --> 00:04:47,660
+encode this kind of data, but they don't want to make sure that they have done here encoded relative
+
+58
+00:04:47,660 --> 00:04:53,540
+to our issuing key to make sure that it really came from us and it is valid in our system.
+
+59
+00:04:56,120 --> 00:05:03,560
+So I hope that cleared up some of the let's say the gray area is our own, what JWT is and why we're
+
+60
+00:05:03,560 --> 00:05:04,160
+using it.
+
+61
+00:05:04,430 --> 00:05:10,130
+When we come back, we will start changing up our configurations in our API to facilitate its use.

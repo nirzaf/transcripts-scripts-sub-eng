@@ -1,0 +1,1679 @@
+1
+00:00:00,890 --> 00:00:02,420
+Hey, guys, welcome back.
+
+2
+00:00:02,450 --> 00:00:09,920
+So we're going to continue our journey into setting up our authentication for our API and we'll be setting
+
+3
+00:00:09,920 --> 00:00:17,500
+up this endpoint for user WAN registration and to log in and by extension, authentication.
+
+4
+00:00:18,080 --> 00:00:23,900
+No, I've already kind of cheated and gone ahead and set up the new controller so you can pause and
+
+5
+00:00:23,900 --> 00:00:27,400
+go ahead and get up to speed controllers.
+
+6
+00:00:27,410 --> 00:00:32,380
+But it creates a brand new controller that's blank and call its account controller.
+
+7
+00:00:32,900 --> 00:00:38,350
+And I already went ahead and kind of started doing my injections.
+
+8
+00:00:38,360 --> 00:00:42,490
+So, too, you're familiar with to you would be seeing for the very first time.
+
+9
+00:00:42,890 --> 00:00:45,560
+So you already know the logger and the mopper.
+
+10
+00:00:45,560 --> 00:00:49,520
+So I don't need to explain those in any great detail.
+
+11
+00:00:49,820 --> 00:00:55,560
+However, you will be seeing user manager and sign in manager potentially for the first time.
+
+12
+00:00:55,970 --> 00:00:59,740
+These are two built in libraries courtesy of identity core.
+
+13
+00:00:59,960 --> 00:01:05,600
+So when you typed them, you may want to include the missing reference and you'll see those start to
+
+14
+00:01:05,600 --> 00:01:06,660
+appear on top.
+
+15
+00:01:07,970 --> 00:01:14,840
+No, notice the context for the user manager and for the signing manager is API user or whatever the
+
+16
+00:01:14,840 --> 00:01:21,140
+custom user class is that you would have used when you were setting up identity.
+
+17
+00:01:21,560 --> 00:01:25,080
+If you didn't use one, then you continue to use identity use.
+
+18
+00:01:25,160 --> 00:01:32,990
+So whatever class it is that you set as your context in your configuration and the configuration would
+
+19
+00:01:32,990 --> 00:01:33,560
+be here.
+
+20
+00:01:33,980 --> 00:01:39,650
+Whatever class you set there, you continue to use that throughout the application.
+
+21
+00:01:40,160 --> 00:01:40,640
+All right.
+
+22
+00:01:41,000 --> 00:01:41,510
+So.
+
+23
+00:01:42,830 --> 00:01:50,480
+User manager gives us access to a bunch our suite of functions that allow us to manage Cioni and retrieve
+
+24
+00:01:50,480 --> 00:01:57,080
+user information of users so we don't have to write any custom code to be adding or I don't have to
+
+25
+00:01:57,080 --> 00:02:04,180
+go and put in any unit of work functions for user user table interaction or rule table interaction.
+
+26
+00:02:04,430 --> 00:02:10,160
+All of those things come out of the box with the user manager sign in manager and you have another one
+
+27
+00:02:10,160 --> 00:02:11,570
+called the rules manager.
+
+28
+00:02:11,840 --> 00:02:13,840
+If we need to use it, then we will.
+
+29
+00:02:13,850 --> 00:02:19,880
+But I'm just letting you know that most of those things are encapsulated in these services, which can
+
+30
+00:02:19,880 --> 00:02:23,110
+easily be injected into our application.
+
+31
+00:02:23,810 --> 00:02:30,050
+So now that we have set up our controller and injected all of what we need, we need to start writing
+
+32
+00:02:30,050 --> 00:02:31,000
+our endpoint.
+
+33
+00:02:31,020 --> 00:02:35,810
+So our first endpoint is going to be for registration.
+
+34
+00:02:36,470 --> 00:02:41,960
+So it's going to look something like this public async task action result.
+
+35
+00:02:42,230 --> 00:02:46,400
+And the name is Register for Registration.
+
+36
+00:02:46,820 --> 00:02:50,930
+Since we'll be requiring potentially sensitive data.
+
+37
+00:02:50,960 --> 00:02:52,010
+Well, not potentially.
+
+38
+00:02:52,010 --> 00:02:54,710
+We'll be requiring username, password and so on.
+
+39
+00:02:54,980 --> 00:02:59,090
+I don't want to send that across the pipe in the parameter.
+
+40
+00:02:59,100 --> 00:03:06,770
+So we disclose that in the overview video where we're seeing that using the parameters quite fine when
+
+41
+00:03:06,770 --> 00:03:10,440
+it's something like this, just an ID, nothing to dummying.
+
+42
+00:03:10,460 --> 00:03:10,780
+Right.
+
+43
+00:03:10,790 --> 00:03:16,670
+But then when you get to asking, I use it to register and submit sensitive information.
+
+44
+00:03:16,670 --> 00:03:24,050
+You don't want to just start seeing stream emails, string password, etc, because then everything
+
+45
+00:03:24,050 --> 00:03:30,370
+will actually come across in plain text over to the to the endpoint.
+
+46
+00:03:30,380 --> 00:03:35,090
+So we want to do is make this one a post.
+
+47
+00:03:36,020 --> 00:03:40,250
+So we, we have done work with the get verb.
+
+48
+00:03:40,260 --> 00:03:43,070
+We haven't done much work or any work with the Post.
+
+49
+00:03:43,640 --> 00:03:51,410
+So a post is just like when you're submitting a form on the Internet, when you click submit to go to
+
+50
+00:03:51,410 --> 00:03:55,090
+let's say sign up for Facebook or sign up for something online.
+
+51
+00:03:55,340 --> 00:03:57,480
+If you look in the you are on top.
+
+52
+00:03:57,530 --> 00:04:03,380
+You don't see any of the information being listed or do you just know that your information left one
+
+53
+00:04:03,380 --> 00:04:08,660
+page and supposedly went somewhere and the other page could represent it?
+
+54
+00:04:08,810 --> 00:04:11,390
+That's what the post operation is, right.
+
+55
+00:04:11,630 --> 00:04:16,760
+So the message is encapsulated and kind of hidden from prying eyes.
+
+56
+00:04:17,030 --> 00:04:23,240
+When we do, I get it is sent across four in plain sight, just like what we saw here.
+
+57
+00:04:23,240 --> 00:04:24,680
+So there's no reason to it.
+
+58
+00:04:24,680 --> 00:04:29,090
+So of course, when you're dealing with sensitive information, you don't want to use a guitar or anything
+
+59
+00:04:29,090 --> 00:04:32,860
+that will not hide the information that's being sent across.
+
+60
+00:04:33,410 --> 00:04:40,850
+So with that considered, the parameter that we're going to use here is going to be a custom one.
+
+61
+00:04:41,300 --> 00:04:48,920
+So I'm going to put in an annotation to see get the information from body so the sender needs to send
+
+62
+00:04:48,920 --> 00:04:53,840
+it in the body as opposed to in the euro, in the body of the request.
+
+63
+00:04:54,020 --> 00:04:59,390
+And then we can specify data type that should take the information.
+
+64
+00:04:59,390 --> 00:05:01,540
+So I'm going to say user details.
+
+65
+00:05:01,560 --> 00:05:06,920
+I've created user D to yet, but I'm just going to say user DTL.
+
+66
+00:05:07,730 --> 00:05:08,180
+All right.
+
+67
+00:05:08,600 --> 00:05:17,270
+So let us go ahead and create this user, DTL, and then I'll explain why it can work that out.
+
+68
+00:05:17,270 --> 00:05:27,950
+So in models, we click on class, we're calling user DTL and then user to needs to have at minimum
+
+69
+00:05:27,950 --> 00:05:36,700
+the same feels that we one need to back to our API user and two, we need the user to provide.
+
+70
+00:05:37,160 --> 00:05:44,090
+So this is how I am designing my user details so you can pause replicated, but I'm going to walk you
+
+71
+00:05:44,090 --> 00:05:44,870
+through it anyway.
+
+72
+00:05:44,870 --> 00:05:46,850
+So first name, last name.
+
+73
+00:05:46,880 --> 00:05:51,350
+When registering you have the option to pass those two fields over notice.
+
+74
+00:05:51,350 --> 00:05:54,650
+I said the option because I'm sitting neither as required.
+
+75
+00:05:55,280 --> 00:05:56,780
+We have the phone number.
+
+76
+00:05:57,900 --> 00:06:03,460
+So if you want, you can send us your phone number and area to search for the API once again not required.
+
+77
+00:06:03,750 --> 00:06:10,240
+However, email is definitely required and password is definitely required.
+
+78
+00:06:10,920 --> 00:06:15,930
+And then for email will actually be using this as the user name also.
+
+79
+00:06:16,410 --> 00:06:24,310
+So if we have this DTL, as usual, we have to make sure that our mopper knows about the deal.
+
+80
+00:06:24,780 --> 00:06:35,220
+So mopper initialise or I'm just going to go ahead and see that API user and user DTL need to know about
+
+81
+00:06:35,220 --> 00:06:37,300
+each other and reverse map.
+
+82
+00:06:37,470 --> 00:06:38,040
+All right.
+
+83
+00:06:38,850 --> 00:06:41,500
+And so that is what we will do.
+
+84
+00:06:41,520 --> 00:06:51,270
+So the purpose of the from Buddy here is to see that when when a request hits this end point, you will
+
+85
+00:06:51,270 --> 00:06:54,340
+look in the body after request, don't look in the mirror.
+
+86
+00:06:54,360 --> 00:06:57,720
+So, one, I'm not requiring anything in the euro.
+
+87
+00:06:58,110 --> 00:07:02,100
+And two, if the user passes anything in the euro, I don't care.
+
+88
+00:07:02,100 --> 00:07:04,860
+I'm not looking for any information in the euro.
+
+89
+00:07:05,310 --> 00:07:14,640
+However, the body of the request should contain information with fields that match up to the user.
+
+90
+00:07:14,640 --> 00:07:19,460
+DTL So this and more information than I need it will be ignored.
+
+91
+00:07:19,470 --> 00:07:26,490
+But at minimum, they must send these to for me to process it so that so everything kind of ties in
+
+92
+00:07:26,490 --> 00:07:33,450
+when we talk about sanitising requests and making decisions based on what is coming across the pipe.
+
+93
+00:07:34,290 --> 00:07:34,680
+All right.
+
+94
+00:07:35,100 --> 00:07:43,410
+So let us go back to our current controller and then what we want to do at this point, and we can do
+
+95
+00:07:43,410 --> 00:07:44,040
+a number of things.
+
+96
+00:07:44,040 --> 00:07:53,280
+So I'm going to reverse the trend log and see registration attempt came in for and this I copied and
+
+97
+00:07:53,280 --> 00:07:53,670
+pasted.
+
+98
+00:07:53,670 --> 00:07:55,470
+That's kind of primitive myself.
+
+99
+00:07:55,860 --> 00:08:03,810
+But let's say a registration attempt for user DTL dot email.
+
+100
+00:08:05,010 --> 00:08:10,010
+Right, so whatever email came in over, to use a little, that's what I'm putting there.
+
+101
+00:08:12,260 --> 00:08:20,480
+So I'm going to also check if the valid state, if it is in a valid state so I can see if model state.
+
+102
+00:08:22,160 --> 00:08:27,980
+So this is over five farms, right, if you do if you have done NVC and this is your just learning EPA,
+
+103
+00:08:27,980 --> 00:08:29,480
+it's pretty much the same process.
+
+104
+00:08:29,690 --> 00:08:32,600
+We're going to see if modern state is valid.
+
+105
+00:08:33,170 --> 00:08:33,410
+Right.
+
+106
+00:08:33,520 --> 00:08:41,860
+So at this point, I would probably say if it is not valid, then I'm going to return a bud request.
+
+107
+00:08:43,430 --> 00:08:49,430
+So that means you sent over a request to register, but your validation failed.
+
+108
+00:08:49,440 --> 00:08:51,120
+So you didn't include the email.
+
+109
+00:08:51,120 --> 00:08:58,160
+It didn't include or you didn't meet whatever standards I would have laid out for you regarding the
+
+110
+00:08:58,160 --> 00:08:59,410
+data you should have sent.
+
+111
+00:08:59,440 --> 00:08:59,670
+Right.
+
+112
+00:08:59,900 --> 00:09:06,740
+And then I can return the model state so that it will kind of inform the senator what went wrong.
+
+113
+00:09:06,970 --> 00:09:07,400
+All right.
+
+114
+00:09:07,730 --> 00:09:11,630
+So if model state is not valid, then we do that.
+
+115
+00:09:11,960 --> 00:09:15,860
+Otherwise we can proceed to try.
+
+116
+00:09:16,520 --> 00:09:18,530
+So just try to keep tab.
+
+117
+00:09:19,600 --> 00:09:25,390
+And I'll catch that exception, so let me just deal with the exception part of it, where I'm going
+
+118
+00:09:25,390 --> 00:09:26,200
+to see.
+
+119
+00:09:27,830 --> 00:09:36,240
+Log arrow, something went wrong in that register section and then in previous times, what did we do?
+
+120
+00:09:36,260 --> 00:09:38,870
+We returned with a status code.
+
+121
+00:09:39,350 --> 00:09:40,280
+Five hundred.
+
+122
+00:09:40,430 --> 00:09:46,820
+So another type of return that you can do when there was a problem is literally a return problem.
+
+123
+00:09:47,870 --> 00:09:54,760
+And you would put in the same kind of message so I could put in something went wrong.
+
+124
+00:09:57,200 --> 00:10:02,970
+Right, and then tell it that it tells us that a squad of five on some of the shooting, that there
+
+125
+00:10:02,970 --> 00:10:04,560
+are different ways.
+
+126
+00:10:04,590 --> 00:10:10,350
+You know, if you are looking at other resources, you may see me do it this way and somebody else returning
+
+127
+00:10:10,350 --> 00:10:11,070
+our problem.
+
+128
+00:10:11,220 --> 00:10:14,380
+Somebody is returning the status code manually.
+
+129
+00:10:14,580 --> 00:10:16,440
+There are different ways to do this.
+
+130
+00:10:16,660 --> 00:10:17,120
+All right.
+
+131
+00:10:17,280 --> 00:10:23,910
+But then for the ones that are built in are to give you the methods, I generally encourage you to just
+
+132
+00:10:23,910 --> 00:10:24,620
+use those.
+
+133
+00:10:25,200 --> 00:10:27,950
+So we've taken care of the bad situations.
+
+134
+00:10:27,960 --> 00:10:31,760
+I'd like to just see if it is not right to do this now.
+
+135
+00:10:31,770 --> 00:10:33,650
+What do I do when it is right?
+
+136
+00:10:34,800 --> 00:10:47,520
+One, I can say if the user is equal to mopper dot mob into API user and then I am being user DTL.
+
+137
+00:10:48,390 --> 00:10:55,020
+So then it will say, OK, how much all the fields which we know already, we know how the map works
+
+138
+00:10:55,020 --> 00:11:01,410
+by now and then know that I have the user, I can see var results.
+
+139
+00:11:02,930 --> 00:11:12,890
+Is equal to and I went to await a call to my user manager, Dots, and then here's here's a bunch of
+
+140
+00:11:12,890 --> 00:11:13,490
+functions.
+
+141
+00:11:13,490 --> 00:11:16,600
+Like I said, we can do a number of things.
+
+142
+00:11:16,610 --> 00:11:19,400
+I can say create async.
+
+143
+00:11:19,400 --> 00:11:25,460
+So user manager, create a sink and then I'll just pass in the user objects.
+
+144
+00:11:26,570 --> 00:11:33,200
+All right, so go ahead and create that user, it will automatically take it to the password, hash
+
+145
+00:11:33,200 --> 00:11:35,940
+it, store it, do everything it needs to do.
+
+146
+00:11:36,140 --> 00:11:41,060
+We didn't have to write any complex logic to really facilitate that.
+
+147
+00:11:41,060 --> 00:11:41,410
+Right.
+
+148
+00:11:41,840 --> 00:11:44,350
+But then sometimes things fail.
+
+149
+00:11:44,360 --> 00:11:49,010
+So I'm going to say, if not result, not succeeded.
+
+150
+00:11:49,860 --> 00:11:50,510
+We'll tell you.
+
+151
+00:11:50,690 --> 00:11:52,360
+Did it succeed or not?
+
+152
+00:11:52,790 --> 00:11:55,760
+Then I'm going to also return a budget request.
+
+153
+00:11:55,760 --> 00:11:59,920
+So, you know, I'm going to say something went wrong this time.
+
+154
+00:12:00,380 --> 00:12:02,000
+It's not a model state thing.
+
+155
+00:12:02,420 --> 00:12:04,030
+It's probably just an arrow.
+
+156
+00:12:04,250 --> 00:12:09,140
+So the thing is that the results object actually gives you the arrows.
+
+157
+00:12:09,140 --> 00:12:15,320
+If you really need to list, the military can probably put them in a loop list, then put them in one
+
+158
+00:12:15,320 --> 00:12:19,100
+string and return them if you want if you want to give the user that much detail.
+
+159
+00:12:19,490 --> 00:12:23,410
+But sometimes those details can be too sensitive.
+
+160
+00:12:23,420 --> 00:12:29,140
+So you have to be careful what information you're sending back to the calling client.
+
+161
+00:12:29,150 --> 00:12:29,420
+Right.
+
+162
+00:12:29,780 --> 00:12:32,710
+So at this point, I'm just going to say.
+
+163
+00:12:32,720 --> 00:12:39,920
+But request it was a four hundred and it is because the user registration fee, that's all you need
+
+164
+00:12:39,920 --> 00:12:40,270
+to know.
+
+165
+00:12:40,760 --> 00:12:44,330
+So try again later because this could have been my fault.
+
+166
+00:12:44,510 --> 00:12:48,530
+Otherwise, if it was something serious, would have given them a 500 to know.
+
+167
+00:12:48,680 --> 00:12:55,910
+It is on our side that the problem is and if it is that you send incorrect data, then I'm telling you
+
+168
+00:12:56,180 --> 00:12:59,390
+what is incorrect, because the model states will list that out.
+
+169
+00:12:59,870 --> 00:13:00,230
+Right.
+
+170
+00:13:00,620 --> 00:13:03,740
+And that's pretty much it for the register.
+
+171
+00:13:04,400 --> 00:13:09,950
+Now, since we've done the register, I think we might as well just do the log in because I don't know
+
+172
+00:13:09,950 --> 00:13:12,270
+really to test our registers, to test the log in.
+
+173
+00:13:12,290 --> 00:13:12,530
+Right.
+
+174
+00:13:12,950 --> 00:13:16,430
+So I'm actually just going to copy and paste this code.
+
+175
+00:13:18,120 --> 00:13:26,360
+Right below, but what we need to do is change the action names, so this is a log in action.
+
+176
+00:13:26,940 --> 00:13:34,110
+We're using the same user detail we're taking from the same YORO from the same body, started ignoring
+
+177
+00:13:34,110 --> 00:13:35,610
+anything coming in the euro.
+
+178
+00:13:36,090 --> 00:13:44,610
+And then what we're going to do is see a login attempt for this user if it is invalid.
+
+179
+00:13:44,760 --> 00:13:50,460
+Once again, validation constraints, email, password, no.
+
+180
+00:13:50,940 --> 00:13:56,570
+One thing that we may want to consider is do we need the same data?
+
+181
+00:13:56,580 --> 00:14:02,450
+Should we use ACMD to you for a login that register same principle with the other details?
+
+182
+00:14:02,470 --> 00:14:02,740
+Right.
+
+183
+00:14:03,030 --> 00:14:06,150
+Because for a login, I don't need your first name, last name, phone number.
+
+184
+00:14:06,150 --> 00:14:08,420
+I only want your email and password.
+
+185
+00:14:08,850 --> 00:14:18,960
+So what I'll do here is quickly adjust to a class to see a log in Etel and I'm going to take these two
+
+186
+00:14:18,960 --> 00:14:24,450
+fields, put in just a login because it's absolutely necessary for login stuff.
+
+187
+00:14:24,660 --> 00:14:31,500
+But then I let this inherit from login so the fields are shared across the board regardless.
+
+188
+00:14:32,940 --> 00:14:33,390
+All right.
+
+189
+00:14:33,840 --> 00:14:35,790
+So I should log in.
+
+190
+00:14:35,970 --> 00:14:39,390
+User need to go.
+
+191
+00:14:39,990 --> 00:14:44,160
+Let my mopper know that it is.
+
+192
+00:14:44,460 --> 00:14:45,900
+Do I even need to map or.
+
+193
+00:14:45,900 --> 00:14:50,310
+No, I really don't need to let the mother know about this one because the operation is going to be
+
+194
+00:14:50,310 --> 00:14:51,090
+slightly different.
+
+195
+00:14:51,090 --> 00:14:56,580
+So I leave user detail in the upper, but I won't put this one and I'll explain why.
+
+196
+00:14:56,580 --> 00:15:00,090
+So logging user need to do so once again.
+
+197
+00:15:00,120 --> 00:15:06,660
+This is another part of security when we sanitize exactly what we want, because if the user may have
+
+198
+00:15:06,660 --> 00:15:15,000
+included malicious sorry, the client or the user sending the request, the client sending the request
+
+199
+00:15:15,000 --> 00:15:19,200
+could have included malicious information in the body of the request.
+
+200
+00:15:19,530 --> 00:15:25,260
+By doing this part here, I am saying that I am only looking for feels that match what I have outlined
+
+201
+00:15:25,260 --> 00:15:29,970
+in this all say this and more information that I need.
+
+202
+00:15:30,240 --> 00:15:32,670
+It's going to be ignored regardless.
+
+203
+00:15:32,670 --> 00:15:37,410
+So that's another part of the security considerations when creating APIs.
+
+204
+00:15:37,950 --> 00:15:42,930
+So we get the login user need to and then for the login.
+
+205
+00:15:43,200 --> 00:15:45,600
+OK, well we validate it.
+
+206
+00:15:45,600 --> 00:15:46,680
+OK, good.
+
+207
+00:15:48,860 --> 00:15:52,690
+So we checked the model state and then what I'm going to try.
+
+208
+00:15:52,730 --> 00:16:00,110
+So nothing much has to change here except maybe the log messages just to make sure that we are accurately
+
+209
+00:16:00,110 --> 00:16:02,270
+representing where what went wrong.
+
+210
+00:16:03,020 --> 00:16:03,460
+All right.
+
+211
+00:16:03,920 --> 00:16:07,910
+So under the tree, what we're going to do, I don't need to do any mapping.
+
+212
+00:16:07,910 --> 00:16:11,290
+So let me just remove what's in, try and start from scratch.
+
+213
+00:16:11,750 --> 00:16:15,730
+I am going to see if the result is equal to.
+
+214
+00:16:15,980 --> 00:16:22,580
+And then this is where we use the signing manager, not password signing is.
+
+215
+00:16:22,940 --> 00:16:28,820
+So you see that and he can even do a check, you can check to see if the password would be part of the
+
+216
+00:16:29,000 --> 00:16:29,720
+solution design.
+
+217
+00:16:29,780 --> 00:16:34,190
+And of course, that doesn't help the situation at this point because we want to actually sign it.
+
+218
+00:16:34,190 --> 00:16:34,470
+Right.
+
+219
+00:16:34,910 --> 00:16:38,780
+So signing async takes two overlord's.
+
+220
+00:16:38,780 --> 00:16:42,560
+We can parsing the whole user object.
+
+221
+00:16:42,620 --> 00:16:45,440
+I just took all the mapping and the password.
+
+222
+00:16:45,770 --> 00:16:52,610
+Or we can choose to just put in the user name and password, which is the one I'm going to use both
+
+223
+00:16:52,610 --> 00:16:53,150
+options.
+
+224
+00:16:53,460 --> 00:17:00,950
+So if we kept them up in passing the whole user object as well as the password in this case, I took
+
+225
+00:17:00,950 --> 00:17:01,430
+it also.
+
+226
+00:17:01,460 --> 00:17:12,830
+Just see a user, DTL Dot, and we're using the email address as a username and user your password and
+
+227
+00:17:12,830 --> 00:17:14,470
+then is persistent.
+
+228
+00:17:14,930 --> 00:17:16,960
+So let's read what is assistances.
+
+229
+00:17:16,970 --> 00:17:21,580
+It says Flug, indicating whether the signing cookie should persist after the browser is closed.
+
+230
+00:17:21,590 --> 00:17:23,530
+No, I this is an API.
+
+231
+00:17:23,540 --> 00:17:26,360
+I don't know what kind of application is calling the API.
+
+232
+00:17:26,390 --> 00:17:27,410
+Could be postman.
+
+233
+00:17:27,800 --> 00:17:30,800
+It could be the browser, it could be a mobile app.
+
+234
+00:17:31,010 --> 00:17:34,070
+I don't need to persist anything so to see falls.
+
+235
+00:17:34,800 --> 00:17:35,240
+Right.
+
+236
+00:17:35,450 --> 00:17:37,900
+And then the last one, Lochlyn feel.
+
+237
+00:17:37,910 --> 00:17:41,320
+I don't want to lock anybody when they fail to log in.
+
+238
+00:17:41,330 --> 00:17:44,090
+That would be too much of an administrative overhead.
+
+239
+00:17:44,090 --> 00:17:50,380
+Once again, context is everything, but this is what our signing code looks like.
+
+240
+00:17:50,390 --> 00:17:55,730
+No, the result is going to be a similar object to the register attempt.
+
+241
+00:17:56,000 --> 00:18:05,480
+So we can just say if results are sorry, if not result, not successful.
+
+242
+00:18:05,490 --> 00:18:07,820
+Oh, sorry, this is asynchronous.
+
+243
+00:18:07,820 --> 00:18:14,210
+So when we fail to put on the weight, then the result that we're going to get is off type Tosk, not
+
+244
+00:18:14,210 --> 00:18:15,950
+of the type that we are expecting.
+
+245
+00:18:15,960 --> 00:18:18,980
+So let me make sure I put on the weight.
+
+246
+00:18:19,580 --> 00:18:25,160
+And then when I do that you'll see that the Intellisense isn't giving me what I would expect.
+
+247
+00:18:25,160 --> 00:18:31,280
+So if it is not successful, let me just double check what we did when it wasn't successful here.
+
+248
+00:18:31,790 --> 00:18:34,910
+Then we will say we see a budget request up top.
+
+249
+00:18:35,360 --> 00:18:42,470
+But if it's an unsuccessful logging attempt, it's not necessarily a bad response.
+
+250
+00:18:42,680 --> 00:18:47,090
+But I would just say our budget requests are what I would say is unauthorized.
+
+251
+00:18:48,250 --> 00:18:58,450
+Right, which is a four or one, if I'm not mistaken or unauthorized, and I can probably just return
+
+252
+00:18:58,840 --> 00:19:02,470
+the user detail to see this is what they attempted to use.
+
+253
+00:19:02,470 --> 00:19:03,610
+It's unauthorized.
+
+254
+00:19:03,610 --> 00:19:04,150
+I'm sorry.
+
+255
+00:19:04,930 --> 00:19:05,370
+All right.
+
+256
+00:19:05,830 --> 00:19:10,520
+Otherwise, if it gets this far, that means everything is OK.
+
+257
+00:19:10,550 --> 00:19:12,000
+So we'll just return.
+
+258
+00:19:12,490 --> 00:19:13,850
+I could return, OK?
+
+259
+00:19:15,100 --> 00:19:18,190
+I've used accepted in the past.
+
+260
+00:19:18,210 --> 00:19:18,790
+Right.
+
+261
+00:19:19,360 --> 00:19:24,610
+So anything with that two hundred in the 200 range would be seen as an OK response.
+
+262
+00:19:24,610 --> 00:19:31,790
+So, OK, it's 200 you have created, which is I think a tool for you have accepted, which is still
+
+263
+00:19:31,840 --> 00:19:37,180
+two, etc. You don't have to worry about memorizing these codes necessarily.
+
+264
+00:19:37,210 --> 00:19:40,840
+Just know that in particular situations you want to use this one.
+
+265
+00:19:41,410 --> 00:19:41,820
+All right.
+
+266
+00:19:42,430 --> 00:19:47,460
+So then that is what our login function will look like.
+
+267
+00:19:48,130 --> 00:19:51,070
+And OK, I thought that made a change.
+
+268
+00:19:51,670 --> 00:19:52,150
+Just not.
+
+269
+00:19:52,150 --> 00:19:52,480
+All right.
+
+270
+00:19:52,840 --> 00:20:00,540
+So let us or the register is seeing that not all code path's return of value.
+
+271
+00:20:00,550 --> 00:20:03,910
+Oh, that is why I am so sorry I missed this one old.
+
+272
+00:20:05,160 --> 00:20:10,610
+So remember that you always have to have a financial return, so the same way that we said that your
+
+273
+00:20:10,620 --> 00:20:15,210
+statement does this, but we return, accept it afterwards, have to do that here so I could return
+
+274
+00:20:15,210 --> 00:20:15,900
+accepted.
+
+275
+00:20:16,900 --> 00:20:23,590
+Of top here also, right, I have accepted your registration attempt and then that is done.
+
+276
+00:20:24,220 --> 00:20:27,000
+No, before we move on to testing.
+
+277
+00:20:27,040 --> 00:20:33,190
+I want to bring something very important to your attention, and that is the routine considerations
+
+278
+00:20:33,190 --> 00:20:41,740
+for this endpoint where it established that the route would be controlled or in this case, EPP's account.
+
+279
+00:20:42,580 --> 00:20:49,180
+In previous times, let's say the hotel controller, we would have determined that we can't have two
+
+280
+00:20:49,180 --> 00:20:51,400
+identical get operations.
+
+281
+00:20:51,400 --> 00:20:59,920
+The name of the action is irrelevant, but I can't have two operations having identical verbs.
+
+282
+00:21:00,490 --> 00:21:07,390
+The verb can be the same, but then there must be some nuance to one implementation of the verb from
+
+283
+00:21:07,390 --> 00:21:07,890
+the other.
+
+284
+00:21:08,710 --> 00:21:11,800
+In this situation, I have both as forced.
+
+285
+00:21:12,670 --> 00:21:15,220
+Both of them are paused once again.
+
+286
+00:21:15,220 --> 00:21:21,250
+The name here doesn't matter, but they are both post, which means that if I attempt to do any post
+
+287
+00:21:21,250 --> 00:21:24,270
+operation, it's going to not know which one to use.
+
+288
+00:21:24,640 --> 00:21:27,880
+They're both kind of identical in terms of what they're expecting.
+
+289
+00:21:28,120 --> 00:21:34,900
+The only way I can really differentiate between these two is to give them their own roots.
+
+290
+00:21:35,380 --> 00:21:35,830
+Right.
+
+291
+00:21:36,820 --> 00:21:42,400
+So I can see the route for register is register.
+
+292
+00:21:43,300 --> 00:21:43,750
+Right.
+
+293
+00:21:43,990 --> 00:21:45,700
+And then the route for a log in.
+
+294
+00:21:47,860 --> 00:21:57,370
+Is log in so that we're at this point, the only way to hit register is to see a server slash API slash
+
+295
+00:21:57,400 --> 00:22:01,710
+O'Collins slash register as a post request.
+
+296
+00:22:02,110 --> 00:22:09,730
+The only way to log in is to see whatever slash API slash icon slash log in some specifying that the
+
+297
+00:22:09,730 --> 00:22:15,290
+route for this endpoint is log in and this one is register.
+
+298
+00:22:15,580 --> 00:22:22,210
+That way they can have identical verbs, but because there are different locations, they won't interfere
+
+299
+00:22:22,210 --> 00:22:23,000
+with each other.
+
+300
+00:22:23,530 --> 00:22:23,950
+All right.
+
+301
+00:22:24,220 --> 00:22:28,080
+So let's take this one, spin this, trying to register a user real quick.
+
+302
+00:22:28,390 --> 00:22:35,220
+So when we check out what Slogger has generated for us, you notice it doesn't append anything to call
+
+303
+00:22:35,230 --> 00:22:40,950
+for ID here and there they are no post not get right.
+
+304
+00:22:41,230 --> 00:22:48,610
+And then if I spun, they'll show me what the object needs to look like or can look like when it is
+
+305
+00:22:48,610 --> 00:22:50,020
+coming across the pipe.
+
+306
+00:22:50,830 --> 00:22:51,460
+All right.
+
+307
+00:22:51,730 --> 00:22:53,560
+Just for those the same for log in.
+
+308
+00:22:53,560 --> 00:22:54,640
+So you see the difference.
+
+309
+00:22:54,940 --> 00:22:57,200
+Remember that we have two different details.
+
+310
+00:22:57,220 --> 00:23:03,540
+This one has email password and the customer feels this one only takes email and password.
+
+311
+00:23:03,550 --> 00:23:08,890
+So that's what I was saying, that when in a situation when you don't need all the information you create,
+
+312
+00:23:08,890 --> 00:23:12,820
+I need you to limit exactly what you need in that situation.
+
+313
+00:23:13,270 --> 00:23:13,740
+All right.
+
+314
+00:23:14,110 --> 00:23:17,860
+So let us try with the registration attempt.
+
+315
+00:23:18,130 --> 00:23:21,670
+So I'm going to leave that that email.
+
+316
+00:23:21,670 --> 00:23:27,700
+I'm going to put in some password that has characters and a number.
+
+317
+00:23:28,180 --> 00:23:33,270
+And I want to leave everything else blank because all I really need are email and password.
+
+318
+00:23:33,280 --> 00:23:40,690
+However, by leaving these as they are, they're literally going to go over as string, string and phone
+
+319
+00:23:40,690 --> 00:23:41,130
+number.
+
+320
+00:23:41,140 --> 00:23:43,410
+So let's see what happens when we execute.
+
+321
+00:23:44,110 --> 00:23:45,150
+All right.
+
+322
+00:23:45,160 --> 00:23:48,310
+And this attempt is giving me a five hundred error.
+
+323
+00:23:48,330 --> 00:23:51,130
+So this would have been one of those exceptions caught on.
+
+324
+00:23:51,130 --> 00:23:57,250
+Itzin cannot resolve a particular service for the sign in manager.
+
+325
+00:23:57,280 --> 00:23:57,630
+All right.
+
+326
+00:23:58,060 --> 00:23:58,420
+All right.
+
+327
+00:23:58,420 --> 00:24:01,300
+So the assignment manager is giving a problem.
+
+328
+00:24:01,300 --> 00:24:04,960
+And I would like to sit down and troubleshoot it.
+
+329
+00:24:04,960 --> 00:24:10,600
+But when I'm thinking about it, I really don't need the signing manager for this API.
+
+330
+00:24:10,930 --> 00:24:12,150
+And I'm going to explain.
+
+331
+00:24:12,160 --> 00:24:18,160
+So when I put in sign in manager and injected it and all of these things, it was because that's like
+
+332
+00:24:18,160 --> 00:24:19,150
+a knee jerk reaction.
+
+333
+00:24:19,150 --> 00:24:25,080
+Whenever we have authentication to do, we want all the libraries that can help with authentication.
+
+334
+00:24:25,240 --> 00:24:25,600
+Right.
+
+335
+00:24:26,140 --> 00:24:31,990
+However, in the case of a Web application where somebody would submit a login attempts through a form
+
+336
+00:24:31,990 --> 00:24:39,010
+click submit and then be told they are logged in through some message or some indication, as is Hillal
+
+337
+00:24:39,160 --> 00:24:46,570
+username, that is really the signing manager creating something like a session or a cookie based on
+
+338
+00:24:46,570 --> 00:24:52,280
+the configuration setup for managing that user session in terms of an API.
+
+339
+00:24:52,300 --> 00:24:54,890
+We are not going to be maintaining a session for any user.
+
+340
+00:24:54,920 --> 00:24:55,960
+Yes, you were just there.
+
+341
+00:24:56,170 --> 00:24:59,590
+But we don't know when you're going to be calling the API how long.
+
+342
+00:24:59,800 --> 00:25:05,790
+And it's not like you're going to be lingering inside the API for one hour if you cause the API is going
+
+343
+00:25:05,800 --> 00:25:09,200
+to accept your request to give you a response and be finished.
+
+344
+00:25:09,640 --> 00:25:11,500
+That is why we're using tokens.
+
+345
+00:25:11,500 --> 00:25:15,040
+So I don't want to get too much ahead of myself and start discussing tokens.
+
+346
+00:25:15,310 --> 00:25:20,680
+But because of the tokens, we really don't need the signing manager in the traditional sense of what
+
+347
+00:25:20,680 --> 00:25:22,210
+the signing manager does.
+
+348
+00:25:22,480 --> 00:25:30,820
+So I'm going to remove all references to the sign in managerially and I'm going to comment on the login
+
+349
+00:25:31,300 --> 00:25:32,670
+endpoint for no.
+
+350
+00:25:33,040 --> 00:25:33,820
+So that's control.
+
+351
+00:25:33,820 --> 00:25:35,290
+Casey, just to comment.
+
+352
+00:25:36,020 --> 00:25:40,600
+I really don't need all of this just yet, so we'll get there.
+
+353
+00:25:40,840 --> 00:25:43,450
+But I just got ahead of myself and I apologize.
+
+354
+00:25:43,450 --> 00:25:48,610
+Sometimes these things happen, but hey, we're just going to come on the code and then we'll revisit
+
+355
+00:25:48,610 --> 00:25:49,420
+it later on.
+
+356
+00:25:50,050 --> 00:25:57,730
+Now, as it relates to some of the error messages that we want to send back, what I'm going to do here
+
+357
+00:25:58,210 --> 00:26:02,780
+is kind of add all the result arrows.
+
+358
+00:26:02,800 --> 00:26:09,400
+So I did see you could find a way to put the result arrows in a package and send someone to see for
+
+359
+00:26:09,400 --> 00:26:14,280
+each error in results, not errors.
+
+360
+00:26:15,100 --> 00:26:19,270
+I did say it could be sensitive information, so I'm accepting that risk.
+
+361
+00:26:19,720 --> 00:26:22,120
+But I want to see model state.
+
+362
+00:26:23,400 --> 00:26:30,210
+Not and I can see at Model Arrow, which is then going to ask me for a key, I don't have to put in
+
+363
+00:26:30,210 --> 00:26:34,050
+the key and then I'm going to see error.
+
+364
+00:26:35,840 --> 00:26:43,380
+Dotts, sorry, error being the error message coming back from the results attempt code.
+
+365
+00:26:43,500 --> 00:26:44,690
+So, all right, here's what I do.
+
+366
+00:26:44,690 --> 00:26:46,520
+I put the code as the key.
+
+367
+00:26:47,930 --> 00:26:55,160
+All right, so the key there really means what's the name of the arrow and then the core there, a description
+
+368
+00:26:55,850 --> 00:26:57,080
+would be right there.
+
+369
+00:26:57,950 --> 00:26:58,540
+Right.
+
+370
+00:26:58,790 --> 00:27:06,810
+And then we can see by request, user attempt failed or I just set the model state because it's already
+
+371
+00:27:06,830 --> 00:27:08,100
+obvious that it failed.
+
+372
+00:27:08,450 --> 00:27:14,690
+So that's how we'll proceed with the Arrow messages for our registration.
+
+373
+00:27:14,960 --> 00:27:16,550
+So let's just try this one more time.
+
+374
+00:27:17,090 --> 00:27:17,420
+All right.
+
+375
+00:27:17,420 --> 00:27:23,960
+So we're back in Swiger with the log and points, but we're going to just try to put in my complicated
+
+376
+00:27:23,960 --> 00:27:28,060
+password once again and then execute.
+
+377
+00:27:29,030 --> 00:27:29,640
+All right.
+
+378
+00:27:29,670 --> 00:27:31,850
+And this looks a bit better.
+
+379
+00:27:31,910 --> 00:27:32,240
+All right.
+
+380
+00:27:32,250 --> 00:27:39,080
+So first off, we're not getting any complaints about any user manager or any service not being registered.
+
+381
+00:27:39,110 --> 00:27:44,870
+That's one tool we're seeing here that we're getting back to four hundred and we're getting back some
+
+382
+00:27:44,870 --> 00:27:46,550
+details as to what is wrong.
+
+383
+00:27:46,560 --> 00:27:54,690
+So invalid user name, user name, blank blank is is invalid and can only contain letters or digits.
+
+384
+00:27:54,710 --> 00:27:55,090
+All right.
+
+385
+00:27:55,460 --> 00:28:01,910
+So that is because we did a mapping, but we're only asking for email.
+
+386
+00:28:02,300 --> 00:28:07,650
+The actual identity user has to have a user name value also.
+
+387
+00:28:07,670 --> 00:28:16,880
+So what I need to do here is to specify that user dot user name is equal to the email address.
+
+388
+00:28:16,910 --> 00:28:19,940
+So email address is required.
+
+389
+00:28:19,940 --> 00:28:23,930
+Field user name is a required field and password.
+
+390
+00:28:24,230 --> 00:28:27,240
+They're all required fields by the identity user.
+
+391
+00:28:27,530 --> 00:28:30,730
+So I was only providing email and password.
+
+392
+00:28:30,740 --> 00:28:37,160
+I'm just going to go ahead and provide the user name also, which is the same as the email address.
+
+393
+00:28:37,200 --> 00:28:37,450
+All right.
+
+394
+00:28:37,460 --> 00:28:38,990
+So let's just try that one more time.
+
+395
+00:28:39,410 --> 00:28:39,980
+All right.
+
+396
+00:28:39,990 --> 00:28:46,250
+And when I do that and I put in the same details, user after example and password one, look at what
+
+397
+00:28:46,250 --> 00:28:46,730
+we get.
+
+398
+00:28:46,730 --> 00:28:49,040
+We get our two hundred response.
+
+399
+00:28:49,770 --> 00:28:50,420
+Right.
+
+400
+00:28:50,750 --> 00:28:54,800
+And what is just telling us everything is good to go.
+
+401
+00:28:55,310 --> 00:28:59,030
+So it does not feel there is no validation, error or anything like that.
+
+402
+00:28:59,330 --> 00:29:02,380
+I notice that it is undocumented for the tool to.
+
+403
+00:29:02,450 --> 00:29:10,310
+That's because we didn't let the controller know or let Swiger know that Tool two is a potential return
+
+404
+00:29:10,310 --> 00:29:10,550
+type.
+
+405
+00:29:10,580 --> 00:29:16,940
+So remember that we did that with the other controllers where we listed the potential return types so
+
+406
+00:29:16,940 --> 00:29:20,690
+you can go ahead and replicate that in the account controller.
+
+407
+00:29:20,880 --> 00:29:23,510
+But for now, we set up our distribution process.
+
+408
+00:29:24,350 --> 00:29:29,510
+I know you might be disappointed that you're not getting to test the login one just yet, but it's really
+
+409
+00:29:29,510 --> 00:29:30,830
+not a login.
+
+410
+00:29:30,830 --> 00:29:38,540
+It's more it's going to be more like an affinity and authorization to see, OK, you have a token and
+
+411
+00:29:38,540 --> 00:29:39,120
+it's valid.
+
+412
+00:29:39,140 --> 00:29:45,440
+Yes, you can access the resource you want because once again, a login really is to create a session
+
+413
+00:29:45,560 --> 00:29:48,650
+and allow somebody to access the system for a period.
+
+414
+00:29:48,890 --> 00:29:54,360
+Whereas with that, with an API, we don't know what period you may need access for.
+
+415
+00:29:54,380 --> 00:30:01,430
+We don't need to facilitate you for a longer period than it takes to process your request and give you
+
+416
+00:30:01,430 --> 00:30:02,480
+your response.
+
+417
+00:30:02,720 --> 00:30:06,920
+So we just want to know that you are unacceptable accessor.
+
+418
+00:30:07,160 --> 00:30:10,370
+Validate that, give you what you want and then we're done with you.
+
+419
+00:30:10,400 --> 00:30:12,710
+So that is why we'll be doing the toolkits.
+
+420
+00:30:13,070 --> 00:30:17,990
+So when we get there, we will go ahead and have more how we restrict access.

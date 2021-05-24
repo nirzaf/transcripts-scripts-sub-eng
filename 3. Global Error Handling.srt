@@ -1,0 +1,627 @@
+1
+00:00:00,490 --> 00:00:01,630
+Hey, guys, welcome back.
+
+2
+00:00:01,660 --> 00:00:08,560
+So in this lesson, we're going to be talking about global era handling, so I'm starting off in the
+
+3
+00:00:08,560 --> 00:00:10,330
+control of four countries.
+
+4
+00:00:10,630 --> 00:00:17,290
+And we had mentioned earlier that we would want to reduce the need to repeat this track, catch every
+
+5
+00:00:17,290 --> 00:00:18,970
+time we're able to do an operation.
+
+6
+00:00:18,970 --> 00:00:24,910
+While it is very essential, it becomes repetitive over time because we have four functions where we
+
+7
+00:00:24,910 --> 00:00:28,000
+keep on writing, try catch track, try to catch.
+
+8
+00:00:28,270 --> 00:00:31,390
+And for every other function, it would be important.
+
+9
+00:00:32,170 --> 00:00:41,140
+And so what we want to do is implement a global way to handle exceptions and reduce the need for the
+
+10
+00:00:41,140 --> 00:00:43,180
+repetitive track at statements.
+
+11
+00:00:43,690 --> 00:00:50,380
+So what we want to do is standardize what happens when we catch an error, because when we catch an
+
+12
+00:00:50,380 --> 00:00:52,300
+error, we actually do the same thing.
+
+13
+00:00:52,330 --> 00:00:58,390
+The only thing that's sort of dynamic would be the the part where we see the location, which to me
+
+14
+00:00:58,390 --> 00:01:00,260
+is actually kind of optional.
+
+15
+00:01:00,280 --> 00:01:05,860
+I probably don't necessarily have to do this part, but the point is that the message is relatively
+
+16
+00:01:05,860 --> 00:01:09,170
+the same and we always give that 500 response code.
+
+17
+00:01:09,580 --> 00:01:14,170
+So what we want to do is to have like a standard way to represent an area and.
+
+18
+00:01:14,650 --> 00:01:18,460
+I'm just going to create a new class and I'm going to call it error.
+
+19
+00:01:20,040 --> 00:01:26,460
+And then in Iraq, we're going to have three fields, so we're going to have.
+
+20
+00:01:27,480 --> 00:01:28,450
+Status quo.
+
+21
+00:01:29,040 --> 00:01:37,020
+We're going to have a message and then we're going to have a third one where we're providing the message
+
+22
+00:01:37,020 --> 00:01:39,400
+as serialized JSON object.
+
+23
+00:01:39,420 --> 00:01:44,930
+So for this one, we'll have Newton, Jason Newton, soft sorry, Jason.
+
+24
+00:01:45,180 --> 00:01:49,320
+So that is how our class will look after that.
+
+25
+00:01:49,350 --> 00:01:56,190
+What I want to do is extend our startup pipeline, but I'm going to use the service extensions like
+
+26
+00:01:56,190 --> 00:01:58,290
+what we've been doing for the past few times.
+
+27
+00:01:58,710 --> 00:02:05,220
+And I'm going to have a new form and we're calling this new function configure exception handler and
+
+28
+00:02:05,220 --> 00:02:08,400
+this time is getting the middleware pipeline.
+
+29
+00:02:08,400 --> 00:02:13,340
+So originally it would be getting the services that we're getting the application builder.
+
+30
+00:02:13,820 --> 00:02:14,160
+Right.
+
+31
+00:02:14,550 --> 00:02:26,820
+So in this, we go ahead and we set up don't use exception handler so that they don't make their application
+
+32
+00:02:26,820 --> 00:02:28,800
+in and of itself has its own exception.
+
+33
+00:02:28,800 --> 00:02:34,720
+Handler So we're just kind of doing like an override to see this is really how we want you to operate.
+
+34
+00:02:35,490 --> 00:02:37,050
+So use exception.
+
+35
+00:02:37,050 --> 00:02:42,300
+Handler And then we need our little token or lambda looking token.
+
+36
+00:02:42,960 --> 00:02:48,120
+And then in here we open and close to Brisas semicolon at the end.
+
+37
+00:02:49,680 --> 00:02:54,240
+So inside of this block I'm going to say error run.
+
+38
+00:02:54,260 --> 00:03:02,370
+So this is me adding the custom middleware code now and I'm going to see async and my token expression,
+
+39
+00:03:02,370 --> 00:03:09,300
+which I'm going to call context, and then my lambda arrow once again for another object.
+
+40
+00:03:10,310 --> 00:03:10,750
+Right.
+
+41
+00:03:10,920 --> 00:03:15,480
+So what I do is every time I am going to do one of these, I just make sure to put the semicolon on
+
+42
+00:03:15,480 --> 00:03:17,280
+the end of the on the Breece.
+
+43
+00:03:17,280 --> 00:03:18,420
+Are the parents user out there.
+
+44
+00:03:18,420 --> 00:03:20,080
+So I don't forget it later on it.
+
+45
+00:03:21,000 --> 00:03:30,630
+So then we're going to see some some some that I'm setting context dot response, that status quo to
+
+46
+00:03:30,630 --> 00:03:34,100
+be equal to status codes dot five hundred.
+
+47
+00:03:34,110 --> 00:03:37,230
+So the same five hundred that we return every time there's an error.
+
+48
+00:03:37,500 --> 00:03:41,560
+We're just setting that as a constant so we don't have to type it over and over it.
+
+49
+00:03:42,060 --> 00:03:44,210
+So where was I.
+
+50
+00:03:44,220 --> 00:03:44,690
+Sorry.
+
+51
+00:03:45,000 --> 00:03:46,020
+So status quo.
+
+52
+00:03:46,020 --> 00:03:47,520
+It's that status.
+
+53
+00:03:47,520 --> 00:03:53,760
+Five hundred internal server error and then I'm setting the content type to be application not JSON.
+
+54
+00:03:54,210 --> 00:04:01,260
+Then I'm going to see var context feature is equal to context, not features.
+
+55
+00:04:01,260 --> 00:04:03,660
+Get an exception handler feature.
+
+56
+00:04:03,660 --> 00:04:09,450
+You may need to import data missing data type for this one so you can go ahead and do that.
+
+57
+00:04:09,840 --> 00:04:18,030
+So what we're going to say now is if the context feature is not equal to null, then we want to see
+
+58
+00:04:18,180 --> 00:04:22,310
+log dots and then login error.
+
+59
+00:04:23,400 --> 00:04:27,240
+So remember that every time something fails, we actually do that.
+
+60
+00:04:27,250 --> 00:04:33,510
+We have our logger and then we login error or we pass in whatever is wrong.
+
+61
+00:04:33,520 --> 00:04:33,880
+Right.
+
+62
+00:04:34,290 --> 00:04:36,140
+So I'm going to see if something went wrong.
+
+63
+00:04:36,150 --> 00:04:38,350
+I just copy this basis over here.
+
+64
+00:04:38,370 --> 00:04:43,230
+Something went wrong, but instead of name often get countries.
+
+65
+00:04:44,100 --> 00:04:49,890
+This time I'm going to see context feature, not error.
+
+66
+00:04:51,000 --> 00:04:55,350
+So that will kind of give us an indication as to what went wrong.
+
+67
+00:04:55,380 --> 00:04:55,640
+Right.
+
+68
+00:04:56,100 --> 00:05:00,420
+So lugnut error, context, feature error.
+
+69
+00:05:00,870 --> 00:05:03,960
+And then we go on to see a wait context.
+
+70
+00:05:03,960 --> 00:05:07,560
+Is this just bring us back to asynchronous programming.
+
+71
+00:05:07,800 --> 00:05:14,040
+Notice that this little arrow here is green and seeing that we're seeing is seeing awaits, awaited
+
+72
+00:05:14,040 --> 00:05:14,450
+anything.
+
+73
+00:05:14,460 --> 00:05:20,670
+So when I say how it that error is not satisfied and it goes away or the async keyword is no satisfied,
+
+74
+00:05:20,940 --> 00:05:22,500
+the line goes away.
+
+75
+00:05:22,620 --> 00:05:27,660
+So I'm going to see a wait context, that response.
+
+76
+00:05:28,350 --> 00:05:34,110
+So we're going to see send back our response to the call in context of context here really represents
+
+77
+00:05:34,110 --> 00:05:36,970
+the controller that is passing the information.
+
+78
+00:05:37,530 --> 00:05:38,040
+All right.
+
+79
+00:05:38,070 --> 00:05:40,400
+We'll see how that works in a few.
+
+80
+00:05:41,190 --> 00:05:41,430
+So.
+
+81
+00:05:41,430 --> 00:05:42,060
+Right.
+
+82
+00:05:42,060 --> 00:05:44,370
+Async, right.
+
+83
+00:05:45,360 --> 00:05:49,620
+And then we want to say we want a new era.
+
+84
+00:05:51,290 --> 00:05:57,050
+So new era, I know, just go ahead and initialize this model.
+
+85
+00:05:57,860 --> 00:05:58,690
+There we go.
+
+86
+00:06:00,340 --> 00:06:07,720
+So want to new know where our status code is going to be equal to the status quo that we just set up
+
+87
+00:06:07,720 --> 00:06:08,080
+here?
+
+88
+00:06:08,380 --> 00:06:11,460
+So, I mean, we could have easily set that here.
+
+89
+00:06:11,500 --> 00:06:14,170
+It's fine, but we want that.
+
+90
+00:06:14,800 --> 00:06:17,950
+And we also want our message.
+
+91
+00:06:20,090 --> 00:06:26,190
+To be equal to something consistent, so I think here we just said internal server error.
+
+92
+00:06:26,210 --> 00:06:27,240
+Please try again.
+
+93
+00:06:27,620 --> 00:06:30,470
+I think that that's what we said every single time.
+
+94
+00:06:30,860 --> 00:06:35,300
+So just let the message be equal to that very consistent message.
+
+95
+00:06:36,140 --> 00:06:40,940
+And then all of this we want to convert to string.
+
+96
+00:06:43,460 --> 00:06:44,850
+Then we have a semicolon.
+
+97
+00:06:45,350 --> 00:06:52,160
+All right, so let's just review this a little bit so we're seeing that we want to override our default
+
+98
+00:06:52,160 --> 00:07:00,710
+exception handler and the way that we want the exception handling to occur is such that when one happens,
+
+99
+00:07:00,710 --> 00:07:07,980
+we write the log and then we generate an error model with the status code and the message.
+
+100
+00:07:08,570 --> 00:07:08,950
+All right.
+
+101
+00:07:08,960 --> 00:07:14,610
+So that would kind of eliminate our need to manually do that every single time.
+
+102
+00:07:15,650 --> 00:07:20,390
+Now, after writing that custom middleware code, what we need to do is go over to the Start-Up and
+
+103
+00:07:20,390 --> 00:07:23,090
+I'm going to put that one right underneath the swagga.
+
+104
+00:07:23,510 --> 00:07:29,690
+So we're going to set up not configure exception handler and that should be it.
+
+105
+00:07:30,200 --> 00:07:36,580
+So what I'm going to do as a proof of concept is remove the tray, because Char really means do this.
+
+106
+00:07:36,710 --> 00:07:39,350
+So with all the trades, I'm going to attempt to do it.
+
+107
+00:07:40,070 --> 00:07:47,540
+The real purpose are the game changing aspect of the try catch is that it will say try this operation
+
+108
+00:07:47,540 --> 00:07:50,310
+and handle the arrows that occur.
+
+109
+00:07:50,840 --> 00:07:57,320
+So if I have a global error handling, then I don't need to go ahead and put in anything to handle it
+
+110
+00:07:57,320 --> 00:08:00,370
+manually when something does occur.
+
+111
+00:08:00,800 --> 00:08:07,190
+So I'm going to try and well, I did that in the get ID or that's fine.
+
+112
+00:08:07,550 --> 00:08:11,090
+So we're going to run some tests with this as a proof of concept.
+
+113
+00:08:11,090 --> 00:08:16,180
+And what I will also do is, OK, we'll just we'll just look at how it works.
+
+114
+00:08:16,520 --> 00:08:23,600
+So I'm going to start and I'm going to run a request for API slash country, slash one.
+
+115
+00:08:23,600 --> 00:08:27,950
+And then we're getting country number one, which is Jamaica with the hotel.
+
+116
+00:08:27,950 --> 00:08:29,350
+So everything is working fine.
+
+117
+00:08:29,360 --> 00:08:30,710
+That's what we would expect.
+
+118
+00:08:31,070 --> 00:08:31,380
+All right.
+
+119
+00:08:31,390 --> 00:08:37,010
+I know it's hard for me to introduce an error otherwise.
+
+120
+00:08:37,010 --> 00:08:39,560
+So what I'll do is introduce it manually here in the code.
+
+121
+00:08:39,570 --> 00:08:44,200
+What I'll do is throw a new exception because the catch is there to catch an exception.
+
+122
+00:08:44,210 --> 00:08:51,020
+So if I throw an exception myself, then what would happen is that the code would actually stop executing.
+
+123
+00:08:51,020 --> 00:08:51,970
+At this point.
+
+124
+00:08:51,980 --> 00:08:53,590
+I never get down there now.
+
+125
+00:08:53,600 --> 00:08:59,450
+I want to see what response I would get when that exception is thrown.
+
+126
+00:08:59,990 --> 00:09:07,210
+So we're going to go ahead and run that same post request that was just successful.
+
+127
+00:09:07,220 --> 00:09:09,320
+No, we introduced this through exception.
+
+128
+00:09:09,680 --> 00:09:15,200
+And when we do that, we see that we're getting back started school and message.
+
+129
+00:09:15,350 --> 00:09:23,020
+And those two fields are the same two fields that we just defined in our error module.
+
+130
+00:09:23,270 --> 00:09:23,690
+All right.
+
+131
+00:09:23,690 --> 00:09:31,070
+So what is happening here is that the exception handler is actually globally watching for any time an
+
+132
+00:09:31,070 --> 00:09:32,210
+exception is caught.
+
+133
+00:09:32,510 --> 00:09:37,640
+Then it is doing what we asked it to do, which is to log the error and see if something went wrong
+
+134
+00:09:37,640 --> 00:09:37,850
+here.
+
+135
+00:09:37,850 --> 00:09:39,130
+So let's see what's in the log.
+
+136
+00:09:39,650 --> 00:09:42,810
+And when I check the log, I'm seeing my exception right here.
+
+137
+00:09:42,830 --> 00:09:45,830
+So system exception system that the exception was through.
+
+138
+00:09:45,830 --> 00:09:49,720
+And I could have made a more specific exception to this than that.
+
+139
+00:09:50,000 --> 00:09:55,160
+But then if you look down, you'll see the whole pipeline as to where it went.
+
+140
+00:09:55,170 --> 00:10:00,350
+So what happens is that it went to the controller, the controller through an exception and then the
+
+141
+00:10:00,350 --> 00:10:05,570
+exception handle the hand handler that we overrode our custom code.
+
+142
+00:10:05,810 --> 00:10:07,740
+And then it said, OK, what should I do?
+
+143
+00:10:07,760 --> 00:10:10,010
+Well, the status quo is five hundred.
+
+144
+00:10:10,190 --> 00:10:17,750
+The response type is, Jason, I'm going to log the error and then I'm going to write back in our response
+
+145
+00:10:18,110 --> 00:10:27,410
+that this has occurred so that we we can actually safely and confidently having done that, removal
+
+146
+00:10:27,410 --> 00:10:33,170
+of the other try catches from anywhere else in the code, because once again, those strike catches
+
+147
+00:10:33,170 --> 00:10:39,530
+were there to make sure that we're handling all the errors gracefully or as gracefully as possible so
+
+148
+00:10:39,710 --> 00:10:41,300
+that we've made it global.
+
+149
+00:10:41,960 --> 00:10:47,090
+You want you can do is just do as you see me doing and just go through and take out all the track catches
+
+150
+00:10:47,090 --> 00:10:52,550
+and whatever code it is that you expect to be executed, you just go ahead and execute that.
+
+151
+00:10:52,550 --> 00:11:01,340
+And what you realize is that because of that, the removal of that dependency on the tray catches everywhere
+
+152
+00:11:01,700 --> 00:11:03,110
+in every action.
+
+153
+00:11:03,440 --> 00:11:09,560
+When you are expanding on extending on your API is functionality, your code will look much cleaner
+
+154
+00:11:09,560 --> 00:11:15,740
+because then you and your team can just write the code, knowing full well that your exception handling
+
+155
+00:11:15,740 --> 00:11:17,720
+is happening at a global scale.
+
+156
+00:11:17,730 --> 00:11:19,220
+So I've done that with country.
+
+157
+00:11:19,370 --> 00:11:25,520
+You can go ahead and clean up the hotel controller as well as any other controller that you may have.

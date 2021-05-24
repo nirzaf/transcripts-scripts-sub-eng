@@ -1,0 +1,383 @@
+1
+00:00:00,930 --> 00:00:06,360
+Hey, guys, today we're going to get started with installing Visual Studio, Community Edition and
+
+2
+00:00:06,360 --> 00:00:07,390
+DOT at five.
+
+3
+00:00:07,680 --> 00:00:12,240
+Now our journey begins here on the Visual Studio website, which you can get to see through a simple
+
+4
+00:00:12,240 --> 00:00:12,960
+Google search.
+
+5
+00:00:13,260 --> 00:00:20,240
+Or you can try to reproduce this URL, which is Visual Studio, dot Microsoft, dot com slash, VSS
+
+6
+00:00:20,250 --> 00:00:21,490
+slash community.
+
+7
+00:00:21,890 --> 00:00:28,290
+Now there are different editions of Visual Studio and community is the one that is free for individual
+
+8
+00:00:28,290 --> 00:00:30,360
+use and that's the one that we will use.
+
+9
+00:00:30,690 --> 00:00:35,940
+So you can go ahead and download Visual Studio, which will give you the visual studio installer.
+
+10
+00:00:36,600 --> 00:00:41,910
+And once that is completed, you can go ahead and run that file, go through in the security check points
+
+11
+00:00:41,910 --> 00:00:46,500
+that you might have, but you may proceed to allow the installer to begin.
+
+12
+00:00:46,770 --> 00:00:51,580
+Now, this is where you actually define what Visual Studio will be capable of.
+
+13
+00:00:51,600 --> 00:00:53,430
+So these are called workload's.
+
+14
+00:00:53,700 --> 00:00:59,010
+And each workload will expose a different feature set to do so for Web development.
+
+15
+00:00:59,020 --> 00:01:04,290
+You want to get the speed on it and web development workload for desktop development.
+
+16
+00:01:04,290 --> 00:01:06,960
+You want to get the desktop development workload.
+
+17
+00:01:07,230 --> 00:01:14,040
+And for any other SDK or type of project that you may want to develop, you can go ahead and get the
+
+18
+00:01:14,040 --> 00:01:16,400
+workload associated with it.
+
+19
+00:01:17,010 --> 00:01:18,480
+For this exercise.
+
+20
+00:01:18,480 --> 00:01:23,430
+You want to prepare our visual studio with the necessary resources for web development.
+
+21
+00:01:24,120 --> 00:01:27,720
+Once again, you can go ahead and take as many of these workflows.
+
+22
+00:01:27,720 --> 00:01:33,150
+Each one will come with its own size and it tells you how much space is required based on the ones that
+
+23
+00:01:33,150 --> 00:01:33,920
+you select.
+
+24
+00:01:34,260 --> 00:01:39,660
+But at minimum, for Web development, you want to make sure you have speed on that and web development.
+
+25
+00:01:40,530 --> 00:01:44,580
+You can go ahead and take the other development tools if you wish.
+
+26
+00:01:44,580 --> 00:01:50,280
+But I'm not going to do that because these are all dot net framework six and four and four point eight
+
+27
+00:01:50,280 --> 00:01:52,980
+four point sixty four point seven and four point eight.
+
+28
+00:01:53,220 --> 00:01:59,220
+But we're going to be installing dot net five in a few minutes so you can go ahead and do this and let
+
+29
+00:01:59,220 --> 00:02:00,780
+Visual Studio install.
+
+30
+00:02:01,080 --> 00:02:04,890
+This will take a while so you can grab a cup of coffee and come back.
+
+31
+00:02:05,640 --> 00:02:08,990
+No ones that don't load and installation is completed.
+
+32
+00:02:09,000 --> 00:02:09,900
+You have two options.
+
+33
+00:02:09,900 --> 00:02:16,410
+You can go ahead and sign in and sign in, meaning you sign in with your life account if you have one.
+
+34
+00:02:16,410 --> 00:02:18,180
+If not, then you go ahead and create one.
+
+35
+00:02:18,360 --> 00:02:23,130
+It's free and it makes life easier if you just create one and actually sign in.
+
+36
+00:02:23,520 --> 00:02:29,580
+But I'll just go ahead with the not no maybe later option and then you choose your general settings.
+
+37
+00:02:29,580 --> 00:02:35,430
+So I like the dark theme and you can choose who they want web development settings or general, I'll
+
+38
+00:02:35,430 --> 00:02:38,400
+just leave mine on General even though we are doing web development.
+
+39
+00:02:38,700 --> 00:02:45,270
+But they basically just optimized certain keyboard shortcuts and the layout based on your selection
+
+40
+00:02:45,300 --> 00:02:46,620
+of Lieberman in general.
+
+41
+00:02:47,520 --> 00:02:49,500
+And I'll start with Visual Studio.
+
+42
+00:02:50,490 --> 00:02:50,970
+All right.
+
+43
+00:02:50,980 --> 00:02:55,520
+So once that is done, you're going to be prompted with this, though.
+
+44
+00:02:55,530 --> 00:02:57,150
+If you don't get this, then that's fine.
+
+45
+00:02:57,150 --> 00:03:04,650
+But here is why I would have suggested that you sign in with your life accounts because you you have
+
+46
+00:03:04,650 --> 00:03:06,900
+a 30 day trial period.
+
+47
+00:03:07,200 --> 00:03:10,950
+And if you don't have the account, then they'll basically just tell you to exit.
+
+48
+00:03:10,960 --> 00:03:13,220
+So you can actually just go ahead and sign in.
+
+49
+00:03:13,230 --> 00:03:14,660
+So I'm just going to sign in with my own.
+
+50
+00:03:15,300 --> 00:03:21,570
+And once you have signed it and then you'll see that it is not licensed to you and it just looks a bit
+
+51
+00:03:21,570 --> 00:03:22,350
+more inviting.
+
+52
+00:03:22,380 --> 00:03:25,170
+So now, instead of exiting Visual Studio, I can close.
+
+53
+00:03:25,410 --> 00:03:29,610
+And this is Visual Studio at the very basic level.
+
+54
+00:03:29,880 --> 00:03:31,440
+Now we have Visual Studio.
+
+55
+00:03:31,440 --> 00:03:38,190
+What we also need is Daughton at five so you can get to the dot net five download page through a simple
+
+56
+00:03:38,190 --> 00:03:39,660
+Google search once again.
+
+57
+00:03:39,990 --> 00:03:42,240
+Or you try to reproduce this.
+
+58
+00:03:42,240 --> 00:03:45,470
+You are whichever one you find easier to do at this point.
+
+59
+00:03:45,490 --> 00:03:49,080
+You want to download the SDK and the runtime.
+
+60
+00:03:49,080 --> 00:03:55,800
+So let me start by closing Visual Studio because it need to install extensions for it and the installer
+
+61
+00:03:55,830 --> 00:03:57,500
+is always available for you.
+
+62
+00:03:57,510 --> 00:04:04,140
+So if you fail to add a workload, just so you know, you can actually just click modify and then it
+
+63
+00:04:04,140 --> 00:04:06,690
+will relaunch that page with all the workload.
+
+64
+00:04:06,700 --> 00:04:12,090
+So if later on you wanted to do something new, you just need to modify, get that workload and then
+
+65
+00:04:12,090 --> 00:04:14,480
+you will get those project templates accordingly.
+
+66
+00:04:15,450 --> 00:04:20,010
+I'm going to close with the studio, however, so we can continue with our installation, so we'll get
+
+67
+00:04:20,010 --> 00:04:21,110
+the dominant five.
+
+68
+00:04:21,420 --> 00:04:24,990
+No, you can see that the SDK is available based on your OS.
+
+69
+00:04:24,990 --> 00:04:32,280
+I have Windows 64 bit OS working with right now, so I'll go ahead and download that and why that one
+
+70
+00:04:32,280 --> 00:04:32,940
+is downloading.
+
+71
+00:04:32,950 --> 00:04:40,650
+I'm just going to hit the mark button and go over to the runtime, which is absolutely necessary for
+
+72
+00:04:40,650 --> 00:04:43,740
+hosting to see the ICE runtime support.
+
+73
+00:04:44,010 --> 00:04:50,970
+So if you're going to be hosting the net five application on a local server, then you definitely need
+
+74
+00:04:51,150 --> 00:04:56,220
+the runtime so you can just get this hosting bundle that they have there available for download.
+
+75
+00:04:56,430 --> 00:04:59,850
+So you can just download both and when they're both finished.
+
+76
+00:05:00,630 --> 00:05:04,530
+So when the SDK is finished, you can go ahead and install that one first.
+
+77
+00:05:04,530 --> 00:05:06,300
+It shouldn't take too long.
+
+78
+00:05:07,200 --> 00:05:14,310
+And OK, so it's successful after we've installed the SDK, then we want to just make sure that we have
+
+79
+00:05:14,310 --> 00:05:21,390
+the runtime also agree to anything and go ahead and ruin your installation and it will let you know
+
+80
+00:05:21,390 --> 00:05:26,820
+when it is successfully completed now that we have the SDK is completely installed.
+
+81
+00:05:27,000 --> 00:05:32,220
+I just want to launch Visual Studio and show you what you get with those SDK.
+
+82
+00:05:32,250 --> 00:05:35,550
+So if I go ahead and create a brand new project.
+
+83
+00:05:36,580 --> 00:05:41,740
+Because of the workload's that I have available to me, I will see different project templates, so
+
+84
+00:05:41,740 --> 00:05:47,980
+I own the tool is the Web workload, so I have the ability to do a regular console up.
+
+85
+00:05:48,170 --> 00:05:50,320
+I have the speed on it core.
+
+86
+00:05:50,590 --> 00:05:55,200
+As a matter of fact, I think that this one comes because of the desktop work load.
+
+87
+00:05:55,210 --> 00:05:59,030
+But at this point I'm not trying to figure out which workload belongs to which.
+
+88
+00:05:59,030 --> 00:06:04,990
+I just know that if you are going to be doing a Web project, you have the option to choose your Web
+
+89
+00:06:04,990 --> 00:06:13,240
+application, a blazer application, and you can choose them with a core or dot net framework, someone
+
+90
+00:06:13,240 --> 00:06:15,640
+to choose a core Web application.
+
+91
+00:06:16,150 --> 00:06:18,140
+This is not the actual application that we're building.
+
+92
+00:06:18,160 --> 00:06:22,540
+I'm just showing you your options when we go ahead, put the project name to create.
+
+93
+00:06:22,840 --> 00:06:28,240
+Then from the dropdown list here, you can choose whether you want to core two point one or three point
+
+94
+00:06:28,240 --> 00:06:35,650
+one or the latest dot Natcore five point or and with that, you will be able to choose the different
+
+95
+00:06:35,650 --> 00:06:36,950
+templates and proceed.
+
+96
+00:06:37,240 --> 00:06:44,620
+So when we come back, we'll actually create a project and do a tour of the folder structures.

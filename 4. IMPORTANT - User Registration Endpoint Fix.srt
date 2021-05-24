@@ -1,0 +1,43 @@
+1
+00:00:00,770 --> 00:00:06,350
+Hey, guys, one quick addendum to what was done in the previous activity, setting up the registration
+
+2
+00:00:06,350 --> 00:00:08,060
+endpoints and everything, it worked.
+
+3
+00:00:08,410 --> 00:00:14,840
+However, when I checked the data, I realized that my user did not have a password, and that's because
+
+4
+00:00:14,840 --> 00:00:17,360
+I did not put this part on.
+
+5
+00:00:17,370 --> 00:00:20,390
+So if you look at the create user function.
+
+6
+00:00:21,560 --> 00:00:27,530
+It has to overtones, one where it just creates the user and another one where it asks you for the user
+
+7
+00:00:27,530 --> 00:00:29,110
+and the password to go with them.
+
+8
+00:00:29,120 --> 00:00:35,930
+So I'm not entirely sure why they feel the need to me to because for me, a user has to have a password.
+
+9
+00:00:35,930 --> 00:00:40,360
+But I guess for different situations, they may need to store something on the other.
+
+10
+00:00:40,410 --> 00:00:48,680
+So user karma and then from the user need to go to the password so that we can ensure that when the
+
+11
+00:00:48,680 --> 00:00:55,160
+user manager creates that user, that password is also going to get touched and stored on their record.

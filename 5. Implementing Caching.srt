@@ -1,0 +1,739 @@
+1
+00:00:00,480 --> 00:00:01,440
+Hey, guys, welcome back.
+
+2
+00:00:01,440 --> 00:00:09,150
+In this lesson, we'll be exploring, implementing, caching on our API caching can significantly improve
+
+3
+00:00:09,150 --> 00:00:10,710
+the performance of the API.
+
+4
+00:00:10,740 --> 00:00:17,100
+Just think about when we have hundreds, maybe thousands of clients subscribing to the API.
+
+5
+00:00:17,100 --> 00:00:24,030
+They're all trying to find hotels and countries and probably even both at the same time.
+
+6
+00:00:24,480 --> 00:00:31,560
+And that can really take a toll on the performance of the API based on the whole infrastructure.
+
+7
+00:00:31,570 --> 00:00:33,990
+And if I have to hit the database with a request.
+
+8
+00:00:34,380 --> 00:00:42,120
+So caching will introduce kind of quick access layer on top of the real data store and it will significantly
+
+9
+00:00:42,120 --> 00:00:45,490
+reduce how often we have to pull the database.
+
+10
+00:00:45,990 --> 00:00:49,620
+So what we will be implementing is one caching.
+
+11
+00:00:50,250 --> 00:00:56,430
+We'll be looking at implementing an expert experience, a mechanism to reduce the whole.
+
+12
+00:00:56,430 --> 00:00:58,350
+Often we have to go to the database.
+
+13
+00:00:58,650 --> 00:01:04,320
+We'll be looking at implementing a validation mechanism to reduce the network bandwidth.
+
+14
+00:01:04,650 --> 00:01:10,980
+And at the end of this lesson, we just want an overall feel of caching why we have it and how it can
+
+15
+00:01:10,980 --> 00:01:11,900
+be implemented.
+
+16
+00:01:12,360 --> 00:01:16,050
+Now, there are three types of caching, and I just wanted to give you guys a little of here before
+
+17
+00:01:16,050 --> 00:01:18,620
+we get into the whole code matter.
+
+18
+00:01:18,930 --> 00:01:21,750
+So the client cash lives on the browser.
+
+19
+00:01:21,930 --> 00:01:28,020
+So it's a private cache because it's, you know, unique to a single or any particular client.
+
+20
+00:01:28,380 --> 00:01:28,740
+All right.
+
+21
+00:01:28,740 --> 00:01:33,300
+We have the gateway cache, which kind of leaves on the server and is assured cache.
+
+22
+00:01:33,300 --> 00:01:39,330
+So the gateway implements a cache and all the clients hitting the gateway at any point in time would
+
+23
+00:01:39,330 --> 00:01:40,380
+be hitting that cache.
+
+24
+00:01:40,650 --> 00:01:45,510
+And then we have a proxy cache, which is also a shared cache, but it doesn't live on the server.
+
+25
+00:01:45,510 --> 00:01:46,680
+It lives in the network.
+
+26
+00:01:47,370 --> 00:01:50,930
+No, to start cashing our source, it's pretty simple.
+
+27
+00:01:50,940 --> 00:01:59,490
+What we need to do is add the response cache attribute and set how long the cache should live for.
+
+28
+00:01:59,550 --> 00:01:59,810
+Right.
+
+29
+00:01:59,910 --> 00:02:04,430
+So over any control over an endpoint.
+
+30
+00:02:04,440 --> 00:02:09,590
+And I'll just start off with countries, you know, we just experiment between these two.
+
+31
+00:02:09,600 --> 00:02:14,070
+So I'm just going to add the attribute that's his response cache.
+
+32
+00:02:14,430 --> 00:02:16,560
+And then duration equals 60.
+
+33
+00:02:16,560 --> 00:02:19,030
+So 60 means 60 seconds.
+
+34
+00:02:19,500 --> 00:02:20,030
+All right.
+
+35
+00:02:20,280 --> 00:02:26,270
+So we're setting up cache control with a maximum age of 60 seconds.
+
+36
+00:02:26,280 --> 00:02:31,710
+If you look at duration, you see this sets max edge in the cache control header.
+
+37
+00:02:32,010 --> 00:02:40,380
+So when when a client queries for data from the endpoint, there will be a header included that says
+
+38
+00:02:40,410 --> 00:02:46,120
+this is the lifetime of the cache, that you are no getting our cached data that you are not getting.
+
+39
+00:02:46,530 --> 00:02:51,160
+So let's go to debug mode and conduct a quick test in post on.
+
+40
+00:02:51,210 --> 00:02:56,700
+What you want to do is just make sure that you're sending your cash header option is off so you can
+
+41
+00:02:56,700 --> 00:03:02,850
+just go to file settings and on the general, just look for that setting, make sure it's off, otherwise
+
+42
+00:03:02,850 --> 00:03:04,110
+you can proceed.
+
+43
+00:03:04,140 --> 00:03:07,470
+So we already know that we can look at all the headers coming back.
+
+44
+00:03:07,860 --> 00:03:15,810
+And I'm going to do send and when we get the response, we see that our cache control header is coming
+
+45
+00:03:15,810 --> 00:03:19,410
+back and it has the moth's age of 60.
+
+46
+00:03:19,590 --> 00:03:20,080
+All right.
+
+47
+00:03:20,370 --> 00:03:25,410
+Now, this is really just a header, so we are not actually catching anything just yet.
+
+48
+00:03:25,620 --> 00:03:31,950
+This is just letting the client know that, well, the data is cached, but of course, we actually
+
+49
+00:03:31,950 --> 00:03:34,230
+need to cache the data.
+
+50
+00:03:34,470 --> 00:03:41,160
+So we're going to have to modify some of our configurations in our Start-Up, which is where I started
+
+51
+00:03:41,190 --> 00:03:41,940
+off.
+
+52
+00:03:41,940 --> 00:03:51,360
+So in our startup that says we're going to add this new service registration in the configure services
+
+53
+00:03:51,360 --> 00:03:56,510
+function and that I'm just going to put it here.
+
+54
+00:03:56,520 --> 00:04:04,350
+So services that add response caching and then after that, we need to register our middleware, which
+
+55
+00:04:04,350 --> 00:04:10,750
+I will do right above the routine middleware that sets up that user response caching.
+
+56
+00:04:10,770 --> 00:04:16,890
+So you can just go ahead and add those two lines and then what we're going to do is do another.
+
+57
+00:04:17,220 --> 00:04:21,180
+And when I run this request, we are seeing a new header.
+
+58
+00:04:21,360 --> 00:04:27,730
+And this one is it indicates the number of seconds the object has been in a proxy cache.
+
+59
+00:04:28,020 --> 00:04:28,350
+All right.
+
+60
+00:04:28,350 --> 00:04:30,690
+So we just thought about the different kinds of caching.
+
+61
+00:04:30,960 --> 00:04:34,890
+So we're implementing a proxy and see the value here is nine.
+
+62
+00:04:34,890 --> 00:04:37,460
+So if I were on another one and it's No.
+
+63
+00:04:37,470 --> 00:04:40,950
+Thirty two seconds into the maximum age of 60.
+
+64
+00:04:41,990 --> 00:04:47,750
+So pretty much within the lifetime, if we continue to pull it, we would keep on getting a different
+
+65
+00:04:47,750 --> 00:04:48,720
+value for the aid.
+
+66
+00:04:48,760 --> 00:04:53,630
+So when I do that, you see the aid is gone because we exceeded the 60 second.
+
+67
+00:04:53,640 --> 00:04:58,610
+So I actually went to the database this time came back and there is no age.
+
+68
+00:04:58,610 --> 00:05:05,300
+But then if I pull it again, no, it's telling me that, OK, it's 10 seconds old, it's 14 seconds
+
+69
+00:05:05,300 --> 00:05:06,300
+old, etc..
+
+70
+00:05:06,300 --> 00:05:12,320
+It's no, I'm just going to go back over to my start of the real quickly and we're going to explore
+
+71
+00:05:12,350 --> 00:05:19,400
+how we can probably enter implements a more global value, because right now I would have to set this
+
+72
+00:05:19,400 --> 00:05:23,330
+manually over every action or every endpoint.
+
+73
+00:05:23,330 --> 00:05:28,190
+And then if we change it from 60 to 120, then I would have to go through each one.
+
+74
+00:05:28,220 --> 00:05:36,590
+So what we can do in the start, though, is add to the config for add controls are just put in my my
+
+75
+00:05:37,070 --> 00:05:43,890
+lambda expression when we have the token and we have the arrow another supporting the current abrasives,
+
+76
+00:05:44,630 --> 00:05:48,380
+because, you know, if we have more than one line to configure, that makes it easier.
+
+77
+00:05:48,600 --> 00:05:57,220
+But what I'm going to add is config to see cache profiles that add and we want to 120 seconds duration.
+
+78
+00:05:57,230 --> 00:06:04,310
+So here we can kind of define a cache profile, which then we can use and reuse throughout.
+
+79
+00:06:04,340 --> 00:06:08,210
+So I need let me see what I need here.
+
+80
+00:06:08,540 --> 00:06:10,990
+I need a semicolon at the end.
+
+81
+00:06:11,510 --> 00:06:11,830
+All right.
+
+82
+00:06:11,870 --> 00:06:12,410
+There we go.
+
+83
+00:06:12,500 --> 00:06:19,330
+So config cache profiles not add and we give it any name, I mean, within reason.
+
+84
+00:06:19,850 --> 00:06:27,260
+And then you cache profile duration and you can add other properties to the profile location, verb
+
+85
+00:06:27,260 --> 00:06:28,110
+by header.
+
+86
+00:06:28,160 --> 00:06:29,510
+Don't get too complicated.
+
+87
+00:06:29,840 --> 00:06:38,870
+But what we can do now is instead of specifying duration here in this header, I can see Cheche profile
+
+88
+00:06:39,200 --> 00:06:48,260
+cache profile name is equal to and then we put that name that we just specified in that slot.
+
+89
+00:06:49,790 --> 00:06:51,560
+So if you want, you can go ahead and test it.
+
+90
+00:06:51,590 --> 00:06:56,840
+I'm not going to test it again because we already get the gist of the headers coming back and the age.
+
+91
+00:06:57,290 --> 00:07:03,190
+So, no, we've increased it to one to ten over any endpoint that we wish to have that cash.
+
+92
+00:07:03,560 --> 00:07:05,390
+And more than likely, you'd want it over.
+
+93
+00:07:05,390 --> 00:07:12,020
+The ones that are reading the get profiles would be the ones to have that caching profile.
+
+94
+00:07:12,020 --> 00:07:16,430
+You wouldn't necessarily need that over to create and other operations.
+
+95
+00:07:17,790 --> 00:07:24,750
+All right, so let's talk about a situation where our data might get stale, so as I said, with the
+
+96
+00:07:24,750 --> 00:07:32,400
+cash, it takes like a quick copy of the data layer and it returns that data for as long as we told
+
+97
+00:07:32,400 --> 00:07:32,610
+it to.
+
+98
+00:07:32,640 --> 00:07:36,180
+So in this case, it's two minutes, but let's extend this to maybe 10 minutes.
+
+99
+00:07:36,750 --> 00:07:45,720
+And then the first time the client tries to get data, then it's going to hit and then get a test version
+
+100
+00:07:45,720 --> 00:07:46,370
+afterwards.
+
+101
+00:07:46,680 --> 00:07:52,530
+But then what if five minutes into this, 10 minutes or two minutes into this ten minute period and
+
+102
+00:07:52,530 --> 00:07:57,690
+update actually occurred, so a new country got added?
+
+103
+00:07:58,390 --> 00:07:58,860
+Right.
+
+104
+00:07:59,070 --> 00:08:04,410
+And then they're still getting stale data for as long as the cash is alive.
+
+105
+00:08:04,440 --> 00:08:05,940
+So we don't want that.
+
+106
+00:08:05,950 --> 00:08:06,840
+We don't want that.
+
+107
+00:08:07,050 --> 00:08:11,120
+When they when the data changes underneath, they're still getting old data.
+
+108
+00:08:11,130 --> 00:08:15,000
+So on to add to this is some validation.
+
+109
+00:08:15,390 --> 00:08:15,830
+All right.
+
+110
+00:08:15,840 --> 00:08:25,830
+So to do some validation or add headers for validation and expression checks, we're going to include
+
+111
+00:08:25,830 --> 00:08:32,910
+a new library and it's going to be this library called Marvin Cheche headers.
+
+112
+00:08:33,210 --> 00:08:33,750
+All right.
+
+113
+00:08:33,760 --> 00:08:41,220
+So it's be done at core where that adds cache hitters to responses and you see the different headers.
+
+114
+00:08:41,220 --> 00:08:44,790
+The cache control expires e-TAG and last modified.
+
+115
+00:08:45,150 --> 00:08:45,480
+All right.
+
+116
+00:08:45,520 --> 00:08:48,180
+So it implements cache expiration and validation.
+
+117
+00:08:48,180 --> 00:08:50,130
+So you can go ahead and get that.
+
+118
+00:08:50,610 --> 00:08:53,510
+And I'm going to refactor or code a bit.
+
+119
+00:08:53,530 --> 00:09:00,450
+So in the service extensions, I'm going to add a new function where we're seeing public static, void
+
+120
+00:09:00,450 --> 00:09:05,940
+configure cache headers and we know the drill would pass in the service collection.
+
+121
+00:09:06,270 --> 00:09:12,570
+And then I'm taking that first line that we added services that add response caching as well as services
+
+122
+00:09:12,570 --> 00:09:15,080
+that add a cache headers.
+
+123
+00:09:15,390 --> 00:09:17,010
+So we're taking those two.
+
+124
+00:09:17,760 --> 00:09:24,380
+And then what we're going to do is just add a reference to the start up.
+
+125
+00:09:24,390 --> 00:09:30,450
+So where I had the original one, I just add one reference to that function, which is going to initialize
+
+126
+00:09:30,450 --> 00:09:32,840
+these to service calls.
+
+127
+00:09:32,850 --> 00:09:36,740
+Right after that modification, we're going to add the middleware.
+
+128
+00:09:36,750 --> 00:09:45,300
+So after the user response caching, I'm going to add up not use if cache headers and before we do anything
+
+129
+00:09:45,300 --> 00:09:50,580
+for any more modifications, just to make sure everything is OK, we're just going to do a quick test
+
+130
+00:09:51,060 --> 00:09:54,300
+and we're going to send a brand new request.
+
+131
+00:09:55,050 --> 00:09:59,640
+And when we look at the list of headers coming back from that request, look at it.
+
+132
+00:09:59,690 --> 00:10:01,980
+We have expired last modified.
+
+133
+00:10:01,980 --> 00:10:06,180
+We have an item identifies a specific resource version.
+
+134
+00:10:06,180 --> 00:10:09,270
+So it's just like a little hash that says this is a version of the data.
+
+135
+00:10:09,270 --> 00:10:13,380
+You're getting very other things.
+
+136
+00:10:13,380 --> 00:10:17,150
+So we see that we're getting some new headers along the way.
+
+137
+00:10:17,160 --> 00:10:17,500
+Right.
+
+138
+00:10:17,760 --> 00:10:22,100
+You would also notice that the marks age is kind of gone back to 60.
+
+139
+00:10:22,110 --> 00:10:23,730
+So, yes, it was 120.
+
+140
+00:10:23,730 --> 00:10:26,180
+We set it to 120, but it's gone up to 60.
+
+141
+00:10:26,580 --> 00:10:30,900
+So we're going to just explore how we can customize that max age.
+
+142
+00:10:31,740 --> 00:10:37,170
+And the way we're going to do that is go back to our service extensions and add the following code on
+
+143
+00:10:37,170 --> 00:10:40,110
+the services that cache headers.
+
+144
+00:10:40,110 --> 00:10:47,940
+So we're going to define a token expiration option, Lambda Arrow, and we're going to see the expiration
+
+145
+00:10:47,940 --> 00:10:49,680
+option marks Eje.
+
+146
+00:10:49,680 --> 00:10:51,780
+Sixty five one twenty.
+
+147
+00:10:51,780 --> 00:10:57,360
+Whatever it is that we want, we can see the expiration option test location.
+
+148
+00:10:57,360 --> 00:11:03,930
+We want it to be private or we want it to be public sermon, whether it's all public or private.
+
+149
+00:11:03,930 --> 00:11:11,220
+So let's say we wanted it private and then the validation option you see most revalidate equals true
+
+150
+00:11:11,220 --> 00:11:11,640
+meaning.
+
+151
+00:11:11,640 --> 00:11:15,670
+Once the details change, we must go through that process again.
+
+152
+00:11:15,960 --> 00:11:26,310
+Now, after doing these modifications, we can actually remove the header from the resource.
+
+153
+00:11:26,880 --> 00:11:27,210
+All right.
+
+154
+00:11:27,210 --> 00:11:35,000
+So let's just do one more test and we'll see that the modification is actually global.
+
+155
+00:11:35,490 --> 00:11:42,870
+So even without putting the resource or the attribute right above the resource, we see that we're still
+
+156
+00:11:42,870 --> 00:11:44,220
+getting about the same headers.
+
+157
+00:11:44,460 --> 00:11:50,450
+And I'm just going on a live and out of the life of the one twenty.
+
+158
+00:11:50,850 --> 00:11:51,350
+All right.
+
+159
+00:11:51,750 --> 00:11:59,210
+So the next thing I want to show you are the or the next things I want to show you would be the custom
+
+160
+00:11:59,220 --> 00:12:05,310
+actually say you can actually add right above the potential endpoint that you want a different setting
+
+161
+00:12:05,310 --> 00:12:05,590
+for.
+
+162
+00:12:05,610 --> 00:12:12,690
+So, yes, we set the global setting in the start, starting the service configuration, but then over
+
+163
+00:12:12,690 --> 00:12:14,850
+the endpoint, you can actually override that.
+
+164
+00:12:14,850 --> 00:12:16,890
+So you can add those.
+
+165
+00:12:17,320 --> 00:12:24,430
+Missing references, so cash exploration and then you say you want a different location, you want it
+
+166
+00:12:24,430 --> 00:12:29,380
+to be public and this one should be 60, you can actually override the global settings right here.
+
+167
+00:12:29,680 --> 00:12:32,560
+And then you can tell this one that it doesn't need to revalidate.
+
+168
+00:12:33,190 --> 00:12:39,250
+So just bouncing back to the headers, coming back and all that, we've implemented caching just to
+
+169
+00:12:39,250 --> 00:12:39,820
+go through them.
+
+170
+00:12:39,820 --> 00:12:45,760
+Once again, this tag actually represents the unique, like a unique hash to say this is the version
+
+171
+00:12:45,760 --> 00:12:47,320
+of the data that you are seeing.
+
+172
+00:12:47,770 --> 00:12:55,840
+If if within the lifespan of the cache something changes, then this tag is actually going to change
+
+173
+00:12:55,840 --> 00:12:57,620
+and then you would get a new tag.
+
+174
+00:12:57,670 --> 00:12:58,090
+All right.
+
+175
+00:12:58,100 --> 00:13:04,120
+But then for as long as a data store does not change, what we're doing is just caching it so that we
+
+176
+00:13:04,120 --> 00:13:09,280
+don't have to hit the database to bring about the same data every time somebody wants it, at least
+
+177
+00:13:09,280 --> 00:13:10,620
+for two minutes, if we'll get one.
+
+178
+00:13:10,630 --> 00:13:15,740
+Those are requests we don't necessarily need to go to the database for the same old data.
+
+179
+00:13:16,030 --> 00:13:20,260
+So that is the advantage of adding caching to your API.
+
+180
+00:13:20,470 --> 00:13:27,760
+Of course, on a case by case basis, you may want to customize so particular endpoint, serve up the
+
+181
+00:13:27,760 --> 00:13:29,560
+data versus others.
+
+182
+00:13:29,770 --> 00:13:37,150
+You may also not even need caching based on the application, or it may not be suitable for the type
+
+183
+00:13:37,150 --> 00:13:40,090
+of operation that you are providing the API for.
+
+184
+00:13:40,390 --> 00:13:46,990
+So this is just another thing that I think it's good for you to know and you can use it, have it in
+
+185
+00:13:46,990 --> 00:13:48,460
+your arsenal for when needed.

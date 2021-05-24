@@ -1,0 +1,259 @@
+1
+00:00:01,090 --> 00:00:02,960
+Welcome back, guys, at this point.
+
+2
+00:00:02,980 --> 00:00:09,640
+We have basically completed at least the bulk of our configurations as we go along, we may see the
+
+3
+00:00:09,640 --> 00:00:11,170
+need to include all those things.
+
+4
+00:00:11,530 --> 00:00:17,770
+But right now we want to start actually making our API work because outside of hitting F5 and seeing
+
+5
+00:00:17,770 --> 00:00:20,430
+Swiger and seeing the logs, nothing works.
+
+6
+00:00:20,980 --> 00:00:22,670
+We don't have an API just yet.
+
+7
+00:00:23,110 --> 00:00:28,600
+So what we want to do is actually start configuring our get end points.
+
+8
+00:00:28,600 --> 00:00:33,040
+And I'm going to explain exactly what the get endpoints mean.
+
+9
+00:00:34,710 --> 00:00:41,880
+So to start us off, we're going to just look at this weather forecast control that came with our project,
+
+10
+00:00:42,240 --> 00:00:48,810
+but it is actually just some sample code that kind of provides some context as to what we need to do
+
+11
+00:00:48,930 --> 00:00:51,510
+to get our get in point up and running.
+
+12
+00:00:52,480 --> 00:00:59,550
+So our controller, like I said before, actually controls what happens when a user requests information
+
+13
+00:00:59,550 --> 00:01:00,750
+and hits the controller.
+
+14
+00:01:01,110 --> 00:01:07,770
+The endpoints are usually determined by our what we call actions, which are these functions that are
+
+15
+00:01:07,890 --> 00:01:10,410
+going to be defined inside of the controller.
+
+16
+00:01:10,710 --> 00:01:18,930
+And what it responds with are when the controller, the action is hit, rather, it does its computation
+
+17
+00:01:18,930 --> 00:01:25,650
+and then responds in a manner that the calling application or the client application that is trying
+
+18
+00:01:25,650 --> 00:01:30,940
+to access the API will know that this was a successful call maybe.
+
+19
+00:01:31,110 --> 00:01:37,410
+And generally speaking, whenever somebody calls, I get commodities in order to retrieve information.
+
+20
+00:01:37,410 --> 00:01:41,900
+Hence the word gets they're getting something or they expect to get something.
+
+21
+00:01:42,780 --> 00:01:51,450
+So within the context of this sample controller, we see that we when we call this end point, it is
+
+22
+00:01:51,450 --> 00:01:53,150
+going to return data.
+
+23
+00:01:53,160 --> 00:01:55,860
+So we are getting data granted.
+
+24
+00:01:55,860 --> 00:01:57,900
+It is very random data.
+
+25
+00:01:57,900 --> 00:02:00,150
+It's nothing to zero.
+
+26
+00:02:00,510 --> 00:02:05,940
+But the reality is that it is doing the simple command, which is getting so we have what we call this
+
+27
+00:02:05,940 --> 00:02:08,130
+HTP attribute.
+
+28
+00:02:08,470 --> 00:02:09,060
+Right.
+
+29
+00:02:09,060 --> 00:02:13,840
+And it is seeing it is defining the behavior of the function.
+
+30
+00:02:14,310 --> 00:02:22,680
+So when we actually test results and we can do that right here in Swiger, we just go ahead and pull
+
+31
+00:02:22,680 --> 00:02:27,510
+this down and they shows all of the examples of what we might get.
+
+32
+00:02:27,510 --> 00:02:29,970
+We can click, try it out and click execute.
+
+33
+00:02:30,300 --> 00:02:34,690
+And then it's going to show that this was the request that was sent.
+
+34
+00:02:34,710 --> 00:02:39,450
+So notice, there is no real indicator here to say or this slash get.
+
+35
+00:02:39,540 --> 00:02:42,330
+There is no indicator to see what the endpoint was.
+
+36
+00:02:42,340 --> 00:02:47,970
+We know the server based on the fact that when we run the application, that's our server address.
+
+37
+00:02:48,270 --> 00:02:53,430
+And then we know the controller that we're interacting with weather forecasts.
+
+38
+00:02:53,430 --> 00:02:53,820
+Right.
+
+39
+00:02:53,910 --> 00:02:56,100
+That's the name of our controller.
+
+40
+00:02:56,280 --> 00:03:00,150
+Weather forecast controller is a static keyword.
+
+41
+00:03:00,300 --> 00:03:02,700
+Ever control necessar naming convention.
+
+42
+00:03:03,240 --> 00:03:06,500
+But then I don't know which action it hit.
+
+43
+00:03:06,520 --> 00:03:11,700
+So what really happened is that I'm just going to set a break point here so we can see that when we
+
+44
+00:03:11,700 --> 00:03:15,050
+click execute, it actually hits that breakpoints.
+
+45
+00:03:15,060 --> 00:03:18,660
+It's calling this method and it's called a get.
+
+46
+00:03:19,710 --> 00:03:27,390
+And when I have five, it just returns with all the information that was being retrieved from that.
+
+47
+00:03:27,840 --> 00:03:34,680
+So what's really happening here is that based on the protocol and certain definitions that we're going
+
+48
+00:03:34,680 --> 00:03:42,390
+to be making here on each option, the way we formulate our requests, it will the controller will automatically
+
+49
+00:03:42,390 --> 00:03:44,550
+know which one we should hit.
+
+50
+00:03:44,940 --> 00:03:52,800
+And the context for this, the background behind this is that you don't want to get too granular with
+
+51
+00:03:52,800 --> 00:03:55,370
+your names for your actions.
+
+52
+00:03:55,370 --> 00:03:59,220
+So you don't want to say, get off, get one, get one by.
+
+53
+00:03:59,220 --> 00:04:01,020
+I'd get one by name.
+
+54
+00:04:01,600 --> 00:04:02,520
+You can call.
+
+55
+00:04:03,450 --> 00:04:05,610
+Well, you can actually call the action.
+
+56
+00:04:05,820 --> 00:04:10,580
+Basically, anything you want to say can give it its own name.
+
+57
+00:04:10,590 --> 00:04:14,580
+Of course there are standards surrounding that, but the reality is that if you have multiple gets,
+
+58
+00:04:14,580 --> 00:04:16,440
+you can name all of them the same get.
+
+59
+00:04:17,070 --> 00:04:26,520
+But you, based on the data that is required to retrieve the information you can stipulate which get
+
+60
+00:04:26,520 --> 00:04:27,390
+should get called.
+
+61
+00:04:27,930 --> 00:04:30,750
+So all of that once again, this is just the introduction.
+
+62
+00:04:30,760 --> 00:04:35,290
+So in the next video, we're going to create our own controller.
+
+63
+00:04:35,310 --> 00:04:40,980
+We're going to start off with the hotels, sorry, with the countries, and we'll see exactly how it
+
+64
+00:04:40,980 --> 00:04:41,370
+goes.
+
+65
+00:04:41,370 --> 00:04:47,970
+And we want to retrieve the countries, the listing of countries from the database through an API called.

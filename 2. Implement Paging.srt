@@ -1,0 +1,1031 @@
+1
+00:00:00,940 --> 00:00:07,390
+Or Guess will start looking at teaching in this lesson, know a little background as to what aging is
+
+2
+00:00:07,390 --> 00:00:13,780
+and why we need it, paging talks about segmenting the data that is being returned.
+
+3
+00:00:13,810 --> 00:00:20,290
+So right now, what we're doing is we're doing one big keyword, getting all of the values in a certain
+
+4
+00:00:20,290 --> 00:00:22,270
+table all at once.
+
+5
+00:00:22,280 --> 00:00:28,720
+And while it may look fine because we only have, what, three countries and five hotels, when you
+
+6
+00:00:28,720 --> 00:00:35,350
+deploy this API for international usage and you're actually storing hotels in 200 countries across the
+
+7
+00:00:35,350 --> 00:00:40,990
+world, you will realize that your data is going to grow exponentially.
+
+8
+00:00:40,990 --> 00:00:48,150
+And then you will definitely need to, one, protect yourself and your system from too many requests
+
+9
+00:00:48,160 --> 00:00:55,990
+and the burden of serving up that much data all at once to potentially many clients, as well as protecting
+
+10
+00:00:55,990 --> 00:01:02,870
+the clients from having to develop ways internally to segment the data because they're getting back
+
+11
+00:01:02,890 --> 00:01:04,170
+too much all at once.
+
+12
+00:01:04,480 --> 00:01:12,010
+So paging is a nice, effective and efficient way to segment the data allowing the client to see I would
+
+13
+00:01:12,010 --> 00:01:18,440
+like this many records and then we just return according to what they asked for.
+
+14
+00:01:18,730 --> 00:01:24,970
+So I started off with Posman on the screen because what we want from our client is that when they're
+
+15
+00:01:24,970 --> 00:01:33,370
+making that service call, they would pass in parameters to say something like the page size that they
+
+16
+00:01:33,370 --> 00:01:33,970
+would want.
+
+17
+00:01:33,970 --> 00:01:37,160
+So page size would mean how many records?
+
+18
+00:01:37,420 --> 00:01:46,290
+So let's say they say 10 and then they would say and I would like the page number.
+
+19
+00:01:47,080 --> 00:01:48,700
+So that's a page number.
+
+20
+00:01:49,870 --> 00:01:56,710
+So I can either type in the link or just put it on here in the Palms section to page number would be
+
+21
+00:01:56,710 --> 00:01:58,990
+equal to something like one or two.
+
+22
+00:01:58,990 --> 00:02:05,440
+So we need to know implement code to see that if they ask for a page size of ten, that means they want
+
+23
+00:02:05,440 --> 00:02:06,130
+ten records.
+
+24
+00:02:06,130 --> 00:02:10,300
+But then to ask for page three or something, that's not page one.
+
+25
+00:02:10,480 --> 00:02:17,370
+That means they would like the required 30 upon to record 40 or something like that.
+
+26
+00:02:17,710 --> 00:02:22,780
+So that way, if they're displaying 10 hotels at that time on their pages, when when they go to the
+
+27
+00:02:22,780 --> 00:02:27,670
+next page, on the next page, they would just increment this and they know they would get 40 to 50,
+
+28
+00:02:28,000 --> 00:02:30,250
+then 50 to 60, etc..
+
+29
+00:02:30,250 --> 00:02:36,060
+So if we have five hundred hotels, at no point would anybody be getting all five hundred.
+
+30
+00:02:36,220 --> 00:02:40,370
+They would only be getting chunks of fifty or whatever it is that they are asking for.
+
+31
+00:02:40,570 --> 00:02:43,640
+Of course we can limit the maximum.
+
+32
+00:02:44,110 --> 00:02:49,240
+So what we need to do is start off by creating a new model.
+
+33
+00:02:49,250 --> 00:02:52,200
+So I'm going to call this model, request firearms.
+
+34
+00:02:52,210 --> 00:03:02,110
+So just a class and it will just be a model outlining the constraints or, you know, the parameter
+
+35
+00:03:02,110 --> 00:03:03,870
+names that there are a lot of passing.
+
+36
+00:03:03,880 --> 00:03:04,130
+Right.
+
+37
+00:03:04,660 --> 00:03:12,880
+So before I do anything, I want to initiate or declare a maximum size of fifty so nobody can request
+
+38
+00:03:12,880 --> 00:03:14,770
+more than 50 records at the time.
+
+39
+00:03:14,780 --> 00:03:17,050
+Of course, this is mine or yours.
+
+40
+00:03:17,260 --> 00:03:20,130
+So if you want to limit it to ten, you want to it to 100.
+
+41
+00:03:20,140 --> 00:03:21,420
+That's entirely up to you.
+
+42
+00:03:21,820 --> 00:03:23,580
+Do what's best for your system.
+
+43
+00:03:23,920 --> 00:03:29,950
+So we're sitting that 250 right now and then we have another property that we're going to call page
+
+44
+00:03:29,950 --> 00:03:32,450
+number and another one.
+
+45
+00:03:32,620 --> 00:03:35,330
+This one is private that we're going to call bid size.
+
+46
+00:03:35,860 --> 00:03:36,270
+All right.
+
+47
+00:03:36,280 --> 00:03:39,820
+So the these are just defaults.
+
+48
+00:03:39,820 --> 00:03:45,220
+So I'm seeing that the default page number, in case none was specified, the default page number will
+
+49
+00:03:45,230 --> 00:03:49,090
+be one and the default size will be 10.
+
+50
+00:03:49,240 --> 00:03:49,620
+Right.
+
+51
+00:03:49,630 --> 00:04:00,090
+But then I'm going to make the page size a public version of the page size where I'm going to manually
+
+52
+00:04:00,100 --> 00:04:06,550
+see get and here I'm going to return on the score page size.
+
+53
+00:04:07,420 --> 00:04:14,910
+But then we can also set the value for page size to be equal to.
+
+54
+00:04:15,220 --> 00:04:21,900
+And I want to see value being greater than Mark Spitz size.
+
+55
+00:04:22,270 --> 00:04:28,510
+So this is a question I would just use a Turner upwards to see if it is greater than the maximum size.
+
+56
+00:04:28,510 --> 00:04:30,070
+Then we send the data.
+
+57
+00:04:30,100 --> 00:04:31,030
+So that's why we did that.
+
+58
+00:04:31,030 --> 00:04:31,360
+Right.
+
+59
+00:04:31,780 --> 00:04:35,410
+So if they requested more than ten more than 50 records.
+
+60
+00:04:35,560 --> 00:04:37,830
+So the default is 10, right?
+
+61
+00:04:38,110 --> 00:04:43,630
+If they're requested more than 50, then we just send back 50.
+
+62
+00:04:44,200 --> 00:04:46,300
+Otherwise we send volume.
+
+63
+00:04:46,300 --> 00:04:51,130
+So value here is a keyword, as you see highlighted in blue, just like it is for return.
+
+64
+00:04:51,310 --> 00:04:54,510
+So value would be whatever value we're sitting here.
+
+65
+00:04:54,970 --> 00:04:55,330
+All right.
+
+66
+00:04:55,340 --> 00:04:59,320
+So here we just have a default getset our initializing it to one.
+
+67
+00:05:00,040 --> 00:05:00,480
+So it.
+
+68
+00:05:00,520 --> 00:05:05,850
+There are no real constraints here on this because we don't know what age they're at, however, or
+
+69
+00:05:05,860 --> 00:05:09,440
+this one we're seeing always return the size.
+
+70
+00:05:09,910 --> 00:05:16,810
+So when you get to return what that is, however, when sitting it if the requested size is greater
+
+71
+00:05:16,810 --> 00:05:22,060
+than 50 or whatever value you put there, then we return that maximum.
+
+72
+00:05:22,070 --> 00:05:25,660
+Otherwise then we can go ahead and return that value.
+
+73
+00:05:26,640 --> 00:05:33,520
+Now, the next thing I want to do is to modify the controller, so at this point I'm going to just modify
+
+74
+00:05:33,520 --> 00:05:39,600
+I get confused because like I said, I don't want at any point somebody being able to just get all the
+
+75
+00:05:39,600 --> 00:05:43,480
+records out once that that would be problematic for my system.
+
+76
+00:05:44,100 --> 00:05:47,490
+So what I'll do is modify, get countries.
+
+77
+00:05:47,490 --> 00:05:53,570
+So this endpoint is no longer just gets all countries, but now we're going to see from query.
+
+78
+00:05:53,670 --> 00:06:00,370
+So you see in from body being put here, I believe when we were doing the post you see from Buddy.
+
+79
+00:06:00,600 --> 00:06:03,750
+So that request would have the data in the body.
+
+80
+00:06:03,750 --> 00:06:04,240
+Right.
+
+81
+00:06:04,770 --> 00:06:06,040
+So we would have done that.
+
+82
+00:06:06,070 --> 00:06:08,730
+Let me see if I can find any of those with the body.
+
+83
+00:06:08,760 --> 00:06:09,270
+There we go.
+
+84
+00:06:09,290 --> 00:06:12,090
+So that's the from body that it takes from that.
+
+85
+00:06:12,110 --> 00:06:16,530
+However, from query will look inside of the query string.
+
+86
+00:06:17,560 --> 00:06:23,290
+That is being possible for the Paramount, so that's why I called it to request Parramore parameters,
+
+87
+00:06:23,290 --> 00:06:23,560
+right.
+
+88
+00:06:24,100 --> 00:06:33,010
+So from programs, we're looking for fields that match the names as outlined in our request model.
+
+89
+00:06:33,580 --> 00:06:38,190
+So it's the same kind of concept as the deal request pirogues.
+
+90
+00:06:38,740 --> 00:06:43,060
+So I'm just going to call these requests firearms used the word Perm's as a keyword.
+
+91
+00:06:43,480 --> 00:06:47,020
+So, no, we're looking for our query.
+
+92
+00:06:48,660 --> 00:06:54,970
+Query string, sorry, that will have in fields for bid size and the page number.
+
+93
+00:06:55,710 --> 00:07:04,710
+So now the next development will be involving passing that information down to or get all commands.
+
+94
+00:07:04,750 --> 00:07:09,330
+Remember that in our units of work or all this saying, oh, just give back everything anyway.
+
+95
+00:07:09,330 --> 00:07:09,660
+Right?
+
+96
+00:07:09,930 --> 00:07:15,450
+So what I'm going to do is pass the word power down to the get all.
+
+97
+00:07:15,720 --> 00:07:19,860
+And of course, that is going to require an override.
+
+98
+00:07:20,010 --> 00:07:20,640
+All right.
+
+99
+00:07:21,130 --> 00:07:23,760
+I don't want to get rid of the original guitar.
+
+100
+00:07:24,510 --> 00:07:26,660
+It may serve some purpose otherwise.
+
+101
+00:07:26,910 --> 00:07:28,430
+So I'm just going to create another one.
+
+102
+00:07:28,440 --> 00:07:28,740
+Right.
+
+103
+00:07:28,750 --> 00:07:35,250
+So let's go back over to our unit of four units over the generic repository.
+
+104
+00:07:35,310 --> 00:07:37,580
+And we have get all as it is.
+
+105
+00:07:37,830 --> 00:07:41,880
+So what I'm going to do is create a brand new declaration.
+
+106
+00:07:41,880 --> 00:07:45,150
+I notice of this new data type here eyepatch list.
+
+107
+00:07:45,150 --> 00:07:47,500
+You'll see more about that in a few.
+
+108
+00:07:47,820 --> 00:07:55,770
+So I have tasks get all and I'm just getting the includes as well as the request parameters.
+
+109
+00:07:55,770 --> 00:08:01,320
+So I'm not even going to allow them to do the filtering and all of that stuff because we're not really
+
+110
+00:08:01,320 --> 00:08:02,320
+interested in that, right?
+
+111
+00:08:02,340 --> 00:08:03,750
+No, we're getting all.
+
+112
+00:08:04,410 --> 00:08:06,670
+But we want to facilitate the page.
+
+113
+00:08:06,870 --> 00:08:12,960
+So let me just go ahead and include what I can include, where we clear this data type deposit so we
+
+114
+00:08:12,960 --> 00:08:13,970
+can leave that alone.
+
+115
+00:08:14,310 --> 00:08:21,690
+And since that is knowing in the interface, I need to go and update the generic repository so that
+
+116
+00:08:21,690 --> 00:08:23,210
+we can implement it.
+
+117
+00:08:24,590 --> 00:08:25,420
+All right.
+
+118
+00:08:25,440 --> 00:08:28,590
+So now that it is there, what code do I put in?
+
+119
+00:08:28,590 --> 00:08:32,240
+So really and truly I'm doing everything that I'm doing here?
+
+120
+00:08:32,250 --> 00:08:39,180
+Well, maybe not every single thing because I have no autobio, but I'm just going to take that code,
+
+121
+00:08:39,630 --> 00:08:43,220
+based it down here and then return.
+
+122
+00:08:44,940 --> 00:08:45,270
+All right.
+
+123
+00:08:45,280 --> 00:08:49,380
+So I'm just going kind of slowly so we can see exactly what's happening.
+
+124
+00:08:49,590 --> 00:08:51,090
+So there's no expression.
+
+125
+00:08:51,120 --> 00:08:52,830
+I can take all the expression.
+
+126
+00:08:53,220 --> 00:09:00,300
+We do have facilities for the include, but we don't have any autobio.
+
+127
+00:09:00,300 --> 00:09:01,790
+So I'll take that one note.
+
+128
+00:09:02,160 --> 00:09:05,850
+Now, what I need to add is.
+
+129
+00:09:06,990 --> 00:09:15,390
+A facility to actually, well, filter our peek exactly what I want from court, because this is still
+
+130
+00:09:15,390 --> 00:09:16,800
+just returning everything.
+
+131
+00:09:17,220 --> 00:09:22,400
+So at this point, I'm just going to go ahead and take care of this error, which is the list.
+
+132
+00:09:22,800 --> 00:09:28,740
+And if you look at the suggestions of the library, I want is not there.
+
+133
+00:09:29,070 --> 00:09:33,450
+So I'm going to go over to new get and get it manually.
+
+134
+00:09:33,450 --> 00:09:37,020
+So management to get packages to browse.
+
+135
+00:09:37,260 --> 00:09:40,970
+And then I'm going to look for eggs, not paged lists.
+
+136
+00:09:41,050 --> 00:09:45,830
+So this is a very prominent library that helps with paging.
+
+137
+00:09:45,840 --> 00:09:48,570
+So we'll just see expanded list and make sure.
+
+138
+00:09:48,900 --> 00:09:50,520
+Go ahead and install that.
+
+139
+00:09:53,920 --> 00:09:58,950
+I know that it's installed we can go back and try and take care of those errors.
+
+140
+00:09:58,950 --> 00:10:02,320
+So this is a positive.
+
+141
+00:10:02,460 --> 00:10:07,640
+You know, I can say using Eckstut page lists, so go ahead and do that.
+
+142
+00:10:07,980 --> 00:10:11,660
+So making the page list itself is very possible.
+
+143
+00:10:11,940 --> 00:10:15,650
+But then why do all of that when there's a library?
+
+144
+00:10:15,660 --> 00:10:16,050
+Right.
+
+145
+00:10:16,440 --> 00:10:20,700
+So go to the generic and let's include all the missing references.
+
+146
+00:10:21,540 --> 00:10:21,960
+All right.
+
+147
+00:10:22,290 --> 00:10:28,290
+And then the cool thing, though, is that I don't it's complaining because we have a page list as a
+
+148
+00:10:28,290 --> 00:10:31,290
+return type doing two list here.
+
+149
+00:10:31,560 --> 00:10:41,400
+So it gives us an extension function that allows us to see a two page list async and then the two page
+
+150
+00:10:41,400 --> 00:10:43,200
+list will take two parameters.
+
+151
+00:10:43,200 --> 00:10:49,360
+It wants a page number and the page says, where are we going to get that from our request parameters?
+
+152
+00:10:49,670 --> 00:10:50,110
+All right.
+
+153
+00:10:50,460 --> 00:10:58,250
+So actually, I want to even take the null off this and frankly, I'm going to take off the interludes.
+
+154
+00:10:58,380 --> 00:11:04,500
+So let me just throw a little refactor, because I'm thinking about it when we're getting like in pages,
+
+155
+00:11:04,500 --> 00:11:10,410
+when they're paging the data, they probably don't need to include anything about the country or anything
+
+156
+00:11:10,410 --> 00:11:10,730
+else.
+
+157
+00:11:10,740 --> 00:11:11,100
+Right.
+
+158
+00:11:11,130 --> 00:11:12,330
+Because they're just listing it.
+
+159
+00:11:12,600 --> 00:11:17,230
+When when you get the details of something, then you probably want to include.
+
+160
+00:11:17,550 --> 00:11:19,880
+So, I mean, that's that's up to you.
+
+161
+00:11:19,980 --> 00:11:20,610
+Maybe I'll leave.
+
+162
+00:11:20,610 --> 00:11:22,850
+That includes because I could see value in its value.
+
+163
+00:11:22,860 --> 00:11:25,130
+That includes bullets or, of course, firearms.
+
+164
+00:11:25,140 --> 00:11:28,770
+We definitely want that to be mandatory for this version.
+
+165
+00:11:28,780 --> 00:11:30,470
+So let me put this at the front.
+
+166
+00:11:30,480 --> 00:11:35,940
+I think that's why that red line is there, because any time you have the apartment is listed, you
+
+167
+00:11:35,940 --> 00:11:38,550
+have to have the nullable wants to that end.
+
+168
+00:11:38,550 --> 00:11:45,630
+So they will also request sperm's so back to the task on query as not tracking the two page list and
+
+169
+00:11:45,630 --> 00:11:50,220
+then were passing for programs that which one to settle on first the page number.
+
+170
+00:11:50,880 --> 00:11:57,300
+So it's important to always look at all the requirements to make sure you're putting the cart value
+
+171
+00:11:57,300 --> 00:11:59,910
+and then they want the page size.
+
+172
+00:11:59,910 --> 00:12:03,240
+And yes, I do have somewhere you can get that from.
+
+173
+00:12:04,020 --> 00:12:04,740
+All right.
+
+174
+00:12:06,350 --> 00:12:10,610
+And then I think this area is there because we need to be seen.
+
+175
+00:12:10,880 --> 00:12:11,610
+There we go.
+
+176
+00:12:12,050 --> 00:12:18,080
+So, no, we can get a page list of anything that we have in our database.
+
+177
+00:12:18,080 --> 00:12:24,140
+And I need to go and correct my repository where I made this.
+
+178
+00:12:25,160 --> 00:12:29,630
+Not nullable, and of course, I need to move it to the front.
+
+179
+00:12:31,520 --> 00:12:37,040
+All right, so you see, as you build on your API, tiny changes are made along the way.
+
+180
+00:12:37,370 --> 00:12:38,870
+They're actually required.
+
+181
+00:12:38,870 --> 00:12:45,140
+But, you know, once you know what you're doing or you get on top of it, so you just build and make
+
+182
+00:12:45,140 --> 00:12:48,840
+sure that you haven't messed up anything else I see here.
+
+183
+00:12:48,890 --> 00:12:49,400
+All right.
+
+184
+00:12:49,410 --> 00:12:52,610
+So they're saying that get all.
+
+185
+00:12:53,970 --> 00:12:54,840
+There is none.
+
+186
+00:12:55,380 --> 00:12:59,350
+OK, so this is because I'm still using the phones on guitars, right?
+
+187
+00:12:59,370 --> 00:13:04,120
+No, we have to get our functions to distinguish between the two of them.
+
+188
+00:13:04,140 --> 00:13:09,430
+What I love to do is pass in exactly the parameters that the one I know I want needs.
+
+189
+00:13:09,510 --> 00:13:09,800
+Right.
+
+190
+00:13:10,290 --> 00:13:10,920
+So.
+
+191
+00:13:12,010 --> 00:13:16,390
+Well, actually, that's not working because the other one still takes more than one, so it's still
+
+192
+00:13:16,390 --> 00:13:19,780
+confused as to which one it is am dealing with.
+
+193
+00:13:19,790 --> 00:13:23,050
+So what I'm going to do, I probably should have done this from the start.
+
+194
+00:13:24,040 --> 00:13:28,370
+I just changed the name and do a new one right.
+
+195
+00:13:28,390 --> 00:13:32,470
+Someday to try to be generic and it backfired.
+
+196
+00:13:32,490 --> 00:13:39,480
+So let me just call this get paged list that I think that's clear enough.
+
+197
+00:13:39,700 --> 00:13:44,190
+So in the generic repository, we do that in the generic repository.
+
+198
+00:13:44,680 --> 00:13:48,760
+We made that change as soon as I find it.
+
+199
+00:13:48,790 --> 00:13:51,520
+There we go and there we go.
+
+200
+00:13:51,530 --> 00:13:53,530
+So let us take this for a spin.
+
+201
+00:13:53,530 --> 00:13:55,570
+So we only done this the countries.
+
+202
+00:13:55,990 --> 00:14:03,190
+And the fact is that we've done it one place and it's that easy to go over to any other controller and
+
+203
+00:14:03,190 --> 00:14:06,340
+meet that change because the hard work was already done.
+
+204
+00:14:06,360 --> 00:14:06,730
+Right.
+
+205
+00:14:07,110 --> 00:14:10,660
+So that's one of the advantages of having a clean architecture.
+
+206
+00:14:10,660 --> 00:14:16,710
+And I have an error here and that URL is just my about, so I just fix that part.
+
+207
+00:14:16,720 --> 00:14:17,830
+So let's try that again.
+
+208
+00:14:19,060 --> 00:14:29,490
+And when we get to this point, no, let us try to bring back country with bits 50 and page number five.
+
+209
+00:14:29,500 --> 00:14:36,850
+I'm actually going to set a breakpoint here so that we can see the Parramatta's coming in.
+
+210
+00:14:36,850 --> 00:14:39,130
+Or maybe let me just put it in 39.
+
+211
+00:14:39,190 --> 00:14:40,270
+All Let's try that.
+
+212
+00:14:40,280 --> 00:14:41,200
+So send.
+
+213
+00:14:42,140 --> 00:14:47,240
+All right, so it's hitting the breakpoints, so that means the request was recognized.
+
+214
+00:14:47,570 --> 00:14:50,800
+Let's see if we're getting the request palms there.
+
+215
+00:14:50,810 --> 00:14:53,240
+We get five and 15.
+
+216
+00:14:53,690 --> 00:14:54,400
+All right.
+
+217
+00:14:54,410 --> 00:14:55,570
+And that will continue.
+
+218
+00:14:55,970 --> 00:14:59,090
+And we know that we're going to get back all our countries.
+
+219
+00:14:59,570 --> 00:15:03,860
+The request is for a size and a page number that doesn't exist.
+
+220
+00:15:03,860 --> 00:15:06,020
+Only have two hotels so.
+
+221
+00:15:06,080 --> 00:15:07,300
+Well, two countries, sorry.
+
+222
+00:15:07,310 --> 00:15:10,940
+So that not one is the first indication that this is working.
+
+223
+00:15:10,950 --> 00:15:12,040
+So let's try this again.
+
+224
+00:15:12,740 --> 00:15:18,130
+I want page number one with page size two.
+
+225
+00:15:18,660 --> 00:15:21,170
+I only have two countries, remember, deleted one.
+
+226
+00:15:21,170 --> 00:15:21,410
+Right.
+
+227
+00:15:21,710 --> 00:15:22,520
+Let's try that.
+
+228
+00:15:22,940 --> 00:15:25,600
+So when we send we only get the two right.
+
+229
+00:15:25,850 --> 00:15:33,710
+If I requested page one with only one that I'm only getting back one, if I requested page ten, which
+
+230
+00:15:33,710 --> 00:15:36,190
+means skip to the tenth record.
+
+231
+00:15:36,200 --> 00:15:45,620
+So what our library page did was it automatically modified the query with a tick and a skip.
+
+232
+00:15:46,370 --> 00:15:47,600
+Let me just jump over there.
+
+233
+00:15:48,020 --> 00:15:55,970
+So in link or entity, framework or other, you can actually say something like query dot and you can
+
+234
+00:15:55,970 --> 00:15:57,050
+do a tick.
+
+235
+00:15:57,060 --> 00:15:59,620
+So you take this number right.
+
+236
+00:15:59,630 --> 00:16:07,250
+Return to specify a number of contiguous elements and then you can say skip where where it says bypass
+
+237
+00:16:07,250 --> 00:16:07,640
+a number.
+
+238
+00:16:07,670 --> 00:16:09,380
+So that's really what it is doing.
+
+239
+00:16:09,390 --> 00:16:18,050
+So when we send the page size or let's say a page number 10, it means skip 10, skip 10 records.
+
+240
+00:16:18,050 --> 00:16:18,320
+Right.
+
+241
+00:16:18,320 --> 00:16:27,140
+Or skip 10 times this number of records and then bring back this many something like that.
+
+242
+00:16:28,070 --> 00:16:28,390
+Right.
+
+243
+00:16:28,460 --> 00:16:32,710
+So all of that it sounded confusing is really not that difficult to write.
+
+244
+00:16:32,720 --> 00:16:35,270
+I'm probably making it so more difficult than it really is.
+
+245
+00:16:35,480 --> 00:16:41,210
+But the reality is that we didn't even have to do all of that because of our library doing that for
+
+246
+00:16:41,210 --> 00:16:44,420
+us, which is two pages does that automatically.
+
+247
+00:16:44,570 --> 00:16:48,260
+And that is why it takes those three parameters.
+
+248
+00:16:48,260 --> 00:16:53,170
+Maybe I can't go into that the class behind it.
+
+249
+00:16:53,570 --> 00:16:54,590
+So that's fine.
+
+250
+00:16:54,950 --> 00:16:57,930
+So, yeah, so that is how we implement pages.
+
+251
+00:16:57,980 --> 00:17:04,870
+So obviously you're probably not seeing the full part of it because I only have very few records.
+
+252
+00:17:04,880 --> 00:17:14,720
+However, if we see that maybe 50 hotels into this database and we said we want page five and only ten
+
+253
+00:17:14,720 --> 00:17:18,290
+records, then it would say, give me that.
+
+254
+00:17:18,570 --> 00:17:21,480
+Well, I think my math is off there, but I hope you get the gist.
+
+255
+00:17:21,770 --> 00:17:26,260
+So right now we have paging enabled in our API.
+
+256
+00:17:26,630 --> 00:17:33,860
+And once again, this is built to protect both yourself and the requesting application.
+
+257
+00:17:34,100 --> 00:17:45,140
+And if these parameters were not provided, then by default, we have told the request per class that
+
+258
+00:17:45,140 --> 00:17:50,600
+the value should be fall to page number one and a maximum of 50.

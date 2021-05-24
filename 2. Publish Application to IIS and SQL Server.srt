@@ -1,0 +1,1419 @@
+1
+00:00:00,600 --> 00:00:01,240
+All right, guys.
+
+2
+00:00:01,260 --> 00:00:08,250
+So after setting up your environment and I'm sure you visited that everything works, know, what we
+
+3
+00:00:08,250 --> 00:00:16,410
+want to do is actually publish the site to or I know before we do that, we have a few steps that we
+
+4
+00:00:16,410 --> 00:00:17,220
+have to complete.
+
+5
+00:00:17,580 --> 00:00:25,770
+And one code change in particular that I want to do is regarding the Swagga USA in the startup page
+
+6
+00:00:25,770 --> 00:00:28,050
+where we have used Swagga UI.
+
+7
+00:00:28,320 --> 00:00:34,830
+I want to kind of change this endpoint is generated and the reason is that I have witnessed that once
+
+8
+00:00:34,830 --> 00:00:37,990
+it is published, the POV rules kind of change.
+
+9
+00:00:38,030 --> 00:00:41,640
+So what we want to do is make it look something more like this.
+
+10
+00:00:41,640 --> 00:00:48,930
+We're using our UI or see Lambda talk and then we have the current embraces making it an object and
+
+11
+00:00:48,930 --> 00:00:56,420
+we're just going to kind of qualify the base path a bit to see string that is no longer whitespace,
+
+12
+00:00:56,430 --> 00:01:02,610
+see that root prefix and then we're going to see dot org.
+
+13
+00:01:02,760 --> 00:01:09,660
+So what happens is that when the root prefix changes relative to if it's in development like it is now
+
+14
+00:01:09,660 --> 00:01:14,700
+or if it's published, the the path needs to look a little bit different.
+
+15
+00:01:14,730 --> 00:01:20,220
+So what we're doing is just seeing either put one or two dots and then we're just going to prepend that
+
+16
+00:01:20,580 --> 00:01:26,340
+to our existing path, which was there before, and hotel listing API.
+
+17
+00:01:26,580 --> 00:01:26,970
+All right.
+
+18
+00:01:27,400 --> 00:01:31,530
+So you can go ahead and make that quick change and just to double-Check that it still works.
+
+19
+00:01:31,540 --> 00:01:37,920
+We can run it and we're still seeing our Soga API documentation.
+
+20
+00:01:38,160 --> 00:01:43,380
+And you'd also notice that the URL has not part when we look at we get this.
+
+21
+00:01:44,340 --> 00:01:50,940
+So when we go to air, is that the that link might look slightly differently, which is why we went
+
+22
+00:01:50,940 --> 00:01:52,710
+through all of what we just did.
+
+23
+00:01:52,860 --> 00:01:53,190
+All right.
+
+24
+00:01:53,790 --> 00:01:58,980
+So now that we've confirmed that is working, another very important thing that we want to do is create
+
+25
+00:01:58,980 --> 00:01:59,790
+the database.
+
+26
+00:01:59,790 --> 00:02:02,490
+So in our database server.
+
+27
+00:02:02,520 --> 00:02:08,850
+So whether you're using a skill express or you're using developer, you can just go to that particular
+
+28
+00:02:08,850 --> 00:02:17,790
+instance that you hope to host the APIs, what database on, and then you just want to create a new
+
+29
+00:02:17,790 --> 00:02:18,360
+database.
+
+30
+00:02:18,370 --> 00:02:23,310
+So you want the database to be present for when we do our migrations.
+
+31
+00:02:23,310 --> 00:02:23,610
+Right.
+
+32
+00:02:24,000 --> 00:02:32,090
+So because I don't want any typos undertaking to DoubleClick the database name from the from the hosts
+
+33
+00:02:32,100 --> 00:02:32,860
+from the opposite thing.
+
+34
+00:02:32,880 --> 00:02:33,300
+Sorry.
+
+35
+00:02:33,300 --> 00:02:39,450
+And then just go ahead and use that name to create the database and then you can just go ahead and confirm
+
+36
+00:02:39,450 --> 00:02:40,530
+that the database is there.
+
+37
+00:02:40,540 --> 00:02:41,500
+It's empty right now.
+
+38
+00:02:41,500 --> 00:02:43,080
+No, don't worry too much about it.
+
+39
+00:02:43,080 --> 00:02:45,150
+But this is the initial deployment.
+
+40
+00:02:45,150 --> 00:02:45,420
+Right.
+
+41
+00:02:45,990 --> 00:02:51,360
+So what we want to do is publish so we can go ahead.
+
+42
+00:02:51,370 --> 00:02:51,630
+Right.
+
+43
+00:02:51,630 --> 00:02:52,670
+Click our project.
+
+44
+00:02:52,680 --> 00:02:58,280
+We see publish that and then we can choose our target.
+
+45
+00:02:58,380 --> 00:03:00,660
+So we have quite a few options here.
+
+46
+00:03:00,900 --> 00:03:08,130
+You can publish to Azura, which we can look at later on to Docker a folder, F.T. This would come in
+
+47
+00:03:08,130 --> 00:03:14,370
+handy if you're hosting like on a, you know, GoDaddy or one of those or you have to FTP to the server
+
+48
+00:03:14,370 --> 00:03:18,270
+that it will be hosted on or you can go directly to ISIS.
+
+49
+00:03:18,270 --> 00:03:23,370
+Or if you have other profiles, you can just import a profile of someone to do folder.
+
+50
+00:03:23,490 --> 00:03:28,080
+And I'm going to explain why I do a photo, because I'm doing a local deployment.
+
+51
+00:03:28,080 --> 00:03:32,230
+I can do it locally to the machine and then move the files to where I want them to go.
+
+52
+00:03:32,880 --> 00:03:38,130
+This also applies when you're going and this is my based on my experience.
+
+53
+00:03:38,130 --> 00:03:45,630
+So in my experience, I have done folder deployments where I chose the folder directly on the server.
+
+54
+00:03:45,630 --> 00:03:49,590
+It was going to because of a typo I put in the wrong path.
+
+55
+00:03:49,740 --> 00:03:54,060
+And, you know, I tried it and tried it and tried it and nothing was updating.
+
+56
+00:03:54,060 --> 00:03:55,890
+It turns out I was doing it to the wrong path.
+
+57
+00:03:55,890 --> 00:04:00,920
+I didn't notice until I chose an option that said delete everything in the file folder.
+
+58
+00:04:01,320 --> 00:04:05,490
+And then I ended up removing some other critical files just to get my little website.
+
+59
+00:04:05,730 --> 00:04:10,980
+So my cautious nature know that I've learned through experience.
+
+60
+00:04:11,370 --> 00:04:18,620
+Promise me to always do a deployment to my machine and then the files and move them to the target machine.
+
+61
+00:04:18,630 --> 00:04:19,570
+That's how I do it.
+
+62
+00:04:19,590 --> 00:04:24,480
+So that's what I'm going to demonstrate to you based on the experience you can choose whether or not
+
+63
+00:04:24,480 --> 00:04:27,750
+you will do it my way or you just go straight to the target machine.
+
+64
+00:04:28,290 --> 00:04:30,090
+But there is no right or wrong way.
+
+65
+00:04:30,090 --> 00:04:34,260
+It's just a matter of experience teaching me wisdom.
+
+66
+00:04:34,380 --> 00:04:34,770
+All right.
+
+67
+00:04:35,370 --> 00:04:38,820
+So I'm going to choose A for the deployment.
+
+68
+00:04:38,830 --> 00:04:42,180
+So it's going to go to the Benfold release starting at five publish.
+
+69
+00:04:42,300 --> 00:04:42,690
+All right.
+
+70
+00:04:43,380 --> 00:04:46,920
+We can click, finish and then we can edit.
+
+71
+00:04:46,920 --> 00:04:52,950
+So there's certain things that we want to do so we can at this point change the target location if you
+
+72
+00:04:52,950 --> 00:04:53,340
+wish.
+
+73
+00:04:53,340 --> 00:04:57,900
+But then when we go to settings, we can choose other little configurations.
+
+74
+00:04:58,260 --> 00:05:01,710
+I want to file publish options.
+
+75
+00:05:01,950 --> 00:05:04,230
+So this is the option I was talking about.
+
+76
+00:05:04,230 --> 00:05:06,150
+Delete all existing files prior.
+
+77
+00:05:06,150 --> 00:05:09,450
+So what it does is why the folder and and the new files.
+
+78
+00:05:10,110 --> 00:05:14,580
+And if you don't choose, that's what it will do, is probably just override what's there or what's
+
+79
+00:05:14,580 --> 00:05:15,690
+in common anyway.
+
+80
+00:05:16,440 --> 00:05:22,170
+So this can be risky because if it's the wrong folder, like I said, it will remove critical files.
+
+81
+00:05:22,740 --> 00:05:28,470
+We can choose the databases, no databases, use this connection string at runtime.
+
+82
+00:05:28,650 --> 00:05:32,550
+And I'm going to take this and I'm going to change is going to Chuncheon because I don't want it to
+
+83
+00:05:32,550 --> 00:05:34,980
+use local DB, muscularly local DB.
+
+84
+00:05:34,980 --> 00:05:42,450
+I wanted to use my local host or local school express whatever the server name is.
+
+85
+00:05:42,810 --> 00:05:43,920
+You put that there.
+
+86
+00:05:44,250 --> 00:05:51,720
+I will retain the same database name and any other option and then ask about the migration.
+
+87
+00:05:51,720 --> 00:05:57,630
+So I'm going to say apply this migration and what this will do is generate a script.
+
+88
+00:05:59,190 --> 00:06:06,390
+Based on the current situation of the database and the migration's and everything, right, so we can
+
+89
+00:06:06,390 --> 00:06:11,310
+just go ahead and do that, click save and then click publish.
+
+90
+00:06:11,340 --> 00:06:13,240
+So here you have the target location.
+
+91
+00:06:13,260 --> 00:06:16,150
+This is where it's going to go on my machine published.
+
+92
+00:06:16,380 --> 00:06:21,780
+And once that publishes completed, they'll show you if it was successful or not, which it was in my
+
+93
+00:06:21,780 --> 00:06:22,320
+case.
+
+94
+00:06:22,320 --> 00:06:25,930
+And the generation of the scripts was completed successfully.
+
+95
+00:06:25,950 --> 00:06:33,330
+So moving on from it, just being the initial deployment, this generation step is very important because
+
+96
+00:06:33,780 --> 00:06:38,700
+when you're going to be, you know, deploying like an update, it's already in production and you're
+
+97
+00:06:38,700 --> 00:06:39,780
+updating something.
+
+98
+00:06:39,780 --> 00:06:47,250
+Amy, database changes, new migrations, etc. You will want to provide that script to the database
+
+99
+00:06:47,250 --> 00:06:49,310
+administrator or the senior developer.
+
+100
+00:06:49,350 --> 00:06:51,360
+I mean, if you're the senior developer, then fine.
+
+101
+00:06:51,990 --> 00:06:58,350
+Well, you'll want this script in order to more have more control over the database changes.
+
+102
+00:06:58,350 --> 00:07:01,380
+You don't want anybody to just see or migrating data.
+
+103
+00:07:01,380 --> 00:07:08,550
+And I'm just going to do a migration on the database because in development we have fewer concerns about
+
+104
+00:07:08,550 --> 00:07:11,550
+the actual data and integrity than in production.
+
+105
+00:07:11,580 --> 00:07:17,850
+So you want to be careful of that and let's move forward so I can just control click and go directly
+
+106
+00:07:17,850 --> 00:07:22,890
+to the system where this was published and I can take those files.
+
+107
+00:07:23,220 --> 00:07:30,030
+And what I'm going to do is in I asked them to just bring up, as we already have, the default web.
+
+108
+00:07:30,480 --> 00:07:31,140
+We know this.
+
+109
+00:07:31,560 --> 00:07:33,570
+We're going to right click.
+
+110
+00:07:34,170 --> 00:07:36,690
+And then I'm just going to go to explore.
+
+111
+00:07:36,700 --> 00:07:42,230
+So this is not bringing me to the iron folder where I would folder where all the web ups.
+
+112
+00:07:42,720 --> 00:07:49,800
+No, let's just say that this is a server that has multiple Web applications running.
+
+113
+00:07:49,800 --> 00:07:54,060
+So all of them are running from the server name slash the Web.
+
+114
+00:07:54,060 --> 00:07:59,940
+I mean, so what we're going to do is create the API as a Web app so we get the server name or the machine
+
+115
+00:07:59,940 --> 00:08:04,120
+name, slash the APIs endpoints.
+
+116
+00:08:04,210 --> 00:08:04,650
+All right.
+
+117
+00:08:05,340 --> 00:08:07,590
+So I'm going to create a folder.
+
+118
+00:08:07,950 --> 00:08:12,090
+I'm just going to call it Hotel on the score API.
+
+119
+00:08:13,280 --> 00:08:17,750
+And then inside this field, I'm going to place all the facts, and if you're coming across a network,
+
+120
+00:08:17,750 --> 00:08:24,020
+I would recommend that you archive them so, you know, it's easier to copy across, but since it's
+
+121
+00:08:24,020 --> 00:08:26,210
+just from Florida to hold on to see a machine here.
+
+122
+00:08:27,150 --> 00:08:35,270
+It was an easy operation then I want to run the Eskild script, so I'm just going to go into the F Sorehead
+
+123
+00:08:35,370 --> 00:08:43,560
+Kennedy that quickly AIFS good scripts, open that script file and then here you'll see that everything
+
+124
+00:08:43,560 --> 00:08:49,530
+that was in the migration's is right here in nice, understandable escudo.
+
+125
+00:08:50,220 --> 00:08:50,580
+All right.
+
+126
+00:08:50,590 --> 00:08:57,420
+So even the migration's that we did databased created all of those things, seeding data.
+
+127
+00:08:57,420 --> 00:09:01,910
+So the default data that we put in all of those migrations are here in Eskil scripts.
+
+128
+00:09:02,160 --> 00:09:06,690
+So that's why I'm saying that when we're going to be changing the database, each time the script is
+
+129
+00:09:06,690 --> 00:09:13,440
+generated, we can actually extract the new stuff and have more control over what we're doing to the
+
+130
+00:09:13,440 --> 00:09:14,160
+database.
+
+131
+00:09:15,000 --> 00:09:15,450
+All right.
+
+132
+00:09:16,240 --> 00:09:22,050
+So here and well, either way, this script kind of protection, because they say if the.
+
+133
+00:09:22,470 --> 00:09:28,080
+So that's why I have the migration history table, because it takes the snapshots of each migration.
+
+134
+00:09:28,080 --> 00:09:32,040
+So it's as if this migration doesn't exist, then carry this action.
+
+135
+00:09:32,040 --> 00:09:34,800
+So it kind of will see if it's done already.
+
+136
+00:09:34,810 --> 00:09:35,970
+I don't need to do it again.
+
+137
+00:09:36,210 --> 00:09:36,630
+All right.
+
+138
+00:09:37,620 --> 00:09:39,840
+So we can just execute this.
+
+139
+00:09:40,150 --> 00:09:42,770
+And let me just go back to the top.
+
+140
+00:09:43,350 --> 00:09:48,660
+So with Escudo, if you're if you're, you know, not so familiar with Eskild, in order to make sure
+
+141
+00:09:48,660 --> 00:09:54,810
+that your script is able to run against the database, you can either at the top C use an input in the
+
+142
+00:09:54,810 --> 00:10:03,060
+database names in this case or the hotel listing, or you just make sure that the database is selected
+
+143
+00:10:03,060 --> 00:10:05,980
+from the top here and the list of available databases.
+
+144
+00:10:06,690 --> 00:10:09,930
+So that's how you can ensure that you're able to run its own database.
+
+145
+00:10:09,930 --> 00:10:13,470
+When I click execute the scripts runs successfully.
+
+146
+00:10:13,480 --> 00:10:15,870
+So no, I have the tables.
+
+147
+00:10:15,870 --> 00:10:22,410
+If I just refresh, they're all they're all the ones for the users and the hotels and countries are
+
+148
+00:10:22,410 --> 00:10:23,790
+the ones we created manually.
+
+149
+00:10:24,030 --> 00:10:24,620
+They're all there.
+
+150
+00:10:24,630 --> 00:10:32,400
+So now that the database is primed and ready, what I'm going to do is continue with setting up the
+
+151
+00:10:32,640 --> 00:10:34,040
+API Web app itself.
+
+152
+00:10:34,050 --> 00:10:41,550
+So back in I guess I'm just going to refresh this list because what it will do is list every folder
+
+153
+00:10:41,550 --> 00:10:44,820
+that is in the route automatically.
+
+154
+00:10:44,850 --> 00:10:45,360
+See that?
+
+155
+00:10:46,750 --> 00:10:53,190
+And then what I'm going to do is right, click it and convert to an application before I do that, I'm
+
+156
+00:10:53,200 --> 00:10:53,530
+sorry.
+
+157
+00:10:53,530 --> 00:10:53,980
+I'm sorry.
+
+158
+00:10:54,400 --> 00:10:58,600
+Before we convert this to application, let's go to the application pool.
+
+159
+00:10:59,140 --> 00:11:07,300
+So our application pool is like a container within which Web application are web applications can run
+
+160
+00:11:07,670 --> 00:11:08,200
+over.
+
+161
+00:11:08,200 --> 00:11:15,840
+A single responsibility principle would suggest that you do upwell per upright because if Apple goes
+
+162
+00:11:15,840 --> 00:11:18,930
+along with multiple apps, then all those apps stop working.
+
+163
+00:11:18,940 --> 00:11:26,860
+So, you know, for isolation you can have multiple someone to name its hotel API pool, not do nothing
+
+164
+00:11:26,860 --> 00:11:28,360
+to funds are complicated.
+
+165
+00:11:28,780 --> 00:11:30,330
+That dominates your version.
+
+166
+00:11:30,340 --> 00:11:33,200
+I want to say no manage code because are using course.
+
+167
+00:11:33,250 --> 00:11:34,930
+So this is very, very important.
+
+168
+00:11:36,130 --> 00:11:38,480
+And then we can click, OK, so that's fine.
+
+169
+00:11:38,980 --> 00:11:43,810
+Now, the relevance of that is that when I'm coming back to the previous step, no, when I right.
+
+170
+00:11:43,810 --> 00:11:49,960
+Click and C convert to application, he's going to ask me which application pool I want to select so
+
+171
+00:11:49,960 --> 00:11:53,410
+I can go here and select from this dropdown list.
+
+172
+00:11:53,410 --> 00:11:54,960
+Hotel API pool.
+
+173
+00:11:54,970 --> 00:12:00,310
+That's the one that I wish for this app to run in and then I can go ahead and click.
+
+174
+00:12:00,310 --> 00:12:00,880
+Okay.
+
+175
+00:12:01,820 --> 00:12:07,880
+And then you notice that it no longer looks like a fool, I know it looks like a little Web globe with
+
+176
+00:12:07,880 --> 00:12:09,240
+the well.
+
+177
+00:12:09,350 --> 00:12:10,340
+No, it looks like a nut.
+
+178
+00:12:10,580 --> 00:12:11,060
+All right.
+
+179
+00:12:11,660 --> 00:12:14,080
+So let's take this for a spin.
+
+180
+00:12:14,090 --> 00:12:17,120
+I'm going to just browse to put it.
+
+181
+00:12:17,810 --> 00:12:23,260
+And we land on this page that is seeing four or four address, not phones.
+
+182
+00:12:23,390 --> 00:12:23,900
+All right.
+
+183
+00:12:23,900 --> 00:12:27,870
+But what we would have expected is more that is swagga documentation's.
+
+184
+00:12:27,890 --> 00:12:29,870
+Let me see if maybe when I promptitude will.
+
+185
+00:12:29,870 --> 00:12:30,630
+And there we go.
+
+186
+00:12:31,100 --> 00:12:35,410
+So now at least we know that we're looking at it from localhost.
+
+187
+00:12:35,410 --> 00:12:37,340
+So notice this is not localhost.
+
+188
+00:12:37,490 --> 00:12:42,520
+Call on the ports, localhost call on the ports, the port.
+
+189
+00:12:42,530 --> 00:12:45,140
+No, let me just show you just so we're very clear.
+
+190
+00:12:46,050 --> 00:12:56,280
+Localhost Cole on the port no represents the dev environment in my situation, localhost by itself represents
+
+191
+00:12:56,280 --> 00:12:57,120
+IRS.
+
+192
+00:12:57,150 --> 00:13:04,920
+If you have multiple Web Web servers, maybe you have Wampus or Apache or other Web servers running
+
+193
+00:13:04,920 --> 00:13:10,960
+that you may need to change the ports, because right now I have a but it runs on localhost port eighty
+
+194
+00:13:11,080 --> 00:13:11,650
+eight.
+
+195
+00:13:12,160 --> 00:13:12,450
+Right.
+
+196
+00:13:12,510 --> 00:13:15,230
+What it is the default on is, is my default.
+
+197
+00:13:15,250 --> 00:13:20,940
+So localhost is what you see when the web app name and then the first page.
+
+198
+00:13:20,950 --> 00:13:26,950
+So at least we know that we're serving up activity from the IRS.
+
+199
+00:13:27,210 --> 00:13:27,630
+All right.
+
+200
+00:13:28,080 --> 00:13:32,880
+So let us use Posman and do a fresh request.
+
+201
+00:13:32,890 --> 00:13:37,530
+So I'm just going to request all the hotels from the API and notice the link.
+
+202
+00:13:37,920 --> 00:13:39,920
+I hope it's not too small right now.
+
+203
+00:13:39,930 --> 00:13:50,600
+I have to see localhost slash hotel, underscore API, slash API slash photo.
+
+204
+00:13:51,300 --> 00:13:59,220
+All right, so it's Lokos slash the web app meme, slash the path that we would have settled in our
+
+205
+00:13:59,220 --> 00:14:05,240
+control as it is the jumbuck over and I'm just doing this so I have a complete understanding of all
+
+206
+00:14:05,250 --> 00:14:06,930
+these little variables and hold it up.
+
+207
+00:14:07,110 --> 00:14:07,400
+Right.
+
+208
+00:14:07,830 --> 00:14:11,700
+So the route that we settle was API slash controller Bitsie.
+
+209
+00:14:11,700 --> 00:14:14,700
+We could change it now we probably will know that we're deploying.
+
+210
+00:14:15,060 --> 00:14:15,410
+Right.
+
+211
+00:14:15,600 --> 00:14:22,470
+But the point is that because its API slash, that means whatever is preceding it will always go that
+
+212
+00:14:22,470 --> 00:14:22,710
+way.
+
+213
+00:14:22,710 --> 00:14:29,640
+So if it is that we didn't use our up call the total up, it could have been localhost slash API, especially
+
+214
+00:14:30,000 --> 00:14:36,780
+if it was the main route, if it was a location of the application server.
+
+215
+00:14:36,840 --> 00:14:42,660
+So in this case, it is not I'm not going to go into any renaming just because because your situation
+
+216
+00:14:42,660 --> 00:14:43,740
+might be different from mine.
+
+217
+00:14:43,740 --> 00:14:50,070
+I'm just explaining all the dynamics behind why my ending may look this way and yours may not, because
+
+218
+00:14:50,070 --> 00:14:51,360
+you went on a different path.
+
+219
+00:14:51,600 --> 00:15:00,300
+So if you deploy directly and I once again have no problem showing if you deployed your your API directly
+
+220
+00:15:00,300 --> 00:15:07,380
+to the root of this and it pulled right off w w w sorry you didn't make us all pull away and put it
+
+221
+00:15:07,380 --> 00:15:16,290
+right here at the root that localhost slash Swagga would actually serve you of this very page that we
+
+222
+00:15:16,620 --> 00:15:20,190
+were just looking at in coming from localhost.
+
+223
+00:15:20,400 --> 00:15:25,820
+But because of this webapp we have to go into the web to get to the actual stuff.
+
+224
+00:15:26,940 --> 00:15:27,330
+All right.
+
+225
+00:15:27,330 --> 00:15:29,550
+So let's us test this request.
+
+226
+00:15:30,030 --> 00:15:36,270
+And when I click send, I am getting a five hundred error and all the cool thing about all of what we
+
+227
+00:15:36,270 --> 00:15:37,650
+did was that we sent up.
+
+228
+00:15:38,160 --> 00:15:38,390
+Right.
+
+229
+00:15:38,490 --> 00:15:46,050
+So I can always just go over to my logs folder and take a look at why I'm getting these errors.
+
+230
+00:15:46,200 --> 00:15:46,580
+All right.
+
+231
+00:15:46,950 --> 00:15:53,070
+So this log file is showing me that something went wrong in the data client.
+
+232
+00:15:53,820 --> 00:15:59,120
+There was a log in there for the user and then it's showing me the name of the user.
+
+233
+00:15:59,130 --> 00:16:04,800
+So in the previous video, I did see permissions to play a very important part in what you're doing.
+
+234
+00:16:04,800 --> 00:16:05,120
+Right.
+
+235
+00:16:05,700 --> 00:16:06,330
+So.
+
+236
+00:16:07,380 --> 00:16:15,960
+For our up pool that we just created in order for the user underneath the pool to be able to interact
+
+237
+00:16:15,960 --> 00:16:21,230
+with the database, we need to make sure that we give it permission to the database.
+
+238
+00:16:21,250 --> 00:16:28,650
+So what I'm going to do is go over to a secure server, go back to the database, and then we're going
+
+239
+00:16:28,650 --> 00:16:32,490
+to do two things are going to create a login for that Upwood user.
+
+240
+00:16:32,490 --> 00:16:35,650
+And then we're going to add that log in to the security for the database.
+
+241
+00:16:35,660 --> 00:16:41,300
+So firstly, you log in or will let me let me just see if I can do it directly as a user.
+
+242
+00:16:41,310 --> 00:16:49,230
+So under the database itself, I go to users security, then users, the new user, and then I choose
+
+243
+00:16:49,620 --> 00:16:50,790
+Windows user.
+
+244
+00:16:51,790 --> 00:17:00,370
+All right, and then to put in that user name is Apple, that's its domain, and the basically the name
+
+245
+00:17:00,370 --> 00:17:02,550
+of the pool is the user name right now.
+
+246
+00:17:02,590 --> 00:17:03,190
+We can click.
+
+247
+00:17:03,190 --> 00:17:03,700
+Okay.
+
+248
+00:17:04,210 --> 00:17:08,500
+And then if we look in the list, then we will see that that Apple users not added.
+
+249
+00:17:09,180 --> 00:17:12,510
+No, let me try this request again.
+
+250
+00:17:13,930 --> 00:17:17,350
+Still getting up 500, let me tweet this a bit.
+
+251
+00:17:17,380 --> 00:17:21,610
+So what I will need to do is give it more permissions.
+
+252
+00:17:21,760 --> 00:17:22,320
+All right.
+
+253
+00:17:23,050 --> 00:17:27,940
+So we added it to the database, but we didn't give it any membership.
+
+254
+00:17:27,940 --> 00:17:34,840
+So I'm just going to say, does DBI owner know you will want to probably be a bit more granular than
+
+255
+00:17:34,840 --> 00:17:35,680
+I am being ranked?
+
+256
+00:17:35,680 --> 00:17:36,040
+No.
+
+257
+00:17:37,060 --> 00:17:43,690
+When setting permissions because the user that may access the database might not you might not want
+
+258
+00:17:43,690 --> 00:17:49,000
+to give them ownership because ownership means they can drop the database and other potentially malicious
+
+259
+00:17:49,000 --> 00:17:50,850
+things as much as it's a system user.
+
+260
+00:17:51,190 --> 00:17:54,620
+You want to be very security conscious when giving permissions rights.
+
+261
+00:17:54,630 --> 00:17:57,610
+So you may just want to give them better either data.
+
+262
+00:17:57,610 --> 00:18:02,440
+Right, or which means they can read and write to the database, but they can't do any other critical
+
+263
+00:18:02,620 --> 00:18:05,560
+operation that might compromise the data.
+
+264
+00:18:05,590 --> 00:18:08,260
+Or in my situation, it's my machine.
+
+265
+00:18:08,260 --> 00:18:09,070
+They're my users.
+
+266
+00:18:09,070 --> 00:18:10,420
+I'm going to be the owner.
+
+267
+00:18:11,680 --> 00:18:17,740
+So I'm going to say membership DB owner and own schemas DB owner.
+
+268
+00:18:17,740 --> 00:18:24,310
+And if you look back, I generally notice that the default schema is the and that you don't have to
+
+269
+00:18:24,310 --> 00:18:24,840
+worry about that.
+
+270
+00:18:24,840 --> 00:18:26,910
+That's more database level stuff.
+
+271
+00:18:26,920 --> 00:18:33,820
+We just want to get our application up and running so we can click OK, and then we can try again.
+
+272
+00:18:35,420 --> 00:18:43,640
+And then we see here that we're getting better, so we're getting data from our appeared to be not just
+
+273
+00:18:43,640 --> 00:18:50,120
+to let you know that some of the security features are not safe features or configurations that I might
+
+274
+00:18:50,120 --> 00:18:54,710
+have just put in might not necessarily work just like that for you.
+
+275
+00:18:54,740 --> 00:18:58,310
+There are other factors, are you that many streets are doing these things?
+
+276
+00:18:59,360 --> 00:19:02,240
+Do you have enough permission to give users permissions?
+
+277
+00:19:02,240 --> 00:19:10,070
+And all of those things do play a role in whether or not you can successfully complete all the activities
+
+278
+00:19:10,310 --> 00:19:11,900
+like you just saw me do it.
+
+279
+00:19:12,410 --> 00:19:19,430
+Ultimately, however, these are the very basic steps towards getting your application up and running
+
+280
+00:19:20,180 --> 00:19:22,610
+and the configurations needed on the database.
+
+281
+00:19:22,620 --> 00:19:30,650
+And so as not going back to I guess there are a few things that we want to make sure we get in place.
+
+282
+00:19:30,950 --> 00:19:38,960
+If you remember when we were setting up our JWT, we added a secret key that we added as an environment
+
+283
+00:19:38,960 --> 00:19:39,520
+variable.
+
+284
+00:19:39,520 --> 00:19:44,150
+You know, if you added it to the settings file, then you don't have to go through this step.
+
+285
+00:19:44,450 --> 00:19:52,190
+If, however, you did what I did and I did it as a system variable, then we need our API to store
+
+286
+00:19:52,190 --> 00:19:52,970
+that key.
+
+287
+00:19:53,570 --> 00:19:59,920
+Right, so that it can handle that operation by itself, wherever it is on whatever machine.
+
+288
+00:20:00,500 --> 00:20:07,970
+So everyone in is over to the configuration editor and from the dropdown list to the left, we want
+
+289
+00:20:07,970 --> 00:20:14,050
+to make sure that we have a system, that Web server, and then we're going to choose S.B in that court.
+
+290
+00:20:14,750 --> 00:20:15,020
+All right.
+
+291
+00:20:15,030 --> 00:20:16,640
+So go ahead, click S..
+
+292
+00:20:16,910 --> 00:20:21,500
+We're going to system the web server is Natcore.
+
+293
+00:20:22,790 --> 00:20:28,610
+And then from the drop down to the right, we're going down to application host dot config.
+
+294
+00:20:30,330 --> 00:20:36,450
+Now, when we do those two changes, we can see environment variables can't equals zero, so we're just
+
+295
+00:20:36,450 --> 00:20:40,450
+going to click that and then we're going to add our environment variable.
+
+296
+00:20:40,470 --> 00:20:44,570
+No, the same thing that you are added as the environment key.
+
+297
+00:20:44,910 --> 00:20:52,600
+So I just went and retrieved mine and my name was the word key and my value was this good.
+
+298
+00:20:53,150 --> 00:21:00,120
+Now, however complicated, however simple it was, the point is that we want it in a secure location
+
+299
+00:21:00,300 --> 00:21:03,480
+and that is what this mechanism is affording us.
+
+300
+00:21:03,630 --> 00:21:04,040
+All right.
+
+301
+00:21:04,440 --> 00:21:11,400
+So you can just go ahead and put in your name and the key that you selected and then we can go ahead
+
+302
+00:21:11,400 --> 00:21:14,430
+and close this so that it's added to the is No.
+
+303
+00:21:14,430 --> 00:21:20,530
+One, we can apply to apply the changes and then restart our pool.
+
+304
+00:21:20,560 --> 00:21:25,680
+So I remember I did mention that when multiple jobs are in the pool, if you if anything happens to
+
+305
+00:21:25,680 --> 00:21:27,470
+the pool and all of those apps go down.
+
+306
+00:21:27,480 --> 00:21:29,340
+So we just want to restart our pool.
+
+307
+00:21:30,130 --> 00:21:31,710
+We can just do a recycle.
+
+308
+00:21:32,430 --> 00:21:43,210
+And then what we want to do now is test our login and talk and retrieval and then secured access.
+
+309
+00:21:43,230 --> 00:21:45,570
+So let me just double check that they still work.
+
+310
+00:21:45,960 --> 00:21:46,350
+All right.
+
+311
+00:21:46,350 --> 00:21:47,930
+So our API still works.
+
+312
+00:21:47,940 --> 00:21:48,570
+That's good.
+
+313
+00:21:48,990 --> 00:21:50,610
+Let me attempt to login.
+
+314
+00:21:50,610 --> 00:21:55,290
+So I'm just going to go back to one of my older, older requests.
+
+315
+00:21:55,470 --> 00:21:56,100
+Right.
+
+316
+00:21:56,620 --> 00:22:03,690
+And well, actually, I kind of use this older request yet because if I attempted so I'm just going
+
+317
+00:22:03,690 --> 00:22:08,040
+to duplicate this and I'm going to remove the poor number.
+
+318
+00:22:08,400 --> 00:22:11,940
+And I'm also not using it as ICBM's.
+
+319
+00:22:12,060 --> 00:22:14,460
+That's a whole other level of configuration.
+
+320
+00:22:14,790 --> 00:22:18,660
+We're not going to get too much into that in this in this lesson.
+
+321
+00:22:18,660 --> 00:22:22,550
+We just want to get our deployment up and running.
+
+322
+00:22:22,560 --> 00:22:34,290
+So localhost slash hotel, underscore API, then slash API, slash Lucky and I'll in special year.
+
+323
+00:22:34,710 --> 00:22:37,980
+So when I send getting off for one.
+
+324
+00:22:38,130 --> 00:22:41,640
+Right, I'm not authorized because this user does not exist.
+
+325
+00:22:42,060 --> 00:22:45,150
+So because we didn't see the user.
+
+326
+00:22:45,150 --> 00:22:48,210
+So if you, if you see that the user you probably don't have that program.
+
+327
+00:22:48,210 --> 00:22:51,120
+So I'm just going to close some of these older.
+
+328
+00:22:52,210 --> 00:23:02,380
+Requests are so let's try and register the same user or same user, so just change the path and when
+
+329
+00:23:02,380 --> 00:23:05,480
+we send the request, we see that we get a tool to accept it.
+
+330
+00:23:05,500 --> 00:23:12,400
+So this users created let's go to the database and verify and we can see that user here, terremoto
+
+331
+00:23:12,400 --> 00:23:14,860
+example, dot com and the password.
+
+332
+00:23:14,950 --> 00:23:18,370
+So know that we have the user created.
+
+333
+00:23:18,790 --> 00:23:23,590
+Let us try our logging operation again to try and get the talking.
+
+334
+00:23:23,610 --> 00:23:27,220
+So the same request that we just tried let send.
+
+335
+00:23:27,220 --> 00:23:29,460
+And here is our token.
+
+336
+00:23:29,740 --> 00:23:30,450
+All right.
+
+337
+00:23:31,000 --> 00:23:37,510
+So if we just go to JWT and take a look at our token, we're seeing things that we're used to seeing.
+
+338
+00:23:37,510 --> 00:23:38,020
+Right.
+
+339
+00:23:38,440 --> 00:23:42,250
+It's going to see invalided signature because once again, it doesn't know the key was signed with,
+
+340
+00:23:42,250 --> 00:23:44,500
+which is what we just set up in the environment variable.
+
+341
+00:23:44,890 --> 00:23:49,170
+But we see that the token does have the information that we expect.
+
+342
+00:23:49,180 --> 00:23:53,450
+So that's no, I'm going to try one of the delete operations.
+
+343
+00:23:53,450 --> 00:23:59,180
+So let me try it with the Horter so we know that we have three hotels that we seeded.
+
+344
+00:23:59,440 --> 00:23:59,720
+Right.
+
+345
+00:24:00,060 --> 00:24:06,310
+I want to delete hotel with three from the database so we know that we need our token.
+
+346
+00:24:07,850 --> 00:24:10,320
+And we have the link.
+
+347
+00:24:10,340 --> 00:24:15,380
+Let me just change this, the hotel, so we're deleting the water, so we just want to verify that our
+
+348
+00:24:15,380 --> 00:24:16,810
+token works.
+
+349
+00:24:18,310 --> 00:24:24,640
+And when we do that, we're getting back a tool for so that means if I go to the database and look in
+
+350
+00:24:24,640 --> 00:24:28,700
+the hotel's table that started off with three, we're on the scene, too.
+
+351
+00:24:28,720 --> 00:24:35,860
+So you see our token worked our all our end points, at least what we've tested so far work.
+
+352
+00:24:36,340 --> 00:24:45,070
+And so far, we have successfully deployed our API to our local you know, our local ICE deployment
+
+353
+00:24:45,280 --> 00:24:47,580
+with our local database supports.
+
+354
+00:24:47,890 --> 00:24:53,110
+So following these guidelines, you could successfully deploy your API within your company, setting
+
+355
+00:24:53,110 --> 00:24:57,670
+out for your personal use or whatever the situation might be.

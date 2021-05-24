@@ -1,0 +1,1439 @@
+1
+00:00:00,570 --> 00:00:01,530
+Welcome back, guys.
+
+2
+00:00:01,560 --> 00:00:08,430
+We're continuing our API development journey and we'll be exploring the put verb at this time.
+
+3
+00:00:08,850 --> 00:00:18,030
+Now, put is similar to the post, except it is mainly used to either create if it doesn't exist or
+
+4
+00:00:18,030 --> 00:00:20,580
+update if it does exist.
+
+5
+00:00:21,970 --> 00:00:26,860
+So let's get started and when we tested you, that will make a bit more sense to you.
+
+6
+00:00:26,880 --> 00:00:33,140
+So the first thing that I would want to do is to replicate the kind of restriction as to who can access
+
+7
+00:00:33,140 --> 00:00:34,090
+the to me.
+
+8
+00:00:34,330 --> 00:00:38,020
+If you can't create, then you shouldn't be able to update it.
+
+9
+00:00:38,080 --> 00:00:40,470
+Once again, context rules.
+
+10
+00:00:40,480 --> 00:00:44,460
+But I'm just going to authorize and I'm just going to authorize.
+
+11
+00:00:44,470 --> 00:00:47,080
+I'm not even going to make it rule based.
+
+12
+00:00:47,160 --> 00:00:47,380
+Right.
+
+13
+00:00:47,440 --> 00:00:49,180
+So the administrator can create.
+
+14
+00:00:49,190 --> 00:00:52,910
+But then once you're authorized, you can go ahead and create.
+
+15
+00:00:53,080 --> 00:00:54,400
+You can go ahead and update.
+
+16
+00:00:54,550 --> 00:00:56,380
+Sorry, regardless of your role.
+
+17
+00:00:56,890 --> 00:00:57,250
+All right.
+
+18
+00:00:57,260 --> 00:01:01,180
+So the next one would be HTP put.
+
+19
+00:01:01,190 --> 00:01:02,590
+That is our new verb.
+
+20
+00:01:03,770 --> 00:01:11,840
+And more or less, we're going to have the same return codes except be doing something differently for
+
+21
+00:01:11,840 --> 00:01:12,200
+this one.
+
+22
+00:01:12,230 --> 00:01:16,850
+So let me just comment this one out and when we get there, then we'll adjust it.
+
+23
+00:01:17,360 --> 00:01:25,460
+So we have our method stub and I'm just going to copy so I can move quickly with prepping this method
+
+24
+00:01:25,460 --> 00:01:25,970
+stub.
+
+25
+00:01:27,140 --> 00:01:27,780
+Right.
+
+26
+00:01:27,800 --> 00:01:30,500
+And this one will be update hotel.
+
+27
+00:01:31,400 --> 00:01:36,380
+No, in terms of the detail that will be used for hotel.
+
+28
+00:01:37,130 --> 00:01:40,380
+Well, firstly, we need the parameter for the ID.
+
+29
+00:01:40,380 --> 00:01:45,830
+You know, there are two schools of thought or maybe three schools of thought on this matter.
+
+30
+00:01:46,460 --> 00:01:48,820
+Let's say two school of thought.
+
+31
+00:01:48,830 --> 00:01:56,060
+Number one is that I need to have the ID in the euro, just like we had with the get right.
+
+32
+00:01:56,060 --> 00:01:59,750
+So I need to need you to pass and ID with the euro.
+
+33
+00:01:59,990 --> 00:02:04,900
+But then one school of thought would say that the DTL also needs to have the ID.
+
+34
+00:02:04,910 --> 00:02:11,000
+So that means the client needs to pass in the idea with the euro and depositing the body of data to
+
+35
+00:02:11,000 --> 00:02:11,870
+be updated.
+
+36
+00:02:12,390 --> 00:02:19,010
+Now that is one potential validation point where you would check if the idea that wasn't in your matches,
+
+37
+00:02:19,010 --> 00:02:25,880
+the ID sent over in the payload or the to and if there's a mismatch, then you return maybe.
+
+38
+00:02:25,880 --> 00:02:26,790
+But request.
+
+39
+00:02:27,230 --> 00:02:27,440
+All right.
+
+40
+00:02:27,500 --> 00:02:29,470
+So that is one method of doing it.
+
+41
+00:02:29,480 --> 00:02:32,140
+And I'm just talking you through it before I actually do it.
+
+42
+00:02:32,690 --> 00:02:39,450
+The other one would be that the DTA doesn't need to have the ID because the it is going to be in the
+
+43
+00:02:39,450 --> 00:02:39,950
+euro.
+
+44
+00:02:39,950 --> 00:02:46,460
+So I expect you to pass over the euro with the idea of the record you wish to update, and then you
+
+45
+00:02:46,460 --> 00:02:50,820
+just pass me the updated information and I apply it accordingly.
+
+46
+00:02:51,200 --> 00:02:55,510
+Now, that is also an acceptable train of thought.
+
+47
+00:02:55,520 --> 00:02:59,330
+They're both acceptable once again, context rules.
+
+48
+00:02:59,390 --> 00:03:05,930
+So some people feel more comfortable with the doublecheck having to ID the euro and the body and then
+
+49
+00:03:05,930 --> 00:03:09,280
+you check and then if they don't match, then you reject that.
+
+50
+00:03:09,290 --> 00:03:15,070
+And some people don't mind having it one place and just going along with the operation.
+
+51
+00:03:15,080 --> 00:03:20,620
+So we're going to take the approach where we have it one place and not in the deal.
+
+52
+00:03:21,020 --> 00:03:25,220
+Now, because of that, I could use that creates a lot of detail.
+
+53
+00:03:25,490 --> 00:03:31,550
+But then to me, that would kind of violate the single responsibility rule that I've been kind of promoting.
+
+54
+00:03:31,550 --> 00:03:37,820
+Because when you say create a hotel deal, it doesn't anybody reading the code that this is for creation,
+
+55
+00:03:37,820 --> 00:03:41,030
+why is it in the update now you have two options.
+
+56
+00:03:41,030 --> 00:03:47,390
+Again, you could either rename this to maybe something like absurd, where this detail serves the purpose
+
+57
+00:03:47,390 --> 00:03:51,620
+of creating and updating or inserting and updating.
+
+58
+00:03:51,620 --> 00:03:53,510
+Hence the portmanteau.
+
+59
+00:03:53,510 --> 00:03:55,030
+Absurd, right.
+
+60
+00:03:55,040 --> 00:04:00,320
+But then once again, still single responsibility depends on how strict do want to be.
+
+61
+00:04:01,550 --> 00:04:08,450
+You could also realize that you might have varying fields in the two details because what you would
+
+62
+00:04:08,450 --> 00:04:13,280
+accept for creation, you might not expose all of that for potential update.
+
+63
+00:04:13,610 --> 00:04:15,710
+So you want to consider all those things.
+
+64
+00:04:15,740 --> 00:04:19,940
+So what I would do is actually create a second detail.
+
+65
+00:04:19,940 --> 00:04:23,540
+So I created another one, I call it, of the total detail.
+
+66
+00:04:23,840 --> 00:04:30,460
+In this context, everything that is here for the creation is fair game for update.
+
+67
+00:04:30,990 --> 00:04:31,480
+All right.
+
+68
+00:04:31,490 --> 00:04:36,140
+So I'm not going to go ahead and create another one at all.
+
+69
+00:04:36,140 --> 00:04:37,990
+I did was just inherit.
+
+70
+00:04:38,000 --> 00:04:43,340
+So I'm just doing this because of the single responsibility concept that I have in mind.
+
+71
+00:04:43,340 --> 00:04:47,780
+I also want to make sure that when you see updated to detail, you know what it's for.
+
+72
+00:04:48,090 --> 00:04:53,860
+However, otherwise, what you probably want to do is just be more particular with the fields that you
+
+73
+00:04:53,870 --> 00:04:55,520
+expose in detail.
+
+74
+00:04:55,760 --> 00:04:59,930
+And we've seen where that can help with some control already.
+
+75
+00:05:00,290 --> 00:05:04,580
+So I'm just going to go ahead with that level of inheritance once again.
+
+76
+00:05:04,580 --> 00:05:05,510
+That's up to you.
+
+77
+00:05:06,140 --> 00:05:10,040
+We just want to write clean code and make sure it's readable at the end of the day.
+
+78
+00:05:10,040 --> 00:05:10,360
+Right.
+
+79
+00:05:11,060 --> 00:05:18,260
+So I'm taking the idea in the parameter and then I'm taking the fields for the update in the body of
+
+80
+00:05:18,260 --> 00:05:19,100
+the request.
+
+81
+00:05:19,760 --> 00:05:21,950
+So I'm going to start off with my validation.
+
+82
+00:05:21,950 --> 00:05:33,560
+Check someone to see if not model state dot is valid, if it is not valid or if the idea value sent
+
+83
+00:05:33,560 --> 00:05:39,010
+over is less than one, because I mean, it should be at least one right.
+
+84
+00:05:39,020 --> 00:05:40,700
+To be zero or negative.
+
+85
+00:05:40,700 --> 00:05:49,070
+So in either situation, I just want to log and return, but request that something is wrong with your
+
+86
+00:05:49,070 --> 00:05:49,760
+attempt.
+
+87
+00:05:49,960 --> 00:05:50,270
+Right.
+
+88
+00:05:51,050 --> 00:05:55,220
+And then we can move on to our try and catch.
+
+89
+00:05:56,240 --> 00:06:03,170
+And then we know that for the cat section, we're going to be logging the error as well as.
+
+90
+00:06:03,360 --> 00:06:08,600
+Turning the status, five hundred, right, so let us see what we're going to try.
+
+91
+00:06:08,960 --> 00:06:14,630
+No, in order to try, I need the original record that needs to be updated.
+
+92
+00:06:14,660 --> 00:06:25,040
+So what I have to do is actually see VAR Hotel is equal to a weight unit of work, not hotels that get
+
+93
+00:06:25,040 --> 00:06:33,350
+me the report cards put in my filter where the idea is equivalent to the idea coming in through the
+
+94
+00:06:33,350 --> 00:06:34,170
+parameter.
+
+95
+00:06:34,790 --> 00:06:35,480
+All right.
+
+96
+00:06:36,480 --> 00:06:44,230
+Then I can do another check, I can see if a hotel is equivalent to no.
+
+97
+00:06:44,340 --> 00:06:47,730
+So I could have done a search, maybe they passed into the ID 10.
+
+98
+00:06:47,730 --> 00:06:52,640
+I would left six hotels and a pass in 10 with something to update.
+
+99
+00:06:52,920 --> 00:06:58,130
+I'm going to try and find it, but I need to make sure that I actually found it right.
+
+100
+00:06:58,470 --> 00:07:03,540
+So then I would probably it's a bad request.
+
+101
+00:07:03,540 --> 00:07:13,320
+So let's say I do the same thing here, but in the buttocks section, I'm going to see submitted data
+
+102
+00:07:14,100 --> 00:07:15,480
+is invalid.
+
+103
+00:07:16,080 --> 00:07:16,440
+All right.
+
+104
+00:07:16,440 --> 00:07:17,700
+So there's no modesty there.
+
+105
+00:07:17,700 --> 00:07:22,100
+It's just a matter of those the record with that idea exists or not.
+
+106
+00:07:22,380 --> 00:07:27,420
+And you could actually even just extend the unit of work to do the exists.
+
+107
+00:07:27,420 --> 00:07:29,910
+But what I'm doing is just getting it one time.
+
+108
+00:07:29,910 --> 00:07:32,360
+If it if it's not, then we end it.
+
+109
+00:07:32,550 --> 00:07:37,890
+However, if it is not null, then we can go ahead and try to do our bit.
+
+110
+00:07:38,310 --> 00:07:43,890
+Now, a quick way to kind of equate the two would be to use the mopper.
+
+111
+00:07:44,820 --> 00:07:46,160
+Dot map.
+
+112
+00:07:46,860 --> 00:07:55,650
+And then I can see at this point what is the source, so the source series hotel and then I'm going
+
+113
+00:07:55,650 --> 00:07:59,040
+to see I want it to be no, I'm sorry.
+
+114
+00:07:59,040 --> 00:08:00,970
+The source would be the detail.
+
+115
+00:08:00,990 --> 00:08:01,930
+My apologies.
+
+116
+00:08:01,950 --> 00:08:08,010
+So hotel detail is the new source because hotel detail has the latest information.
+
+117
+00:08:08,250 --> 00:08:11,440
+And then I'm going to say hotel to the right.
+
+118
+00:08:12,120 --> 00:08:19,020
+So if we look at this mumper overload, it takes two things the source and the destination.
+
+119
+00:08:19,020 --> 00:08:25,310
+And then what it's going to do is just map what's in the source to the existing destination.
+
+120
+00:08:25,320 --> 00:08:31,380
+So effectively, we just said whatever is in this, put it in that if there are two things that are
+
+121
+00:08:31,380 --> 00:08:36,090
+not equal, then please update this one with the feeds coming from the detail.
+
+122
+00:08:36,090 --> 00:08:36,480
+Right.
+
+123
+00:08:36,790 --> 00:08:45,060
+And then we can all see unit of where the problem is that we did not do any tracking.
+
+124
+00:08:45,070 --> 00:08:48,690
+So if we were doing tracking, we could have just said save.
+
+125
+00:08:48,690 --> 00:08:56,640
+But we are not trucking stuff to c update and then pass in hotel.
+
+126
+00:08:57,870 --> 00:08:58,380
+Right.
+
+127
+00:08:58,710 --> 00:08:59,760
+And then we.
+
+128
+00:09:01,560 --> 00:09:03,070
+You know, it's all work.
+
+129
+00:09:04,560 --> 00:09:06,900
+So this one extra line of code, not too bad.
+
+130
+00:09:07,170 --> 00:09:14,190
+So the thing is that I remember I was explaining that with the update method, what we did was to see
+
+131
+00:09:14,400 --> 00:09:17,160
+please pay attention to whatever entities here.
+
+132
+00:09:17,310 --> 00:09:20,070
+I touch it and change it state to modify it.
+
+133
+00:09:20,070 --> 00:09:21,530
+So know that it's modified.
+
+134
+00:09:21,540 --> 00:09:26,430
+So when we save, it will be kind of in the register to be saved or updated.
+
+135
+00:09:26,430 --> 00:09:26,660
+Right.
+
+136
+00:09:27,240 --> 00:09:35,910
+If we had not or if we had made the tracting optional, then we wouldn't have had to take that extra
+
+137
+00:09:35,910 --> 00:09:37,070
+step of seeing updates.
+
+138
+00:09:37,080 --> 00:09:42,470
+We could have just done the change and see of the because trucking is actually by default.
+
+139
+00:09:42,750 --> 00:09:46,490
+So I'm just explaining that a little bit to because I didn't mention it.
+
+140
+00:09:47,070 --> 00:09:53,600
+So let us after we save, we can return the content.
+
+141
+00:09:54,510 --> 00:10:02,100
+So no content seems like a bad reply, but it's really a tool for which is anything in the 200 range
+
+142
+00:10:02,100 --> 00:10:02,490
+is good.
+
+143
+00:10:02,490 --> 00:10:02,860
+Right.
+
+144
+00:10:03,210 --> 00:10:05,820
+So that's a good because I don't have anything to tell you.
+
+145
+00:10:05,820 --> 00:10:07,650
+Like, OK, you sent an update.
+
+146
+00:10:07,990 --> 00:10:09,600
+OK, there is nothing more to do.
+
+147
+00:10:09,780 --> 00:10:11,120
+You're good to go.
+
+148
+00:10:11,220 --> 00:10:11,530
+Right.
+
+149
+00:10:11,550 --> 00:10:13,210
+So that's what the content is really for.
+
+150
+00:10:13,230 --> 00:10:21,270
+So coming back to the one that we commented, it's not just status two or four.
+
+151
+00:10:23,080 --> 00:10:30,370
+So let us test that, so just to bring attention to what Strugar is doing, you'll see that each type
+
+152
+00:10:30,370 --> 00:10:32,080
+is nice, the color coded.
+
+153
+00:10:32,090 --> 00:10:38,260
+So if the word wasn't enough, then you see the color code put is nicely stated there.
+
+154
+00:10:38,320 --> 00:10:45,020
+And there's already teal with the feels and it's expecting an ID value in the parameters.
+
+155
+00:10:45,040 --> 00:10:45,330
+All right.
+
+156
+00:10:45,340 --> 00:10:51,130
+So let's use Postnet and I'm going to go right back to the last hotel that we created.
+
+157
+00:10:51,140 --> 00:10:55,660
+So this was our successful post attempt and we got it back.
+
+158
+00:10:55,670 --> 00:10:57,610
+So the ID value is six.
+
+159
+00:10:58,090 --> 00:11:06,700
+So I'm going to say put is my verb and I'm passing in six, says the ID value, and then I'm going to
+
+160
+00:11:06,700 --> 00:11:07,410
+put a comma.
+
+161
+00:11:07,570 --> 00:11:08,510
+This was misspelled.
+
+162
+00:11:08,530 --> 00:11:11,370
+It's a tiny, tiny change here.
+
+163
+00:11:11,650 --> 00:11:12,640
+But let's us see.
+
+164
+00:11:12,640 --> 00:11:18,790
+The comma underrating isn't really five, but it's four point eight for MoonPies Jamaica Grand Resort
+
+165
+00:11:19,390 --> 00:11:21,480
+and of the countries, Jamaica.
+
+166
+00:11:21,490 --> 00:11:22,420
+So let's leave that.
+
+167
+00:11:22,420 --> 00:11:25,130
+So let's go ahead and send and see what happens.
+
+168
+00:11:25,720 --> 00:11:26,370
+All right.
+
+169
+00:11:26,680 --> 00:11:35,320
+Method not slow and oh, I think I know why we didn't put on the parameter alone here on the put.
+
+170
+00:11:35,320 --> 00:11:41,650
+So the same way that we have this on the HTP get out to specify on the put that it should take that
+
+171
+00:11:41,650 --> 00:11:42,370
+parameter.
+
+172
+00:11:42,370 --> 00:11:43,950
+So apologies.
+
+173
+00:11:43,960 --> 00:11:47,170
+Let's just add that and let's try this again.
+
+174
+00:11:47,980 --> 00:11:49,420
+So buckin Posman.
+
+175
+00:11:49,420 --> 00:11:51,610
+I think I should get the for one this time.
+
+176
+00:11:51,610 --> 00:11:51,940
+All right.
+
+177
+00:11:51,970 --> 00:11:52,650
+That's better.
+
+178
+00:11:52,660 --> 00:11:59,410
+So the four or five I'm not allowed means that either you have something wrong with the request or your
+
+179
+00:11:59,410 --> 00:12:02,560
+endpoint needs to be fixed to match.
+
+180
+00:12:02,590 --> 00:12:03,850
+Holder should look.
+
+181
+00:12:04,150 --> 00:12:05,980
+So just know that's what we ran into.
+
+182
+00:12:06,010 --> 00:12:10,910
+We had the request properly, but then the endpoint was lacking.
+
+183
+00:12:10,910 --> 00:12:11,290
+All right.
+
+184
+00:12:11,290 --> 00:12:17,200
+So it's good to see these little things along the way so that when they happen, you can take control
+
+185
+00:12:17,200 --> 00:12:18,010
+of the situation.
+
+186
+00:12:18,520 --> 00:12:25,360
+So what we need to do is get a token and I believe I still have my user request over here.
+
+187
+00:12:25,600 --> 00:12:27,010
+So it's really cool with Bowsman.
+
+188
+00:12:27,010 --> 00:12:29,860
+You can always go back and get previous requests.
+
+189
+00:12:30,310 --> 00:12:39,790
+So let me just grab my token, come back over here, add it to the authorization header and then try
+
+190
+00:12:39,790 --> 00:12:40,630
+this again.
+
+191
+00:12:41,860 --> 00:12:45,550
+And it's hitting my and since our break point there.
+
+192
+00:12:45,610 --> 00:12:46,270
+All right.
+
+193
+00:12:46,300 --> 00:12:47,590
+So let's continue.
+
+194
+00:12:48,280 --> 00:12:50,770
+And there it is, tool for no content.
+
+195
+00:12:50,770 --> 00:12:57,430
+So it has successfully processed the request, but is not returning any content with no content.
+
+196
+00:12:57,430 --> 00:13:01,630
+But once again, a tool for it is a good return type.
+
+197
+00:13:01,990 --> 00:13:03,340
+So let us know.
+
+198
+00:13:03,340 --> 00:13:07,750
+Go over to our previous get and see what happens.
+
+199
+00:13:07,750 --> 00:13:09,490
+And I have a token.
+
+200
+00:13:09,490 --> 00:13:16,120
+So let me just go ahead and put this token here and do the get and then we will see.
+
+201
+00:13:16,270 --> 00:13:16,590
+All right.
+
+202
+00:13:16,660 --> 00:13:19,990
+There's our Cummo and there is a rating change to four point eight.
+
+203
+00:13:19,990 --> 00:13:23,050
+So as far as are concerned, the put works.
+
+204
+00:13:23,440 --> 00:13:28,180
+No, just building on what the put does and doesn't do.
+
+205
+00:13:28,210 --> 00:13:30,940
+You see, if you miss of something, let's see.
+
+206
+00:13:31,270 --> 00:13:34,960
+You have some features that are not required.
+
+207
+00:13:35,290 --> 00:13:35,860
+All right.
+
+208
+00:13:36,400 --> 00:13:36,700
+Right.
+
+209
+00:13:36,700 --> 00:13:41,230
+No, it's hard to test, but I'm going to go ahead and modify this detail.
+
+210
+00:13:41,680 --> 00:13:48,640
+So let me go over to create D2 and I'm going to see that the address field is not required.
+
+211
+00:13:49,540 --> 00:13:50,050
+All right.
+
+212
+00:13:50,470 --> 00:13:51,640
+I want to restart.
+
+213
+00:13:51,820 --> 00:13:52,810
+So why this restart?
+
+214
+00:13:52,860 --> 00:13:54,700
+Let me just explain what we're about to do.
+
+215
+00:13:54,790 --> 00:14:00,010
+The put is always going to replace the data.
+
+216
+00:14:00,040 --> 00:14:02,470
+The only thing it doesn't replace is the idea pretty much.
+
+217
+00:14:02,470 --> 00:14:02,800
+Right.
+
+218
+00:14:03,070 --> 00:14:09,880
+So any time you're going to do a put, you have to be mindful that whatever data is there, it is going
+
+219
+00:14:09,880 --> 00:14:11,320
+to use it to replace.
+
+220
+00:14:11,370 --> 00:14:14,830
+If I don't provide an address, let's address all of this.
+
+221
+00:14:15,250 --> 00:14:16,510
+It's no longer required.
+
+222
+00:14:16,750 --> 00:14:18,660
+I don't provide an address.
+
+223
+00:14:18,670 --> 00:14:20,470
+What I'm doing the put.
+
+224
+00:14:20,470 --> 00:14:21,730
+I'm doing the update.
+
+225
+00:14:22,060 --> 00:14:22,580
+Right.
+
+226
+00:14:22,600 --> 00:14:26,980
+Same hotel and I'm doing the update and I send.
+
+227
+00:14:29,140 --> 00:14:33,290
+All right, so I'm getting a tool for no content, but look at what happens to my data.
+
+228
+00:14:33,310 --> 00:14:35,560
+So notice we had an address volume.
+
+229
+00:14:35,980 --> 00:14:36,490
+No.
+
+230
+00:14:37,880 --> 00:14:39,180
+Address is no.
+
+231
+00:14:39,200 --> 00:14:46,880
+So you have to be careful whenever you're using these kinds of updates or at least to put because it's
+
+232
+00:14:46,880 --> 00:14:50,090
+always going to replace it with the data that it got.
+
+233
+00:14:50,330 --> 00:14:58,820
+So it is on you to make sure that your validations represent the data quality that you really want from
+
+234
+00:14:58,820 --> 00:15:03,920
+your client application, whether you are building the client or it's a third party who is building
+
+235
+00:15:03,920 --> 00:15:04,460
+the client.
+
+236
+00:15:04,820 --> 00:15:12,650
+The app is yours and you have to set that standard because it not being required load and all of it
+
+237
+00:15:12,650 --> 00:15:19,100
+to be there know once again that could be good or bad based on your situation, but that is how the
+
+238
+00:15:19,100 --> 00:15:20,260
+pot will work.
+
+239
+00:15:21,050 --> 00:15:28,760
+So I'm going to encourage you right now to pause, replicate the put endpoint for the country's controller.
+
+240
+00:15:28,760 --> 00:15:34,760
+And then we're going to look at something else as it relates to the port and how we can enter a bit
+
+241
+00:15:34,760 --> 00:15:36,630
+more data than where I am right now.
+
+242
+00:15:37,490 --> 00:15:38,140
+All right.
+
+243
+00:15:38,390 --> 00:15:39,380
+So we're back.
+
+244
+00:15:39,390 --> 00:15:45,320
+And I hope you paused and attempted it yourself, but I already did the update country, and I'll just
+
+245
+00:15:45,320 --> 00:15:46,430
+walk you through it quickly.
+
+246
+00:15:46,440 --> 00:15:50,540
+There's nothing here that's out of the ordinary compared to the hotels.
+
+247
+00:15:50,840 --> 00:15:52,370
+Everything is fairly standard.
+
+248
+00:15:52,610 --> 00:15:56,120
+You have to create contra detail, which I did.
+
+249
+00:15:56,150 --> 00:15:56,890
+There we go.
+
+250
+00:15:57,050 --> 00:15:58,730
+It's a good thing I'm doing this review.
+
+251
+00:15:59,000 --> 00:15:59,360
+All right.
+
+252
+00:15:59,360 --> 00:16:05,130
+So it did contribute to contribute to and everything else just looks the same way.
+
+253
+00:16:05,570 --> 00:16:06,110
+No.
+
+254
+00:16:06,200 --> 00:16:13,220
+One thing that I want to point out with the update contra detail is that I have included this property,
+
+255
+00:16:13,220 --> 00:16:16,100
+which is a list of hotels.
+
+256
+00:16:16,520 --> 00:16:16,940
+All right.
+
+257
+00:16:16,950 --> 00:16:24,700
+So, yes, arguably I could put it here and then remove it from this one and then let the country need
+
+258
+00:16:24,710 --> 00:16:30,220
+to inherit from the update contra details since it does all of these on the list.
+
+259
+00:16:30,500 --> 00:16:32,060
+So this would get everything.
+
+260
+00:16:32,270 --> 00:16:33,350
+Yes, you could do that.
+
+261
+00:16:33,530 --> 00:16:39,380
+But then this is just driving home my point that you really want to kind of keep your details as unique
+
+262
+00:16:39,380 --> 00:16:44,900
+as possible, because then, you know, you may have shared feels sure, but then you may have unique
+
+263
+00:16:44,900 --> 00:16:46,380
+files also along the way.
+
+264
+00:16:46,940 --> 00:16:58,190
+Know, the relevance of this list of hotels is that I can actually use my port to update a company and
+
+265
+00:16:58,190 --> 00:17:04,860
+also insert new hotels are related hotels because remember that hotels.
+
+266
+00:17:05,150 --> 00:17:11,930
+This means that one country has a list of hotels or one country as many hotels, which is why we can
+
+267
+00:17:11,930 --> 00:17:13,940
+reference them by list here.
+
+268
+00:17:14,660 --> 00:17:15,050
+All right.
+
+269
+00:17:15,050 --> 00:17:17,720
+So let's explore what that would look like.
+
+270
+00:17:17,750 --> 00:17:26,330
+So if I go over to my swagga documentation and then look at the potential pillared you see here where
+
+271
+00:17:26,330 --> 00:17:36,020
+they're showing me that I can put in the name, the short name and then an array of hotels, and then
+
+272
+00:17:36,020 --> 00:17:37,790
+I can put in details for the hotel.
+
+273
+00:17:37,790 --> 00:17:41,540
+And of course, the hotel has potential details for the country.
+
+274
+00:17:41,540 --> 00:17:47,360
+And then this is what they really meant when they said it could become sightly because it's just one
+
+275
+00:17:47,360 --> 00:17:49,160
+big thing after another, after another.
+
+276
+00:17:49,190 --> 00:17:58,250
+However, we're going to try this and we're going to insert a new hotel we're sorry, a new country
+
+277
+00:17:58,250 --> 00:17:59,690
+with a new hotel.
+
+278
+00:17:59,690 --> 00:18:06,440
+So I'm going to just duplicate this port so I can certainly say duplicate tab since I already have it
+
+279
+00:18:06,440 --> 00:18:06,890
+there.
+
+280
+00:18:08,510 --> 00:18:11,720
+Before I do that, let me see all of the countries that I have.
+
+281
+00:18:11,720 --> 00:18:14,330
+So I don't really have any tests with country.
+
+282
+00:18:15,080 --> 00:18:20,210
+So let me get all my countries so I can see my options.
+
+283
+00:18:20,930 --> 00:18:31,070
+So I have Jamaica, Bahamas and Cayman Islands and see if we need to update Cayman Islands because of
+
+284
+00:18:31,190 --> 00:18:32,270
+Cayman Island.
+
+285
+00:18:32,540 --> 00:18:35,420
+It should be islands of cosmetics.
+
+286
+00:18:35,420 --> 00:18:38,300
+But let's just go ahead and update that.
+
+287
+00:18:38,300 --> 00:18:43,940
+So I'm going to take let me just get my bearings.
+
+288
+00:18:44,480 --> 00:18:50,480
+So I'm going to take the payload from the sample right.
+
+289
+00:18:50,510 --> 00:18:57,500
+From our Soga and then the country's.
+
+290
+00:18:59,050 --> 00:19:09,850
+Sorry, the countries I had that I want to update, I'm just trying to find where that was the countryside's
+
+291
+00:19:09,850 --> 00:19:14,530
+three, so the name will be Cayman Islands.
+
+292
+00:19:15,800 --> 00:19:22,980
+The come the end point would be country slash three.
+
+293
+00:19:23,940 --> 00:19:26,390
+All right, the short name still S.I.
+
+294
+00:19:26,540 --> 00:19:31,780
+So once again, you have to provide the value that you expect to have there afterwards.
+
+295
+00:19:31,790 --> 00:19:32,170
+All right.
+
+296
+00:19:32,840 --> 00:19:42,350
+And then I'm going to go inside of the hotel section, remove anything that I really don't want.
+
+297
+00:19:42,520 --> 00:19:42,780
+Right.
+
+298
+00:19:43,040 --> 00:19:47,000
+As a matter of fact, let me go back over to the detail.
+
+299
+00:19:47,000 --> 00:19:50,680
+I just noticed that I'm listing out hotel detail here.
+
+300
+00:19:50,690 --> 00:19:53,260
+So I did say we could consolidate.
+
+301
+00:19:53,270 --> 00:19:55,940
+But here's a good reason I'm not consolidating.
+
+302
+00:19:56,210 --> 00:20:00,650
+I said hotel detail, hotel detail then puts in the ID.
+
+303
+00:20:00,770 --> 00:20:08,900
+But if I'm doing an insert, I'm updating Cayman Islands while I want to insert a new hotel automatically,
+
+304
+00:20:08,900 --> 00:20:11,280
+which means I don't need the added value.
+
+305
+00:20:11,300 --> 00:20:13,730
+So this DTA is actually incorrect.
+
+306
+00:20:13,940 --> 00:20:21,890
+What I should have here is create a hotel DTL, which is a better representation of the data I wish
+
+307
+00:20:21,890 --> 00:20:28,190
+to collect and that would also get rid of the excess feels like the country and the extended list of
+
+308
+00:20:28,190 --> 00:20:28,590
+hotels.
+
+309
+00:20:28,610 --> 00:20:30,150
+So let's try that again.
+
+310
+00:20:30,410 --> 00:20:30,940
+All right.
+
+311
+00:20:30,950 --> 00:20:35,980
+So now when I look in Swiger and I look at the the schema, that looks much better.
+
+312
+00:20:35,990 --> 00:20:38,620
+So you see details are very important.
+
+313
+00:20:38,630 --> 00:20:40,870
+What do you require from your user?
+
+314
+00:20:41,240 --> 00:20:43,370
+Make sure you expose only that.
+
+315
+00:20:43,370 --> 00:20:49,430
+So I'm going to take this corrected payload, go back to Boston, and this will be far less confusing
+
+316
+00:20:49,430 --> 00:20:49,790
+for me.
+
+317
+00:20:49,800 --> 00:20:50,090
+Right.
+
+318
+00:20:50,420 --> 00:20:51,680
+So let's try this again.
+
+319
+00:20:51,950 --> 00:20:59,180
+This is going to be Cayman Islands with a capital I write.
+
+320
+00:20:59,450 --> 00:21:01,190
+The name is still S.I.
+
+321
+00:21:01,260 --> 00:21:02,620
+I have to provide that.
+
+322
+00:21:02,870 --> 00:21:09,430
+And then in the hotels section, I can actually list all the hotels or objects of hotels.
+
+323
+00:21:09,430 --> 00:21:11,660
+So this square market means area.
+
+324
+00:21:11,900 --> 00:21:18,530
+Then the current embrace encapsulates all the object properties and I can see come up and list so I
+
+325
+00:21:18,530 --> 00:21:21,440
+can through comma and continuing to put them in.
+
+326
+00:21:21,440 --> 00:21:21,690
+Right.
+
+327
+00:21:22,130 --> 00:21:28,510
+So here I'm going to put in the Ritz Carlton and its address is Grand Cayman.
+
+328
+00:21:28,520 --> 00:21:32,940
+It has everything on five and another one, the local hotel.
+
+329
+00:21:32,960 --> 00:21:35,570
+So these are actually hotels in Grand Cayman.
+
+330
+00:21:35,570 --> 00:21:37,490
+You can look them up if you want to verify that.
+
+331
+00:21:37,760 --> 00:21:41,010
+However, I'm not going to specify the countryside.
+
+332
+00:21:41,420 --> 00:21:41,970
+All right.
+
+333
+00:21:42,110 --> 00:21:50,030
+So I'm actually going to remove your ID, but then I do have it as required.
+
+334
+00:21:50,030 --> 00:21:52,570
+So I'm going to remove it in the payload.
+
+335
+00:21:52,580 --> 00:21:59,120
+And what I'll do is make the change in the code itself for the DTL.
+
+336
+00:21:59,840 --> 00:22:06,710
+Let's just go over there and make it not required, at least just for this experiment and let us try
+
+337
+00:22:06,710 --> 00:22:06,940
+that.
+
+338
+00:22:07,190 --> 00:22:08,420
+So change made.
+
+339
+00:22:08,420 --> 00:22:09,980
+We have the list of hotels.
+
+340
+00:22:09,980 --> 00:22:14,030
+They're not referencing any country at the moment.
+
+341
+00:22:14,030 --> 00:22:19,250
+However, they are underneath the country's payload.
+
+342
+00:22:19,250 --> 00:22:20,780
+We have the country ideastream.
+
+343
+00:22:20,780 --> 00:22:21,800
+So let us send.
+
+344
+00:22:22,780 --> 00:22:27,140
+And I'm getting a tool for no content, so let me go and check.
+
+345
+00:22:27,160 --> 00:22:33,970
+So let me get the list of hotels and see what came back.
+
+346
+00:22:35,290 --> 00:22:36,840
+All right, here we go.
+
+347
+00:22:37,710 --> 00:22:44,310
+So we have the local hotel coming back with an idea seven and the Ritz Carlton coming back with an idea
+
+348
+00:22:44,310 --> 00:22:48,960
+of eight, and both of them are part of country three or keep in mind.
+
+349
+00:22:48,970 --> 00:22:52,140
+So you see, that is how you can actually use the put.
+
+350
+00:22:52,260 --> 00:22:55,300
+So the put will see, does this thing exist?
+
+351
+00:22:55,380 --> 00:22:57,210
+If not, I will create it.
+
+352
+00:22:57,210 --> 00:23:01,190
+And the only way it knows it exists is if the ID value is provided.
+
+353
+00:23:01,440 --> 00:23:07,650
+So when there's no ID value is going to say, well, this doesn't have an I.D. so I will go ahead and
+
+354
+00:23:07,650 --> 00:23:08,340
+create it.
+
+355
+00:23:08,640 --> 00:23:15,720
+However, because of our constraints that we put on our end point, we are not allowing people to just
+
+356
+00:23:15,720 --> 00:23:24,360
+use the port to create because we do verify that ID value must be present or have, you know, a sensible
+
+357
+00:23:24,360 --> 00:23:27,140
+added value must be present before we move on.
+
+358
+00:23:27,540 --> 00:23:31,330
+So those are the constraints they can use to make sure that the port operates.
+
+359
+00:23:31,330 --> 00:23:32,370
+So you want it to.
+
+360
+00:23:32,370 --> 00:23:38,040
+However, its global operation is very versatile.

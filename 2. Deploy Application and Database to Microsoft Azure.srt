@@ -1,0 +1,1003 @@
+1
+00:00:01,220 --> 00:00:07,770
+You guys will come back, so we already settle for Azura cones and all we want to actually deploy.
+
+2
+00:00:08,360 --> 00:00:14,390
+So before I do that, though, I want to make a slight configuration change to where our files will
+
+3
+00:00:14,390 --> 00:00:18,550
+be going, because in Asgeir, there is no CGI, there's no local draft.
+
+4
+00:00:18,570 --> 00:00:25,820
+So what I wanted to do is let Cerillo create a folder within the whole folder structure for the project,
+
+5
+00:00:26,210 --> 00:00:32,240
+and that's where the logs will be written so that when we go to Azor, we don't have to worry about
+
+6
+00:00:32,240 --> 00:00:34,460
+any file path or get to fancy.
+
+7
+00:00:36,670 --> 00:00:42,340
+So let's go over and publish now, that being said, I'm just doing this locally for simplicity.
+
+8
+00:00:42,370 --> 00:00:50,380
+There are tons of more outlets that I see a robust logging mechanisms that we can take advantage of.
+
+9
+00:00:50,410 --> 00:00:56,070
+I'm just doing this because I want to find the most cost effectively, because the other ones cost money
+
+10
+00:00:56,080 --> 00:00:57,040
+as you add on.
+
+11
+00:00:57,080 --> 00:01:02,710
+Or so, let's just go to publish and we're going to set up a new publisher.
+
+12
+00:01:03,550 --> 00:01:08,410
+So I already have a published profile for local deployment, which is a Holeproof.
+
+13
+00:01:08,570 --> 00:01:08,860
+Right.
+
+14
+00:01:09,100 --> 00:01:15,490
+So I can actually just rename this one so I know exactly what it is for its profile safe.
+
+15
+00:01:15,550 --> 00:01:16,000
+All right.
+
+16
+00:01:16,180 --> 00:01:17,440
+Well, then I want a new one.
+
+17
+00:01:17,800 --> 00:01:20,020
+And this one is going to be the Azira profile.
+
+18
+00:01:20,030 --> 00:01:28,480
+So what I want to do is deploy to one Azura up service, know if you if you don't know that much about
+
+19
+00:01:28,480 --> 00:01:35,830
+Osram cloud, what happens is that you can deploy an application as us on an application, as a service
+
+20
+00:01:35,830 --> 00:01:41,500
+kind of constraint, meaning you don't have to worry about the server or anything, just like a nice
+
+21
+00:01:41,500 --> 00:01:45,030
+container for you and put your code there and then they will host it.
+
+22
+00:01:45,040 --> 00:01:47,830
+And that's where you get like a SAS, right.
+
+23
+00:01:48,640 --> 00:01:52,420
+Or rather, that would be the services platform as a service.
+
+24
+00:01:52,420 --> 00:01:57,090
+So they're providing the platform as a service for you to just put your app on it and it will just run.
+
+25
+00:01:57,490 --> 00:01:59,770
+So that's what they mean by the service.
+
+26
+00:01:59,770 --> 00:02:04,150
+And then what they want to buy a Windows or Linux, we'll use Windows.
+
+27
+00:02:05,800 --> 00:02:12,660
+Otherwise you can do it a container or to a container industry or to a virtual machine.
+
+28
+00:02:12,670 --> 00:02:19,900
+So basically the same kind of considerations that would have made with its deployment to either your
+
+29
+00:02:19,900 --> 00:02:22,060
+machine or a network machine.
+
+30
+00:02:22,330 --> 00:02:27,220
+You would have to do those kind of considerations against a VM in Azure because it's the same thing
+
+31
+00:02:27,220 --> 00:02:34,450
+as just a virtual machine CRM server and a whole will to choose the platform as a service, the service
+
+32
+00:02:34,600 --> 00:02:35,800
+and then click next.
+
+33
+00:02:36,520 --> 00:02:42,310
+And then this will, though it may prompt you to get connected, so you'll have to sign in order to
+
+34
+00:02:42,310 --> 00:02:42,880
+send in.
+
+35
+00:02:42,880 --> 00:02:49,360
+So it just for me, it shows you the subscription resource group and I don't have any of those.
+
+36
+00:02:50,020 --> 00:02:55,050
+So I'm just going to go ahead and press this plus sign to start building up services.
+
+37
+00:02:55,090 --> 00:02:57,520
+They ask for the name, I'm not going to change the name.
+
+38
+00:02:57,850 --> 00:03:05,080
+And then I have a few resource groups here from past projects, but I'm going to create a brand new
+
+39
+00:03:05,080 --> 00:03:05,410
+one.
+
+40
+00:03:06,280 --> 00:03:10,540
+I'm going to call it Hotel Listing API.
+
+41
+00:03:11,950 --> 00:03:18,640
+So that's the name of that resource group and then the hosting plan here, I can leave it on the default,
+
+42
+00:03:18,640 --> 00:03:21,610
+but then they do have a free hosting plan.
+
+43
+00:03:21,850 --> 00:03:28,200
+And based on where I am in the world, e US two is my best bet and I choose free.
+
+44
+00:03:28,780 --> 00:03:30,700
+So you might be somewhere else in the world.
+
+45
+00:03:30,700 --> 00:03:32,760
+You choose the region that's closest to you.
+
+46
+00:03:32,770 --> 00:03:38,080
+But based on where I am, EastWest is my region of choice.
+
+47
+00:03:38,350 --> 00:03:40,720
+Now choose the free deployment.
+
+48
+00:03:40,720 --> 00:03:41,590
+Click okay.
+
+49
+00:03:42,070 --> 00:03:43,410
+And then create.
+
+50
+00:03:43,900 --> 00:03:51,880
+And then after that process is done we can go ahead and click next and then we can refresh.
+
+51
+00:03:52,970 --> 00:03:57,740
+No apologies, this management, so I don't want any management, I just skip this step and then we
+
+52
+00:03:57,740 --> 00:03:57,980
+click.
+
+53
+00:03:58,580 --> 00:04:03,460
+So the next screen you're showing us what our side you are is going to be.
+
+54
+00:04:03,470 --> 00:04:09,380
+So whatever the OP name is that we sit there that Dot Azera websites dot net because it's free, they
+
+55
+00:04:09,380 --> 00:04:15,170
+give us a subdomain and we can always go ahead and buy our own domain if we want, but we won't get
+
+56
+00:04:15,170 --> 00:04:16,010
+that far ahead.
+
+57
+00:04:16,250 --> 00:04:22,880
+But because we do have a service dependency on a database, they're seeing what they need to configure
+
+58
+00:04:22,880 --> 00:04:26,500
+your database for connectivity purposes.
+
+59
+00:04:26,510 --> 00:04:26,750
+Right.
+
+60
+00:04:26,770 --> 00:04:34,490
+So I need to go and configure and then they'll ask us, do we want an on premises secure server database
+
+61
+00:04:34,490 --> 00:04:35,780
+or will it be easier?
+
+62
+00:04:36,260 --> 00:04:41,720
+So once again, we'll go with the POS option where they are just giving us a service in the cloud and
+
+63
+00:04:41,720 --> 00:04:42,770
+we just need to connect.
+
+64
+00:04:43,130 --> 00:04:49,470
+So we have to go ahead and create a brand new instance of a database service hosting Nemoto Service
+
+65
+00:04:49,480 --> 00:04:51,590
+Stevic kind of fill out some things.
+
+66
+00:04:51,590 --> 00:04:55,780
+I'm going to put it in the same resource group as the Hotel Listing API.
+
+67
+00:04:56,120 --> 00:04:56,840
+There we go.
+
+68
+00:04:57,080 --> 00:04:58,760
+And then database server.
+
+69
+00:04:58,760 --> 00:05:00,250
+I have to create a new one.
+
+70
+00:05:00,620 --> 00:05:07,700
+So it will kind of fill out some things, but I'm going to have to put in my administrative details.
+
+71
+00:05:08,060 --> 00:05:12,770
+So and the password part of it is relatively strict.
+
+72
+00:05:12,770 --> 00:05:18,320
+So just make sure you have a special card and a capital letter and a number and you should be fine once
+
+73
+00:05:18,320 --> 00:05:19,730
+you exceed seven characters.
+
+74
+00:05:20,150 --> 00:05:26,240
+So once you put in all of those details, you can go ahead and call it autofill, what it needs to fill,
+
+75
+00:05:26,390 --> 00:05:33,770
+but then it does need to, one, create the database server and then you would have access to connect
+
+76
+00:05:33,770 --> 00:05:34,160
+to it.
+
+77
+00:05:35,060 --> 00:05:35,690
+Right.
+
+78
+00:05:35,840 --> 00:05:38,450
+And that is completed.
+
+79
+00:05:38,450 --> 00:05:40,490
+So let's just go click next.
+
+80
+00:05:40,500 --> 00:05:46,100
+And then what it will do is say, OK, this is the database connection string name.
+
+81
+00:05:47,180 --> 00:05:48,800
+What is the user name?
+
+82
+00:05:48,800 --> 00:05:55,670
+So we have to put back the user name that we just use to create the database stuff and the password.
+
+83
+00:05:56,570 --> 00:06:01,060
+And then it will keep it in the Azor upsetting section.
+
+84
+00:06:01,730 --> 00:06:05,630
+We can choose the Kevo, but I'll just leave that as the default settings there.
+
+85
+00:06:05,960 --> 00:06:14,090
+And then if we want, we can actually view the connection string value so I can actually show you guys
+
+86
+00:06:14,090 --> 00:06:14,390
+that.
+
+87
+00:06:14,390 --> 00:06:21,260
+So the datasource this is the connection to the actual database in Azura, right.
+
+88
+00:06:21,590 --> 00:06:28,130
+So if I just copy that just for my own purposes, then it shows the initial catalog.
+
+89
+00:06:28,130 --> 00:06:29,210
+That's the database name.
+
+90
+00:06:29,210 --> 00:06:36,380
+The user I.D. will be travois at that, that whatever that domain and the password.
+
+91
+00:06:36,560 --> 00:06:38,270
+I use a simple password, of course.
+
+92
+00:06:38,280 --> 00:06:45,260
+And I realized that you use a more secure password so that we can just go ahead and click next and we
+
+93
+00:06:45,260 --> 00:06:48,110
+don't have to touch anything here and just say finish.
+
+94
+00:06:48,970 --> 00:06:49,820
+All right.
+
+95
+00:06:49,820 --> 00:06:52,520
+And now we can click publish.
+
+96
+00:06:52,850 --> 00:06:59,350
+And this might take a while because it has to create a few resources.
+
+97
+00:06:59,360 --> 00:07:04,430
+And this is seeing your publishing the application without bundling the runtime, checking the runtime
+
+98
+00:07:04,430 --> 00:07:08,250
+compatibility so we can give that to the end result of that check.
+
+99
+00:07:08,300 --> 00:07:15,770
+However, is it launching the browser and sending me this five hundred error or so at least we know
+
+100
+00:07:15,770 --> 00:07:17,720
+that it is responding.
+
+101
+00:07:17,960 --> 00:07:21,960
+So the API is there, but we still have a few things that we need to do.
+
+102
+00:07:22,700 --> 00:07:25,670
+So let's start off by going to our portal.
+
+103
+00:07:25,670 --> 00:07:28,640
+So only just manage in a zero portal.
+
+104
+00:07:29,150 --> 00:07:34,340
+We get navigates into this page showing us the application running as your art.
+
+105
+00:07:34,340 --> 00:07:36,950
+So we know it's definitely not Adelita, it's there.
+
+106
+00:07:37,220 --> 00:07:38,210
+We click brose.
+
+107
+00:07:38,210 --> 00:07:45,950
+It's going to show us the Yurok are protected by GPS and we're getting by that five hundred.
+
+108
+00:07:45,950 --> 00:07:51,530
+So we're not we're not any better off than we were before, but at least we can confirm a few things.
+
+109
+00:07:52,040 --> 00:08:00,880
+No, if we go down to configuration it will kind of show us some of the things like our connection string.
+
+110
+00:08:01,210 --> 00:08:01,660
+Right.
+
+111
+00:08:01,730 --> 00:08:06,980
+Or remember that connection string and that hidden value, at least from this connection string.
+
+112
+00:08:06,980 --> 00:08:12,170
+I can see the server for the database, so I'm just going to copy that.
+
+113
+00:08:12,480 --> 00:08:15,140
+Remember I showed you earlier, so I'm just going to copy that.
+
+114
+00:08:15,380 --> 00:08:21,850
+And then in the management studio, I'm going to try and connect to it's just going to click that plug.
+
+115
+00:08:21,860 --> 00:08:23,660
+If he already had it open, that's fine.
+
+116
+00:08:23,660 --> 00:08:30,200
+If not, then you launch a management studio and then you put in the server name and whatever credentials
+
+117
+00:08:30,200 --> 00:08:31,580
+were there and click connect.
+
+118
+00:08:32,210 --> 00:08:34,050
+And it will just promptly to.
+
+119
+00:08:34,370 --> 00:08:39,680
+And so what happens is that the firewall is seeing I'm not allowing access to the database from any
+
+120
+00:08:39,680 --> 00:08:41,720
+other source that's outside of us.
+
+121
+00:08:41,720 --> 00:08:42,850
+You're so right.
+
+122
+00:08:42,860 --> 00:08:50,480
+Know, what I want to do is just sign in and then it will add an exception for the IP address that I
+
+123
+00:08:50,480 --> 00:08:51,200
+am using.
+
+124
+00:08:51,200 --> 00:08:53,150
+So that's an important security feature.
+
+125
+00:08:53,150 --> 00:08:56,480
+So I will be behind this IP address.
+
+126
+00:08:56,480 --> 00:09:01,010
+Somebody from their own home with a different IP address won't be able to get to the database unless
+
+127
+00:09:01,010 --> 00:09:03,440
+they sign in and verified, just like I'm doing now.
+
+128
+00:09:03,800 --> 00:09:05,510
+So I'll just go ahead and click, OK?
+
+129
+00:09:05,510 --> 00:09:09,380
+Of course there are ways to allow access from everywhere, but we don't need to do that right now.
+
+130
+00:09:09,800 --> 00:09:13,320
+And then when I look in the list of databases, we see our database.
+
+131
+00:09:13,340 --> 00:09:17,090
+I'm just confirming that our database is.
+
+132
+00:09:17,780 --> 00:09:18,800
+But look at this.
+
+133
+00:09:18,800 --> 00:09:20,030
+There are no tables.
+
+134
+00:09:20,630 --> 00:09:25,880
+And what I'm going to do is edit the profile and go to settings.
+
+135
+00:09:26,300 --> 00:09:29,420
+And we actually skipped this step.
+
+136
+00:09:29,420 --> 00:09:32,400
+I guess we're too eager, right?
+
+137
+00:09:32,480 --> 00:09:39,920
+So we did not do the migration steps, apply this migration on publish and we already use their own
+
+138
+00:09:39,970 --> 00:09:44,870
+the connection stream with the new Tostin database at runtime.
+
+139
+00:09:44,870 --> 00:09:47,930
+So that's not really necessary to take again.
+
+140
+00:09:47,930 --> 00:09:49,130
+But that's fine.
+
+141
+00:09:49,400 --> 00:09:50,330
+And I'll see even that.
+
+142
+00:09:50,330 --> 00:09:51,890
+I just click publish again.
+
+143
+00:09:52,550 --> 00:10:00,110
+And if we just look at the log, you see adding database and then you see here, it gives us the some
+
+144
+00:10:00,110 --> 00:10:02,720
+indication of some scripting happening.
+
+145
+00:10:02,720 --> 00:10:04,010
+So let's double check.
+
+146
+00:10:04,580 --> 00:10:10,550
+And what happens this time around is that because we said apply the migration's it's actually went ahead
+
+147
+00:10:10,880 --> 00:10:13,580
+and filled all the tables for us.
+
+148
+00:10:13,760 --> 00:10:13,890
+Right.
+
+149
+00:10:13,970 --> 00:10:16,220
+So that's the real important part of it.
+
+150
+00:10:16,220 --> 00:10:18,560
+So we didn't have to manually the script.
+
+151
+00:10:18,560 --> 00:10:28,220
+But once again, it would be prudent of you in our real production life scenario to control this process
+
+152
+00:10:28,220 --> 00:10:33,740
+a bit more than we can do on our personal projects and in our personal time.
+
+153
+00:10:34,130 --> 00:10:34,630
+All right.
+
+154
+00:10:34,640 --> 00:10:40,940
+So you can check them out, of course, on deploying on controlling production in the environments.
+
+155
+00:10:41,270 --> 00:10:46,370
+But for this, we're just we just want to get our API open running and understand all the systems work
+
+156
+00:10:46,370 --> 00:10:46,760
+together.
+
+157
+00:10:46,760 --> 00:10:52,970
+So this is our database currently functioning on our as your server.
+
+158
+00:10:54,510 --> 00:11:01,230
+So let's go back to our consulate instead of Koutou, go to the side of the road and then remember that
+
+159
+00:11:01,230 --> 00:11:05,600
+we said put the love at the same root as a filesystem.
+
+160
+00:11:05,610 --> 00:11:11,790
+So that's why we have access to our loved folder right here, which will show us our log since we've
+
+161
+00:11:11,790 --> 00:11:13,510
+been doing this deployment.
+
+162
+00:11:13,530 --> 00:11:17,550
+So if I just go ahead and download, it will open it up in a new browser session.
+
+163
+00:11:17,910 --> 00:11:21,390
+And I just want to see why it through the most recent error.
+
+164
+00:11:21,780 --> 00:11:30,120
+So it says something went wrong with the argument, not the exception, some strong reference error
+
+165
+00:11:30,270 --> 00:11:37,840
+and some encoding that is supposed to be happening in service extensions, line forty six.
+
+166
+00:11:37,890 --> 00:11:43,550
+So if we just go and look at the code and see what exactly is happening on that line, it is where we're
+
+167
+00:11:43,560 --> 00:11:50,610
+configuring our JWT and you see that we're doing all of this and this is where it says the encoding
+
+168
+00:11:50,610 --> 00:11:57,540
+failed and it failed because we're looking for key and key is really an environment variable called
+
+169
+00:11:57,540 --> 00:11:57,910
+key.
+
+170
+00:11:57,930 --> 00:11:59,230
+So remember that we just had to set.
+
+171
+00:11:59,250 --> 00:12:00,330
+That'll be nice.
+
+172
+00:12:00,600 --> 00:12:03,260
+We have to do the same thing as you're right.
+
+173
+00:12:03,300 --> 00:12:13,800
+So what I'm going to do is go back to our management dashboard, go down to configuration, and then
+
+174
+00:12:13,800 --> 00:12:16,770
+from here I can see a new application sitting.
+
+175
+00:12:16,770 --> 00:12:18,450
+So I'm going to see a new application.
+
+176
+00:12:18,450 --> 00:12:21,570
+Setting is key along with the values.
+
+177
+00:12:21,570 --> 00:12:24,410
+So, I mean, I can continue to use that same value.
+
+178
+00:12:24,420 --> 00:12:27,150
+I'm going to probably just use a simpler value.
+
+179
+00:12:27,150 --> 00:12:30,780
+But then for consistency between the environments, you probably want the same thing.
+
+180
+00:12:30,790 --> 00:12:32,880
+So it's, you know, one or the other.
+
+181
+00:12:33,030 --> 00:12:38,850
+They use a simpler one in dev bodies, a complicated one in production, or you use one part environment.
+
+182
+00:12:38,850 --> 00:12:45,060
+So for, you know, security and separation of roles, situations, a developer might not be able to
+
+183
+00:12:45,060 --> 00:12:49,650
+just go into production and manipulate anything because he probably doesn't know.
+
+184
+00:12:50,010 --> 00:12:54,420
+But for simplicity, I'm just going to keep the same key across.
+
+185
+00:12:54,780 --> 00:12:59,370
+And I click, OK, go ahead and save that continue.
+
+186
+00:12:59,370 --> 00:13:02,250
+And it will it will say it will restart the application.
+
+187
+00:13:02,250 --> 00:13:02,910
+That's fine.
+
+188
+00:13:03,210 --> 00:13:04,800
+Go ahead and restart.
+
+189
+00:13:05,010 --> 00:13:09,740
+And once that is restarted, I'm going to go to over if you go to Brose.
+
+190
+00:13:09,780 --> 00:13:10,260
+All right.
+
+191
+00:13:10,270 --> 00:13:12,420
+So we know that we can't brose anywhere.
+
+192
+00:13:12,420 --> 00:13:13,440
+We're getting this.
+
+193
+00:13:13,530 --> 00:13:15,440
+So at least we're not getting a five hundred.
+
+194
+00:13:15,660 --> 00:13:17,280
+This is the same error that we've got.
+
+195
+00:13:17,280 --> 00:13:20,430
+If you went through the highest deployment, that's what we got when we went to the root.
+
+196
+00:13:20,650 --> 00:13:29,010
+So if I say slash Swagga, then it will lead me to the Swagga doc being hosted on our as your website.
+
+197
+00:13:29,580 --> 00:13:32,670
+Then I'm just going to go ahead and do a quick test.
+
+198
+00:13:32,670 --> 00:13:37,680
+So I'm going to try to get the countries execute.
+
+199
+00:13:38,010 --> 00:13:43,860
+And then I have successfully retrieved all of the countries currently in the database.
+
+200
+00:13:43,860 --> 00:13:51,480
+So that means if I tried to use post one, I'm just going to copy this URL, go over to Postman and
+
+201
+00:13:51,480 --> 00:13:57,810
+I'm just going to create a new workspace because sometimes you can overcrowd one.
+
+202
+00:13:57,810 --> 00:13:59,380
+So I'm just going to create a new workspace.
+
+203
+00:13:59,400 --> 00:14:00,350
+Called it as your.
+
+204
+00:14:00,780 --> 00:14:04,890
+And then what I'm going to do over here is just do all my azure related requests.
+
+205
+00:14:05,430 --> 00:14:11,240
+So country I want to get there's no authorisation tag.
+
+206
+00:14:11,250 --> 00:14:17,820
+But then as you can see, you can get all the countries right off the bat through this.
+
+207
+00:14:18,710 --> 00:14:26,260
+Let's try one of those registration items and then to to do something that is secure.
+
+208
+00:14:26,280 --> 00:14:32,610
+So I'm just going to be flipping between the original workspace where I had the requests already and
+
+209
+00:14:32,610 --> 00:14:33,420
+this new one.
+
+210
+00:14:33,420 --> 00:14:36,240
+So I'll just go over to the post.
+
+211
+00:14:36,540 --> 00:14:42,170
+I just copy this and instead of bothering you with creating it, I just did it.
+
+212
+00:14:42,570 --> 00:14:47,790
+So the new endpoint would be whatever the website name is, Slash and then API.
+
+213
+00:14:47,800 --> 00:14:51,840
+So that's why I didn't remove it since the Iast deployment.
+
+214
+00:14:51,840 --> 00:14:54,120
+I left it because it makes more sense here.
+
+215
+00:14:54,600 --> 00:15:02,320
+Write a column, slash log in and then we can send and I got an error because I had the login payload
+
+216
+00:15:02,320 --> 00:15:03,690
+instead of the register payload.
+
+217
+00:15:03,810 --> 00:15:04,550
+So I apologise.
+
+218
+00:15:04,560 --> 00:15:10,350
+So we're doing our register and we have the cart payload with the email password and this is the same
+
+219
+00:15:10,350 --> 00:15:13,230
+one that we tested with from when we're on our local.
+
+220
+00:15:13,240 --> 00:15:20,280
+So I just want to verify that everything still works as it works and we get our tool to accept it.
+
+221
+00:15:20,280 --> 00:15:21,090
+So that's good.
+
+222
+00:15:21,090 --> 00:15:22,110
+We're on the right track.
+
+223
+00:15:22,110 --> 00:15:26,220
+So what I can do is repeat the login request.
+
+224
+00:15:26,610 --> 00:15:33,870
+So I just click that, bring about the login request and then we can send get our token.
+
+225
+00:15:34,020 --> 00:15:34,950
+Excellent.
+
+226
+00:15:35,280 --> 00:15:40,140
+And then what we'll do is attempt the delete our creation or something that we know.
+
+227
+00:15:40,140 --> 00:15:46,530
+We had said that one of those authorized and of course I'm not bothering you with forming the link,
+
+228
+00:15:46,530 --> 00:15:48,940
+but you know that you have to form the link properly.
+
+229
+00:15:48,960 --> 00:15:52,470
+The endpoint is API slash photo with the ID.
+
+230
+00:15:52,770 --> 00:15:53,700
+It's the delete.
+
+231
+00:15:53,800 --> 00:15:59,980
+I thought and then we add our authorization, betoken and the token that we just got about from the
+
+232
+00:15:59,980 --> 00:16:06,450
+log in and then when we clicks we retrieve our tool for no content response.
+
+233
+00:16:06,460 --> 00:16:14,410
+So if I go to the database just to verify once again our Azor database, we can verify that we no longer
+
+234
+00:16:14,410 --> 00:16:16,720
+have a photo with the ID three.
+
+235
+00:16:17,170 --> 00:16:24,310
+So we know that we can register user to our No publicly deployed API.
+
+236
+00:16:24,310 --> 00:16:30,760
+So if I made this link any more, any easier to remember than you could actually browse through it.
+
+237
+00:16:30,760 --> 00:16:35,110
+Granted, by the time you're doing this, listen, this probably no longer exists.
+
+238
+00:16:35,350 --> 00:16:40,150
+But the point is that this is all you can publish your API to the world.
+
+239
+00:16:40,420 --> 00:16:47,410
+And using slogger, you made it easy for anybody to be able to come by and say, oh, that is how this
+
+240
+00:16:47,410 --> 00:16:49,840
+endpoint works and these are all of those.
+
+241
+00:16:50,050 --> 00:16:55,030
+And you see that we retained our country V two for, you know, and we're talking about versioning,
+
+242
+00:16:55,030 --> 00:16:56,020
+our APIs.
+
+243
+00:16:56,320 --> 00:16:58,930
+We retain the weather forecast default API.
+
+244
+00:16:58,930 --> 00:17:02,410
+But of course, no, we can clean up all of those things.
+
+245
+00:17:02,620 --> 00:17:08,170
+And some cleanup's that I would suggest would be like with country and hotel, really and truly, I
+
+246
+00:17:08,170 --> 00:17:12,070
+should have called it the endpoints, countries and hotels.
+
+247
+00:17:12,340 --> 00:17:17,530
+So the controllers really should have been countries controller and hotels controller.
+
+248
+00:17:17,530 --> 00:17:19,410
+But that's semantics.
+
+249
+00:17:20,110 --> 00:17:21,940
+That's just a matter of presentation.
+
+250
+00:17:21,940 --> 00:17:22,630
+At this point.
+
+251
+00:17:22,640 --> 00:17:27,250
+We can confirm that our functionality is up and running.

@@ -1,0 +1,723 @@
+1
+00:00:00,630 --> 00:00:01,500
+Hey, guys, welcome back.
+
+2
+00:00:01,530 --> 00:00:09,420
+So our first line of security will be for authentication and to implement the authentication features
+
+3
+00:00:09,420 --> 00:00:10,500
+in our API.
+
+4
+00:00:10,680 --> 00:00:15,360
+We're going to be taking advantage of the built in libraries of the corp.
+
+5
+00:00:16,410 --> 00:00:21,510
+So we're going to be making a few modifications to our database context, our startup and other little
+
+6
+00:00:21,510 --> 00:00:22,690
+things here and there.
+
+7
+00:00:22,710 --> 00:00:28,800
+So let's start off with our database context where we have to change it from being DB context to know
+
+8
+00:00:28,800 --> 00:00:32,290
+being identity DB context.
+
+9
+00:00:32,970 --> 00:00:38,620
+So this is just another class that allows us to take advantage of that identity services.
+
+10
+00:00:38,970 --> 00:00:45,330
+And when I do control what you see here, that you have the option to install a package dot net identity
+
+11
+00:00:46,440 --> 00:00:51,750
+if or entity framework or so, you just go ahead and find and install the latest version.
+
+12
+00:00:52,680 --> 00:00:59,490
+And then once that is done, we need to make one more modifications or on model creating where I need
+
+13
+00:00:59,490 --> 00:01:03,360
+to see base dot on model creating.
+
+14
+00:01:03,760 --> 00:01:04,030
+All right.
+
+15
+00:01:04,080 --> 00:01:08,990
+So I have to call the same function in the base class, which is our new base class.
+
+16
+00:01:09,240 --> 00:01:15,480
+I will just pass along the same builder object that we're using in the current context.
+
+17
+00:01:16,950 --> 00:01:22,740
+Now, that's step one done, we'll go over to the start file and then start making our modifications
+
+18
+00:01:22,740 --> 00:01:31,470
+here, know what we need to do is configure our identity services to know which class is going to be
+
+19
+00:01:31,470 --> 00:01:35,550
+used to infer the tables that will be generated.
+
+20
+00:01:35,580 --> 00:01:40,150
+So before I move on, let me just backtrack a bit and explain what's going to happen.
+
+21
+00:01:40,560 --> 00:01:45,890
+We're telling our application from the get go that we want to use our identity services.
+
+22
+00:01:45,910 --> 00:01:48,000
+That's what we're able to do know.
+
+23
+00:01:48,000 --> 00:01:55,440
+The identity services will be based on a database connection to a connection to a database that has
+
+24
+00:01:55,440 --> 00:01:59,220
+tables to facilitate identity related things.
+
+25
+00:01:59,220 --> 00:02:04,240
+User storage, Barole storage claims a number of things.
+
+26
+00:02:04,710 --> 00:02:12,360
+So what we need to do now is configure identity services to know which class is going to inform how
+
+27
+00:02:12,360 --> 00:02:19,620
+the user's tables should look and if potentially there is another one for how the rules will look,
+
+28
+00:02:19,620 --> 00:02:20,310
+et cetera.
+
+29
+00:02:20,880 --> 00:02:27,540
+So already built in is a user called our class called identity user.
+
+30
+00:02:28,390 --> 00:02:34,350
+And let me just go ahead and include say it's a legitimate class that's already built in that can be
+
+31
+00:02:34,350 --> 00:02:34,860
+used.
+
+32
+00:02:35,050 --> 00:02:41,220
+But if we look at the details of identity user, you'd see that it has fields for Lacourt and you don't
+
+33
+00:02:41,220 --> 00:02:41,880
+have to come here.
+
+34
+00:02:41,880 --> 00:02:47,790
+But if you want to get to that point, you can just control click and then continue to control click
+
+35
+00:02:47,910 --> 00:02:49,350
+until they get to that part.
+
+36
+00:02:49,440 --> 00:02:49,910
+All right.
+
+37
+00:02:50,580 --> 00:02:57,120
+So we have these default fields that will come up in the database, as you can see, if I use the name
+
+38
+00:02:57,120 --> 00:03:00,890
+email and password or password hash.
+
+39
+00:03:01,230 --> 00:03:07,470
+So those are common fields that any user table needs to have its dealing with the harshing automatically.
+
+40
+00:03:07,790 --> 00:03:10,460
+It's always going to have all of that built in.
+
+41
+00:03:10,710 --> 00:03:11,480
+No problem.
+
+42
+00:03:11,880 --> 00:03:18,090
+However, there may be times when we need a bit more information from our users than just email, password
+
+43
+00:03:18,390 --> 00:03:20,070
+and username potentially.
+
+44
+00:03:20,490 --> 00:03:29,170
+So they allow us to extend the identity user class and put in other fields like we made it necessary.
+
+45
+00:03:29,580 --> 00:03:32,370
+So I've already kind of started that process in data.
+
+46
+00:03:32,370 --> 00:03:34,860
+I created this class API user.
+
+47
+00:03:34,860 --> 00:03:42,630
+You can go ahead, click your photo, go to add, create the new class API user and then an API user.
+
+48
+00:03:42,780 --> 00:03:50,130
+What I have done is inherit from identity user so no one's inheritance happens.
+
+49
+00:03:50,130 --> 00:03:54,300
+We did that with our deals earlier, so we're doing it now with identity.
+
+50
+00:03:54,300 --> 00:04:01,470
+Users are going to automatically inherit all of these files as well as any other field that I see I
+
+51
+00:04:01,470 --> 00:04:01,760
+need.
+
+52
+00:04:01,770 --> 00:04:03,780
+So in this case, I just need first name, last name.
+
+53
+00:04:03,780 --> 00:04:09,570
+You could one date of birth equal to one country of birth, area code, other things, whatever it is
+
+54
+00:04:09,570 --> 00:04:18,240
+you want, you can just extend this class and add them, but you will always have these fields by default.
+
+55
+00:04:19,650 --> 00:04:24,090
+So once you have that class created, you can make two changes.
+
+56
+00:04:24,090 --> 00:04:29,090
+Before we go back to start up, I want to add that class as a context for the need context.
+
+57
+00:04:29,090 --> 00:04:36,060
+So I'm just using my uncle brackets and seeing the context here relative to API use, because by default
+
+58
+00:04:36,060 --> 00:04:38,010
+it's going to use identity user.
+
+59
+00:04:38,220 --> 00:04:43,110
+So if you don't have that requirement or you need more fields, then you don't have to take that extra
+
+60
+00:04:43,110 --> 00:04:43,520
+step.
+
+61
+00:04:43,800 --> 00:04:49,320
+However, it would be good to do that extra step because later on, if you need to extend it, you can
+
+62
+00:04:49,320 --> 00:04:53,540
+do so without much headache or hassle.
+
+63
+00:04:53,880 --> 00:04:54,300
+All right.
+
+64
+00:04:55,350 --> 00:04:59,190
+So that's one more change that we maintain our DB context.
+
+65
+00:04:59,190 --> 00:05:03,240
+No, we need to configure the identity services.
+
+66
+00:05:03,600 --> 00:05:05,700
+So I could do that from here.
+
+67
+00:05:05,700 --> 00:05:11,800
+But I'm going to kind of bring along another journey, you know, where we don't want to some sometimes
+
+68
+00:05:11,800 --> 00:05:17,220
+you don't want to keep on putting in and putting in and, you know, the start of the stacks is swell
+
+69
+00:05:17,460 --> 00:05:21,290
+and then you have to scroll through mountains of code to find one configuration.
+
+70
+00:05:21,660 --> 00:05:27,060
+So what we're going to do is go over to our project, create a new class.
+
+71
+00:05:27,060 --> 00:05:30,930
+If you want to put it in a folder, that's fine, but I'll just leave it at this level.
+
+72
+00:05:30,930 --> 00:05:37,890
+So I'm going to call service extensions and then instead of service extensions, I'm going to have public
+
+73
+00:05:37,890 --> 00:05:44,460
+static void and I want to call this one configure identity.
+
+74
+00:05:44,460 --> 00:05:51,150
+So this class is going to be like, well, it is the service extension is a better configuration.
+
+75
+00:05:51,150 --> 00:05:57,600
+I wouldn't want to burden in this Start-Up File with we can abstract it to this and just call the methods
+
+76
+00:05:57,600 --> 00:05:58,980
+are part of it, but you'll see that.
+
+77
+00:05:59,460 --> 00:06:05,340
+So I'm going to say this as a parameter, this and then I service.
+
+78
+00:06:06,390 --> 00:06:07,380
+Collection.
+
+79
+00:06:09,220 --> 00:06:16,250
+And call it services, all right, including the missing references.
+
+80
+00:06:16,720 --> 00:06:17,580
+There we go.
+
+81
+00:06:17,860 --> 00:06:25,010
+And then this is not going to say that I need to have this as a static class.
+
+82
+00:06:25,620 --> 00:06:26,170
+There we go.
+
+83
+00:06:26,320 --> 00:06:26,830
+All right.
+
+84
+00:06:27,580 --> 00:06:28,090
+So.
+
+85
+00:06:29,570 --> 00:06:34,250
+Inside of this method, I'm going to have a variable, I'm going to call it builder.
+
+86
+00:06:34,280 --> 00:06:41,870
+So basically builders are going to be like amalgamation of us building up the same services that we
+
+87
+00:06:41,870 --> 00:06:43,130
+would have added here.
+
+88
+00:06:43,130 --> 00:06:50,920
+So the same we would have said services, Dot and Addison, that we can obstruct that over to this class
+
+89
+00:06:51,110 --> 00:06:52,990
+and then we just call it on the other side.
+
+90
+00:06:53,000 --> 00:06:55,500
+So you see in in due time.
+
+91
+00:06:55,520 --> 00:07:01,400
+So we're going to be adding our add identity core.
+
+92
+00:07:02,520 --> 00:07:09,330
+And then we're passing in the user class, so once again, we're using the custom user class, API user,
+
+93
+00:07:09,570 --> 00:07:12,810
+so API user, right.
+
+94
+00:07:13,140 --> 00:07:16,020
+And then open and close brace.
+
+95
+00:07:17,000 --> 00:07:20,160
+And I just need to include any missing reference.
+
+96
+00:07:20,180 --> 00:07:27,760
+There we go, and then I'm going to have my LAMDA talk where I can customize certain things about how
+
+97
+00:07:27,770 --> 00:07:29,450
+it handles the user interactions.
+
+98
+00:07:29,460 --> 00:07:32,140
+I can set my password policies right here.
+
+99
+00:07:32,360 --> 00:07:38,930
+I can see that all passwords must require digits or have a minimum length use unique characters.
+
+100
+00:07:38,930 --> 00:07:42,560
+All of those things are right there out of the box.
+
+101
+00:07:42,810 --> 00:07:51,740
+However, I'm more interested in just making sure that my user so user and require unique email is true,
+
+102
+00:07:52,270 --> 00:07:52,690
+right?
+
+103
+00:07:52,700 --> 00:07:56,090
+That's the only one I'm really interested in enforcing right now.
+
+104
+00:07:56,150 --> 00:08:02,430
+However, you can experiment and you can add the others that you feel are necessary.
+
+105
+00:08:03,110 --> 00:08:04,790
+So that is the first line.
+
+106
+00:08:04,790 --> 00:08:10,160
+And then I'm going to say builder is equal to new identity.
+
+107
+00:08:10,160 --> 00:08:17,630
+So more services will come with like a special builder to set on all of that.
+
+108
+00:08:17,640 --> 00:08:20,970
+So I'm just going to say identity builder and include the missing reference.
+
+109
+00:08:21,260 --> 00:08:21,840
+There we go.
+
+110
+00:08:22,430 --> 00:08:24,380
+So new identity builder.
+
+111
+00:08:24,560 --> 00:08:25,760
+Give me the builder.
+
+112
+00:08:25,970 --> 00:08:26,430
+Right.
+
+113
+00:08:26,460 --> 00:08:30,800
+So that's a builder object that we just started, that user type.
+
+114
+00:08:32,280 --> 00:08:39,740
+So whatever type was specified, that's what I was passing in there and then type off because I want
+
+115
+00:08:39,740 --> 00:08:41,000
+to use rules.
+
+116
+00:08:41,450 --> 00:08:48,920
+So the same way that there's a built in identity user, there is a built in identity roll.
+
+117
+00:08:49,490 --> 00:08:54,040
+So roll means are you admin or are you user?
+
+118
+00:08:54,050 --> 00:08:57,200
+Whatever it is, that's what the rule means.
+
+119
+00:08:57,200 --> 00:08:57,490
+Right.
+
+120
+00:08:57,860 --> 00:09:04,520
+And then after specifying that the rules should be there, then I'm putting in the collection services
+
+121
+00:09:05,030 --> 00:09:07,670
+object in the form of services.
+
+122
+00:09:09,050 --> 00:09:18,410
+After all of that, I'm not going to say builder DOT and we need to tell it where it should be storing
+
+123
+00:09:18,410 --> 00:09:23,330
+or which database it needs to interact with for the identity services to happen.
+
+124
+00:09:23,330 --> 00:09:28,700
+So I'm going to see deed to this context.
+
+125
+00:09:28,740 --> 00:09:28,950
+Right.
+
+126
+00:09:29,040 --> 00:09:36,470
+So the DB context that we're using as our database, we're passing the matching object for that and
+
+127
+00:09:36,650 --> 00:09:39,550
+one more line to our default token provider.
+
+128
+00:09:39,560 --> 00:09:45,350
+So I did say we'll be using tokens, but later on with official the token bits, I'm just putting all
+
+129
+00:09:45,350 --> 00:09:46,270
+of that there.
+
+130
+00:09:46,790 --> 00:09:55,370
+So just for context, once again, this builder object is really just seeing I'm building up the everything
+
+131
+00:09:55,370 --> 00:09:57,620
+that needs to be built up to add to the services.
+
+132
+00:09:58,020 --> 00:10:00,790
+That's pretty much what we've been doing all this time.
+
+133
+00:10:00,800 --> 00:10:07,100
+So here we said services DOT and then we had all of these lines and options on going down the same thing
+
+134
+00:10:07,100 --> 00:10:08,570
+with the core policy and so on.
+
+135
+00:10:08,840 --> 00:10:18,150
+So now that we've extracted all of these lines to this method or to this class and this method, I can
+
+136
+00:10:18,150 --> 00:10:28,550
+know in Start-Up C Services DOT and authentication, because that's the first thing I need to add authentication.
+
+137
+00:10:29,340 --> 00:10:29,820
+Right.
+
+138
+00:10:29,960 --> 00:10:34,310
+There's authentication core also, but I'm using at authentication.
+
+139
+00:10:34,310 --> 00:10:41,270
+I haven't had any problems with that one so far, so I just deal with it and then I'll see services
+
+140
+00:10:41,480 --> 00:10:43,610
+configure identity.
+
+141
+00:10:43,940 --> 00:10:44,630
+All right.
+
+142
+00:10:45,320 --> 00:10:46,360
+Nice and simple.
+
+143
+00:10:46,550 --> 00:10:53,510
+So services that configure identity is basically what we just did here.
+
+144
+00:10:53,990 --> 00:10:56,900
+So you can start looking at the it this way any time.
+
+145
+00:10:56,900 --> 00:10:58,790
+We have to add in something to the startup.
+
+146
+00:10:58,970 --> 00:11:04,940
+If it's not a one liner like this, maybe we can start looking to extract these things to that file
+
+147
+00:11:04,940 --> 00:11:09,170
+and have the builders just send over the object whenever it is called.
+
+148
+00:11:09,500 --> 00:11:09,740
+Right.
+
+149
+00:11:09,860 --> 00:11:13,970
+It's not the end of the world, but different people like to see different things.
+
+150
+00:11:14,240 --> 00:11:19,940
+So some people, myself included, don't like to see bloated startup files.
+
+151
+00:11:20,300 --> 00:11:25,880
+And at least when you have that much code, you have to be scrolling through any scroll of configuration
+
+152
+00:11:25,880 --> 00:11:28,400
+five times before you realize it was there.
+
+153
+00:11:28,760 --> 00:11:32,330
+Those little things can get annoying when your application grows.
+
+154
+00:11:32,660 --> 00:11:38,120
+So I'm just showing you the way that you can obstruct too many lines of code from your configuration
+
+155
+00:11:38,120 --> 00:11:42,290
+section and have it in a very confined space.
+
+156
+00:11:42,470 --> 00:11:48,770
+So now that we've done all of that and we've done all of that set up, what we want to do is do our
+
+157
+00:11:48,770 --> 00:11:53,310
+migration nowhere with add the tables for the identity search.
+
+158
+00:11:53,660 --> 00:11:57,550
+So what we'll do is add dash migration.
+
+159
+00:11:57,560 --> 00:12:05,300
+We know this part C added user or added identity, let's just put it that way, added identity.
+
+160
+00:12:06,410 --> 00:12:09,160
+And once we do that, we get our migration file.
+
+161
+00:12:09,560 --> 00:12:13,280
+So now when you look through, you see the different table names.
+
+162
+00:12:13,280 --> 00:12:15,380
+We have the experience rules stable.
+
+163
+00:12:15,890 --> 00:12:16,100
+We.
+
+164
+00:12:16,770 --> 00:12:23,460
+Is net users stable and if you look very closely to see that in addition to all the default fees that
+
+165
+00:12:23,460 --> 00:12:31,800
+we saw earlier, we also have the custom ones that were added to the cross.
+
+166
+00:12:32,190 --> 00:12:32,470
+All right.
+
+167
+00:12:32,490 --> 00:12:33,570
+First name, last name.
+
+168
+00:12:33,570 --> 00:12:39,590
+So it's going to scaffolder still is going to put in our custom fields, right.
+
+169
+00:12:39,840 --> 00:12:42,330
+Just the same way we could have overridden the rules.
+
+170
+00:12:42,330 --> 00:12:48,000
+And if we wanted more information on rules than this, we could have added a custom clause extended
+
+171
+00:12:48,150 --> 00:12:49,200
+and it would have been the same.
+
+172
+00:12:49,740 --> 00:12:53,370
+So let's just go ahead and update our database.
+
+173
+00:12:53,910 --> 00:13:00,690
+And with all of that done, we have finished our configuration for our identity services so you can
+
+174
+00:13:00,690 --> 00:13:02,220
+give yourself a pat on the back.
+
+175
+00:13:02,470 --> 00:13:05,570
+However, most of what we've done is in the background.
+
+176
+00:13:05,580 --> 00:13:10,140
+If you want tangible evidence of something being done, you can always check your database and you'll
+
+177
+00:13:10,140 --> 00:13:13,530
+see the tables that have been generated accordingly.
+
+178
+00:13:14,220 --> 00:13:22,110
+But our next step is to actually set up the endpoints such that the users can possible information and
+
+179
+00:13:22,110 --> 00:13:28,470
+get registered as users of our API and also for them to log in.
+
+180
+00:13:29,040 --> 00:13:37,380
+And then after that, we'll talk about how we continue to verify that this user should have access after
+
+181
+00:13:37,380 --> 00:13:38,550
+they have login.

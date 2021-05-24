@@ -1,0 +1,351 @@
+1
+00:00:00,640 --> 00:00:01,600
+Hey, guys, welcome back.
+
+2
+00:00:01,600 --> 00:00:08,770
+In this lesson, we'll start setting up our environment for a local deployment of our own when we see
+
+3
+00:00:08,770 --> 00:00:12,940
+a local deployment, this could easily be your personal machine.
+
+4
+00:00:12,970 --> 00:00:16,390
+So in my situation, I'll be deploying it on my personal machine.
+
+5
+00:00:16,690 --> 00:00:23,980
+But it could also be on a company machine or a server somewhere that this API needs to serve, you know,
+
+6
+00:00:24,010 --> 00:00:25,330
+across the network.
+
+7
+00:00:25,660 --> 00:00:31,900
+And they could potentially even be to the Internet, whatever the situation, teaching you or showing
+
+8
+00:00:31,900 --> 00:00:39,060
+you critical steps towards prepping this machine so that it can host your API.
+
+9
+00:00:40,060 --> 00:00:45,850
+So our journey starts off here where we have to download the dot net five runtime already of the SDK,
+
+10
+00:00:45,850 --> 00:00:47,680
+which we've been using for development.
+
+11
+00:00:48,040 --> 00:00:53,170
+But we want to make sure we have the wrong time and we can just get that hosting bundle for windows.
+
+12
+00:00:53,540 --> 00:01:01,120
+So when you do that, you launch your installer and then you go ahead and install it, go through security
+
+13
+00:01:01,120 --> 00:01:02,080
+checkpoints.
+
+14
+00:01:04,250 --> 00:01:10,220
+And once that is done, you can close that and then, you know, we're going to move on to something
+
+15
+00:01:10,800 --> 00:01:13,290
+else, our Internet information services.
+
+16
+00:01:13,310 --> 00:01:21,500
+So what we want to do is add so you can just go to your start menu and see add feature and then you
+
+17
+00:01:21,500 --> 00:01:25,230
+want to click turn Windows features on or off.
+
+18
+00:01:25,610 --> 00:01:30,680
+So once that is selected, this little box will pop up and you want to make sure that you select Internet
+
+19
+00:01:30,680 --> 00:01:32,000
+information services.
+
+20
+00:01:32,000 --> 00:01:34,600
+Once you do that, you're going to get that square.
+
+21
+00:01:34,610 --> 00:01:39,740
+That square means that, you know, it's not everything that is ticked, which is fine.
+
+22
+00:01:39,740 --> 00:01:41,570
+You don't need every single feature.
+
+23
+00:01:41,870 --> 00:01:46,550
+But I'm going to show you the ones that I have currently installed and then you can just go through
+
+24
+00:01:46,550 --> 00:01:49,620
+and make sure that those are also on your side.
+
+25
+00:01:50,090 --> 00:01:55,940
+So I have the management console and then I have these libraries for application development feature.
+
+26
+00:01:55,950 --> 00:01:57,860
+So you can make sure that you take these off.
+
+27
+00:01:58,190 --> 00:02:01,940
+Maybe you don't need all of them, but it works for me with these.
+
+28
+00:02:01,940 --> 00:02:04,610
+So I would recommend that you make sure you have those.
+
+29
+00:02:05,060 --> 00:02:09,350
+And then for features, you can go ahead and take those.
+
+30
+00:02:10,270 --> 00:02:17,470
+Health and diagnostics, once that section is actually optional, but I recommend that you get the logging
+
+31
+00:02:17,470 --> 00:02:23,790
+section and then performance features basic authentication and others.
+
+32
+00:02:23,830 --> 00:02:29,360
+So once you have those, you can click, OK, and then it may take a while to install.
+
+33
+00:02:29,380 --> 00:02:33,580
+I already have them, so I don't need to wait for them to install.
+
+34
+00:02:33,580 --> 00:02:37,710
+But once they finish installing, then you can resume this video.
+
+35
+00:02:38,230 --> 00:02:45,720
+So once you're sure that you have is or that process is finished to make sure you have so you can just
+
+36
+00:02:45,730 --> 00:02:50,860
+go to your start menu and type in I guess, and then you'll see it pop up.
+
+37
+00:02:51,280 --> 00:02:58,240
+And then when you launch, you get this console showing you your server and all of the sites that you
+
+38
+00:02:58,240 --> 00:03:00,690
+have currently listed under there.
+
+39
+00:03:00,870 --> 00:03:01,100
+Right.
+
+40
+00:03:01,690 --> 00:03:03,910
+To make sure that it's working.
+
+41
+00:03:03,940 --> 00:03:12,160
+You can actually just click on default website and go to browse and then it will show you this page,
+
+42
+00:03:12,160 --> 00:03:15,000
+which shows you that you're now seeing your server.
+
+43
+00:03:15,820 --> 00:03:21,280
+Now, another essential part of setting up your local environment will be to make sure that your database
+
+44
+00:03:21,280 --> 00:03:23,800
+server is installed and running.
+
+45
+00:03:24,340 --> 00:03:27,940
+So when we talk about the database server, we have a few options.
+
+46
+00:03:27,940 --> 00:03:29,170
+In an enterprise setting.
+
+47
+00:03:29,170 --> 00:03:33,070
+You probably already have it or you should have it.
+
+48
+00:03:33,070 --> 00:03:37,870
+You can check with your system administrator whatever you need to do, but you just go ahead and make
+
+49
+00:03:37,870 --> 00:03:40,450
+sure you have a server on a personal level.
+
+50
+00:03:40,720 --> 00:03:43,720
+If you don't already have it, you have two options.
+
+51
+00:03:43,720 --> 00:03:46,630
+You have either developer or express.
+
+52
+00:03:46,630 --> 00:03:51,700
+So Express is very free, no licensing required at all.
+
+53
+00:03:52,210 --> 00:04:00,400
+And but then it has some limitations on a personal level versus fine developer gives you far more features
+
+54
+00:04:00,400 --> 00:04:02,260
+and it's actually a full poleward.
+
+55
+00:04:02,260 --> 00:04:07,960
+So it's a much bigger download and a much bigger test to have it installed gives the system many more
+
+56
+00:04:07,960 --> 00:04:11,170
+features for this deployment.
+
+57
+00:04:11,170 --> 00:04:16,300
+You probably can get away with Express, but then maybe if you're thinking about longevity, you probably
+
+58
+00:04:16,480 --> 00:04:21,160
+just want to get developers so you have everything you need so you can go ahead and download that.
+
+59
+00:04:21,220 --> 00:04:27,700
+Insolation is pretty straightforward and at the end of it you be prompted to install the management
+
+60
+00:04:27,700 --> 00:04:28,360
+studio.
+
+61
+00:04:28,450 --> 00:04:35,920
+And just in case you missed that step, you can always just Google SSME, which is short for Server
+
+62
+00:04:35,920 --> 00:04:42,310
+Management Studio, and once you go through that, you can always just download a management studio
+
+63
+00:04:42,610 --> 00:04:47,440
+through this medium also, which is also a straightforward installation.
+
+64
+00:04:47,830 --> 00:04:53,710
+So to launch the management studio after it's installed and to connect to your database server, you
+
+65
+00:04:53,710 --> 00:05:00,790
+can go ahead and click the icon and you'll see this splash launching screen and to connect to the server
+
+66
+00:05:00,790 --> 00:05:02,260
+you love to put in the server name.
+
+67
+00:05:02,270 --> 00:05:06,940
+So I have two servers running on, a few servers running on my machine.
+
+68
+00:05:06,940 --> 00:05:14,140
+Right now I have a skua express, so I do have an instance of Escalon Express, but I also have an instance
+
+69
+00:05:14,140 --> 00:05:15,130
+of the developer.
+
+70
+00:05:15,460 --> 00:05:23,710
+So to get to Scale Express you can see a dot backslash Eskil Express that that really means localhost
+
+71
+00:05:23,710 --> 00:05:24,370
+also.
+
+72
+00:05:24,880 --> 00:05:25,270
+Right.
+
+73
+00:05:25,540 --> 00:05:31,300
+And then if you went to a developer, then you just need localhost so you wouldn't need any special
+
+74
+00:05:31,360 --> 00:05:32,110
+anything else.
+
+75
+00:05:32,650 --> 00:05:34,960
+So I'm going to use developer.
+
+76
+00:05:34,960 --> 00:05:42,340
+So if I say localhost and it will connect and I think of a few databases, not too many.
+
+77
+00:05:42,790 --> 00:05:47,980
+So we can proceed now before we move to the next step, I just want to encourage you make sure that
+
+78
+00:05:47,980 --> 00:05:54,160
+you have admin access or even if you don't have administrative access, if you're in an enterprise setting
+
+79
+00:05:54,160 --> 00:06:00,580
+where you're not in a position to be the administrator, that you at least have enough access are you
+
+80
+00:06:00,580 --> 00:06:04,950
+are working with somebody who has the access to carry out some of the actions here.
+
+81
+00:06:04,960 --> 00:06:11,500
+So a lot of the problems that people encounter when doing these kind of deployments outside of probably
+
+82
+00:06:11,500 --> 00:06:17,680
+missing out the library and not installing something, the next biggest issue is usually permissions
+
+83
+00:06:17,710 --> 00:06:19,800
+and other authorizations.
+
+84
+00:06:19,810 --> 00:06:20,090
+Right.
+
+85
+00:06:20,440 --> 00:06:22,980
+So just make sure that you're working with somebody.
+
+86
+00:06:22,990 --> 00:06:29,890
+If if that is the case, who has enough permissions to go around any potential roadblocks.
+
+87
+00:06:30,190 --> 00:06:36,400
+And if you're on your personal machine just or a machine that is yours to manage, just make sure that
+
+88
+00:06:36,400 --> 00:06:38,740
+you have administrative rights.

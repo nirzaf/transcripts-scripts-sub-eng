@@ -1,0 +1,375 @@
+1
+00:00:00,630 --> 00:00:08,160
+Welcome back, guys, in this lesson, we'll be exploring how we delete data through our API, so I've
+
+2
+00:00:08,160 --> 00:00:14,790
+already actually created this action, if you want to, can pause and activate it.
+
+3
+00:00:15,300 --> 00:00:20,480
+So I'm giving you a sneak preview as to what it needs to look like, at least initially.
+
+4
+00:00:20,490 --> 00:00:22,490
+The verb is http delete.
+
+5
+00:00:22,890 --> 00:00:28,350
+We need to let you know that it should expect some parameter in the form of ideas.
+
+6
+00:00:28,350 --> 00:00:30,490
+An integer, we authorize it.
+
+7
+00:00:30,930 --> 00:00:37,670
+This is another one that you probably want to enforce a rule for administrator because we're deleting.
+
+8
+00:00:39,300 --> 00:00:41,880
+Otherwise you can just leave it as authorized.
+
+9
+00:00:42,210 --> 00:00:48,390
+And we know that the response codes here would be four hundred to four and five hundred.
+
+10
+00:00:48,390 --> 00:00:52,230
+So you can pause and attempt it and then we can compare notes.
+
+11
+00:00:53,760 --> 00:01:03,300
+So what I have in this delete hotel action is a validation to make sure that the ID value makes sense.
+
+12
+00:01:03,330 --> 00:01:04,380
+That's number one.
+
+13
+00:01:05,070 --> 00:01:09,780
+So we do that and then we rejected as a buddy request.
+
+14
+00:01:09,780 --> 00:01:13,090
+If it doesn't make sense, then I go on to try.
+
+15
+00:01:13,140 --> 00:01:20,570
+We know that our catch is already logging and returning US status codes are five hundred.
+
+16
+00:01:21,060 --> 00:01:28,650
+But then when it tries operation, what it does is it retrieves the hotel with the ID that was passed
+
+17
+00:01:28,650 --> 00:01:31,290
+and we check if that hotel exists.
+
+18
+00:01:31,290 --> 00:01:35,040
+Otherwise we once again see buddy request and log.
+
+19
+00:01:36,050 --> 00:01:44,050
+The error, otherwise, we go on to delete the photo and see more changes, then return or contents,
+
+20
+00:01:44,080 --> 00:01:48,370
+you see there wasn't really much to deleting the hotel.
+
+21
+00:01:48,920 --> 00:01:51,950
+So the same holds true for the country.
+
+22
+00:01:51,960 --> 00:01:54,250
+It's pretty much the same method.
+
+23
+00:01:54,260 --> 00:01:56,960
+We have the delete country with the same statuses.
+
+24
+00:01:57,290 --> 00:02:03,380
+If you want to extend the same permissions accordingly and we go through, we get the ID, we verify
+
+25
+00:02:03,380 --> 00:02:11,900
+that the volume makes sense and then we try the operation, getting the country validating that it is
+
+26
+00:02:12,200 --> 00:02:17,390
+not fake number and then going ahead and deleting it.
+
+27
+00:02:17,390 --> 00:02:21,590
+If it gets this far, we return and the content of two or four.
+
+28
+00:02:22,310 --> 00:02:29,510
+So what we want to do is test deleting a hotel versus testing, deleting a country.
+
+29
+00:02:29,530 --> 00:02:34,040
+And then you're going to see why I'm placing emphasis on those two tests.
+
+30
+00:02:34,700 --> 00:02:39,140
+So with the introduction of the delete endpoint, saga gets a bit more colorful.
+
+31
+00:02:39,440 --> 00:02:42,170
+You see delete being promoted here.
+
+32
+00:02:42,710 --> 00:02:49,670
+And what we're going to do is use postmen and attempt to delete.
+
+33
+00:02:49,670 --> 00:02:51,200
+So you have the endpoint.
+
+34
+00:02:51,800 --> 00:02:55,220
+You know, we need the ID value in the euro.
+
+35
+00:02:55,520 --> 00:02:58,910
+We're going to choose our verb as delete.
+
+36
+00:03:00,050 --> 00:03:05,310
+All right, and what I'm going to do is choose a hotel that I really don't want to hurt.
+
+37
+00:03:05,420 --> 00:03:09,740
+So I think this one this one was just a random test.
+
+38
+00:03:09,800 --> 00:03:15,560
+You see, it's still seeing string string, just like the default values that are in the payload example.
+
+39
+00:03:15,840 --> 00:03:19,840
+So I'm going to delete hotel with the I.D. number five.
+
+40
+00:03:19,850 --> 00:03:27,080
+So in my delete request, I put in the euro, slash five and then send.
+
+41
+00:03:28,390 --> 00:03:29,890
+Of course, I need to authorize.
+
+42
+00:03:29,920 --> 00:03:36,010
+So let me backtrack a bit and try and get a token there would go.
+
+43
+00:03:38,350 --> 00:03:45,460
+All right, here's a token, grab the talk and jump over authorization.
+
+44
+00:03:45,490 --> 00:03:51,240
+We're talking there we go then and we get to know content.
+
+45
+00:03:51,250 --> 00:03:56,790
+So if I look back at the list, I shouldn't see the auto side five.
+
+46
+00:03:57,070 --> 00:03:57,600
+There it is.
+
+47
+00:03:57,610 --> 00:03:59,170
+It goes further than six.
+
+48
+00:03:59,170 --> 00:04:00,440
+So five is gone.
+
+49
+00:04:01,120 --> 00:04:04,570
+No, that is how we would delete a hotel.
+
+50
+00:04:04,690 --> 00:04:13,090
+No, the thing with the country is that the country has hotels, so it's a bit riskier when we delete
+
+51
+00:04:13,090 --> 00:04:17,990
+a country that we're actually going to have to remove the hotels also.
+
+52
+00:04:18,010 --> 00:04:19,750
+So let's see what that looks like.
+
+53
+00:04:19,750 --> 00:04:21,130
+Someone to say country.
+
+54
+00:04:21,730 --> 00:04:30,520
+And looking back, I see that we have two in Cayman and we have that.
+
+55
+00:04:30,520 --> 00:04:32,260
+So we have one in Bahamas.
+
+56
+00:04:32,260 --> 00:04:36,310
+So let's try and delete the country of Bahamas.
+
+57
+00:04:36,330 --> 00:04:41,110
+It only has one or two soldiers bite the bullet and make the sacrifice of that one.
+
+58
+00:04:41,110 --> 00:04:43,430
+And we can always add it back later on.
+
+59
+00:04:43,990 --> 00:04:52,720
+So what I'm going to do is see a country with these three and go over here.
+
+60
+00:04:54,240 --> 00:04:58,890
+Put that there, all right, I need three and then send.
+
+61
+00:05:00,090 --> 00:05:07,050
+And we see we're getting a new content, so if I look at the list of countries that we look at, the
+
+62
+00:05:07,050 --> 00:05:08,880
+list of countries I shouldn't see.
+
+63
+00:05:09,900 --> 00:05:11,160
+Oh, I deleted.
+
+64
+00:05:12,420 --> 00:05:13,690
+Come on, that's fine.
+
+65
+00:05:13,710 --> 00:05:18,990
+So I need Keyman, so, you know, we only have two countries, one and two.
+
+66
+00:05:19,110 --> 00:05:21,530
+I thought I was deleting Bahamas apologies.
+
+67
+00:05:21,930 --> 00:05:27,320
+So that means none of the hotels that have I'd value three should be there.
+
+68
+00:05:27,330 --> 00:05:29,280
+So let me send.
+
+69
+00:05:29,490 --> 00:05:30,440
+And there it is.
+
+70
+00:05:30,450 --> 00:05:38,990
+So we have control with the one country with 80 to control, 31 one, et cetera.
+
+71
+00:05:39,000 --> 00:05:42,990
+So no country with ID three remains.
+
+72
+00:05:42,990 --> 00:05:50,550
+And that's because in our migration when we created the database so you can go to the first migration
+
+73
+00:05:50,560 --> 00:05:58,650
+file, I call the database created, you'll see in the configuration that the constraint on the foreign
+
+74
+00:05:58,650 --> 00:06:02,760
+key was that it said are differential action, not Kaskade.
+
+75
+00:06:03,210 --> 00:06:10,830
+So Cascade means that if you make any change to the parent meaning country, so you have country being
+
+76
+00:06:10,830 --> 00:06:13,170
+the parent and hotels are in a country.
+
+77
+00:06:13,170 --> 00:06:14,880
+So there the children are cards.
+
+78
+00:06:15,420 --> 00:06:20,460
+If you make any change to the country record, it would reflect on the hotels.
+
+79
+00:06:20,460 --> 00:06:25,320
+So in this case, the change we're making is that we're deleting the parent record.
+
+80
+00:06:25,320 --> 00:06:26,760
+So it's in undelete.
+
+81
+00:06:27,150 --> 00:06:33,330
+I want to Kaskade, meaning whatever you do to the parent, replicate that action across the child so
+
+82
+00:06:33,330 --> 00:06:34,620
+this can actually be changed.
+
+83
+00:06:34,620 --> 00:06:40,440
+But then you'd have to make the modification in the context file and then run another migration for
+
+84
+00:06:40,440 --> 00:06:44,430
+it to know that you want no action or to restrict meaning.
+
+85
+00:06:45,120 --> 00:06:46,410
+And I usually do.
+
+86
+00:06:46,410 --> 00:06:51,110
+I restrict because if there are children records, I don't want to delete the parent.
+
+87
+00:06:51,120 --> 00:06:56,730
+So that means once there are hotels associated with this country, you cannot believe the country has
+
+88
+00:06:56,730 --> 00:06:57,710
+what to do.
+
+89
+00:06:58,200 --> 00:07:04,620
+However, write notes on Kaskade and like you see when you delete that parent record, it's going to
+
+90
+00:07:04,620 --> 00:07:06,660
+cascade across all the hotels.
+
+91
+00:07:06,900 --> 00:07:08,430
+So you have to be careful with that.
+
+92
+00:07:08,430 --> 00:07:15,210
+Make sure that if that configuration obtains in your API, it is deliberate.
+
+93
+00:07:15,210 --> 00:07:16,860
+That is how you want it to work.
+
+94
+00:07:17,280 --> 00:07:23,160
+But this is something that can cause massive data loss if it is, if it goes untethered.

@@ -1,0 +1,147 @@
+1
+00:00:01,920 --> 00:00:08,140
+Hey, guys, in this video will be creating or GitHub Balcones, and this is a really simplistic getup,
+
+2
+00:00:08,160 --> 00:00:10,060
+makes it very easy for us to sign up.
+
+3
+00:00:10,320 --> 00:00:12,210
+You just need to go to get tubed up.
+
+4
+00:00:12,210 --> 00:00:21,840
+Come, that's g i t to B dot seal and get tubed up and you will land on this bridge from here.
+
+5
+00:00:21,840 --> 00:00:26,400
+If you already have an account then you can sign in and you can pretty much stop watching the video
+
+6
+00:00:26,400 --> 00:00:26,730
+here.
+
+7
+00:00:26,940 --> 00:00:30,450
+If you don't however, then the Senate form is right here.
+
+8
+00:00:30,450 --> 00:00:34,230
+You can do a little reading just to get an appreciation of what GitHub is for.
+
+9
+00:00:34,230 --> 00:00:41,280
+And it's all about they do have pricing, so they do offer enterprise plans and education plans and
+
+10
+00:00:41,280 --> 00:00:42,930
+different plans for different situations.
+
+11
+00:00:42,930 --> 00:00:50,010
+But for the solar developer or for very small teams, that may not be enterprise level, then they do
+
+12
+00:00:50,610 --> 00:00:52,410
+give you a lot for free.
+
+13
+00:00:52,770 --> 00:01:00,120
+So to sign up, you need only put in a user name and an email address and a password.
+
+14
+00:01:00,270 --> 00:01:05,400
+And once you have provided all those things and provided that your user name is unique and of course,
+
+15
+00:01:05,580 --> 00:01:09,010
+then you sign up for GitHub and you should be in.
+
+16
+00:01:09,060 --> 00:01:11,970
+So I already have an account, so I'm really just going to sign in.
+
+17
+00:01:12,150 --> 00:01:17,700
+You saw my brothers are going crazy trying to provide information, so I'm just going to sign in with
+
+18
+00:01:17,820 --> 00:01:19,260
+my existing account.
+
+19
+00:01:19,530 --> 00:01:21,690
+So that's my what?
+
+20
+00:01:21,700 --> 00:01:25,560
+You can use your username or email address to sign in and the password.
+
+21
+00:01:26,790 --> 00:01:27,900
+And here I am.
+
+22
+00:01:27,900 --> 00:01:29,040
+This is my landing page.
+
+23
+00:01:29,040 --> 00:01:32,640
+So they actually give you like a sense of community.
+
+24
+00:01:32,640 --> 00:01:34,590
+It's almost like a Facebook for developers.
+
+25
+00:01:34,590 --> 00:01:40,710
+To some extent you can follow people and once they're following people, you see their activities on
+
+26
+00:01:40,710 --> 00:01:43,590
+the landing page, you can jump to your repository.
+
+27
+00:01:43,590 --> 00:01:48,090
+So obviously, if you're new to GitHub, then you wouldn't have anything listed to the site here.
+
+28
+00:01:48,090 --> 00:01:53,940
+But I'm not new, so I've been quite busy putting content on GitHub.
+
+29
+00:01:53,940 --> 00:01:55,410
+Almost any little pet project.
+
+30
+00:01:55,410 --> 00:01:56,280
+That's a start.
+
+31
+00:01:56,400 --> 00:01:58,280
+I have a GitHub repository, actually.
+
+32
+00:01:58,290 --> 00:02:00,060
+I need to go through and clean this up.
+
+33
+00:02:00,300 --> 00:02:07,320
+And also I've had students add me to their reports in the past so that we could collaborate.
+
+34
+00:02:07,320 --> 00:02:12,090
+Maybe they were having a problem and I could just verify their code through the repository.
+
+35
+00:02:12,300 --> 00:02:17,160
+All of those things are, you know, possible through this very powerful tool.
+
+36
+00:02:17,430 --> 00:02:22,860
+But once you have created your account and you're signed in and, well, you obviously wouldn't see
+
+37
+00:02:22,860 --> 00:02:28,110
+what I'm seeing once again, but then that would complete the sign of active.

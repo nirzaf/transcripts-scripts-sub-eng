@@ -1,0 +1,1383 @@
+1
+00:00:00,810 --> 00:00:07,320
+All right, so now we'll be constructing our first controller and our first get operation, so I'm going
+
+2
+00:00:07,320 --> 00:00:16,470
+to actually controllers go to and click controller and then we're just going to do an API empty controller.
+
+3
+00:00:16,470 --> 00:00:20,250
+So just choose the EPA to the left and a controller that's empty.
+
+4
+00:00:20,850 --> 00:00:25,190
+And we're going to click at no, just for some clarity.
+
+5
+00:00:26,520 --> 00:00:33,360
+We have gone ahead and obstructed a lot of the data base operations into our units of work so that we're
+
+6
+00:00:33,360 --> 00:00:39,540
+not directly interacting with our data base through our controllers.
+
+7
+00:00:39,540 --> 00:00:39,880
+Right.
+
+8
+00:00:40,410 --> 00:00:47,190
+If we did API controller with actions using entity framework, then it would actually generate a controller
+
+9
+00:00:47,430 --> 00:00:53,010
+which has an active object of the DB context, which is the data base connection.
+
+10
+00:00:53,370 --> 00:00:58,770
+And we would be able to do all of our entity framework work right here.
+
+11
+00:00:59,310 --> 00:01:03,390
+The danger of that, however, is a danger.
+
+12
+00:01:03,390 --> 00:01:09,990
+In the long run, it may become less maintainable as the requirements grow because then you're going
+
+13
+00:01:09,990 --> 00:01:17,080
+to end up repeating a lot of it, which is why I went all the way over to our AI unit of work abstractedly.
+
+14
+00:01:17,160 --> 00:01:24,540
+All of that made it very generic so that we have one code base that we're just making more dynamic calls
+
+15
+00:01:24,540 --> 00:01:24,850
+to.
+
+16
+00:01:25,470 --> 00:01:30,750
+So far, no, I'm just going to deal with the empty one because we really don't need to go ahead and
+
+17
+00:01:30,750 --> 00:01:32,400
+scaffold this one out.
+
+18
+00:01:32,790 --> 00:01:37,850
+But as we build on the application, you will see the practicality of all that we have done.
+
+19
+00:01:38,430 --> 00:01:40,770
+So API controller, that's empty.
+
+20
+00:01:40,830 --> 00:01:41,670
+Go ahead and click.
+
+21
+00:01:41,670 --> 00:01:43,320
+Add and then the name.
+
+22
+00:01:44,470 --> 00:01:50,170
+You generally want, once again, the name to reflect the endpoint, because just like with weather
+
+23
+00:01:50,170 --> 00:01:55,810
+forecast, we know that when we hit you earth slash weather forecast, we expect to deal with weather
+
+24
+00:01:55,810 --> 00:02:01,000
+forecasts or if I expect to be with the hotels, sorry, I'm starting with countries.
+
+25
+00:02:01,000 --> 00:02:02,200
+I keep on seeing autos.
+
+26
+00:02:02,560 --> 00:02:05,980
+So we will have Country Hour.
+
+27
+00:02:06,080 --> 00:02:08,020
+We could see countries controller.
+
+28
+00:02:08,520 --> 00:02:08,860
+Right.
+
+29
+00:02:10,060 --> 00:02:18,850
+I want to say country, our country controller, and then we get our blank controller know a little
+
+30
+00:02:18,850 --> 00:02:22,540
+background behind what you're looking at in this controller, the route.
+
+31
+00:02:22,900 --> 00:02:31,750
+So we have two rooting mechanisms that we can use in API development, at least NBC API development.
+
+32
+00:02:32,170 --> 00:02:36,160
+One is the convention base rooting our team, right.
+
+33
+00:02:36,640 --> 00:02:46,000
+That one is where we actually have to go to the startup and we would configure in use endpoints.
+
+34
+00:02:46,450 --> 00:02:57,430
+We would kind of configure our route so I could and endpoints that map controller controller route.
+
+35
+00:03:00,080 --> 00:03:10,070
+There we go, and then I would kind of define the naming convention so I could see a name Kolon and
+
+36
+00:03:10,070 --> 00:03:16,400
+I'll just say default and then the convention for the routine would be the pattern.
+
+37
+00:03:17,520 --> 00:03:19,220
+What should I look like?
+
+38
+00:03:19,730 --> 00:03:23,420
+And I'm just showing you, this is not the one that we're going to use, but I'm just making sure you
+
+39
+00:03:23,420 --> 00:03:26,120
+understand exactly all the options that's out there.
+
+40
+00:03:26,120 --> 00:03:31,250
+So we'll have comptroller and then the sample will be equals home.
+
+41
+00:03:31,670 --> 00:03:32,270
+Right.
+
+42
+00:03:32,450 --> 00:03:34,490
+Slash action.
+
+43
+00:03:36,370 --> 00:03:38,710
+And, for example, index.
+
+44
+00:03:41,020 --> 00:03:47,560
+And then slash any parameters that would be required are not in the form of the IED.
+
+45
+00:03:48,160 --> 00:03:48,810
+All right.
+
+46
+00:03:49,120 --> 00:03:51,980
+So this should be encouraged versus also.
+
+47
+00:03:52,420 --> 00:04:04,150
+So this would be our way of defining convention based routine schema so that we any time a request comes
+
+48
+00:04:04,150 --> 00:04:09,820
+in, that request needs to specifically state that we're looking for this controller by that name in,
+
+49
+00:04:10,600 --> 00:04:15,670
+for example, weather forecast controller or that's the endpoint we hope to look for.
+
+50
+00:04:16,090 --> 00:04:18,430
+But we want this specific action.
+
+51
+00:04:18,440 --> 00:04:23,440
+So I didn't mention that we don't want to get too specific with our actions.
+
+52
+00:04:24,280 --> 00:04:32,050
+We don't want to say get countries, get country, get country by name, get to country by you know,
+
+53
+00:04:32,410 --> 00:04:34,780
+we just list them or we have 50 actions.
+
+54
+00:04:34,960 --> 00:04:43,620
+And then you the calling client application us to remember the action to be used with each call.
+
+55
+00:04:44,170 --> 00:04:48,550
+So that is what this would kind of force us to do so far.
+
+56
+00:04:48,580 --> 00:04:53,860
+And that's that's probably more useful for a Web application, you know, irregular NVC application.
+
+57
+00:04:53,860 --> 00:05:01,810
+But when it comes to the rest API standards, what they want is for the verb to determine what it is
+
+58
+00:05:01,810 --> 00:05:03,240
+that you are going to be doing.
+
+59
+00:05:03,610 --> 00:05:07,690
+So then we are going to be using what we call attributes routing.
+
+60
+00:05:08,680 --> 00:05:16,750
+Right, which is basically just going to say, look for the controller and some FAA wanted to modify
+
+61
+00:05:16,750 --> 00:05:18,880
+the frequency API slash controller.
+
+62
+00:05:18,880 --> 00:05:24,280
+So whatever you put here is what is going to come after that server name, server, name being localhost
+
+63
+00:05:24,460 --> 00:05:29,200
+Kolan, whatever power to slash whatever route is here.
+
+64
+00:05:29,330 --> 00:05:29,710
+Right.
+
+65
+00:05:30,040 --> 00:05:35,020
+So if you look back at weather forecast or the weather forecast, that's what's there.
+
+66
+00:05:35,050 --> 00:05:39,760
+So it was that slash the controller being weather forecast.
+
+67
+00:05:40,130 --> 00:05:46,130
+If we look at our new one, we see that we have slash API slash controller.
+
+68
+00:05:46,540 --> 00:05:48,730
+So then the links will look slightly different.
+
+69
+00:05:48,740 --> 00:05:52,880
+So when we generate a Saugatuck, you'll see that coming to light.
+
+70
+00:05:52,900 --> 00:05:56,260
+But right now, what we're going to be using is the attribute.
+
+71
+00:05:57,260 --> 00:05:58,310
+Base throating.
+
+72
+00:05:59,030 --> 00:06:06,710
+All right, so it allows us to map directly to our controller and directly to the actions without being
+
+73
+00:06:06,710 --> 00:06:15,890
+too specific about which exact one, but then the verb is going to determine what endpoint should be
+
+74
+00:06:15,890 --> 00:06:17,640
+called based on the request.
+
+75
+00:06:17,660 --> 00:06:24,100
+And so now that we've gotten all of that background, let's actually wire up our first and get.
+
+76
+00:06:24,140 --> 00:06:36,440
+So before we can do anything else, we have to include our private read only a unit of work so that
+
+77
+00:06:36,440 --> 00:06:39,930
+we can take advantage of the database access.
+
+78
+00:06:40,780 --> 00:06:41,190
+Right.
+
+79
+00:06:41,420 --> 00:06:45,690
+And I'm just going to call this one on the score unit of work.
+
+80
+00:06:46,520 --> 00:06:52,430
+So this is my naming convention where I use an underscore and you would see it at other places to use
+
+81
+00:06:52,430 --> 00:06:58,570
+an underscore for private variables and well, you'll see as we go along.
+
+82
+00:06:58,580 --> 00:06:59,780
+So we need that.
+
+83
+00:06:59,780 --> 00:07:04,340
+And I'm just going to put on the logger so I lugger.
+
+84
+00:07:07,840 --> 00:07:17,500
+After that, we need to go and set up our injections, so I'm just going to quickly copy and paste these.
+
+85
+00:07:19,020 --> 00:07:22,380
+So that I don't have to monitor, retyping to do.
+
+86
+00:07:23,650 --> 00:07:29,440
+So once again, dependency injection means that once we have registered and on that note, we need to
+
+87
+00:07:29,440 --> 00:07:34,510
+go to the start up and complete a configuration, but once you have registered something in the start
+
+88
+00:07:34,510 --> 00:07:43,060
+up as a service in the bootstrappers, it becomes available to four in injection in any way in most
+
+89
+00:07:43,060 --> 00:07:43,630
+cases.
+
+90
+00:07:43,630 --> 00:07:43,910
+Right.
+
+91
+00:07:44,380 --> 00:07:52,360
+So far, control, we can just inject an instance of the units of work and we'll just make like a copy
+
+92
+00:07:52,360 --> 00:07:54,050
+of it to Four Loko use.
+
+93
+00:07:54,070 --> 00:07:55,270
+So that's what this is for.
+
+94
+00:07:55,750 --> 00:07:58,690
+And we'll do the same for the longer.
+
+95
+00:08:00,650 --> 00:08:03,390
+All right, so we have our local copies of those.
+
+96
+00:08:03,800 --> 00:08:08,630
+No, the thing that we need to do in the start up is to actually register the units of work.
+
+97
+00:08:08,630 --> 00:08:12,230
+So we created it, but we didn't register it in the bootstrappers.
+
+98
+00:08:12,230 --> 00:08:13,820
+So I went to leave it.
+
+99
+00:08:13,820 --> 00:08:18,240
+And I'm going to show you the error that you would get and then we can resolve it together.
+
+100
+00:08:18,290 --> 00:08:18,650
+All right.
+
+101
+00:08:19,310 --> 00:08:28,640
+So moving on, after doing those preliminary things to configure my constructor, I'm going to define
+
+102
+00:08:28,640 --> 00:08:28,910
+that.
+
+103
+00:08:28,910 --> 00:08:35,420
+I want an HTP and you can see all of the potential verbs being listed there.
+
+104
+00:08:35,780 --> 00:08:39,050
+So HTP get operation.
+
+105
+00:08:39,890 --> 00:08:47,990
+And to complete this operation, I'm going to be using public and I'm just going to go Issing.
+
+106
+00:08:47,990 --> 00:08:50,090
+So public async.
+
+107
+00:08:51,090 --> 00:08:54,630
+Task after action results.
+
+108
+00:08:55,590 --> 00:09:05,120
+All right, so if you if you had generated the controller with the ESP, with the entity framework already
+
+109
+00:09:05,130 --> 00:09:10,180
+added to it, all of them would have been a task of our action result.
+
+110
+00:09:10,230 --> 00:09:12,030
+So you just get it out of the box.
+
+111
+00:09:12,030 --> 00:09:15,940
+So it's good to just start using it from the from the get go.
+
+112
+00:09:15,960 --> 00:09:20,130
+Right now I can name on get country.
+
+113
+00:09:21,060 --> 00:09:21,480
+All right.
+
+114
+00:09:21,490 --> 00:09:22,500
+And that's fine.
+
+115
+00:09:22,500 --> 00:09:27,930
+I mean, well, in this case, I want all countries so get countries because I'm getting multiple.
+
+116
+00:09:27,960 --> 00:09:28,340
+Right.
+
+117
+00:09:28,740 --> 00:09:32,330
+Once again, based on our routine, we don't need to specify that.
+
+118
+00:09:32,340 --> 00:09:33,650
+Well, you'll see that later on.
+
+119
+00:09:34,260 --> 00:09:40,230
+And then our task now is going to do a try catch.
+
+120
+00:09:40,890 --> 00:09:41,140
+Right.
+
+121
+00:09:41,220 --> 00:09:46,140
+So we're going to try an operation and handle any error that we might get.
+
+122
+00:09:46,140 --> 00:09:50,970
+And I'll extend this with the X so that we are actually catching the exception object.
+
+123
+00:09:51,660 --> 00:09:57,060
+And then here I'm going to see var countries is equal to.
+
+124
+00:09:57,950 --> 00:10:06,590
+Our units off work to call the countries and then I can say get all.
+
+125
+00:10:08,780 --> 00:10:10,600
+All right, looking good.
+
+126
+00:10:10,880 --> 00:10:17,210
+Now, remember, with our our method, we could put in an expression here if we wanted to add a filter,
+
+127
+00:10:17,210 --> 00:10:24,280
+you know, get companies where this that that that we could do quite a few things from this method alone.
+
+128
+00:10:24,290 --> 00:10:25,820
+But right now, we just need.
+
+129
+00:10:26,030 --> 00:10:27,940
+All right.
+
+130
+00:10:28,160 --> 00:10:30,220
+And then I'm going to return.
+
+131
+00:10:30,500 --> 00:10:33,520
+So the return types are very important.
+
+132
+00:10:33,890 --> 00:10:34,240
+Right.
+
+133
+00:10:35,000 --> 00:10:40,170
+You want to return key when everything went all right.
+
+134
+00:10:40,190 --> 00:10:41,920
+That's why it's called Occy, right.
+
+135
+00:10:42,140 --> 00:10:43,370
+Or two hundred.
+
+136
+00:10:43,380 --> 00:10:48,110
+So the status number is 200 and we can return to OK with the data.
+
+137
+00:10:49,070 --> 00:10:53,280
+All right, so that looks good so far.
+
+138
+00:10:53,300 --> 00:10:58,830
+We're going to be modifying it a bit in a few, but that's what we're going to try and do.
+
+139
+00:10:59,030 --> 00:11:02,070
+And then if everything goes OK, will return, OK?
+
+140
+00:11:02,300 --> 00:11:08,050
+And it's going to send back to the calling client whatever data came back from this call.
+
+141
+00:11:08,630 --> 00:11:13,970
+Now, in our touch, at this point, our lugger becomes very important.
+
+142
+00:11:13,980 --> 00:11:21,480
+So logger log error and then I can see something like that.
+
+143
+00:11:21,540 --> 00:11:26,960
+A sign something went wrong.
+
+144
+00:11:29,530 --> 00:11:40,720
+And I can see I can put in more details in the eye and someone to use my interpellation, that's a dollar
+
+145
+00:11:40,720 --> 00:11:43,650
+sign there in case you're not familiar with it, thylacine's.
+
+146
+00:11:43,690 --> 00:11:47,590
+True, it allows me to superimpose any variable at this point.
+
+147
+00:11:47,920 --> 00:11:54,460
+So I'm just going to kind of specify the name of the method where whatever went wrong.
+
+148
+00:11:54,460 --> 00:11:54,850
+Right.
+
+149
+00:11:55,630 --> 00:11:57,460
+So name of get countries.
+
+150
+00:11:59,450 --> 00:12:03,920
+All right, and then I'm going to.
+
+151
+00:12:05,800 --> 00:12:10,010
+Passing the exhibition object.
+
+152
+00:12:10,360 --> 00:12:11,810
+Actually, I have that backwards.
+
+153
+00:12:11,830 --> 00:12:15,060
+The exception should come first in apology.
+
+154
+00:12:15,090 --> 00:12:20,290
+So it's exhibition come then something went wrong or exhibition, then our message.
+
+155
+00:12:20,620 --> 00:12:26,170
+So Syria, along with actually just fleshlight, our print of the entire structure is so you can see
+
+156
+00:12:26,170 --> 00:12:31,060
+all the details of the arrow from the exhibition that has been through.
+
+157
+00:12:31,070 --> 00:12:37,990
+You know, if there's an error, I don't want to just throw what I want to do is alert the client that
+
+158
+00:12:37,990 --> 00:12:38,830
+something went wrong.
+
+159
+00:12:39,010 --> 00:12:41,320
+So, yes, the logger sees it.
+
+160
+00:12:41,320 --> 00:12:43,780
+That's for our internal purpose.
+
+161
+00:12:44,080 --> 00:12:50,800
+But then I want to return something to the user to see, you know, this is what happened.
+
+162
+00:12:50,800 --> 00:12:59,070
+So Stuto scored five hundred is the universal code to see there was a server issue issue.
+
+163
+00:12:59,230 --> 00:12:59,670
+All right.
+
+164
+00:12:59,680 --> 00:13:04,600
+So this is telling the user that this something went wrong on our part.
+
+165
+00:13:04,600 --> 00:13:05,200
+It's not you.
+
+166
+00:13:05,200 --> 00:13:05,760
+It's me.
+
+167
+00:13:05,950 --> 00:13:13,660
+All right, so then the status code five hundred means internal server error.
+
+168
+00:13:14,170 --> 00:13:17,650
+And as I say, please try again later.
+
+169
+00:13:18,570 --> 00:13:18,880
+All right.
+
+170
+00:13:18,890 --> 00:13:26,770
+So that's what our client or the client consuming the API will see when there's an error.
+
+171
+00:13:26,770 --> 00:13:28,890
+Otherwise they should get the list of countries.
+
+172
+00:13:29,260 --> 00:13:31,250
+So let us test this out.
+
+173
+00:13:32,590 --> 00:13:33,010
+All right.
+
+174
+00:13:33,020 --> 00:13:38,840
+So the first thing you'll notice is that, no, our new endpoint has been added to the saga.
+
+175
+00:13:39,280 --> 00:13:42,960
+The second thing you'll notice is the difference between how the links look.
+
+176
+00:13:42,990 --> 00:13:51,460
+So weather forecast versus API country, once again, that has to do with the route that we have defined
+
+177
+00:13:51,460 --> 00:13:57,150
+up here with its API slash controller, or it is just the controller name.
+
+178
+00:13:57,880 --> 00:13:58,060
+Right.
+
+179
+00:13:58,150 --> 00:13:59,760
+So it's it's dynamic.
+
+180
+00:13:59,770 --> 00:14:05,900
+So at any point we can go and remove the API if it's too much of a bother, but we'll leave it for a..
+
+181
+00:14:06,640 --> 00:14:07,490
+So let us see it.
+
+182
+00:14:07,510 --> 00:14:09,970
+Try it out and then execute.
+
+183
+00:14:10,390 --> 00:14:12,740
+And what do we get.
+
+184
+00:14:12,790 --> 00:14:14,790
+So first, that's the request, Yoro.
+
+185
+00:14:14,800 --> 00:14:15,580
+So the server.
+
+186
+00:14:16,990 --> 00:14:24,070
+All right, slash API slash country, and we're getting this error.
+
+187
+00:14:24,400 --> 00:14:33,820
+All right, so it's actually spitting ode to our sluggard, the entire response to see unable to resolve
+
+188
+00:14:33,820 --> 00:14:43,280
+service that that activating this, that, and you see that it's getting a five hundred error rate.
+
+189
+00:14:43,360 --> 00:14:48,320
+So we totally return a five hundred whenever something bad happens.
+
+190
+00:14:49,000 --> 00:14:55,220
+Another thing to notice, though, is that I'm not specifying the name of the function being called.
+
+191
+00:14:55,300 --> 00:15:02,020
+So before we fix that error, notice I'm not seeing API slash controller slash get countries.
+
+192
+00:15:02,380 --> 00:15:07,030
+It is only calling slash API slash country.
+
+193
+00:15:07,030 --> 00:15:13,680
+You, the user doesn't know the name of the method being called and being, you know, sending the response.
+
+194
+00:15:13,960 --> 00:15:19,810
+So that's another thing that when we talk about the routine convention, because we specify that it's
+
+195
+00:15:19,810 --> 00:15:23,680
+I get it automatically formed to be, I get commands.
+
+196
+00:15:23,680 --> 00:15:28,420
+So we're going to fix the error and then I'm going to test it again using postmen, which should provide
+
+197
+00:15:28,420 --> 00:15:32,870
+a little more context as to what we mean by git versus post, et cetera, et cetera.
+
+198
+00:15:33,340 --> 00:15:41,890
+So to fix this error, we need to register our service, like I said before, in our startup, not see
+
+199
+00:15:41,890 --> 00:15:42,230
+us.
+
+200
+00:15:42,700 --> 00:15:50,560
+So in the startup, we need to see something like services dot and add transient.
+
+201
+00:15:53,380 --> 00:16:02,420
+Our units of work, units of work, so you would see the different scope options are transient at scoped
+
+202
+00:16:02,740 --> 00:16:05,920
+and at Singleton?
+
+203
+00:16:06,040 --> 00:16:07,930
+Yes, sometimes I forget, right.
+
+204
+00:16:07,990 --> 00:16:12,500
+So add the things we've done a ton before.
+
+205
+00:16:12,520 --> 00:16:13,240
+No, we haven't.
+
+206
+00:16:13,480 --> 00:16:13,870
+All right.
+
+207
+00:16:13,870 --> 00:16:20,170
+So I translated means that every time it is needed, a new instance would be created at school.
+
+208
+00:16:20,200 --> 00:16:27,910
+It means that a new instance is created for a period or for the lifetime of a certain set of requests.
+
+209
+00:16:28,180 --> 00:16:34,840
+And Ad Singleton means that only one instance will exist for the entire duration of the application.
+
+210
+00:16:34,850 --> 00:16:38,890
+So based on your needs, you might end up doing different ones.
+
+211
+00:16:38,900 --> 00:16:40,570
+So add transient.
+
+212
+00:16:40,570 --> 00:16:45,070
+Here means that whenever somebody hits my control, I'm going to always create art.
+
+213
+00:16:45,280 --> 00:16:49,440
+This is always going to provide a fresh copy of the IOU and the tough words.
+
+214
+00:16:49,450 --> 00:16:52,390
+Let me just go ahead and include the missing references.
+
+215
+00:16:55,350 --> 00:17:01,460
+And then let's try that request again, so this time I'm going to use postmen to handle this request,
+
+216
+00:17:01,470 --> 00:17:11,370
+so I'm still going to try it out only to show that, OK, so we're getting an error for the logger and.
+
+217
+00:17:11,370 --> 00:17:12,390
+OK, let's fix that.
+
+218
+00:17:12,420 --> 00:17:14,580
+So these are it's good to see these areas.
+
+219
+00:17:15,000 --> 00:17:21,060
+You can tell why we can't we can try and show those chutes, why we're getting those.
+
+220
+00:17:21,070 --> 00:17:27,570
+So I think the issue with the logger is that it has to be injected with the context of the class it's
+
+221
+00:17:27,570 --> 00:17:28,580
+being injected into.
+
+222
+00:17:28,590 --> 00:17:31,920
+So in this case, it will be the troller.
+
+223
+00:17:32,250 --> 00:17:41,550
+So I just swap this also I lugger within the context of just genes where we see whether to control controller.
+
+224
+00:17:42,570 --> 00:17:45,450
+All right, and then let's try that once again.
+
+225
+00:17:46,530 --> 00:17:49,260
+All right, so we're going to try it with Postman this time.
+
+226
+00:17:49,270 --> 00:17:58,050
+So I'm just going to enter the request URL, which once again is just the is the localhost call on the
+
+227
+00:17:58,620 --> 00:18:03,310
+port number that you have and then slash Appia slash country.
+
+228
+00:18:03,660 --> 00:18:10,920
+Now, when we talk about get versus post versus put with Bowsman, we can actually try to change the
+
+229
+00:18:10,920 --> 00:18:11,340
+type.
+
+230
+00:18:11,340 --> 00:18:14,700
+So it's remember that we built it to be a get.
+
+231
+00:18:14,700 --> 00:18:22,380
+That's what it is designed to be, which means that if I attempt to call this same endpoint with a post,
+
+232
+00:18:22,980 --> 00:18:25,890
+it's going to give me I could not get a response.
+
+233
+00:18:26,340 --> 00:18:31,920
+And OK, I'm getting something because of the SSL, so you can just go ahead and disable SSL verification
+
+234
+00:18:31,920 --> 00:18:33,680
+if you're getting that issue.
+
+235
+00:18:33,810 --> 00:18:34,190
+All right.
+
+236
+00:18:34,200 --> 00:18:34,660
+There we go.
+
+237
+00:18:34,680 --> 00:18:43,920
+So method Matalote, method Matalote means that it sent some request and the verb that was requested
+
+238
+00:18:45,450 --> 00:18:46,560
+does not exist.
+
+239
+00:18:47,590 --> 00:18:55,060
+All right, so if I try get and then send again notes, I'm getting five hundred and I'm getting another
+
+240
+00:18:55,060 --> 00:18:55,490
+arrow.
+
+241
+00:18:55,510 --> 00:18:56,040
+All right.
+
+242
+00:18:56,440 --> 00:19:02,350
+Oh, we're getting some good arrows, have this concept of good arrows where it's good to see these
+
+243
+00:19:02,350 --> 00:19:05,290
+arrows and understand how to fix them.
+
+244
+00:19:05,290 --> 00:19:05,560
+Right.
+
+245
+00:19:05,920 --> 00:19:13,060
+So this one is saying that system that takes Jason is giving an exception because a potential cycle
+
+246
+00:19:13,060 --> 00:19:13,840
+is detected.
+
+247
+00:19:13,850 --> 00:19:22,840
+So the background to this is that because of the dependency on hotel, hotel has a dependency on country
+
+248
+00:19:22,840 --> 00:19:26,790
+and country has that dependency back to hotel.
+
+249
+00:19:27,220 --> 00:19:31,870
+So what it is saying is that, well, I'm getting hotel, which is country and country as a hotel.
+
+250
+00:19:31,870 --> 00:19:35,980
+So I'm seeing a lot of data going from side to side.
+
+251
+00:19:35,980 --> 00:19:39,130
+So I'm let's fix this one.
+
+252
+00:19:39,190 --> 00:19:43,570
+I've encountered this one before, so let's just go ahead and fix this.
+
+253
+00:19:43,570 --> 00:19:52,930
+To do that, we need a library managed to get packages and we're going to be getting the new soft Dorjee
+
+254
+00:19:52,940 --> 00:19:56,950
+Sun, but not that one we want.
+
+255
+00:19:56,950 --> 00:20:00,250
+The Microsoft is beyond that.
+
+256
+00:20:00,310 --> 00:20:03,130
+Let me just type in Newton soft.
+
+257
+00:20:04,400 --> 00:20:05,930
+That's not the one we want.
+
+258
+00:20:05,960 --> 00:20:11,620
+We want this one, the one that is optimized for our purpose, right.
+
+259
+00:20:11,650 --> 00:20:14,540
+So I'm just going to go ahead and install that one.
+
+260
+00:20:17,830 --> 00:20:26,470
+All right, and once it has been installed, what we need to do is go to our startup and we're going
+
+261
+00:20:26,470 --> 00:20:34,120
+to honor our controllers, we're going to add new htun soft Jason.
+
+262
+00:20:34,150 --> 00:20:34,960
+There we go.
+
+263
+00:20:35,890 --> 00:20:38,470
+And define some options.
+
+264
+00:20:38,470 --> 00:20:40,960
+So all lammed R.O..
+
+265
+00:20:42,410 --> 00:20:50,940
+I mean, you can call it option if you want any token is fine lambda arrow and then define that all
+
+266
+00:20:50,960 --> 00:21:03,080
+p dot serialize zero, those serializer settings dot reference loop handling is equal to and I'll just
+
+267
+00:21:03,440 --> 00:21:06,880
+break the line so don't get too far off screen.
+
+268
+00:21:07,670 --> 00:21:15,620
+So the serializer settings, the reference loop handling is equal to Newton's soft on the reference
+
+269
+00:21:15,620 --> 00:21:19,360
+loop handling and then that's an item so on to say ignore.
+
+270
+00:21:19,370 --> 00:21:20,530
+So where do you see that.
+
+271
+00:21:20,690 --> 00:21:24,490
+We're basically seeing where you missed the reference loop happening.
+
+272
+00:21:24,870 --> 00:21:30,440
+I don't know, make a big deal out of it, just ignore it, turn a blind eye and let the program run.
+
+273
+00:21:31,070 --> 00:21:31,550
+All right.
+
+274
+00:21:32,150 --> 00:21:38,500
+So another thing and I'm just going through and correcting any little mistakes that I made here.
+
+275
+00:21:38,540 --> 00:21:39,470
+We're calling it.
+
+276
+00:21:39,900 --> 00:21:46,360
+What I didn't do was we to Cardinal, whenever we're calling on asynchronous function or something,
+
+277
+00:21:46,370 --> 00:21:47,120
+that's a task.
+
+278
+00:21:47,120 --> 00:21:48,290
+Make sure we all wait.
+
+279
+00:21:48,830 --> 00:21:49,430
+All right.
+
+280
+00:21:50,030 --> 00:21:51,920
+So let's try this again.
+
+281
+00:21:52,580 --> 00:21:52,880
+All right.
+
+282
+00:21:52,880 --> 00:21:56,660
+So going back to Posman, we're going to try and send one more.
+
+283
+00:21:57,200 --> 00:21:59,540
+And this looks a little bit better.
+
+284
+00:21:59,570 --> 00:22:00,110
+There we go.
+
+285
+00:22:00,110 --> 00:22:02,620
+Status 200, OK.
+
+286
+00:22:02,960 --> 00:22:03,350
+All right.
+
+287
+00:22:03,360 --> 00:22:08,540
+So once again, our status 200 is a universal sign that everything is OK.
+
+288
+00:22:08,780 --> 00:22:13,190
+And instead of us having to see Stuto code, they just give us some method for it.
+
+289
+00:22:13,220 --> 00:22:18,190
+Unfortunately, they don't have a method for the 500, or at least I haven't seen one as yet.
+
+290
+00:22:18,470 --> 00:22:26,000
+So that is why this one looks that way and we can see OK with the data to be returned and it will automatically
+
+291
+00:22:26,000 --> 00:22:28,070
+be serialized into.
+
+292
+00:22:30,200 --> 00:22:30,910
+There we go.
+
+293
+00:22:32,010 --> 00:22:40,430
+All right, so notice that we have each property coming back and hotels that's empty for no right,
+
+294
+00:22:40,440 --> 00:22:43,330
+because we didn't include the hotels, what we can do that later on.
+
+295
+00:22:43,890 --> 00:22:46,260
+So that is how we handle it now.
+
+296
+00:22:46,290 --> 00:22:51,420
+We have one more modification to make, and that is to do the mapping.
+
+297
+00:22:51,430 --> 00:22:55,230
+So remember that we don't want to return the actual domain object.
+
+298
+00:22:55,230 --> 00:22:55,860
+So it is right.
+
+299
+00:22:55,860 --> 00:23:02,010
+No gets all these returning country and country is the database object.
+
+300
+00:23:02,220 --> 00:23:05,120
+What we want to return is the old.
+
+301
+00:23:05,550 --> 00:23:12,690
+So we want to return contra deal and then well later on we'll see how we can extend the deal to be a
+
+302
+00:23:12,690 --> 00:23:18,510
+bit more ah make it make sense as to why I'm going to go through all of this trouble, because clearly
+
+303
+00:23:18,510 --> 00:23:26,460
+the data model, the domain model as a return type worked, but then we still want that segregation.
+
+304
+00:23:27,280 --> 00:23:32,750
+So I'm going to just see country or we're going to map to it.
+
+305
+00:23:32,760 --> 00:23:38,670
+So we need our autom upper in order to do that and to get out of mopper.
+
+306
+00:23:38,670 --> 00:23:44,610
+I have to define a private read only called off type.
+
+307
+00:23:44,610 --> 00:23:49,670
+I'm upir, so I just go ahead and include that and then do the injection.
+
+308
+00:23:50,070 --> 00:23:50,460
+Right.
+
+309
+00:23:50,510 --> 00:23:56,070
+So we after we inject it, then we are going to separate the subnet.
+
+310
+00:23:56,080 --> 00:24:02,940
+So we're going to see var countries is equal to that call and then I'm going to have another variable
+
+311
+00:24:02,940 --> 00:24:11,460
+on that and call it Vasilis is equal to mopper dot map that I'm going to specify the data type.
+
+312
+00:24:11,460 --> 00:24:20,700
+I want to map it too, so I want to map it to a list of type country deal.
+
+313
+00:24:23,670 --> 00:24:26,640
+But which have to include a missing reference.
+
+314
+00:24:27,450 --> 00:24:36,060
+All right, and just close up the brackets and what I'm hoping is countries, which is already coming
+
+315
+00:24:36,060 --> 00:24:38,370
+back as a list.
+
+316
+00:24:38,940 --> 00:24:39,330
+All right.
+
+317
+00:24:39,330 --> 00:24:46,980
+So whatever data type it is that you're you're you're getting back, you have to make sure you map to
+
+318
+00:24:46,980 --> 00:24:49,690
+that appropriate data type and then all of that.
+
+319
+00:24:50,010 --> 00:24:55,230
+So it's just going to take all of the domain objects and convert them into country detail objects and
+
+320
+00:24:55,230 --> 00:24:55,860
+stored there.
+
+321
+00:24:55,890 --> 00:25:02,250
+So if I didn't specify a list, I would get an error because this is a list and I'm trying to.
+
+322
+00:25:02,270 --> 00:25:04,700
+Well, it would it would give an error regardless.
+
+323
+00:25:04,710 --> 00:25:10,380
+It may not be a syntax error, but you can see that the data type is not quite what I'm expecting because
+
+324
+00:25:10,380 --> 00:25:11,220
+I need a list.
+
+325
+00:25:11,220 --> 00:25:11,520
+Right.
+
+326
+00:25:11,540 --> 00:25:15,330
+So just be very explicit inside of this map section.
+
+327
+00:25:15,510 --> 00:25:19,940
+That's your mapping a list of this or you're getting that.
+
+328
+00:25:19,950 --> 00:25:22,530
+I hope to to at of that data type.
+
+329
+00:25:23,230 --> 00:25:29,520
+And then instead of returning the country's will return results, which is of type country deal.
+
+330
+00:25:30,420 --> 00:25:39,150
+So at this point, if it is that we wanted to leave out some details or include more details, we could
+
+331
+00:25:39,150 --> 00:25:46,050
+have defined those additional features in here, doing whatever calculations we wanted to do in here.
+
+332
+00:25:46,320 --> 00:25:51,050
+And then they would never really see what's in what's coming directly from the database.
+
+333
+00:25:51,060 --> 00:25:56,730
+What we would have sanitized it, transformed it, embellished it as much as we want before we return
+
+334
+00:25:56,730 --> 00:25:57,120
+the data.
+
+335
+00:25:57,120 --> 00:26:01,640
+So let's just go ahead and test and make sure that this one works and then we're done with this task.
+
+336
+00:26:03,420 --> 00:26:10,140
+So back to Posman, we're going to see Sind, so it's going to hit the same method and right now let's
+
+337
+00:26:10,140 --> 00:26:10,550
+bring it up.
+
+338
+00:26:10,560 --> 00:26:15,090
+So here's proof that is bringing about something different because remember, hotels was at the bottom
+
+339
+00:26:15,090 --> 00:26:16,170
+of the list initially.
+
+340
+00:26:16,440 --> 00:26:17,700
+No idea.
+
+341
+00:26:17,700 --> 00:26:19,320
+Hotels named in short names.
+
+342
+00:26:19,330 --> 00:26:25,650
+So you know that the data is restructured only because it feels encouraged to are in a different order
+
+343
+00:26:25,860 --> 00:26:27,730
+than they are in the domain object.
+
+344
+00:26:27,750 --> 00:26:32,130
+Either way, we can see that it's still working and this is how it really should be.
+
+345
+00:26:32,670 --> 00:26:39,770
+So when we come back, we're going to look at how we can get a specific country based on maybe the idea.
+
+346
+00:26:39,780 --> 00:26:40,880
+Let's start with the idea.

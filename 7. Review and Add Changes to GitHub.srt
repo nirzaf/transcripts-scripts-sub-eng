@@ -1,0 +1,167 @@
+1
+00:00:00,390 --> 00:00:05,490
+All right, guys, so that's another milestone where we're just going to review the things that we implemented
+
+2
+00:00:05,490 --> 00:00:08,330
+in this section and then get to our changes to GitHub.
+
+3
+00:00:08,760 --> 00:00:12,690
+So going in order of what we did, the first one would be paging.
+
+4
+00:00:12,710 --> 00:00:20,300
+So we implemented paging where we post in some were request parameters into our get countries.
+
+5
+00:00:20,310 --> 00:00:23,880
+And we also went in and said some defaults to see if they don't provide any.
+
+6
+00:00:23,910 --> 00:00:27,180
+Then we're going to provide this much information upfront.
+
+7
+00:00:27,180 --> 00:00:33,870
+Otherwise we give the client the opportunity to say they want this many records.
+
+8
+00:00:33,870 --> 00:00:40,380
+Starting from this point on, they're represented by the number as well as the page.
+
+9
+00:00:40,380 --> 00:00:40,670
+Right.
+
+10
+00:00:41,250 --> 00:00:43,440
+So that's one thing that we implemented.
+
+11
+00:00:43,440 --> 00:00:49,590
+We also implemented global era handling, which allows us to create or write to our code without the
+
+12
+00:00:49,590 --> 00:00:51,780
+need for too many track catches.
+
+13
+00:00:51,780 --> 00:00:57,540
+And it comes a little bit neater than it was before, where every time we're seeing track catch track.
+
+14
+00:00:58,080 --> 00:00:58,360
+All right.
+
+15
+00:00:59,400 --> 00:01:04,170
+Another thing that we did was implement versioning on our API.
+
+16
+00:01:04,170 --> 00:01:13,110
+So we created this Contrave to controller just for experiment purposes where we specify the API version
+
+17
+00:01:13,110 --> 00:01:18,620
+and we explored how we can allow the client to specify which version of the API it is that they want.
+
+18
+00:01:18,960 --> 00:01:27,140
+And I think the last bit of configuration would have them positive as better.
+
+19
+00:01:27,810 --> 00:01:28,410
+All right.
+
+20
+00:01:28,540 --> 00:01:34,440
+So in our extend services we put in still for the exception, handling the global exception, handling
+
+21
+00:01:34,770 --> 00:01:39,360
+to see, you know, and there's an error log and return with that.
+
+22
+00:01:39,360 --> 00:01:42,040
+Five hundred for the versioning.
+
+23
+00:01:42,270 --> 00:01:49,800
+We did say that we want to implement versioning reading from the header being passed in with the request.
+
+24
+00:01:50,100 --> 00:01:53,850
+We specify the default API version to be one point or so.
+
+25
+00:01:53,850 --> 00:01:56,700
+If money is specified, then it's 1.0.
+
+26
+00:01:57,030 --> 00:02:05,580
+We also looked at implementing caching so we can actually just provide data for up to a certain amount
+
+27
+00:02:05,580 --> 00:02:09,090
+of time before we have to pull the database for the next request.
+
+28
+00:02:09,450 --> 00:02:15,300
+And we also put in validation to make sure that once the underlying data changes that need to kind of
+
+29
+00:02:15,300 --> 00:02:17,670
+refresh is on top in the cash layer.
+
+30
+00:02:18,240 --> 00:02:25,890
+And last, but by no means least, we put in throttling to kind of control how often a particular client
+
+31
+00:02:25,890 --> 00:02:32,430
+based on IP address, at least based on the way we've configured it, can hit a particular endpoint.
+
+32
+00:02:32,460 --> 00:02:38,670
+So right now the limit is very small, the period is small, but that's just for our experiment purpose.
+
+33
+00:02:38,670 --> 00:02:44,460
+In our real situation, probably you can look at other providers like Google and so on, and if your
+
+34
+00:02:44,460 --> 00:02:52,320
+infrastructure is robust enough, you can use their their values to inform you as to how you can put
+
+35
+00:02:52,320 --> 00:02:54,260
+in throttling what I leave those examples.
+
+36
+00:02:54,260 --> 00:03:00,480
+What is there for now and what we want to do is check in so we know that we just go over to get changes
+
+37
+00:03:00,810 --> 00:03:04,320
+and then we put in our message and that is my message.
+
+38
+00:03:04,330 --> 00:03:09,270
+So when I do this check in, I'll just go ahead and commit and sync.
+
+39
+00:03:09,270 --> 00:03:14,640
+So everything that I've done here and remember that in the examples of it, I've done it in one place.
+
+40
+00:03:14,640 --> 00:03:16,470
+I'd encourage you to try it in the other place.
+
+41
+00:03:16,470 --> 00:03:19,980
+But then you can always check the source code and double check and compare notes.
+
+42
+00:03:20,610 --> 00:03:24,200
+And once all of that is done, we're ready to move on to our next topic.

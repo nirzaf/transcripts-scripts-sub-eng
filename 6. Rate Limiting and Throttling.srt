@@ -1,0 +1,383 @@
+1
+00:00:00,650 --> 00:00:06,320
+Hey, guys will come back in this business and we'll be talking about limiting rate, limiting or throttling,
+
+2
+00:00:06,320 --> 00:00:14,300
+as it is also called, is a technique by which we impose certain limits on how often somebody can hit
+
+3
+00:00:14,300 --> 00:00:16,660
+our endpoint and actually get better.
+
+4
+00:00:17,030 --> 00:00:22,040
+So, of course, if somebody comes and bombards the endpoint as much as we have caching on all of these
+
+5
+00:00:22,040 --> 00:00:30,910
+things, the fact is that the endpoint is actually prone to a denial of service or delice attack.
+
+6
+00:00:31,370 --> 00:00:37,970
+And what we want to do is kind of put a mechanism in that when we detect too many requests from one
+
+7
+00:00:37,970 --> 00:00:44,660
+source, we can kind of block them and say, hey, here, overdoing it outside of the potential DOS
+
+8
+00:00:44,660 --> 00:00:45,200
+attack.
+
+9
+00:00:45,620 --> 00:00:53,660
+It actually helps us to kind of meter how often any one client accesses data and many very popular APIs
+
+10
+00:00:53,660 --> 00:00:54,710
+or their Google.
+
+11
+00:00:55,010 --> 00:00:57,010
+And I'm just going to say Google.
+
+12
+00:00:57,020 --> 00:01:04,100
+But all of those big players with APIs and their SDK is they all have some form of throttling.
+
+13
+00:01:04,340 --> 00:01:10,610
+If you read the requirements and the terms of use of their APIs that all have something in there to
+
+14
+00:01:10,610 --> 00:01:17,040
+see, you can request maybe one hundred per minute or 100 per hour, stuff like that.
+
+15
+00:01:18,170 --> 00:01:22,790
+So today we're going to be sitting in our API just to get a feel of how it's done.
+
+16
+00:01:23,060 --> 00:01:29,110
+And we'll be using the library, SB Natcore it's limit so we can just go ahead and install that.
+
+17
+00:01:29,540 --> 00:01:35,870
+And once that is installed, the next thing that we want to do is go over to our startup and allow our
+
+18
+00:01:35,870 --> 00:01:43,310
+application to use memory cache because it's going to use memory cache to kind of store and keep track
+
+19
+00:01:43,310 --> 00:01:47,490
+of who requested what and how many times they've requested it in the Timir.
+
+20
+00:01:47,930 --> 00:01:53,990
+So we can say services that add memory cache right there in the configure services function and then
+
+21
+00:01:53,990 --> 00:01:57,140
+we have some modifications to make the service extension.
+
+22
+00:01:57,770 --> 00:01:59,930
+So I have the code here already.
+
+23
+00:01:59,930 --> 00:02:03,500
+And this method is called configurator limiting.
+
+24
+00:02:03,590 --> 00:02:06,560
+And we already know the drillable, the service collection.
+
+25
+00:02:07,100 --> 00:02:14,150
+And what we're doing here is setting up a set of rules so you can just go ahead and copy the code and
+
+26
+00:02:14,150 --> 00:02:16,450
+include any missing references as you go along.
+
+27
+00:02:17,000 --> 00:02:24,040
+So very limited rules equals new list, really limit the rules so you can have multiple rules.
+
+28
+00:02:24,410 --> 00:02:30,650
+So we have to initialize a new rule object which allows us to specify the particular endpoints.
+
+29
+00:02:30,690 --> 00:02:35,140
+In this case, I'm seeing star, meaning every single endpoint is going to adhere to this rule.
+
+30
+00:02:35,510 --> 00:02:40,880
+So based on this structure, I can actually have multiple rules that can see, say, comma and do a
+
+31
+00:02:40,880 --> 00:02:41,720
+new rule.
+
+32
+00:02:43,290 --> 00:02:49,530
+And let me just jump in, because I can do a new rule, specify a particular endpoint and then change
+
+33
+00:02:49,530 --> 00:02:50,100
+the limit.
+
+34
+00:02:50,130 --> 00:02:54,720
+So this one is limited to one call per second, right?
+
+35
+00:02:55,320 --> 00:02:56,370
+That's kind of short.
+
+36
+00:02:56,620 --> 00:03:00,890
+I mean, we can say 10 seconds, one call every 10 seconds.
+
+37
+00:03:01,140 --> 00:03:06,120
+I can see one call every 10 minutes, you know, or one hundred calls.
+
+38
+00:03:06,240 --> 00:03:06,970
+It's up to you.
+
+39
+00:03:06,970 --> 00:03:08,190
+We can configurator.
+
+40
+00:03:08,250 --> 00:03:13,920
+And once again, if you have different rules per endpoint, you can go ahead and add these rules and
+
+41
+00:03:13,920 --> 00:03:17,140
+specify the particular endpoints to which they're applicable.
+
+42
+00:03:17,430 --> 00:03:19,500
+Right now, I'm just going to set a global rule.
+
+43
+00:03:19,770 --> 00:03:25,710
+So I'm just going to say all endpoints and I'm going to set it to something that is very small so that
+
+44
+00:03:25,710 --> 00:03:27,930
+we can see it in text writes.
+
+45
+00:03:27,930 --> 00:03:33,540
+I want to see within five seconds you're only allowed one call on any endpoint.
+
+46
+00:03:34,620 --> 00:03:40,710
+Then we go ahead and we say services that configure how we put in the IP rate limit options and we just
+
+47
+00:03:40,710 --> 00:03:46,650
+say options, not general rules, equal the limited rules that we just defined.
+
+48
+00:03:47,710 --> 00:03:54,630
+Outside of that, we need to add these Singleton services in the form of a limit counter store, and
+
+49
+00:03:54,630 --> 00:03:58,580
+that is going to be associated with memory kashrut limit kolender store.
+
+50
+00:03:58,770 --> 00:04:03,990
+So all of these are just bits of code that are required to support the library that we import.
+
+51
+00:04:04,000 --> 00:04:09,630
+This different library might implement differently, but this is the code required for this particular
+
+52
+00:04:09,630 --> 00:04:09,960
+library.
+
+53
+00:04:09,970 --> 00:04:12,380
+So you can just hit pause, write them off.
+
+54
+00:04:13,110 --> 00:04:16,800
+At this point, Intellisense will be filling them in because you already have the package.
+
+55
+00:04:18,020 --> 00:04:22,220
+Now, after we're done in service extensions, we're just going to head back over to startup and we're
+
+56
+00:04:22,220 --> 00:04:28,100
+going to add these two lines, services that configure it, limiting, which is the method we just configured
+
+57
+00:04:28,310 --> 00:04:32,650
+and the services that add context accessor.
+
+58
+00:04:32,660 --> 00:04:39,290
+So this gives us access to the actual controller and it's InnerWorkings when needed.
+
+59
+00:04:39,620 --> 00:04:45,160
+And then finally, we're going to add the middleware where Antipov routine.
+
+60
+00:04:45,170 --> 00:04:52,250
+So I'm going to put it right underneath the caching we have about use IP rate limit and of course,
+
+61
+00:04:52,250 --> 00:04:54,840
+include any missing references.
+
+62
+00:04:55,610 --> 00:05:02,060
+Now, there have been different response codes used when they're, you know, responding to, say,
+
+63
+00:05:02,060 --> 00:05:09,710
+too many requests in more recent times for twenty nine has been used, which literally means too many
+
+64
+00:05:09,710 --> 00:05:10,370
+requests.
+
+65
+00:05:10,610 --> 00:05:16,640
+But in the past I've witnessed platforms using four twenty, which means and Honsinger.
+
+66
+00:05:16,640 --> 00:05:18,390
+Com and other ones.
+
+67
+00:05:18,400 --> 00:05:21,260
+So let's test this also for country.
+
+68
+00:05:21,260 --> 00:05:29,180
+I'm going to hit send and if we observe the headers, you'll see that we get about three new headers.
+
+69
+00:05:29,330 --> 00:05:35,410
+X-Rite Limit excretes Rhymin limiter meaning and limited reset.
+
+70
+00:05:35,420 --> 00:05:35,730
+Right.
+
+71
+00:05:35,960 --> 00:05:40,130
+So it's showing you that the limit is five seconds.
+
+72
+00:05:40,160 --> 00:05:47,840
+You have no more remaining four to five second window and that the reset is going to be at this timestamp.
+
+73
+00:05:47,840 --> 00:05:54,650
+So if I hit this multiple times or I'm going to use a different endpoint because I think this one is
+
+74
+00:05:54,650 --> 00:05:55,790
+protected by caching.
+
+75
+00:05:55,790 --> 00:06:02,010
+So it might not based on my caching configuration, it's not going to violate the throttle.
+
+76
+00:06:02,510 --> 00:06:02,810
+All right.
+
+77
+00:06:02,810 --> 00:06:09,270
+So I'm going to use the hotel because remember that we set up all of those things on the country endpoint.
+
+78
+00:06:09,280 --> 00:06:12,830
+So let me go to a hotel, which I didn't really modify as much.
+
+79
+00:06:13,220 --> 00:06:19,400
+So I already sent a request and it's showing me the same headers limit, etc., etc. If I send another
+
+80
+00:06:19,400 --> 00:06:21,530
+one, we're done five seconds later.
+
+81
+00:06:21,560 --> 00:06:23,990
+It's okay if I send another one.
+
+82
+00:06:24,560 --> 00:06:26,060
+Too many requests.
+
+83
+00:06:26,150 --> 00:06:26,440
+Right.
+
+84
+00:06:26,470 --> 00:06:32,440
+So it says right after as basically saying send another request after one second.
+
+85
+00:06:32,450 --> 00:06:33,680
+So nothing came back.
+
+86
+00:06:33,680 --> 00:06:39,860
+But the message API calls quote, exceeded maximum admitted one per five seconds.
+
+87
+00:06:39,860 --> 00:06:40,170
+Right.
+
+88
+00:06:40,400 --> 00:06:44,750
+So it's letting me know that I need to try Abuk in this amount of time.
+
+89
+00:06:45,110 --> 00:06:47,150
+And when I do, there we go.
+
+90
+00:06:47,180 --> 00:06:51,770
+If I try again, we try after four seconds, try again.
+
+91
+00:06:52,520 --> 00:06:57,260
+And if I keep on doing that, you see that that value keeps on changing relative to the number of seconds
+
+92
+00:06:57,260 --> 00:06:59,700
+that I have based on the last request.
+
+93
+00:06:59,720 --> 00:07:05,630
+So that is all we can add throttling and it automatically once again gives about that for twenty nine
+
+94
+00:07:05,630 --> 00:07:07,320
+to say too many requests.
+
+95
+00:07:07,880 --> 00:07:08,390
+All right.
+
+96
+00:07:08,660 --> 00:07:14,950
+And so the client knows that, hey, you're bombarding the API, enhance your comm.

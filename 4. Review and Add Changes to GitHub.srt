@@ -1,0 +1,35 @@
+1
+00:00:00,470 --> 00:00:06,770
+Our guys, so we're once again at another milestone, what we're going to do is check in over changes.
+
+2
+00:00:06,770 --> 00:00:16,160
+So we added all the missing endpoints for the post, the puts and the delete requests for both hotels
+
+3
+00:00:16,160 --> 00:00:17,090
+and countries.
+
+4
+00:00:17,360 --> 00:00:23,780
+And the concepts that you've learned along the way can be applied as well as many times as you need
+
+5
+00:00:23,780 --> 00:00:26,220
+them to, as many endpoints as you need to facilitate.
+
+6
+00:00:26,240 --> 00:00:28,040
+You can apply them also.
+
+7
+00:00:28,520 --> 00:00:33,860
+So we just go ahead and go to get changes at our message.
+
+8
+00:00:33,870 --> 00:00:38,090
+And then what I'm going to do is just commit all and sync.
+
+9
+00:00:38,360 --> 00:00:43,430
+And once that is completed, then you can stick around for the next adventure.

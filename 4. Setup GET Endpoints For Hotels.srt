@@ -1,0 +1,227 @@
+1
+00:00:00,860 --> 00:00:04,990
+All right, guys, so I'm issuing a challenge to you, I want you to pause the video.
+
+2
+00:00:05,000 --> 00:00:07,430
+Yes, it just started, but go ahead and pause it.
+
+3
+00:00:08,000 --> 00:00:15,200
+And I want you to go ahead and create a controller for the hotels you can call a total controller and
+
+4
+00:00:15,410 --> 00:00:19,730
+the functionality that we have just gone through with our country controller.
+
+5
+00:00:19,760 --> 00:00:23,720
+I want you to replicate it in the context of the hotels.
+
+6
+00:00:24,020 --> 00:00:25,400
+So I already have it here.
+
+7
+00:00:26,180 --> 00:00:27,620
+But I want you to pause.
+
+8
+00:00:27,620 --> 00:00:29,030
+We're going to go through it together.
+
+9
+00:00:29,030 --> 00:00:34,550
+But I want you to pause activity to yourself and then we compare notes.
+
+10
+00:00:35,820 --> 00:00:41,370
+All right, so I'm back and I'm saying I'm back because I'm assuming that you pause the video, I know
+
+11
+00:00:41,370 --> 00:00:42,130
+you're resuming.
+
+12
+00:00:42,150 --> 00:00:43,640
+I know we can go through it together.
+
+13
+00:00:43,920 --> 00:00:47,960
+So here we have the hotel controller and I went through the same steps there.
+
+14
+00:00:47,960 --> 00:00:55,920
+I clicked, controllers clicked, add data controller, a blank API controller called the total controller.
+
+15
+00:00:56,160 --> 00:01:03,480
+I went ahead and injected basically the same services that were in the control controller and initialize
+
+16
+00:01:03,480 --> 00:01:05,190
+them in the constructor.
+
+17
+00:01:06,360 --> 00:01:10,500
+Know everything pretty much is identical.
+
+18
+00:01:10,500 --> 00:01:15,660
+The only things that really changed were my variable names, because obviously I'm not going to call
+
+19
+00:01:15,660 --> 00:01:18,270
+this one countries if we're getting hotel.
+
+20
+00:01:18,280 --> 00:01:25,680
+So get hotels instead of get countries, get hotels instead of get hotels and similarily, you'd want
+
+21
+00:01:25,680 --> 00:01:27,610
+to get to a hotel by IBE.
+
+22
+00:01:29,160 --> 00:01:35,520
+Another thing that I would want to point out would be the mapping where mapping to hotel detail.
+
+23
+00:01:35,880 --> 00:01:42,470
+And the final thing would be that I've kind of added more attributes.
+
+24
+00:01:42,480 --> 00:01:50,400
+So as you see the attributes kind of Eden, it indicates that at least swagga and I mean, it does dictate
+
+25
+00:01:50,400 --> 00:01:57,530
+the behavior, but sluggard does depend on it's also to know how to formulate that documentation.
+
+26
+00:01:57,870 --> 00:02:02,230
+So right here, I'm letting her know that this method produces 200.
+
+27
+00:02:02,430 --> 00:02:08,820
+It also produces five hundred, because if you recall, when we looked at Strugar and a return to five
+
+28
+00:02:08,820 --> 00:02:13,080
+hundred, you would have seen some things being undocumented underneath that 500 error.
+
+29
+00:02:13,440 --> 00:02:20,730
+And so we want to just make sure that Swiger contextually tells as much information to the developer
+
+30
+00:02:20,730 --> 00:02:22,760
+as possible at any given time.
+
+31
+00:02:23,130 --> 00:02:24,480
+So that I bring up swagga.
+
+32
+00:02:24,690 --> 00:02:30,130
+You're going to see the segregation country different from hotel.
+
+33
+00:02:30,560 --> 00:02:31,130
+All right.
+
+34
+00:02:31,170 --> 00:02:32,430
+I hope you're seeing this.
+
+35
+00:02:32,670 --> 00:02:40,230
+And if we look at hotel or any one of these that the attributes was both attributes were added to,
+
+36
+00:02:40,380 --> 00:02:43,830
+you could see that the five hundred wasn't there initially to see the two.
+
+37
+00:02:44,220 --> 00:02:46,420
+No, 500 wasn't there initially.
+
+38
+00:02:46,830 --> 00:02:47,450
+All right.
+
+39
+00:02:47,760 --> 00:02:53,760
+So that does work out for someone to use postmen to do some testing.
+
+40
+00:02:53,770 --> 00:02:56,520
+So I still have my test from the time.
+
+41
+00:02:56,520 --> 00:02:59,950
+And the thing is, with Postman, you can always just start a new type, right?
+
+42
+00:03:00,300 --> 00:03:10,590
+So instead of using one tub to continuously be changing, I went to have one for the get to know parameter
+
+43
+00:03:11,250 --> 00:03:12,230
+street over here.
+
+44
+00:03:12,690 --> 00:03:14,070
+So this is no parameter.
+
+45
+00:03:14,130 --> 00:03:15,660
+Let's see if that works.
+
+46
+00:03:17,100 --> 00:03:19,560
+All right, so I really didn't test Michael before.
+
+47
+00:03:19,590 --> 00:03:23,540
+No, I wrote it and I didn't test it, and I'm happy to see that it's working.
+
+48
+00:03:23,940 --> 00:03:24,530
+All right.
+
+49
+00:03:24,810 --> 00:03:29,070
+And then the one with the parameter.
+
+50
+00:03:30,110 --> 00:03:38,550
+That also works, and for now, that's all there is to setting up our controllers.
+
+51
+00:03:38,750 --> 00:03:39,100
+All right.
+
+52
+00:03:39,110 --> 00:03:44,660
+So as many controllers as you might have, of course, variations and based on context, certain things
+
+53
+00:03:44,660 --> 00:03:45,350
+may differ.
+
+54
+00:03:45,650 --> 00:03:53,550
+But we have a good template upon which we can build our get operations.
+
+55
+00:03:53,580 --> 00:03:53,960
+All right.
+
+56
+00:03:54,200 --> 00:03:57,440
+So you can go ahead and just start this off.
+
+57
+00:03:57,620 --> 00:04:03,140
+And then when we come back, we'll be pushing our changes to our repositories.

@@ -1,0 +1,19 @@
+1
+00:00:00,500 --> 00:00:01,470
+Welcome back, guys.
+
+2
+00:00:01,520 --> 00:00:05,720
+Well, it's another significant check point, and every time we get a significant check points, we
+
+3
+00:00:05,720 --> 00:00:13,160
+go ahead and check in our code so you can just go ahead and write your check in message and then commit
+
+4
+00:00:13,160 --> 00:00:14,710
+all and sync.
+
+5
+00:00:15,080 --> 00:00:20,740
+And once that is completed, then we will move on to our next exciting activity.

@@ -1,0 +1,603 @@
+1
+00:00:00,330 --> 00:00:05,400
+Hey, guys, in this video we're going to be installing Postman No Postman is an excellent tool for
+
+2
+00:00:05,400 --> 00:00:10,310
+collaboration and API testing and validation on all of those wonderful things.
+
+3
+00:00:10,530 --> 00:00:12,810
+So it's pretty easy to install really.
+
+4
+00:00:12,810 --> 00:00:17,490
+Just go to postman dot com postman, just like the guy who delivers your mail.
+
+5
+00:00:17,730 --> 00:00:18,960
+Postman dot com.
+
+6
+00:00:19,230 --> 00:00:20,430
+You download the app.
+
+7
+00:00:21,970 --> 00:00:28,830
+And of course, you choose your oil, so I have a 64 bit windows and then the oil starts.
+
+8
+00:00:29,620 --> 00:00:34,750
+All right, so once that download is finished, you can go ahead and open the installation file, run
+
+9
+00:00:34,750 --> 00:00:35,620
+the installer.
+
+10
+00:00:40,030 --> 00:00:46,330
+All right, so when it is finished, you will either see a screen prompting you to sign up or sign in
+
+11
+00:00:46,540 --> 00:00:49,990
+or you'll see the screen either way if you see something to sign in.
+
+12
+00:00:50,260 --> 00:00:51,920
+I would encourage you to do so.
+
+13
+00:00:51,920 --> 00:00:53,880
+I actually have it on my machine already.
+
+14
+00:00:54,130 --> 00:01:01,270
+So, you know, the floor may not be exactly like this, but if you do see this page come up, then
+
+15
+00:01:01,270 --> 00:01:01,690
+it's fine.
+
+16
+00:01:01,690 --> 00:01:04,600
+You can just click the X and you can take it off.
+
+17
+00:01:04,960 --> 00:01:07,080
+And I'm not signed in anyway.
+
+18
+00:01:07,090 --> 00:01:13,600
+So if you do see the R sign up screen looking something like this, then you can just go ahead and create
+
+19
+00:01:13,600 --> 00:01:14,330
+an account.
+
+20
+00:01:14,530 --> 00:01:15,310
+Sorry about that.
+
+21
+00:01:15,330 --> 00:01:17,830
+You can create an account quite easily.
+
+22
+00:01:18,010 --> 00:01:21,110
+Username, password, or you just signing with Google.
+
+23
+00:01:21,190 --> 00:01:22,810
+I like to just sign in with Google.
+
+24
+00:01:22,990 --> 00:01:27,910
+And the thing is that course I will keep a history of every test that you have done once you have enough
+
+25
+00:01:27,910 --> 00:01:28,450
+account.
+
+26
+00:01:28,570 --> 00:01:28,920
+All right.
+
+27
+00:01:28,930 --> 00:01:34,840
+So I'm just going to go ahead and sign in with Google and then once you're signed in, then, you know,
+
+28
+00:01:34,840 --> 00:01:36,250
+you can start working.
+
+29
+00:01:36,280 --> 00:01:40,730
+So I'm just going to show you guys a sample of what Posman is capable of.
+
+30
+00:01:41,350 --> 00:01:47,320
+Firstly, I'm going to suggest what's a dark moat because Darmody school and then I'm going to create
+
+31
+00:01:47,320 --> 00:01:48,540
+a new request window.
+
+32
+00:01:48,550 --> 00:01:53,230
+So using this plus sign, just like any browser with the plus signs at the top, you can just see a
+
+33
+00:01:53,230 --> 00:01:56,050
+plus sign and that gives you a new request.
+
+34
+00:01:56,380 --> 00:02:04,540
+No, I already went ahead and searched for some public APIs as we discussed APIs based on our gateway
+
+35
+00:02:04,540 --> 00:02:05,740
+into your database.
+
+36
+00:02:05,750 --> 00:02:13,120
+So people have APIs, various people have APIs and I found this website and Nidetch API dot com and
+
+37
+00:02:13,300 --> 00:02:18,710
+just try and go back to the very first page so you can see what they have to offer.
+
+38
+00:02:19,060 --> 00:02:24,460
+So from the, you know, the landing page, they show you a bunch of public facing API.
+
+39
+00:02:24,460 --> 00:02:29,090
+So you can just go ahead and click one and test it out.
+
+40
+00:02:29,500 --> 00:02:34,780
+So I went over to the Oxford Dictionary, one where I would get a list of languages.
+
+41
+00:02:34,780 --> 00:02:36,720
+So they show you all of the endpoints.
+
+42
+00:02:36,730 --> 00:02:37,060
+Right.
+
+43
+00:02:37,510 --> 00:02:43,450
+So in building all the API, they link to the data, be assured they have a common URL, but then they
+
+44
+00:02:43,450 --> 00:02:46,840
+have different endpoints that will give different bits of information.
+
+45
+00:02:46,860 --> 00:02:47,090
+Right.
+
+46
+00:02:47,590 --> 00:02:53,170
+And then they have different methods, get and post the potential of some other ones.
+
+47
+00:02:53,180 --> 00:02:55,930
+But the fact is that you have to know the request type.
+
+48
+00:02:56,350 --> 00:03:02,800
+You have to know the URL through which you can get that requests satisfied.
+
+49
+00:03:03,050 --> 00:03:05,140
+You have to know if you have to pass in headers.
+
+50
+00:03:05,330 --> 00:03:13,250
+So here I know I need the applications G and ID and then they show me the responses.
+
+51
+00:03:13,270 --> 00:03:15,000
+So two hundred means OK.
+
+52
+00:03:15,340 --> 00:03:19,950
+And then they show me an example in Jason what that response would be.
+
+53
+00:03:20,200 --> 00:03:22,410
+And then for four means not phoned.
+
+54
+00:03:22,570 --> 00:03:27,420
+Five hundred means that there is an internal error usually with the home server.
+
+55
+00:03:27,430 --> 00:03:28,150
+Not with you.
+
+56
+00:03:28,330 --> 00:03:28,690
+Right.
+
+57
+00:03:28,720 --> 00:03:31,840
+So four four means that you're probably searching for something that doesn't exist.
+
+58
+00:03:32,240 --> 00:03:42,250
+Five hundred means that the API provider has an error message from any API and want to free for free
+
+59
+00:03:42,250 --> 00:03:43,470
+forex API.
+
+60
+00:03:44,020 --> 00:03:44,430
+Sorry.
+
+61
+00:03:44,440 --> 00:03:49,990
+So I took a closer look at any API and I realized that all of those APIs require that you would have
+
+62
+00:03:49,990 --> 00:03:55,720
+had enough code to be a registered user, probably paying user off those platforms.
+
+63
+00:03:55,730 --> 00:04:01,180
+You can look through you see Instagram, you see YouTube, Google, most of those are protected API.
+
+64
+00:04:01,180 --> 00:04:03,580
+So they're using some moments of security around it.
+
+65
+00:04:03,820 --> 00:04:07,420
+And we're going to go through all of those techniques in this course.
+
+66
+00:04:07,420 --> 00:04:12,670
+But right now, I just want to talk with Quick-witted and satisfaction of seeing what Posman can do
+
+67
+00:04:12,670 --> 00:04:13,680
+and the relevance of it.
+
+68
+00:04:13,690 --> 00:04:13,940
+Right.
+
+69
+00:04:14,320 --> 00:04:18,490
+So I phoned the free for x API dot com.
+
+70
+00:04:18,490 --> 00:04:18,840
+Right.
+
+71
+00:04:18,880 --> 00:04:24,520
+You can just type that in free for API dot com and then we'll go over to documentation.
+
+72
+00:04:24,520 --> 00:04:31,090
+So that landing page is actually there, a demo of them consuming the data through the API that they're
+
+73
+00:04:31,110 --> 00:04:31,720
+exposing.
+
+74
+00:04:31,720 --> 00:04:32,020
+Right.
+
+75
+00:04:32,020 --> 00:04:38,830
+So they have a database that builds an API and then the they're making a series of API calls to show
+
+76
+00:04:38,830 --> 00:04:43,930
+the treating index between Yuren USD and GBP etc, etc..
+
+77
+00:04:43,930 --> 00:04:50,790
+So if I go to documentation, they will give me the terms of use, tell me how to use it.
+
+78
+00:04:50,800 --> 00:04:56,620
+So documentation is very, very important and vital when it comes to the API is that we'll be using
+
+79
+00:04:56,920 --> 00:05:06,010
+Swagga Swanger UI to our swashbucklers when we get there you'll see, but we'll be focusing on documenting
+
+80
+00:05:06,010 --> 00:05:09,550
+our APIs to a great extent also.
+
+81
+00:05:10,180 --> 00:05:17,500
+So from here they show you that you have the data that's the domain that the API is hosted on.
+
+82
+00:05:17,800 --> 00:05:18,340
+Right.
+
+83
+00:05:18,620 --> 00:05:24,730
+And then as you grow, don't you see the different types of functionality that they explicitly say get
+
+84
+00:05:25,120 --> 00:05:26,440
+great data?
+
+85
+00:05:26,470 --> 00:05:26,860
+Right.
+
+86
+00:05:26,890 --> 00:05:35,410
+And then they say to me, the request it is gets requests and then you have the the the endpoint sorry,
+
+87
+00:05:35,410 --> 00:05:37,030
+the Yooralla and the endpoint.
+
+88
+00:05:37,030 --> 00:05:38,350
+That's what it needs to look like.
+
+89
+00:05:38,560 --> 00:05:39,250
+And this is a.
+
+90
+00:05:39,320 --> 00:05:40,730
+Sample response.
+
+91
+00:05:41,060 --> 00:05:46,760
+All right, and if you look through, you see another one that you can get different, Piers, so right
+
+92
+00:05:46,760 --> 00:05:52,280
+here you're only looking at the euro, the one on the return that the results of that quarter for you.
+
+93
+00:05:53,360 --> 00:05:56,530
+And then in this one, you can get more than one if you want.
+
+94
+00:05:56,540 --> 00:06:01,680
+So you just put in both indexes that you're interested in as the parameter in that endpoint.
+
+95
+00:06:02,180 --> 00:06:02,420
+All right.
+
+96
+00:06:02,510 --> 00:06:05,630
+So that's a query string for the values the queries are on.
+
+97
+00:06:05,750 --> 00:06:09,290
+And then this is the response from the API.
+
+98
+00:06:09,290 --> 00:06:12,170
+Once that queries are on and the data is is phoned.
+
+99
+00:06:12,620 --> 00:06:18,800
+No, the error codes tell a good story because then you if you pass in two piers that don't exist in
+
+100
+00:06:18,800 --> 00:06:24,830
+their system, then they're telling you that it's if you don't pass in any setting, it's required.
+
+101
+00:06:24,830 --> 00:06:30,310
+And if you pass in something that's not there, then you'll see an error code one thousand and two.
+
+102
+00:06:30,320 --> 00:06:34,830
+So you have standard error codes and you have some areas that you yourself can meet.
+
+103
+00:06:35,180 --> 00:06:36,590
+So let's try this someplace.
+
+104
+00:06:36,600 --> 00:06:39,570
+I'm going to try the first one where I'm getting Euro and USD.
+
+105
+00:06:39,600 --> 00:06:46,100
+I'm just going to copy this link, which they said that's how you get to the data on this end point
+
+106
+00:06:46,550 --> 00:06:52,460
+that I'm going to open up postman and then what I'm going to do is paste it inside of this.
+
+107
+00:06:52,490 --> 00:06:54,410
+It says, enter request euro.
+
+108
+00:06:54,410 --> 00:06:55,400
+That's what we just copied.
+
+109
+00:06:55,400 --> 00:06:55,850
+Right.
+
+110
+00:06:55,850 --> 00:06:57,490
+Request on the euro.
+
+111
+00:06:57,770 --> 00:07:05,270
+So I paste the request, your URL and then the verb here immobilising you can get post, you have put
+
+112
+00:07:05,270 --> 00:07:07,490
+Potch deletes, you have a bunch of them.
+
+113
+00:07:07,490 --> 00:07:11,350
+So get is usually used when you're expecting to retrieve data.
+
+114
+00:07:11,360 --> 00:07:11,770
+Right.
+
+115
+00:07:12,080 --> 00:07:18,260
+So it gets and then free for its API, whatever that request was.
+
+116
+00:07:18,420 --> 00:07:24,020
+No one's committed to memory because it's there in the documentation and then I will click send.
+
+117
+00:07:24,500 --> 00:07:27,540
+What Postman does is make a call.
+
+118
+00:07:27,590 --> 00:07:35,300
+Well not really make it actually performs the call to that API endpoint and then retrieve the data in
+
+119
+00:07:35,300 --> 00:07:36,110
+the response.
+
+120
+00:07:36,110 --> 00:07:42,410
+So we see here it may not be as well formatted as how it is in the documentation.
+
+121
+00:07:42,590 --> 00:07:47,270
+Of course they're putting their best foot forward, but is the same bit of information we're getting.
+
+122
+00:07:47,720 --> 00:07:48,410
+Right.
+
+123
+00:07:48,800 --> 00:07:53,240
+And we're getting a timestamp and we're getting a code of two hundred.
+
+124
+00:07:53,510 --> 00:07:56,690
+If you look to the right, you'll see the status.
+
+125
+00:07:56,690 --> 00:07:57,980
+Two hundred or so.
+
+126
+00:07:57,980 --> 00:08:01,810
+Two hundred is the universal response for all.
+
+127
+00:08:01,820 --> 00:08:05,260
+T once you get to the 200 response, you know, everything is OK.
+
+128
+00:08:05,510 --> 00:08:08,510
+So the different numbers have different meanings, of course.
+
+129
+00:08:08,520 --> 00:08:08,790
+Right.
+
+130
+00:08:09,230 --> 00:08:10,840
+The time it took to make the call.
+
+131
+00:08:10,850 --> 00:08:12,240
+So this is a quick API.
+
+132
+00:08:12,240 --> 00:08:17,800
+It took only that's what, half a second and the size of the response.
+
+133
+00:08:17,840 --> 00:08:18,190
+Right.
+
+134
+00:08:18,200 --> 00:08:24,500
+You can always formatted so this you can click pretty or you can see raw or prevue.
+
+135
+00:08:25,470 --> 00:08:29,350
+Or visualize, I'm not sure why pretty.
+
+136
+00:08:30,000 --> 00:08:32,340
+Oh, that's right, I have to change the format.
+
+137
+00:08:32,340 --> 00:08:33,890
+So it's pretty HMO.
+
+138
+00:08:33,930 --> 00:08:35,700
+So this is all good looking HMO.
+
+139
+00:08:35,730 --> 00:08:42,510
+But if I take this, I can say something like SML what it sounds like some said HMO.
+
+140
+00:08:42,630 --> 00:08:44,520
+Let me click Jason, which it is.
+
+141
+00:08:44,700 --> 00:08:45,630
+And there we go.
+
+142
+00:08:45,750 --> 00:08:46,980
+So now it's pretty.
+
+143
+00:08:46,980 --> 00:08:53,100
+Geosung So now it looks a bit more like it is being previewed in their documentation.
+
+144
+00:08:53,640 --> 00:09:00,290
+So Posman is very handy when you just want to test what the response will look like.
+
+145
+00:09:01,050 --> 00:09:04,270
+Jason is the most widely used response type.
+
+146
+00:09:05,040 --> 00:09:06,660
+Well, I'm seeing that loosely.
+
+147
+00:09:06,660 --> 00:09:14,650
+I like to use JSON responses, but the process alternative to that would be XML and well, you know,
+
+148
+00:09:15,450 --> 00:09:22,050
+once the data is being returned, the user expects and you've documented what they can expect, then
+
+149
+00:09:22,050 --> 00:09:27,430
+you you can feel confident that anybody can use their API when needed.
+
+150
+00:09:27,450 --> 00:09:34,380
+So Posman is going to come in handy as we go about developing our API and just want to validate that
+
+151
+00:09:34,590 --> 00:09:37,860
+the response is, look, the way we expect them to.

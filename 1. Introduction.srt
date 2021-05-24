@@ -1,0 +1,183 @@
+1
+00:00:00,120 --> 00:00:06,090
+Hey, guys, I want to take this time out to welcome you to this new course, ultimate SB at five Web
+
+2
+00:00:06,090 --> 00:00:08,440
+API Development Guide No.
+
+3
+00:00:08,550 --> 00:00:13,200
+Its title is a mouthful, but I can assure you the contents sort of lives up to the billing.
+
+4
+00:00:13,560 --> 00:00:18,870
+In this course, you'll learn how to create and maintain maintainable Web API using air speed net five,
+
+5
+00:00:18,870 --> 00:00:24,210
+which is the latest and greatest in the Microsoft Development Stock Entity framework.
+
+6
+00:00:24,420 --> 00:00:30,300
+And we will explore many enterprise level design patterns and considerations when it comes to designing
+
+7
+00:00:30,300 --> 00:00:31,020
+an API.
+
+8
+00:00:31,830 --> 00:00:33,570
+I am your instructor for this course.
+
+9
+00:00:33,600 --> 00:00:38,160
+My name is Trevor Williams, I am a software engineer and part time lectures.
+
+10
+00:00:39,430 --> 00:00:46,630
+Now, let's explore what's an API is the letters app and I are short for application programming interface,
+
+11
+00:00:46,990 --> 00:00:52,390
+pretty much an API is a software interface that acts as an intermediary between two applications.
+
+12
+00:00:52,690 --> 00:01:00,000
+So let's say you can access Facebook like functionalities from an app that is not a Facebook app.
+
+13
+00:01:00,250 --> 00:01:07,180
+So this app has to talk to Facebook and allow you to do Facebook like things, whether that is communicating
+
+14
+00:01:07,180 --> 00:01:08,960
+with Facebook through an API.
+
+15
+00:01:09,190 --> 00:01:14,770
+So in this course, you will learn how to build that kind of interface to allow persons to access an
+
+16
+00:01:14,770 --> 00:01:20,770
+underlying data store that we will be building using functionality that we will be building or using
+
+17
+00:01:20,770 --> 00:01:27,480
+clients that they will need to build, whether it's from mobile or web or any other type of device.
+
+18
+00:01:27,610 --> 00:01:34,360
+So APIs or at least the type of API that we will be building are based on the rest principles.
+
+19
+00:01:34,360 --> 00:01:40,290
+So we will learn, rest and rest assured for representational state transfer.
+
+20
+00:01:40,330 --> 00:01:45,820
+It is a very popular Web API standard and it is across many platforms.
+
+21
+00:01:45,820 --> 00:01:53,500
+So though we will be building the API using the net or the API can be consumed by clients from many
+
+22
+00:01:53,500 --> 00:01:54,600
+other developments.
+
+23
+00:01:54,610 --> 00:01:58,000
+That's in addition to this will be learning how to use that.
+
+24
+00:01:58,000 --> 00:02:05,290
+Natcore five will be looking at how to understand the services and how the whole application still works.
+
+25
+00:02:05,590 --> 00:02:10,360
+And we'll also be looking at using enterprise level pattern.
+
+26
+00:02:10,370 --> 00:02:15,700
+So, you know, best practices that we can put into the code such that when we are ready to expand,
+
+27
+00:02:15,700 --> 00:02:22,180
+whether through our own self discovery or in an enterprise setting, we won't have to pull up too much
+
+28
+00:02:22,180 --> 00:02:24,010
+of our application to do that.
+
+29
+00:02:24,190 --> 00:02:26,720
+But we can just take on components as we go along.
+
+30
+00:02:27,220 --> 00:02:32,590
+So in a nutshell, you're going to learn Espie dominated by an entity framework for we're going to be
+
+31
+00:02:32,590 --> 00:02:39,280
+using code first database development and exploring once again key encoding patterns, looking at API
+
+32
+00:02:39,280 --> 00:02:46,060
+authentication, using JSON Web tokens or JWT for short, how we can protect and harden our endpoints
+
+33
+00:02:46,060 --> 00:02:50,260
+and protect them from unauthorized or unwanted access.
+
+34
+00:02:50,560 --> 00:02:58,210
+We look at understanding the darknet poor service pipeline and how we can extend them and put in our
+
+35
+00:02:58,240 --> 00:02:59,170
+own middleware.
+
+36
+00:02:59,410 --> 00:03:07,090
+We're looking at API testing and logging, so we'll be using Horstmann and Cerillo for our API testing
+
+37
+00:03:07,090 --> 00:03:09,100
+and logging purposes respectfully.
+
+38
+00:03:09,280 --> 00:03:15,220
+And we'll also be looking at how Swiger can play a part in documenting our API and also helping with
+
+39
+00:03:15,220 --> 00:03:17,110
+our testing source control.
+
+40
+00:03:17,110 --> 00:03:22,750
+We will be using GitHub so that we can securely store our code and be able to roll back should we need
+
+41
+00:03:22,750 --> 00:03:23,020
+to.
+
+42
+00:03:23,170 --> 00:03:30,100
+And then we look at after building all of these wonderful things, how exactly we allow our API to be
+
+43
+00:03:30,130 --> 00:03:37,580
+accessed, whether in a company setting or by the world know this course has quite a bitterness.
+
+44
+00:03:37,600 --> 00:03:42,430
+It's about 10 hours long and you will be learning a lot of things.
+
+45
+00:03:42,440 --> 00:03:45,280
+So buckle up, get ready for this journey.
+
+46
+00:03:45,280 --> 00:03:47,400
+And I'm very excited to have you along.

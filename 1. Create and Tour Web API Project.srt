@@ -1,0 +1,419 @@
+1
+00:00:00,730 --> 00:00:01,690
+Hey, guys, welcome back.
+
+2
+00:00:01,720 --> 00:00:05,860
+So the first thing that we need to do, having set up our environment and everything, is to create
+
+3
+00:00:05,860 --> 00:00:06,600
+our projects.
+
+4
+00:00:06,600 --> 00:00:12,310
+So what we're going to do is launch Visual Studio and then we are going to go to create a new project.
+
+5
+00:00:12,970 --> 00:00:13,540
+From here.
+
+6
+00:00:13,550 --> 00:00:19,840
+You can choose the template that you want if you have HSP, not Natcore Web application at the top.
+
+7
+00:00:19,870 --> 00:00:20,920
+Go ahead and select it.
+
+8
+00:00:20,920 --> 00:00:25,440
+If you don't, then you can just type in web in this filter and it will filter down.
+
+9
+00:00:25,750 --> 00:00:32,530
+We're going to be using C sharp, so make sure that C Sharp is selected and you don't have to change
+
+10
+00:00:32,530 --> 00:00:36,990
+much else but to select the desired templates and go ahead and click next.
+
+11
+00:00:37,480 --> 00:00:42,750
+No will be building a hotel listing API.
+
+12
+00:00:43,030 --> 00:00:51,610
+So I'm going to call my project hotel listing right now that we have that we don't have to change much
+
+13
+00:00:51,610 --> 00:00:53,380
+else we can go ahead and create.
+
+14
+00:00:53,380 --> 00:00:57,040
+If you want to select a specific location, you may go ahead and do that.
+
+15
+00:00:57,340 --> 00:01:04,550
+Otherwise, proceed with create next step has a selecting the stock that we intend to use.
+
+16
+00:01:04,900 --> 00:01:10,360
+No, you would have already installed the dot net five SDK and Visual Studio twenty nineteen.
+
+17
+00:01:10,630 --> 00:01:16,810
+So you should have gotten it core 5.0 as a as an option.
+
+18
+00:01:17,230 --> 00:01:20,200
+If you don't have this then you should have three point one.
+
+19
+00:01:20,470 --> 00:01:26,800
+Either way you can just double back, go ahead and install the SDK, review that video if you need to
+
+20
+00:01:26,800 --> 00:01:33,940
+make sure you have everything installed and then you can go ahead and select 5.0 and we will be building
+
+21
+00:01:33,940 --> 00:01:36,490
+and speed on that core Web API.
+
+22
+00:01:36,970 --> 00:01:44,110
+No, to the right, we have the option of adding authentication and configuring some other things.
+
+23
+00:01:44,110 --> 00:01:46,050
+So we'll leave everything as is.
+
+24
+00:01:46,420 --> 00:01:53,770
+We won't be configuring the authentication here because the options that are given to us are not really
+
+25
+00:01:53,770 --> 00:01:54,370
+what we want.
+
+26
+00:01:54,370 --> 00:01:57,850
+So we'll be manually configuring that later on.
+
+27
+00:01:57,850 --> 00:01:59,370
+And that would be a good exercise.
+
+28
+00:01:59,470 --> 00:02:06,130
+At least I hope you understand how identity card gets integrated into your API, but we can leave it
+
+29
+00:02:06,130 --> 00:02:10,400
+as no authentication right now and then we can go ahead and click create.
+
+30
+00:02:11,350 --> 00:02:15,890
+So now that's our project has been created the just 2.0.
+
+31
+00:02:15,910 --> 00:02:21,460
+Before I move much further, the layout of my visual studio may look different from yours because I
+
+32
+00:02:21,460 --> 00:02:25,420
+tend to use the solution explorer on my left hand side.
+
+33
+00:02:25,900 --> 00:02:28,930
+By default, it should be on the right or it would be on the right.
+
+34
+00:02:28,930 --> 00:02:30,670
+So that's probably what yours looks like.
+
+35
+00:02:30,670 --> 00:02:34,210
+Either way, you can always drag it and put it wherever you want.
+
+36
+00:02:34,550 --> 00:02:36,340
+I like to have it to the left.
+
+37
+00:02:36,340 --> 00:02:38,580
+So that's where I'll be using my No.
+
+38
+00:02:38,590 --> 00:02:43,060
+The solution explorer is giving us a list of files and I'm just going through this and this is the first
+
+39
+00:02:43,060 --> 00:02:44,950
+time creating a project.
+
+40
+00:02:45,250 --> 00:02:50,140
+If it's not, then I'll just go over this anyway, because, you know, repetition, Beaton's impression
+
+41
+00:02:50,410 --> 00:02:53,200
+and maybe I'll point out something that you didn't know before.
+
+42
+00:02:53,200 --> 00:02:59,200
+But hey, so the first thing that we want to look at is our properties folder.
+
+43
+00:02:59,200 --> 00:03:01,480
+So let me start over.
+
+44
+00:03:01,480 --> 00:03:07,570
+So we have what we call the solution, which is like a manifest for the list of projects that are in
+
+45
+00:03:07,570 --> 00:03:09,310
+this solution that we're building.
+
+46
+00:03:10,000 --> 00:03:12,700
+The project is hotel listing.
+
+47
+00:03:12,700 --> 00:03:18,760
+I notice when I click it, it's really just an example file with a bunch of configurations and listings
+
+48
+00:03:19,060 --> 00:03:23,890
+and other things needed for the project to know what its identity is.
+
+49
+00:03:23,890 --> 00:03:27,880
+So because it is that net 5.0, you see that's the target framework.
+
+50
+00:03:28,180 --> 00:03:35,020
+If we choose three point one, we would see something different there on the properties or other dependencies.
+
+51
+00:03:35,020 --> 00:03:38,530
+We see analysers, frameworks, packages as we go along.
+
+52
+00:03:38,530 --> 00:03:39,910
+You see this list growing.
+
+53
+00:03:39,910 --> 00:03:42,610
+So don't get too much into what's happening there.
+
+54
+00:03:43,090 --> 00:03:45,430
+We look at properties, we see the line settings.
+
+55
+00:03:45,430 --> 00:03:52,690
+So here it's like just configurations to tell the application how it should behave when we are in the
+
+56
+00:03:52,690 --> 00:03:53,260
+bug mode.
+
+57
+00:03:53,740 --> 00:04:02,080
+So what's very important here, though, is that we did allow it to configure SSL or TPS when we're
+
+58
+00:04:02,080 --> 00:04:02,980
+creating a project.
+
+59
+00:04:03,400 --> 00:04:06,040
+As a result, we have this SSL port.
+
+60
+00:04:06,430 --> 00:04:15,430
+So when we're doing our application, testing and so on will be at HTP s colon slash slash localhost
+
+61
+00:04:15,640 --> 00:04:16,300
+colon.
+
+62
+00:04:16,300 --> 00:04:25,420
+And then because ETPs, we're using the SSA report, otherwise this would be the less secure HTP endpoint.
+
+63
+00:04:25,510 --> 00:04:29,350
+So that's just a little thing that I'm pointing out.
+
+64
+00:04:29,350 --> 00:04:35,710
+Otherwise, the other configurations we'll get into as we go along, we have our controllers folder,
+
+65
+00:04:35,710 --> 00:04:42,400
+which really Hoess, our well controllers and these do exactly what the name suggests.
+
+66
+00:04:42,400 --> 00:04:49,240
+They control the application flow, the logic or everything goes, you know, when we receive our request
+
+67
+00:04:49,240 --> 00:04:57,160
+for information, how we interpret it, and all of those behaviors would get defined inside of our controllers.
+
+68
+00:04:57,490 --> 00:05:00,200
+These are the first line of defense once it hits a.
+
+69
+00:05:00,360 --> 00:05:06,120
+API endpoint, you're actually coming to controller and then it would say, okay, which endpoint was
+
+70
+00:05:06,120 --> 00:05:06,450
+hit?
+
+71
+00:05:06,660 --> 00:05:07,750
+What should I do?
+
+72
+00:05:08,070 --> 00:05:10,890
+And then it will return accordingly.
+
+73
+00:05:11,370 --> 00:05:14,520
+Once again, as we go on, you'll see that come to life.
+
+74
+00:05:16,210 --> 00:05:23,110
+All right, I'm going to skip ahead to our upsetting thought, Jason, which doesn't talk much, we'll
+
+75
+00:05:23,110 --> 00:05:25,080
+be modifying that as we go along, though.
+
+76
+00:05:25,120 --> 00:05:31,720
+But let me go on to the program that Sears, which is the starting point for our application.
+
+77
+00:05:31,720 --> 00:05:35,070
+So here you see it runs its main functions.
+
+78
+00:05:35,080 --> 00:05:41,470
+If you don't know the language or developed in a C sharp console applications, you notice that you
+
+79
+00:05:41,470 --> 00:05:50,710
+always start with mean least C++, C Sharp Java, all of those languages at least have a mean method.
+
+80
+00:05:50,710 --> 00:05:50,960
+Right.
+
+81
+00:05:51,280 --> 00:05:57,190
+So once we're running, our API is going to hit the mean and in many is going to basically do like a
+
+82
+00:05:57,190 --> 00:05:57,930
+building.
+
+83
+00:05:57,940 --> 00:06:05,530
+So what it does is it aggregates all of the middleware on functionality and puts into the application.
+
+84
+00:06:05,830 --> 00:06:13,270
+So it goes this method, which is really defined right below, and it does its initialization based
+
+85
+00:06:13,270 --> 00:06:15,820
+on what is in our Start-Up File.
+
+86
+00:06:16,210 --> 00:06:22,900
+So if I go to startup, here's where you see where all the middle words are added and the configurations
+
+87
+00:06:22,900 --> 00:06:24,920
+are called at the get go.
+
+88
+00:06:25,750 --> 00:06:32,680
+So here we see where you want to use comptrollers to add whatever leverage we need to add so that we
+
+89
+00:06:32,680 --> 00:06:35,730
+can use our comptrollers setup swagger.
+
+90
+00:06:35,920 --> 00:06:43,510
+So traditionally, Swagga would have been you would have to implement that manually since this version
+
+91
+00:06:43,510 --> 00:06:45,910
+of Dunnett API, it comes out of the box.
+
+92
+00:06:45,920 --> 00:06:47,950
+So we don't have to do too much work.
+
+93
+00:06:47,950 --> 00:06:55,400
+But we'll be exploring what Swiger is later on in case you're not quite sure what it is we.
+
+94
+00:06:55,870 --> 00:06:58,510
+So that's configurations for your services.
+
+95
+00:06:58,510 --> 00:07:04,710
+So we have configure, which allows us to set up some other functionality.
+
+96
+00:07:04,720 --> 00:07:08,280
+So without getting too much into them, some of them are self-explanatory.
+
+97
+00:07:08,290 --> 00:07:12,450
+Some of them are for security reasons, and some of them are really nice to haves.
+
+98
+00:07:12,670 --> 00:07:17,950
+And we are going to be adding more and more as we put more features into our API.
+
+99
+00:07:17,950 --> 00:07:19,800
+So don't worry too much about it.
+
+100
+00:07:20,230 --> 00:07:24,890
+And the final file in this solution would just be this model.
+
+101
+00:07:24,910 --> 00:07:33,370
+So this model just basically represents data or a strongly typed unit of data, and we'll be defining
+
+102
+00:07:33,370 --> 00:07:37,750
+lots of models and data transfer objects later on.
+
+103
+00:07:38,170 --> 00:07:40,990
+But for now, we have created our project.
+
+104
+00:07:40,990 --> 00:07:46,330
+We should have a fair understanding of what we're looking at inside of this solution.
+
+105
+00:07:46,630 --> 00:07:54,130
+And when we come back, we will start configuring our first added service in the form of login.

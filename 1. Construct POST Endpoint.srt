@@ -1,0 +1,739 @@
+1
+00:00:00,760 --> 00:00:07,240
+Welcome back, guys, in this lesson, we'll be dealing with the post method or verb that allows us
+
+2
+00:00:07,240 --> 00:00:13,870
+to create resources or new records in our database, though we've worked with Post previously when we're
+
+3
+00:00:13,870 --> 00:00:17,630
+setting up our login functionality in our account controller.
+
+4
+00:00:17,890 --> 00:00:24,220
+We did kind of experiment with the post and we explore the fact that we can actually passing data in
+
+5
+00:00:24,220 --> 00:00:31,930
+the form of the body or an adjacent object that will get these serialized into whatever object we have
+
+6
+00:00:32,200 --> 00:00:37,600
+set up for it and that we know sensitive information needs to go across.
+
+7
+00:00:37,600 --> 00:00:39,640
+You know, you are in a visible manner.
+
+8
+00:00:40,180 --> 00:00:47,290
+So what we're going to be doing is setting up the post functionality for our hotel so that when we are
+
+9
+00:00:47,290 --> 00:00:55,120
+creating a hotel, we we can ask the user to send over all the details for a hotel in the form of a
+
+10
+00:00:55,120 --> 00:00:58,200
+JSON object, and then we pass it on to the database.
+
+11
+00:00:58,750 --> 00:01:06,820
+So I've already prepared the methods that we have over HDTV post and we will be returning Statler's
+
+12
+00:01:06,820 --> 00:01:10,600
+400 status to one as well as status.
+
+13
+00:01:10,600 --> 00:01:11,890
+Five hundred, no notice.
+
+14
+00:01:11,890 --> 00:01:16,570
+This is two one and not two hundred because to no one means created.
+
+15
+00:01:16,570 --> 00:01:23,020
+So we'll be indicating to the calling application or the client that's whatever you requested to be
+
+16
+00:01:23,020 --> 00:01:25,210
+created has been created.
+
+17
+00:01:25,780 --> 00:01:27,770
+So let's us get started.
+
+18
+00:01:27,770 --> 00:01:33,970
+And now the first thing that I would want to do before I go ahead and create anything or bring over
+
+19
+00:01:33,970 --> 00:01:39,300
+any data into my database is to check if the dates of coming over is valid.
+
+20
+00:01:39,700 --> 00:01:44,970
+So what I'm going to do is put in a new statement here to see if not model state is valid.
+
+21
+00:01:44,980 --> 00:01:46,690
+So we did something like that.
+
+22
+00:01:47,170 --> 00:01:52,950
+I believe when we're doing the log in where we said, is the model state valid?
+
+23
+00:01:52,960 --> 00:01:55,930
+Meaning everything that I said is required, is it there?
+
+24
+00:01:56,170 --> 00:01:58,270
+If not, we return the budget request.
+
+25
+00:01:58,540 --> 00:02:02,980
+So we're just going to do the same thing, replicate that step here.
+
+26
+00:02:03,220 --> 00:02:09,010
+But I'm saying if it is not valid, then we're going to log the era and say that there was an invalid
+
+27
+00:02:09,220 --> 00:02:11,650
+postal attempt in that method.
+
+28
+00:02:11,800 --> 00:02:12,180
+Right.
+
+29
+00:02:12,490 --> 00:02:15,310
+And we return the budget request.
+
+30
+00:02:15,670 --> 00:02:18,250
+Otherwise we want to try an operation.
+
+31
+00:02:18,250 --> 00:02:19,540
+So we have our track catch.
+
+32
+00:02:19,960 --> 00:02:24,690
+And, you know, the uniformity of our code is such that we can actually take these.
+
+33
+00:02:24,850 --> 00:02:30,670
+So you start seeing that we're kind of repeating certain things because all these things, what if we
+
+34
+00:02:30,670 --> 00:02:35,380
+wanted to change the message and we would have to change it here, change it in this method, change
+
+35
+00:02:35,380 --> 00:02:35,800
+it here.
+
+36
+00:02:35,800 --> 00:02:39,940
+And then as we expand, we have to have more touch points.
+
+37
+00:02:39,940 --> 00:02:44,650
+So later on with Seattle, we can kind of abstract out all of this repetition.
+
+38
+00:02:44,920 --> 00:02:48,790
+But right now, I just want to make sure that we understand the concepts at hand.
+
+39
+00:02:49,540 --> 00:02:53,280
+So we will just go ahead and modify the error message.
+
+40
+00:02:53,290 --> 00:02:56,290
+I know you can try our operation now.
+
+41
+00:02:56,290 --> 00:02:57,430
+What are we going to try?
+
+42
+00:02:57,730 --> 00:03:02,440
+The first thing that I would want to do is to take this deal.
+
+43
+00:03:02,440 --> 00:03:10,990
+And if we just review this detail, ETAs name, address rating and it's expects that country ID and
+
+44
+00:03:10,990 --> 00:03:14,500
+then we have hotel detail which has ID and country.
+
+45
+00:03:14,530 --> 00:03:21,100
+So once again, the reason we're not using hotel detail is that we don't need the ID value coming across
+
+46
+00:03:21,100 --> 00:03:22,440
+with the create attempt.
+
+47
+00:03:22,840 --> 00:03:29,850
+So that is why we only have the fields that we absolutely need values for outlined inside to create
+
+48
+00:03:29,860 --> 00:03:31,190
+version of this detail.
+
+49
+00:03:31,690 --> 00:03:37,060
+Now, once I have the detail, what I want to do is Muppet's someone to say A, our hotel is equal to
+
+50
+00:03:37,330 --> 00:03:42,280
+mopper the map into an object of type hotel, which is the data object.
+
+51
+00:03:42,490 --> 00:03:46,480
+And I'm mapping the content of the hotel DETI all.
+
+52
+00:03:47,680 --> 00:03:52,000
+Next up, we're going to call on our unit of work.
+
+53
+00:03:52,720 --> 00:04:02,710
+So I'm going to see underscore units of four dot hotels DOT and then I have insert whatever, inserting
+
+54
+00:04:02,710 --> 00:04:09,370
+my object of type POTO because by the time it gets here, whatever validations you need to put in,
+
+55
+00:04:09,370 --> 00:04:10,060
+you can put in.
+
+56
+00:04:10,070 --> 00:04:11,830
+So here I'm just validating the model.
+
+57
+00:04:12,190 --> 00:04:17,620
+If you had other things that you needed to make sure are in place before it gets as far as trying to
+
+58
+00:04:17,620 --> 00:04:24,550
+insert it, you make sure you do all of those checks and balances and return the budget request or whatever
+
+59
+00:04:24,550 --> 00:04:28,930
+aerostat goes to the client before you actually start to insert.
+
+60
+00:04:29,140 --> 00:04:33,700
+And even when doing the insert, if there's an exception, we're still going to return something, except
+
+61
+00:04:33,700 --> 00:04:37,500
+it will be a five hundred since the area is probably on our side.
+
+62
+00:04:37,990 --> 00:04:43,210
+So after we call the insert, the next thing we need to do is call the save.
+
+63
+00:04:43,340 --> 00:04:49,990
+So notice when we were just retrieving, we could just do Oades that get there's no save.
+
+64
+00:04:49,990 --> 00:04:57,490
+However, on this occasion we're altering the the database, so we have to commit the change that we're
+
+65
+00:04:57,490 --> 00:04:59,050
+making afterwards.
+
+66
+00:04:59,200 --> 00:04:59,650
+So that's.
+
+67
+00:04:59,780 --> 00:05:01,940
+Why we have to call the save.
+
+68
+00:05:03,290 --> 00:05:07,630
+Now, after all of that, we need to return something nice.
+
+69
+00:05:07,670 --> 00:05:09,130
+So what am I returning this?
+
+70
+00:05:09,140 --> 00:05:16,890
+I'm going to say Creer to now I've created and I've created at action right there, actually, and created
+
+71
+00:05:16,890 --> 00:05:18,170
+that route also.
+
+72
+00:05:18,440 --> 00:05:21,850
+So they all return the two or one.
+
+73
+00:05:21,860 --> 00:05:25,340
+It's just that when you say created, it's just a tool one.
+
+74
+00:05:25,350 --> 00:05:25,940
+That's it.
+
+75
+00:05:26,180 --> 00:05:33,740
+However, you can see it created at root and have it called the endpoint get hotel with the idea required.
+
+76
+00:05:33,740 --> 00:05:40,470
+So it actually returns the created object to the client, which I think is useful.
+
+77
+00:05:40,490 --> 00:05:45,420
+So I'm going to go with Creator that route, then I have to specify the name of the route.
+
+78
+00:05:45,680 --> 00:05:54,740
+So in this case, I did say I wanted to go to get a hotel and then after that I have to specify what
+
+79
+00:05:55,160 --> 00:05:58,970
+parameter values this endpoint might need.
+
+80
+00:05:59,000 --> 00:06:01,700
+So if I look back, I get hotel.
+
+81
+00:06:01,950 --> 00:06:06,050
+It needs an ID self to specify a new object.
+
+82
+00:06:07,500 --> 00:06:14,930
+And it's going to have a field called ID and it's going to be equal to a hotel that's already noticed,
+
+83
+00:06:14,930 --> 00:06:19,430
+hotel not totally to your hotel, still does not have a 90 value.
+
+84
+00:06:19,620 --> 00:06:26,040
+However, after this operation, this object will get updated with its ID and then that is what we will
+
+85
+00:06:26,040 --> 00:06:27,240
+pass along.
+
+86
+00:06:27,720 --> 00:06:30,120
+So let us take this one for a spin.
+
+87
+00:06:30,600 --> 00:06:37,260
+But just before we do that, before I get ahead of myself, we need to let this rule know that it has
+
+88
+00:06:37,260 --> 00:06:38,760
+this name right.
+
+89
+00:06:38,780 --> 00:06:46,050
+So even though it has the name, we need to let you know that it is a gift operation that goes by that
+
+90
+00:06:46,050 --> 00:06:48,560
+name, not necessarily ruled, but by that name.
+
+91
+00:06:48,570 --> 00:06:48,820
+Right.
+
+92
+00:06:49,170 --> 00:06:53,370
+So I can just append here and say name is equal.
+
+93
+00:06:53,400 --> 00:06:57,480
+So this is like a little internal nickname, though, to say this is your name.
+
+94
+00:06:57,480 --> 00:07:02,100
+Whenever somebody, your sibling, sibling being another action calls.
+
+95
+00:07:03,180 --> 00:07:04,870
+So let us try that again.
+
+96
+00:07:05,580 --> 00:07:06,050
+All right.
+
+97
+00:07:06,060 --> 00:07:08,670
+So we're going to test this one in postwoman.
+
+98
+00:07:08,970 --> 00:07:10,940
+And I already have an object here.
+
+99
+00:07:10,950 --> 00:07:14,850
+So I actually copied this object from a previous guest test.
+
+100
+00:07:15,060 --> 00:07:18,240
+So we already established that the ID is not required.
+
+101
+00:07:18,540 --> 00:07:24,960
+However, just going over to slugger, just to show you what slugger is going to care about, when we
+
+102
+00:07:24,960 --> 00:07:30,070
+look at the post for hotel, it's showing us that this is all this going to care about.
+
+103
+00:07:30,150 --> 00:07:34,360
+Even if we send over extra information, it will be ignored.
+
+104
+00:07:34,860 --> 00:07:35,280
+All right.
+
+105
+00:07:35,280 --> 00:07:41,450
+So that is what our object needs to look like in order to go into our post.
+
+106
+00:07:41,790 --> 00:07:46,580
+So using Posman, I'm actually going to test it with the ID and let's see what happens.
+
+107
+00:07:47,070 --> 00:07:51,960
+So I'm going to click through and make sure that this the action is on post.
+
+108
+00:07:52,110 --> 00:08:00,290
+We have our end point and then click send and we're getting this airable system invalid operation,
+
+109
+00:08:00,290 --> 00:08:02,330
+nor much is supplied values.
+
+110
+00:08:02,340 --> 00:08:08,230
+So that means we need to restructure the code, our own uncreated.
+
+111
+00:08:08,910 --> 00:08:13,260
+So going back to the code, let me just see what overlord's are there.
+
+112
+00:08:13,620 --> 00:08:17,220
+And we have the string name with object value.
+
+113
+00:08:17,220 --> 00:08:19,830
+I believe I'm missing the actual object.
+
+114
+00:08:19,860 --> 00:08:20,400
+There we go.
+
+115
+00:08:20,430 --> 00:08:26,840
+So Cummo and hotels or passing over the idea and the actual object to be displayed.
+
+116
+00:08:26,850 --> 00:08:27,920
+So let's try that again.
+
+117
+00:08:28,560 --> 00:08:32,130
+So the same test that just given error, I'm going to try it again.
+
+118
+00:08:33,600 --> 00:08:34,830
+And there we go.
+
+119
+00:08:34,950 --> 00:08:42,150
+So look at the difference between the two payloads, we're getting back to our hotel object with the
+
+120
+00:08:42,150 --> 00:08:44,280
+idea value of six.
+
+121
+00:08:44,910 --> 00:08:45,670
+All right.
+
+122
+00:08:45,690 --> 00:08:48,090
+Even the five is 5.0 here.
+
+123
+00:08:48,090 --> 00:08:49,070
+It's five here.
+
+124
+00:08:49,800 --> 00:08:57,090
+So just to show you that this didn't count for anything, thanks to us not allowing them to submit that
+
+125
+00:08:57,090 --> 00:08:57,420
+data.
+
+126
+00:08:57,450 --> 00:09:05,190
+So that's another reason it's a good idea to use details to kind of sanitize what can come into your
+
+127
+00:09:05,430 --> 00:09:06,080
+API.
+
+128
+00:09:06,630 --> 00:09:12,960
+Now, in addition to displaying the newly created record, another advantage just using created out
+
+129
+00:09:12,980 --> 00:09:20,310
+Rutan pointing to the endpoint would be that in the headers we actually return the location where they
+
+130
+00:09:20,310 --> 00:09:22,440
+can go and fetch this record.
+
+131
+00:09:22,450 --> 00:09:25,090
+So you see, it did have a certain purpose.
+
+132
+00:09:25,110 --> 00:09:31,770
+If I just, you know, the client, if they look in the headers and just get location after I have returned
+
+133
+00:09:32,490 --> 00:09:39,830
+the data that they can actually just use that and do a get operation and retrieve their record.
+
+134
+00:09:39,840 --> 00:09:41,600
+But of course, I'm not authorized.
+
+135
+00:09:41,610 --> 00:09:45,680
+So, you know, that whole shebang already that have to go through and do all of that.
+
+136
+00:09:46,050 --> 00:09:53,070
+No, on the point of being authorized, I don't think it's harmful to allow somebody to retrieve a hotel
+
+137
+00:09:53,940 --> 00:09:54,830
+by ID.
+
+138
+00:09:55,290 --> 00:09:55,640
+Right.
+
+139
+00:09:55,670 --> 00:09:59,880
+So we did authorize it initially because we were testing.
+
+140
+00:09:59,890 --> 00:10:05,250
+However, in practicality, I don't think we need to authorize get told if we allow them to get the
+
+141
+00:10:05,250 --> 00:10:06,640
+list, they should be able to get one.
+
+142
+00:10:06,960 --> 00:10:14,290
+However, I do think that it would be good to authorize who can create.
+
+143
+00:10:14,910 --> 00:10:15,430
+All right.
+
+144
+00:10:15,600 --> 00:10:16,720
+So it's up to you.
+
+145
+00:10:16,740 --> 00:10:23,880
+It's business rules and your needs will determine where you put the authorized and how much security
+
+146
+00:10:23,880 --> 00:10:26,470
+you enforce around your endpoints and operations.
+
+147
+00:10:26,820 --> 00:10:30,840
+So in this situation, I'm going to authorize create hotels.
+
+148
+00:10:30,890 --> 00:10:32,310
+So you have to be authorized.
+
+149
+00:10:32,310 --> 00:10:39,550
+And to make matters worse, if you are not in the role of admin, then you shouldn't be able to do this.
+
+150
+00:10:39,550 --> 00:10:50,310
+So to enforce rules based authorization, I can see rules equals and then list out as many rules as
+
+151
+00:10:50,310 --> 00:10:51,960
+I want to support.
+
+152
+00:10:52,290 --> 00:10:58,890
+So if I say authorized rules equals administrative, that means if you are authorized, you get to talk.
+
+153
+00:10:58,890 --> 00:11:04,650
+And what you are a user, not an administrator, then you cannot carry out anything.
+
+154
+00:11:04,650 --> 00:11:06,030
+You're still not authorized.
+
+155
+00:11:06,060 --> 00:11:09,430
+However, if you're an administrator, then you can go right ahead.
+
+156
+00:11:09,900 --> 00:11:10,440
+So that's it.
+
+157
+00:11:10,470 --> 00:11:13,470
+So once again, you can go about enforcing one.
+
+158
+00:11:13,710 --> 00:11:18,570
+What endpoint do you expose to John Public versus an author?
+
+159
+00:11:18,570 --> 00:11:28,260
+Authenticate that user and then by extension, how do you extend these functionalities to which authorized
+
+160
+00:11:28,260 --> 00:11:36,810
+group of users you can authorize based on policies, rules and quite a few options available to you?
+
+161
+00:11:37,440 --> 00:11:40,950
+If you just come, you'll see that you have the authentication scheme.
+
+162
+00:11:41,380 --> 00:11:45,980
+You could make one JWT, another one password off, et cetera, et cetera.
+
+163
+00:11:46,260 --> 00:11:50,030
+You can enforce a policy and you can limit it by rules.
+
+164
+00:11:50,430 --> 00:11:52,230
+So there are quite a few options for that.
+
+165
+00:11:52,740 --> 00:11:57,260
+So right now, I'm going to challenge you once again what we just did with create.
+
+166
+00:11:57,990 --> 00:12:04,950
+I encourage you to try and do it with the country, make sure that you test it and that you get back
+
+167
+00:12:04,980 --> 00:12:06,270
+your country successfully.
+
+168
+00:12:06,630 --> 00:12:08,430
+And we'll compare notes.
+
+169
+00:12:10,950 --> 00:12:12,010
+And we're back.
+
+170
+00:12:12,030 --> 00:12:15,730
+I hope you paused and attempted it, if not, then go ahead and pause.
+
+171
+00:12:15,750 --> 00:12:21,150
+No, but I'm going to walk you through what I did and really and truly, you'll notice that the court
+
+172
+00:12:21,150 --> 00:12:29,610
+is almost identical, one where in the country controller we have the same authorization measures.
+
+173
+00:12:29,760 --> 00:12:35,610
+Once again, your context may be different from mine, but we want to just make sure that we secure
+
+174
+00:12:35,610 --> 00:12:36,950
+the endpoints accordingly.
+
+175
+00:12:37,290 --> 00:12:39,420
+We are doing it post.
+
+176
+00:12:39,690 --> 00:12:44,790
+We have similar alternatives to what we did with the hotel except for the action.
+
+177
+00:12:44,790 --> 00:12:48,600
+I'm going to call it create controller passing the appropriate DTL.
+
+178
+00:12:48,960 --> 00:12:57,120
+We validate the model states firstly and then we go ahead and add just in the same fashion.
+
+179
+00:12:57,300 --> 00:13:04,350
+And then we created that route, get country parcel of the object and we made sure to add that name
+
+180
+00:13:04,350 --> 00:13:04,800
+here.
+
+181
+00:13:05,140 --> 00:13:10,860
+So you see, once you get the hang of this, unless you have some extreme circumstance where you have
+
+182
+00:13:10,860 --> 00:13:18,570
+to do extra computations on calculations, and even then it would just be a matter of mapping over or
+
+183
+00:13:19,290 --> 00:13:22,560
+you wouldn't probably wouldn't get the calculated values through the details.
+
+184
+00:13:22,560 --> 00:13:29,530
+So you Muppet to the object type and then you do all your calculations and then you insert and save.
+
+185
+00:13:29,820 --> 00:13:34,680
+So there's really not that much to creating resources in your API.

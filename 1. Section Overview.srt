@@ -1,0 +1,67 @@
+1
+00:00:00,630 --> 00:00:07,350
+It goes so we'll be starting a new section of our API development and really actually this is just about
+
+2
+00:00:07,350 --> 00:00:08,600
+value added features.
+
+3
+00:00:08,610 --> 00:00:10,290
+We've done quite a bit of work.
+
+4
+00:00:10,530 --> 00:00:16,800
+We already have a functioning API with a nice, clean architecture that can be easily extended.
+
+5
+00:00:17,070 --> 00:00:21,810
+However, there are certain things that we want to take advantage of when it comes to core.
+
+6
+00:00:22,110 --> 00:00:30,060
+And these features are these allowances will enable us to reduce some of the repeated code that we have
+
+7
+00:00:30,060 --> 00:00:31,440
+throughout our application.
+
+8
+00:00:31,830 --> 00:00:37,430
+So let's say, for instance, one we keep on repeating track catch.
+
+9
+00:00:37,440 --> 00:00:39,760
+Every time we do an operation, we have the track.
+
+10
+00:00:39,920 --> 00:00:46,290
+So we'll be looking at putting in code to reduce that and handle errors in a global fashion.
+
+11
+00:00:46,290 --> 00:00:52,590
+Since we really do the same thing almost every time, all the things we'll be looking at will be to
+
+12
+00:00:52,590 --> 00:01:00,150
+reduce our need for checking certain doing certain checks before we complete certain operations or putting
+
+13
+00:01:00,150 --> 00:01:01,290
+in action filters.
+
+14
+00:01:01,530 --> 00:01:08,910
+We'll also be putting in mechanisms to help speed up the retrieval and processing of data like caching
+
+15
+00:01:08,910 --> 00:01:09,660
+paging.
+
+16
+00:01:09,810 --> 00:01:15,320
+So we'll be looking at all of these things and we'll start off with implementing paging.
+
+17
+00:01:15,330 --> 00:01:16,050
+So stay tuned.

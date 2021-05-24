@@ -1,0 +1,671 @@
+1
+00:00:00,780 --> 00:00:05,280
+Hey, guys, we'll come back and business and we'll be talking about versioning, our API now, the
+
+2
+00:00:05,280 --> 00:00:10,330
+reason you'd want to version our API is that over time, more functionality will evolve.
+
+3
+00:00:10,350 --> 00:00:13,950
+There are times when we may change the way our endpoints behave changed.
+
+4
+00:00:13,950 --> 00:00:19,050
+Some verbs are the way the payload is structured, all of those things.
+
+5
+00:00:19,410 --> 00:00:21,900
+But then you don't want to just do that.
+
+6
+00:00:21,900 --> 00:00:26,780
+And then all of your clients one day wake up and realize that they have to change the entire code base
+
+7
+00:00:26,790 --> 00:00:29,160
+because you implemented a change in your API.
+
+8
+00:00:29,610 --> 00:00:36,180
+So versioning, the API allows you to kind of run a parallel between the old way of doing things and
+
+9
+00:00:36,180 --> 00:00:37,500
+the new way of doing things.
+
+10
+00:00:37,710 --> 00:00:43,320
+And then eventually you can phase out the the one that all the clients have, of course, after adequate
+
+11
+00:00:43,320 --> 00:00:49,440
+warning and education, are the new de facto standard that you're introducing.
+
+12
+00:00:49,830 --> 00:00:55,080
+So right now, we want to talk about versioning and our journey is going to start right here in in you
+
+13
+00:00:55,080 --> 00:01:01,050
+get where we're going to get the Microsoft is spinet core MVC version in the library so it can go ahead,
+
+14
+00:01:01,260 --> 00:01:03,450
+search for that and install it.
+
+15
+00:01:03,720 --> 00:01:09,120
+And then after you've done that, we're going to go with the service extensions and we're going to add
+
+16
+00:01:09,360 --> 00:01:14,740
+a new function and we're calling this one configure version.
+
+17
+00:01:15,300 --> 00:01:19,470
+Of course, you know, you can call it whatever you're comfortable with, but right now we're calling
+
+18
+00:01:19,470 --> 00:01:20,670
+it configure versioning.
+
+19
+00:01:20,970 --> 00:01:24,510
+And then inside this function, we're going to have codes militarily.
+
+20
+00:01:24,520 --> 00:01:32,880
+So we're seeing services that are API versioning, and then we're going to include an option initialization
+
+21
+00:01:32,880 --> 00:01:35,490
+where we're seeing a report API versions.
+
+22
+00:01:35,490 --> 00:01:36,030
+True.
+
+23
+00:01:36,210 --> 00:01:43,530
+So report API versions means that there will be a header in our response is seeing this is the version
+
+24
+00:01:43,530 --> 00:01:44,710
+that you are using.
+
+25
+00:01:44,940 --> 00:01:49,260
+So when our clients talk to the API, we're going to see in their response.
+
+26
+00:01:49,260 --> 00:01:51,750
+Yes, you just hit this API version.
+
+27
+00:01:52,140 --> 00:01:55,770
+We're going to assume the default version when unspecified.
+
+28
+00:01:55,800 --> 00:02:02,190
+So if we have one, two, three API versions and the client failed to specify that they want to use
+
+29
+00:02:02,190 --> 00:02:09,180
+version one, three, etc, then we're just going to use a default one, which we have gone ahead and
+
+30
+00:02:09,180 --> 00:02:14,760
+specified below where we said the default API version is going to be API version one.
+
+31
+00:02:14,760 --> 00:02:17,910
+So you can go ahead and include any missing references as usual.
+
+32
+00:02:18,660 --> 00:02:24,660
+And then after you've done all of that, we can go over to the Start-Up and we can register our service.
+
+33
+00:02:24,730 --> 00:02:28,080
+So just put that one below here.
+
+34
+00:02:28,550 --> 00:02:29,010
+All right.
+
+35
+00:02:29,970 --> 00:02:33,210
+Now, what we're going to do is create a new controller.
+
+36
+00:02:33,210 --> 00:02:40,320
+So I'm just going to go to add controller will choose an API and I'll just leave it empty and then,
+
+37
+00:02:40,320 --> 00:02:45,430
+for example, say, OK, I'm going to call this one country V two.
+
+38
+00:02:45,780 --> 00:02:46,310
+All right.
+
+39
+00:02:46,770 --> 00:02:49,560
+So Country V two controller.
+
+40
+00:02:49,580 --> 00:02:51,210
+So we have a new controller.
+
+41
+00:02:51,450 --> 00:02:58,370
+And I'm just going to initialize it with some of the things from the original Cloninger controller.
+
+42
+00:02:58,380 --> 00:03:01,280
+So I'm just going to copy all of these things.
+
+43
+00:03:01,500 --> 00:03:05,600
+So I'm just I just want one endpoints just for testing purposes.
+
+44
+00:03:06,060 --> 00:03:11,640
+So the one endpoint that we're dealing with will be to get to go ahead and include any missing reference.
+
+45
+00:03:12,030 --> 00:03:15,020
+Well, actually, I'm going to change the way this one accesses data.
+
+46
+00:03:15,030 --> 00:03:23,200
+So instead of it using the unit of work, I'm going to let it implement the DB context directly.
+
+47
+00:03:23,250 --> 00:03:26,970
+So this is private data base context.
+
+48
+00:03:27,120 --> 00:03:29,170
+So, of course, remember that that is taboo.
+
+49
+00:03:29,220 --> 00:03:31,200
+You don't you don't really want to do that.
+
+50
+00:03:31,500 --> 00:03:37,100
+While it will work, it's not best practice to have the API looking directly at the data.
+
+51
+00:03:37,110 --> 00:03:45,390
+But for this example, I'll just do that so that we have a different return type between the two controllers.
+
+52
+00:03:46,610 --> 00:03:53,990
+So just go ahead and initialize this as quickly as possible, and then once that is done, once that
+
+53
+00:03:53,990 --> 00:03:57,410
+is injected and this is Contrave to controller.
+
+54
+00:03:57,420 --> 00:03:57,770
+All right.
+
+55
+00:03:58,280 --> 00:04:06,110
+So we can specify the Routier to be the same thing as the original contract because remember, they
+
+56
+00:04:06,110 --> 00:04:08,060
+all go to the controller.
+
+57
+00:04:08,060 --> 00:04:08,370
+Right.
+
+58
+00:04:08,390 --> 00:04:11,820
+So this will be API slash country.
+
+59
+00:04:12,230 --> 00:04:17,170
+However, this by default would be API slash Contrave tool.
+
+60
+00:04:17,180 --> 00:04:22,810
+But what if I said I don't want the controller name, I want to be the same endpoint?
+
+61
+00:04:23,210 --> 00:04:28,760
+Now, if it's the same endpoint by default, the API would not know where to go because it's going to
+
+62
+00:04:28,760 --> 00:04:34,280
+see this one with the route and see this one with the same route and it wouldn't know where to go.
+
+63
+00:04:34,610 --> 00:04:43,060
+Now what I can do is specify that this one is API version and then specify that this one is 2.0.
+
+64
+00:04:43,910 --> 00:04:44,470
+All right.
+
+65
+00:04:44,480 --> 00:04:45,830
+That should be a string.
+
+66
+00:04:46,460 --> 00:04:48,650
+So API version 2.0.
+
+67
+00:04:49,400 --> 00:04:56,270
+So what will happen, though, is that the client will need to specify which endpoint it is that they
+
+68
+00:04:56,270 --> 00:04:57,170
+hope to hit.
+
+69
+00:04:57,560 --> 00:04:57,950
+All right.
+
+70
+00:04:57,950 --> 00:05:00,940
+So I'm just going to hurry up and clean this up.
+
+71
+00:05:00,950 --> 00:05:04,640
+We don't have any request firearms in this situation.
+
+72
+00:05:05,180 --> 00:05:09,080
+And I just cleaned up the rest of it so I didn't want to bore you with my cleaning up.
+
+73
+00:05:09,080 --> 00:05:10,850
+But this is all that we're doing.
+
+74
+00:05:10,850 --> 00:05:17,570
+We're just seeing get countries and it's going to return context that countries, which is just going
+
+75
+00:05:17,570 --> 00:05:20,820
+to get the list of countries in the database and return to that side.
+
+76
+00:05:20,840 --> 00:05:29,010
+So the return type here will be different from the DTA return type of our original endpoint.
+
+77
+00:05:29,570 --> 00:05:29,990
+All right.
+
+78
+00:05:30,470 --> 00:05:35,080
+So let us take this for a test drive and see how this works.
+
+79
+00:05:35,690 --> 00:05:42,260
+Now, if you remember in our configuration, we had said that we should assume the default version when
+
+80
+00:05:42,260 --> 00:05:43,230
+unspecified.
+
+81
+00:05:43,610 --> 00:05:48,440
+So what we did here was just to repeat the same call that we always do to our endpoints.
+
+82
+00:05:48,440 --> 00:05:52,370
+You just said Ipswitch Country and we're getting back to our countries.
+
+83
+00:05:52,550 --> 00:05:59,300
+But then no, if you look in the header section, you'll see that the API supported versions, one point
+
+84
+00:05:59,300 --> 00:06:07,670
+or two, recall that our configuration would have set 1.0 as our default rate.
+
+85
+00:06:07,670 --> 00:06:15,200
+So that is working and realizes that there are versions and it's returning the results that from the
+
+86
+00:06:15,200 --> 00:06:16,380
+default one.
+
+87
+00:06:16,750 --> 00:06:24,080
+Now, how do we get our client to know how to specify which version they want?
+
+88
+00:06:24,650 --> 00:06:26,040
+There are a few ways to do this.
+
+89
+00:06:26,060 --> 00:06:33,920
+Number one, we can requested by a query string so we can see if you want the other one, you pass in
+
+90
+00:06:33,920 --> 00:06:34,530
+via course.
+
+91
+00:06:34,730 --> 00:06:35,710
+Our Param.
+
+92
+00:06:35,870 --> 00:06:44,600
+Let's just put it in the Palm API dush version and then we would say two point two and then they send
+
+93
+00:06:45,110 --> 00:06:47,810
+you would see that we get back two hundred.
+
+94
+00:06:47,810 --> 00:06:48,550
+Okay.
+
+95
+00:06:48,710 --> 00:06:51,800
+And the supportive version is two point or so.
+
+96
+00:06:51,800 --> 00:06:55,640
+Let me let me put this into a bit more context so we can visualize it.
+
+97
+00:06:55,640 --> 00:07:03,110
+So we know that we have two controllers, we have Controller Contrave two, which has the same route
+
+98
+00:07:03,470 --> 00:07:08,540
+as the original one, someone to put breakpoints at their respective functions.
+
+99
+00:07:08,870 --> 00:07:11,850
+And then we're going to see which one gets hit based on which request.
+
+100
+00:07:11,870 --> 00:07:15,370
+So I'm just going to repeat the request for version 2.0.
+
+101
+00:07:15,860 --> 00:07:22,430
+And then when Visual Studio lights up, you see it is hitting the new controller that we set up using
+
+102
+00:07:22,430 --> 00:07:28,240
+the same endpoint, except we're passing in the screen that we want version two.
+
+103
+00:07:28,550 --> 00:07:28,900
+All right.
+
+104
+00:07:28,910 --> 00:07:30,560
+So I can continue it.
+
+105
+00:07:30,560 --> 00:07:33,440
+It's the database and it returns the data accordingly.
+
+106
+00:07:33,440 --> 00:07:34,190
+And that's fine.
+
+107
+00:07:34,190 --> 00:07:40,330
+But then if I don't include the param and then do the same request notice it's hitting our original.
+
+108
+00:07:40,640 --> 00:07:41,210
+So that's it.
+
+109
+00:07:41,210 --> 00:07:47,000
+So we can have more than one controllers with the same route, except there are different versions.
+
+110
+00:07:47,450 --> 00:07:52,760
+So that is a quick way for the client to specify that they want version two.
+
+111
+00:07:53,000 --> 00:07:57,020
+If they don't specify, then we're going to send them to version one.
+
+112
+00:07:57,500 --> 00:07:59,780
+Know another way that we can do this.
+
+113
+00:07:59,780 --> 00:08:06,950
+And I'm just going to stop this right now, another way that we can specify which one is which version
+
+114
+00:08:06,950 --> 00:08:12,080
+or allow the client to specify which version they want is to modify the route.
+
+115
+00:08:12,410 --> 00:08:21,890
+So I can actually kind of superimpose right here in between the word API and the endpoint name and see
+
+116
+00:08:21,890 --> 00:08:27,070
+that I want you to pass in the colon and the API version.
+
+117
+00:08:27,440 --> 00:08:28,000
+All right.
+
+118
+00:08:28,580 --> 00:08:36,530
+So when we do that and I on, I'm going to kind of modify the original endpoint request.
+
+119
+00:08:36,530 --> 00:08:39,500
+So initially we had API slash country slash.
+
+120
+00:08:39,800 --> 00:08:45,680
+We put in the string to get version 2.0, but then I modify the route so I should be able to see two
+
+121
+00:08:45,680 --> 00:08:46,070
+point.
+
+122
+00:08:46,190 --> 00:08:54,770
+All right, here in the euro, so API slash 2.0 slash country and I still have the breakpoint.
+
+123
+00:08:54,800 --> 00:08:55,430
+Yes, I do.
+
+124
+00:08:55,460 --> 00:08:57,230
+So let's see if it gets hit.
+
+125
+00:08:58,140 --> 00:09:04,350
+And it does get to it, so you see, that's another way that the the client can specify which version
+
+126
+00:09:04,350 --> 00:09:07,110
+of the API they want and endpoint.
+
+127
+00:09:07,120 --> 00:09:10,650
+So version 2.0, the specified 2.0.
+
+128
+00:09:10,680 --> 00:09:13,480
+So it hits the appropriate endpoint.
+
+129
+00:09:14,310 --> 00:09:20,360
+No, there might be a situation where you don't necessarily want to augment the you are because right
+
+130
+00:09:20,370 --> 00:09:26,610
+now we have to augment or we are forcing the clients that they have to change their base URLs.
+
+131
+00:09:27,000 --> 00:09:33,510
+So they have to see the slash API slash 2.0 slash endpoint after postin as a query stream.
+
+132
+00:09:33,870 --> 00:09:41,730
+So another way that we can get the versioning to work, let me just stop the bug is to add a configuration
+
+133
+00:09:41,730 --> 00:09:48,390
+to our service extension for versioning where we see option dot API version the reader.
+
+134
+00:09:48,400 --> 00:09:55,050
+And if we just take a little look at what this is doing, it is seeing it's it's used to read the API
+
+135
+00:09:55,050 --> 00:09:57,510
+service when specified by a client.
+
+136
+00:09:57,570 --> 00:09:58,110
+All right.
+
+137
+00:09:58,440 --> 00:10:03,420
+So then we can see a new header API version reader.
+
+138
+00:10:03,430 --> 00:10:12,600
+So what is it about the incoming request that we want to read, write saucing, want the header API
+
+139
+00:10:12,600 --> 00:10:17,640
+version reader and we are looking for a header by the name of API version.
+
+140
+00:10:18,000 --> 00:10:28,800
+So this will allow us to one, not only keep our route the way we had it before, but enable the client
+
+141
+00:10:28,800 --> 00:10:33,080
+to just add a header instead of having to change their entire YORO.
+
+142
+00:10:33,360 --> 00:10:34,700
+So let us try that one.
+
+143
+00:10:35,040 --> 00:10:45,000
+So buckin postman, I'm just going to remove the 2.0 from our YORO and then what I will do is specify
+
+144
+00:10:45,390 --> 00:10:51,120
+in the header sections of headers selected API dash version.
+
+145
+00:10:51,120 --> 00:10:58,380
+So that's the new header that's I want to pass over 2.0 and then when I send that we hit our break point
+
+146
+00:10:58,380 --> 00:11:01,200
+in our version 2.0 controller.
+
+147
+00:11:01,510 --> 00:11:01,850
+All right.
+
+148
+00:11:01,890 --> 00:11:09,360
+So quite a few ways you have different functionalities or different methods of doing things instead
+
+149
+00:11:09,360 --> 00:11:16,410
+of introducing too many breaking changes all into the code base that everybody's already subscribed
+
+150
+00:11:16,410 --> 00:11:23,550
+to, you can phase in and you want to just call it version this version that and have them pass in the
+
+151
+00:11:23,550 --> 00:11:27,570
+header for the appropriate version when needed.
+
+152
+00:11:28,380 --> 00:11:28,720
+No.
+
+153
+00:11:28,740 --> 00:11:34,710
+One more thing that I'm going to show you on this topic is how you can specify that something is deprecated.
+
+154
+00:11:34,710 --> 00:11:40,530
+So in a situation and I'm just going to continue using this one because this is an experiment, let's
+
+155
+00:11:40,530 --> 00:11:42,210
+say that a version 3.0.
+
+156
+00:11:42,480 --> 00:11:48,870
+So Version 2.0 is deprecated or it's no longer the preferred version.
+
+157
+00:11:48,870 --> 00:11:56,920
+So you can actually add to the annotation here that the deprecated value of this API version is true.
+
+158
+00:11:57,330 --> 00:12:04,300
+So what would happen is that when it sends the header across for a response and we can test that here.
+
+159
+00:12:04,320 --> 00:12:06,570
+So this was this is a previous request.
+
+160
+00:12:06,570 --> 00:12:11,070
+So I'm going to run another request, hit the breakpoints, continue.
+
+161
+00:12:11,250 --> 00:12:12,120
+But then look at it.
+
+162
+00:12:12,120 --> 00:12:17,420
+And this is not an API deprecated version 2.0.
+
+163
+00:12:17,760 --> 00:12:21,930
+So, no, it's no longer just saying, oh, you're hitting the API version is letting you know that
+
+164
+00:12:21,930 --> 00:12:24,360
+this one is no longer the preferred one.
+
+165
+00:12:24,830 --> 00:12:25,010
+Right.
+
+166
+00:12:25,230 --> 00:12:28,370
+It's probably near the end of life, whatever it is.
+
+167
+00:12:28,710 --> 00:12:36,150
+So those are ways that you can actually implement versioning in your API to help control how you feel
+
+168
+00:12:36,190 --> 00:12:38,130
+seeing your changes as you go along.

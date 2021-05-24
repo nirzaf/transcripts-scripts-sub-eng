@@ -1,0 +1,851 @@
+1
+00:00:00,740 --> 00:00:02,010
+Welcome back, guys.
+
+2
+00:00:02,030 --> 00:00:07,730
+So in this instance, we're going to be setting up our Lowgar utilities, so our weapon of choice for
+
+3
+00:00:07,740 --> 00:00:09,280
+this one will be Cerillo.
+
+4
+00:00:09,890 --> 00:00:14,810
+That being said, there are quite a few potential tools that are there.
+
+5
+00:00:14,810 --> 00:00:18,080
+Safe Cerillo of analog log fortunate.
+
+6
+00:00:18,250 --> 00:00:20,240
+At least those are three that I have used.
+
+7
+00:00:20,240 --> 00:00:22,020
+And I'm sure that there are others.
+
+8
+00:00:22,460 --> 00:00:29,930
+No, I am using Cerillo because it is touted as the fastest one out there and it is very popular in
+
+9
+00:00:29,930 --> 00:00:31,160
+the developer community.
+
+10
+00:00:31,430 --> 00:00:37,160
+But be very objective when choosing your tool and went to walk you through the configuration for serial
+
+11
+00:00:37,160 --> 00:00:38,540
+log and configuring.
+
+12
+00:00:38,540 --> 00:00:45,410
+The others may have some variations, but ultimately they are all geared towards doing the same thing,
+
+13
+00:00:45,410 --> 00:00:49,590
+which is logging your application activity.
+
+14
+00:00:50,040 --> 00:00:53,730
+No, let me explain what I mean by logging application activity.
+
+15
+00:00:53,750 --> 00:00:58,340
+There are times when unexpected events occur and if it occurs.
+
+16
+00:00:58,340 --> 00:01:04,130
+No, and you hear about it five minutes later or even the instant after it happens, sometimes it's
+
+17
+00:01:04,130 --> 00:01:07,280
+difficult to track, especially in this context where it's an API.
+
+18
+00:01:07,280 --> 00:01:12,660
+There is no real UI, no real feedback, except an error that has occurred.
+
+19
+00:01:13,130 --> 00:01:21,380
+So using this logging utility will be able to kind of make notes as to what action triggered, what
+
+20
+00:01:21,380 --> 00:01:24,650
+response that would have turned out to be an error response.
+
+21
+00:01:24,830 --> 00:01:28,430
+And even then, we can see the details offset error response.
+
+22
+00:01:29,240 --> 00:01:32,350
+So let's get started with setting up or logging.
+
+23
+00:01:32,690 --> 00:01:36,490
+So we need to get the libraries associated with Cerillo.
+
+24
+00:01:36,500 --> 00:01:37,070
+So I'm just going to.
+
+25
+00:01:37,070 --> 00:01:37,230
+Right.
+
+26
+00:01:37,280 --> 00:01:45,200
+Click on the project, go to manage to get packages, and then we're going to look in the Burrow's section.
+
+27
+00:01:45,200 --> 00:01:46,880
+So these are what we have installed.
+
+28
+00:01:46,880 --> 00:01:52,430
+Your versions may be different from mine, and if you are prompted to update, be careful that you should
+
+29
+00:01:52,430 --> 00:01:54,740
+be able to update the Microsoft and safely enough.
+
+30
+00:01:54,740 --> 00:01:57,010
+But just be careful and doing updates.
+
+31
+00:01:57,020 --> 00:01:59,030
+Be ready to roll back in case anything breaks.
+
+32
+00:01:59,600 --> 00:02:05,630
+So far, no will brose and we look for serial log dot is Venette course, so you'll see this one.
+
+33
+00:02:05,630 --> 00:02:07,250
+But that's not the one that we want.
+
+34
+00:02:07,520 --> 00:02:10,100
+We want dot is being that core.
+
+35
+00:02:10,460 --> 00:02:17,090
+This one has a library, is dedicated to our project type so we can go ahead and install that once again.
+
+36
+00:02:17,090 --> 00:02:20,270
+If the version is different, it shouldn't be a major problem.
+
+37
+00:02:20,540 --> 00:02:24,620
+And for all the problems that you're getting, just go ahead and answer in the affirmative.
+
+38
+00:02:25,490 --> 00:02:30,740
+And then once that is done, we're just going to head over to our program, DOT, see it and begin our
+
+39
+00:02:30,740 --> 00:02:31,880
+configuration.
+
+40
+00:02:32,180 --> 00:02:38,390
+So what we need to do is let the application know that we're going to be using Siri log instead of the
+
+41
+00:02:38,630 --> 00:02:42,110
+default logger that came with our project.
+
+42
+00:02:42,110 --> 00:02:50,270
+Because if you look in upsetting to see that there is some semblance of a logger there giving you some
+
+43
+00:02:50,270 --> 00:02:54,240
+configurations, but then this is not as robust as what we want.
+
+44
+00:02:54,280 --> 00:02:54,560
+Right.
+
+45
+00:02:54,920 --> 00:02:58,970
+So Cerillo kind of builds on top of that and it allows us to override.
+
+46
+00:02:58,970 --> 00:03:06,350
+So I'm going to go down to the eyeholes builder and the first thing I'm going to do is make a new line
+
+47
+00:03:06,350 --> 00:03:15,530
+under that on their line twenty and not use Andred Ceri log.
+
+48
+00:03:16,870 --> 00:03:17,470
+All right.
+
+49
+00:03:18,920 --> 00:03:24,230
+So once I do, that is going to let me know that I need to include a library, so use your logoff to
+
+50
+00:03:24,230 --> 00:03:27,470
+include that using statement, but then that's not all.
+
+51
+00:03:28,230 --> 00:03:36,050
+That's not something in the beginning zone that we have this library here we can go back and configure.
+
+52
+00:03:36,050 --> 00:03:40,580
+So I'm just doing getting this part out of the way because in the past, admittedly, I've forgotten
+
+53
+00:03:40,580 --> 00:03:41,360
+to put that in.
+
+54
+00:03:41,720 --> 00:03:47,780
+So let's just get that out of the way and proceed to modify our main application, which is going to
+
+55
+00:03:47,780 --> 00:03:51,170
+initialize our lugger when the application starts up.
+
+56
+00:03:51,410 --> 00:03:57,200
+And we're just going to put in some test log scenarios right here in the mean as our test case.
+
+57
+00:03:57,740 --> 00:04:03,950
+So what I want to do is configure a longer object, someone to see a log.
+
+58
+00:04:05,100 --> 00:04:11,940
+Dr. Lugger is equal to a new lugger configuration.
+
+59
+00:04:12,910 --> 00:04:19,820
+All right, so this is going to allow us to do is set up some defaults and expected behaviors for longer.
+
+60
+00:04:19,840 --> 00:04:25,630
+So I'm just going to be breaking line with each configuration that there are someone to see DOT.
+
+61
+00:04:26,020 --> 00:04:30,600
+And the first configuration I want is right to then dot again.
+
+62
+00:04:30,910 --> 00:04:34,130
+And then you see here they have different options.
+
+63
+00:04:34,130 --> 00:04:38,110
+So fired on the console coming out of the box.
+
+64
+00:04:38,110 --> 00:04:44,200
+But then they talk about sinks so you can download specific libraries so that you can log to a database,
+
+65
+00:04:44,200 --> 00:04:50,610
+you can log to other various files or file types based on how you need it.
+
+66
+00:04:50,920 --> 00:04:55,180
+But right now, I'm only interested in file later on when they setup our database and so on, we can
+
+67
+00:04:55,180 --> 00:04:59,650
+double back and add database logging to our suite of tools.
+
+68
+00:05:00,010 --> 00:05:05,530
+So right now I just see right to file and then this takes some parameters.
+
+69
+00:05:06,370 --> 00:05:11,710
+So I'm going to just name the parameters as I type them because I'm not necessarily going to type in
+
+70
+00:05:11,710 --> 00:05:19,330
+the specific order that they are required here in the constructors or in the overlord's or other.
+
+71
+00:05:19,360 --> 00:05:19,630
+Right.
+
+72
+00:05:20,140 --> 00:05:29,050
+So the first one that I'm going to write is POF Path means where should this file get created when it
+
+73
+00:05:29,050 --> 00:05:31,670
+needs to be created and path needs to be a stream.
+
+74
+00:05:32,230 --> 00:05:38,260
+So I don't want to set a set path and I'm just going to spend some time and explained here once again,
+
+75
+00:05:38,260 --> 00:05:39,430
+context rules.
+
+76
+00:05:40,120 --> 00:05:46,780
+One, you may want to have a central logging path because once you have deployed your API on a server,
+
+77
+00:05:47,110 --> 00:05:49,360
+you don't want to be spelling and guessing.
+
+78
+00:05:49,360 --> 00:05:52,060
+Where did the log go, where the log might be?
+
+79
+00:05:52,300 --> 00:05:55,380
+You might not want it in the actual project.
+
+80
+00:05:55,960 --> 00:06:00,070
+Right, because I had a log file here that had just deleted, admittedly.
+
+81
+00:06:00,220 --> 00:06:00,620
+Right.
+
+82
+00:06:00,790 --> 00:06:05,680
+But you may not want it in a project because somebody debugging the application may not necessarily
+
+83
+00:06:05,710 --> 00:06:10,600
+you don't necessarily want them to go into the project files on the server to be able to access the
+
+84
+00:06:10,600 --> 00:06:11,020
+logs.
+
+85
+00:06:11,320 --> 00:06:13,600
+So you can define somewhere on the network.
+
+86
+00:06:14,770 --> 00:06:17,170
+You can define on another drive.
+
+87
+00:06:17,170 --> 00:06:21,780
+You can just put in a path here where, you know, you want your log files to go.
+
+88
+00:06:22,180 --> 00:06:31,150
+So I'm going to see something like C colon slash slash and I'm going to say hotel.
+
+89
+00:06:31,150 --> 00:06:34,990
+So I know exactly which application I'm dealing with when I see the folder.
+
+90
+00:06:35,290 --> 00:06:39,700
+Water listings, slash slash logs.
+
+91
+00:06:40,660 --> 00:06:45,940
+All right, that's my path that I'm defining, so I'm not saying you must define this path if it's the
+
+92
+00:06:45,940 --> 00:06:50,650
+daedra for you, if you don't want to put in the logs, that's up to you.
+
+93
+00:06:50,650 --> 00:06:51,030
+Right.
+
+94
+00:06:51,040 --> 00:06:57,460
+But I'm just recommending that you make it easily accessible or accessible enough that you can find
+
+95
+00:06:57,460 --> 00:06:58,330
+it when you need to.
+
+96
+00:06:58,510 --> 00:06:58,870
+All right.
+
+97
+00:06:59,260 --> 00:07:08,620
+So see hotel listings, logs, and then I'm just going to give my love log dash not so I'm going to
+
+98
+00:07:08,620 --> 00:07:11,650
+explain that seemingly random dash in a few.
+
+99
+00:07:11,670 --> 00:07:15,150
+So that's my file path so far.
+
+100
+00:07:15,280 --> 00:07:16,140
+Lots of errors.
+
+101
+00:07:16,150 --> 00:07:21,700
+But let's just carry on and see what I'm just breaking lines so that we can see everything.
+
+102
+00:07:22,760 --> 00:07:35,120
+All right, this breaking line and making sure it didn't work, so that's it for the POF, the next
+
+103
+00:07:35,300 --> 00:07:39,230
+configuration I'm going to put in is the old template.
+
+104
+00:07:39,440 --> 00:07:42,650
+How do I want each line to look?
+
+105
+00:07:43,130 --> 00:07:43,580
+Right.
+
+106
+00:07:43,760 --> 00:07:45,330
+So I'm already prepared.
+
+107
+00:07:45,920 --> 00:07:46,790
+I'll put templates.
+
+108
+00:07:46,800 --> 00:07:50,130
+I'm just going to sit there and walk you through it.
+
+109
+00:07:50,600 --> 00:07:54,950
+So once again, named parameter or template kolon undivided.
+
+110
+00:07:54,980 --> 00:08:00,200
+I want would be timestamp something and put in a timestamp with that level of detail.
+
+111
+00:08:00,470 --> 00:08:01,950
+You can add or subtract.
+
+112
+00:08:01,970 --> 00:08:03,830
+You may not need all of these.
+
+113
+00:08:03,840 --> 00:08:12,890
+So that's your mom's the then our minute, second, minute, millisecond and whatever Z is.
+
+114
+00:08:12,890 --> 00:08:13,160
+Right.
+
+115
+00:08:13,730 --> 00:08:15,880
+So I've seen this, I've used this.
+
+116
+00:08:15,890 --> 00:08:16,970
+It's very detailed.
+
+117
+00:08:16,970 --> 00:08:18,710
+It gives you the exact time stamp.
+
+118
+00:08:18,710 --> 00:08:19,670
+Something happens.
+
+119
+00:08:19,820 --> 00:08:22,540
+You may not need that level of detail that's up to you.
+
+120
+00:08:22,940 --> 00:08:27,740
+And then the level what level warning is it is it's an information warning.
+
+121
+00:08:27,740 --> 00:08:29,240
+I'll go through that later on.
+
+122
+00:08:30,020 --> 00:08:31,640
+What is the message?
+
+123
+00:08:32,360 --> 00:08:39,170
+And then new line or an exception, if there's an exception included in Brooklyn, shall be exception.
+
+124
+00:08:39,710 --> 00:08:42,140
+So that's basically what that is doing.
+
+125
+00:08:42,590 --> 00:08:46,100
+The next parameter that I have is rolling intervals.
+
+126
+00:08:46,100 --> 00:08:48,890
+So that means what interval should that create?
+
+127
+00:08:48,890 --> 00:08:49,550
+A new file.
+
+128
+00:08:49,580 --> 00:08:54,740
+So that brings me back to that random dash that I have there, because what's going to happen here is
+
+129
+00:08:54,740 --> 00:09:02,360
+when I say rolling interval, that day means I'm going to plug dash and the date associated with each
+
+130
+00:09:02,420 --> 00:09:02,910
+day.
+
+131
+00:09:03,170 --> 00:09:04,960
+So this is good for segmenting.
+
+132
+00:09:04,960 --> 00:09:05,730
+You're a lot faster.
+
+133
+00:09:05,730 --> 00:09:11,780
+If somebody said something happened last Thursday, you can easily go and find the log file for Thursday
+
+134
+00:09:11,780 --> 00:09:13,940
+of last week and review it.
+
+135
+00:09:14,120 --> 00:09:19,340
+Otherwise, you're just going to end up with one big file that keeps on growing and growing and growing.
+
+136
+00:09:19,520 --> 00:09:25,100
+And then you're going to have years of logs in one file, which is to me that's inefficient.
+
+137
+00:09:25,100 --> 00:09:31,070
+At least when you have multiple files, you can manage the older ones, you can delete them safely or
+
+138
+00:09:31,070 --> 00:09:34,690
+move them to an archive safely and still keep that segregation.
+
+139
+00:09:34,700 --> 00:09:37,380
+So that's why I'm setting that rolling interview.
+
+140
+00:09:37,450 --> 00:09:38,840
+But you have different options.
+
+141
+00:09:39,020 --> 00:09:43,340
+You could do it by the day, by the hour, by the minute, by the year.
+
+142
+00:09:43,520 --> 00:09:44,310
+It's up to you.
+
+143
+00:09:45,050 --> 00:09:45,470
+All right.
+
+144
+00:09:45,890 --> 00:09:50,990
+The next one would be the restricted minimum level.
+
+145
+00:09:50,990 --> 00:09:58,110
+So I want to restrict to a minimum of log even level that information.
+
+146
+00:09:58,130 --> 00:09:58,320
+Right.
+
+147
+00:09:58,580 --> 00:10:00,640
+Meaning I don't need to see every little thing.
+
+148
+00:10:00,650 --> 00:10:06,530
+There are certain debug points like, oh, you know, this is starting initializing this and revving
+
+149
+00:10:06,530 --> 00:10:06,890
+up that.
+
+150
+00:10:06,890 --> 00:10:08,180
+I don't need to see all of that.
+
+151
+00:10:08,450 --> 00:10:17,930
+So the whole verbose here logs are depends on how much you log as well as what you set as the minimum.
+
+152
+00:10:17,960 --> 00:10:21,740
+So here I'm seeing only log at a minimum of information.
+
+153
+00:10:21,980 --> 00:10:25,790
+I need to include this library control, not enter.
+
+154
+00:10:26,120 --> 00:10:27,680
+And we include that library.
+
+155
+00:10:27,680 --> 00:10:29,750
+And then I'm missing this semicolon.
+
+156
+00:10:29,990 --> 00:10:37,130
+But before I put on the semicolon, let's just take a look here again, just so we're sure I'm not missing
+
+157
+00:10:37,130 --> 00:10:37,850
+a comma here.
+
+158
+00:10:38,120 --> 00:10:40,460
+So that's a good thing.
+
+159
+00:10:40,460 --> 00:10:43,340
+I took to review that.
+
+160
+00:10:44,380 --> 00:10:51,280
+And then the final thing here to get rid of all these errors would be to after this file, open and
+
+161
+00:10:51,280 --> 00:10:54,130
+close, as we see not longer.
+
+162
+00:10:54,140 --> 00:10:57,200
+So it's going to see a longer configuration.
+
+163
+00:10:57,250 --> 00:11:00,430
+All of this create the longer object.
+
+164
+00:11:00,470 --> 00:11:00,850
+No.
+
+165
+00:11:01,450 --> 00:11:01,870
+All right.
+
+166
+00:11:02,200 --> 00:11:06,610
+So now that we have it created, we can actually start using it.
+
+167
+00:11:06,940 --> 00:11:14,680
+So what I'm going to do here is wrap up or start process or I mean, the main lining, the main function
+
+168
+00:11:14,920 --> 00:11:16,070
+inside of a track.
+
+169
+00:11:16,720 --> 00:11:20,830
+And if you're not so familiar with that track catch, it means he's going to try to do something.
+
+170
+00:11:21,040 --> 00:11:24,600
+And if there is an exception, it will catch it and handle it accordingly.
+
+171
+00:11:24,610 --> 00:11:26,540
+So that's what we call a Sipson handy.
+
+172
+00:11:26,600 --> 00:11:26,860
+Right.
+
+173
+00:11:27,250 --> 00:11:31,110
+So what we're going to do is to try and run this line.
+
+174
+00:11:31,480 --> 00:11:39,490
+But before that, I'm going to log to the information or log a bit of information to say, hey, application
+
+175
+00:11:39,670 --> 00:11:46,180
+is starting so we can see exactly what time and all the details are required to know that the application
+
+176
+00:11:46,220 --> 00:11:47,920
+started at that point.
+
+177
+00:11:48,310 --> 00:11:48,690
+All right.
+
+178
+00:11:48,910 --> 00:11:50,680
+If we catch an exception.
+
+179
+00:11:51,680 --> 00:11:57,590
+And here I'm just qualifying exhibition with the objects that actually holds the exhibition, then I'm
+
+180
+00:11:57,590 --> 00:12:04,580
+going to see Lolled Feet Tall so you can log area, you can log information, you can log warning here.
+
+181
+00:12:04,760 --> 00:12:07,170
+It's fatal if the application stops working.
+
+182
+00:12:07,190 --> 00:12:14,560
+So I'm seeing log not fatal and I'm seeing this is the exception that caused the fetal log to be written.
+
+183
+00:12:14,750 --> 00:12:18,990
+And this is Mrs. Cissie application for the field to start.
+
+184
+00:12:19,010 --> 00:12:26,840
+So I'm seeing so that when somebody is reviewing the log, this is the result of or this is what happened
+
+185
+00:12:27,170 --> 00:12:34,130
+as a result of this exception, the logger will formatted it needs to format it and spit it out into
+
+186
+00:12:34,130 --> 00:12:36,340
+the file according to this.
+
+187
+00:12:37,040 --> 00:12:37,520
+All right.
+
+188
+00:12:37,880 --> 00:12:45,140
+And then after all of that, I'm just going to see finally finally means after you've handled with the
+
+189
+00:12:45,140 --> 00:12:48,440
+attrite operation and got it done, everything is done.
+
+190
+00:12:48,680 --> 00:12:49,940
+What do I want to do here?
+
+191
+00:12:49,940 --> 00:12:54,380
+I'm seeing I just want to flush and close my log object.
+
+192
+00:12:54,710 --> 00:12:58,100
+So that's what's going to happen when we start our application.
+
+193
+00:12:58,430 --> 00:13:04,880
+So right now, I'm going to go ahead and press this play button up here, which is going to start up
+
+194
+00:13:04,880 --> 00:13:08,520
+our application that we can go to the log file and see what happens.
+
+195
+00:13:09,380 --> 00:13:09,810
+All right.
+
+196
+00:13:09,820 --> 00:13:16,940
+So now that the application is loaded and just so you can see, the browser will come up with Swagga,
+
+197
+00:13:16,940 --> 00:13:20,500
+we'll go through Swagga later on or too much about this.
+
+198
+00:13:20,510 --> 00:13:24,380
+It looks nice, but our focus here is on our log.
+
+199
+00:13:24,390 --> 00:13:26,300
+So we see our log here.
+
+200
+00:13:27,020 --> 00:13:32,330
+Application is starting and we see the log level and it's kind of formatted.
+
+201
+00:13:32,510 --> 00:13:34,340
+We thought it would be right.
+
+202
+00:13:34,370 --> 00:13:37,460
+So other things are actually writing to the log.
+
+203
+00:13:37,850 --> 00:13:42,750
+See, their application started so log that it was started.
+
+204
+00:13:42,770 --> 00:13:48,920
+So this is a starting this once you started writing again, see the exact timestamps, for what that's
+
+205
+00:13:48,920 --> 00:13:49,400
+worth.
+
+206
+00:13:50,090 --> 00:13:50,430
+Right.
+
+207
+00:13:50,920 --> 00:13:51,950
+We know the environment.
+
+208
+00:13:51,950 --> 00:13:59,720
+So you see logs provide certain details for us that we can't see when we're just looking at the browser
+
+209
+00:13:59,720 --> 00:14:00,440
+like this.
+
+210
+00:14:00,440 --> 00:14:05,130
+You never know that all of this happened in the background just by looking at this.
+
+211
+00:14:05,480 --> 00:14:07,110
+So that's it for us.
+
+212
+00:14:07,130 --> 00:14:10,940
+Setting up the logger, at least for now, literally set up our database and so on.
+
+213
+00:14:10,940 --> 00:14:16,640
+We can come back and add the function that we can log to the database also.

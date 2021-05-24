@@ -1,0 +1,419 @@
+1
+00:00:00,780 --> 00:00:01,740
+Hey, guys, welcome back.
+
+2
+00:00:01,770 --> 00:00:05,460
+So in this lesson, we're going to be going through a process called seating.
+
+3
+00:00:05,460 --> 00:00:10,050
+So seating is where we provide some initial data to the database.
+
+4
+00:00:10,440 --> 00:00:16,650
+And what we're actually going to do is just hardcoded some records that when we perform a migration
+
+5
+00:00:16,650 --> 00:00:22,830
+afterwards, the migration will have instructions to create these records of the database with these
+
+6
+00:00:22,830 --> 00:00:27,600
+records, and it won't necessarily rely on user input.
+
+7
+00:00:27,610 --> 00:00:33,510
+So at least that will provide a nice basis for our testing when we start developing the API endpoints.
+
+8
+00:00:34,230 --> 00:00:42,750
+So what we want to do is go to our database context and where we're going to override a protected method
+
+9
+00:00:42,750 --> 00:00:45,480
+that is really inside of the DB context.
+
+10
+00:00:45,480 --> 00:00:54,480
+So protected override void on model creating and we are passing in the parameter model builder and I'm
+
+11
+00:00:54,480 --> 00:00:55,650
+just calling it builder.
+
+12
+00:00:56,880 --> 00:01:05,520
+And then what we'll see is something like a builder dot entity and then I have to specify which entity
+
+13
+00:01:05,520 --> 00:01:06,090
+I'm dealing with.
+
+14
+00:01:06,100 --> 00:01:13,470
+So we have control of hotel countries have to exist for hotels to exist.
+
+15
+00:01:14,580 --> 00:01:20,120
+And that's really because of how we define our records, right?
+
+16
+00:01:20,160 --> 00:01:25,230
+We said country and hotel as a foreign key, so we have to have the country before we can put in that
+
+17
+00:01:25,230 --> 00:01:25,850
+foreign key.
+
+18
+00:01:26,220 --> 00:01:31,240
+So would just say entity country that has data.
+
+19
+00:01:33,120 --> 00:01:34,050
+Oh, I'm sorry.
+
+20
+00:01:34,110 --> 00:01:37,340
+I'm missing a record period there.
+
+21
+00:01:37,410 --> 00:01:37,760
+Right.
+
+22
+00:01:37,810 --> 00:01:39,060
+So into the country.
+
+23
+00:01:39,060 --> 00:01:45,360
+And then open and close race has data data so open and close race.
+
+24
+00:01:45,840 --> 00:01:55,050
+And then inside of this, we're going to define some countries so we can define as many because it takes
+
+25
+00:01:55,050 --> 00:02:04,400
+an artist or has data really takes an array of type country so we can define a few records here.
+
+26
+00:02:04,410 --> 00:02:06,440
+So I'm just going to define three.
+
+27
+00:02:07,270 --> 00:02:07,740
+All right.
+
+28
+00:02:07,870 --> 00:02:12,710
+So new country record with ID equals one.
+
+29
+00:02:13,230 --> 00:02:18,420
+And once again, we are putting in the data, so we have to manually provide all of these values.
+
+30
+00:02:18,750 --> 00:02:21,390
+And this is the first country that I'm putting.
+
+31
+00:02:21,750 --> 00:02:26,220
+And the short name is Jim.
+
+32
+00:02:27,450 --> 00:02:37,200
+All right, and I'm just going to copy this and paste it cannot reduce the typing, so this would be
+
+33
+00:02:37,200 --> 00:02:39,150
+too and this would be three.
+
+34
+00:02:40,710 --> 00:02:45,060
+And the next one, let's see, Bahamas.
+
+35
+00:02:46,030 --> 00:02:57,160
+And the short name for Bahama, if I'm not mistaken, is the S and then the next one would be Cayman
+
+36
+00:02:57,160 --> 00:02:57,740
+Islands.
+
+37
+00:02:57,740 --> 00:03:03,850
+So I'm just choosing some destination, some popular tourist destinations where you'd probably want
+
+38
+00:03:03,850 --> 00:03:05,830
+to know what hotels are there.
+
+39
+00:03:05,830 --> 00:03:06,160
+Right.
+
+40
+00:03:06,700 --> 00:03:10,150
+So the short name for Cayman Islands would be.
+
+41
+00:03:11,380 --> 00:03:17,570
+All right, if I'm not all that accurate, then later on we can to it.
+
+42
+00:03:17,590 --> 00:03:20,690
+But for now, once again, these are example records, right?
+
+43
+00:03:21,070 --> 00:03:23,430
+So I did that for country.
+
+44
+00:03:23,590 --> 00:03:28,810
+I would just repeat that feat for the hotels.
+
+45
+00:03:28,810 --> 00:03:29,130
+Right.
+
+46
+00:03:29,170 --> 00:03:31,920
+So I'm just I just copied and pasted most of the code.
+
+47
+00:03:32,170 --> 00:03:41,560
+I noticed that at the hotel it is going to change the expected parameters to type hotel or whether it's
+
+48
+00:03:41,560 --> 00:03:44,070
+seeing objects because it's not getting hotels here.
+
+49
+00:03:44,080 --> 00:03:44,740
+So that's fine.
+
+50
+00:03:45,160 --> 00:03:47,170
+We'll just resort to hotel.
+
+51
+00:03:48,820 --> 00:03:53,900
+All right, I mean, what else did we have for the hotel address?
+
+52
+00:03:54,430 --> 00:03:58,170
+So let me get this.
+
+53
+00:03:58,180 --> 00:04:05,830
+So this is Sondos Resort and Spa, so I'm actually familiar with some of them.
+
+54
+00:04:06,160 --> 00:04:06,870
+Address.
+
+55
+00:04:06,880 --> 00:04:09,430
+Let's just keep it short and see the grill.
+
+56
+00:04:10,970 --> 00:04:18,520
+We already know the country, the country is Jamaica, so your idea would be one, right?
+
+57
+00:04:18,890 --> 00:04:27,170
+And then the rating is the last I heard it was, I'm going to say four point five.
+
+58
+00:04:27,170 --> 00:04:33,320
+But I know it's a five star kind of resort, so I'm just going to copy these details down.
+
+59
+00:04:35,200 --> 00:04:42,160
+All right, so we have a hotel for Jamaica.
+
+60
+00:04:42,310 --> 00:04:49,660
+I mean, just put a hotel per country just to make sure that we're spread right across and I'm just
+
+61
+00:04:49,660 --> 00:04:52,960
+going to make up something for Sunday for Bahamas.
+
+62
+00:04:53,200 --> 00:04:55,980
+So Bahamas, let's see.
+
+63
+00:04:55,990 --> 00:04:57,940
+They have grand.
+
+64
+00:04:59,690 --> 00:05:09,260
+Grand Paladium, so I know for sure Grand Paladium is a hotel in Jamaica, but for example sake we're
+
+65
+00:05:09,260 --> 00:05:12,470
+putting it there or puts it at their own place.
+
+66
+00:05:12,500 --> 00:05:12,960
+I'm sorry.
+
+67
+00:05:13,370 --> 00:05:16,160
+So this would be contrary to let's just do that.
+
+68
+00:05:16,270 --> 00:05:18,590
+And that's a four star.
+
+69
+00:05:20,760 --> 00:05:28,890
+Once again, this is not factual, we're just making up data, right, so far, cavemen, they have
+
+70
+00:05:28,890 --> 00:05:30,960
+comfort seats.
+
+71
+00:05:32,130 --> 00:05:35,280
+And dress that, said George.
+
+72
+00:05:37,290 --> 00:05:45,480
+On the contrary, these three, four cavemen and they're eating is four point three.
+
+73
+00:05:45,720 --> 00:05:46,110
+All right.
+
+74
+00:05:46,600 --> 00:05:52,950
+So that's also feeding some data into the database so this can get a bit crowded.
+
+75
+00:05:52,980 --> 00:05:57,030
+You could just collapse it like that so it doesn't take up too much space.
+
+76
+00:05:57,300 --> 00:06:05,010
+Or what I tend to do also is actually move it to underneath the DB definitions so that when I come to
+
+77
+00:06:05,010 --> 00:06:09,280
+make modifications to the device, it's always just stack them on top.
+
+78
+00:06:09,300 --> 00:06:11,840
+I don't have to scroll all the way past that.
+
+79
+00:06:12,240 --> 00:06:16,940
+There are ways to extract this and put them in other files and call the configurations also.
+
+80
+00:06:17,880 --> 00:06:22,650
+But then this is just a quick, quick, quick, quickly to see the data into the database.
+
+81
+00:06:23,100 --> 00:06:30,540
+So now that we have defined a few test records, the next thing that we want to do is add on migration.
+
+82
+00:06:30,570 --> 00:06:34,500
+So I'm going to add migration.
+
+83
+00:06:35,460 --> 00:06:44,910
+And this one, we're going to call the seeding data or so notice that each time the migration I try
+
+84
+00:06:44,920 --> 00:06:51,260
+to be descriptive enough with the name such that you can tell, oh, that's what happened at that point.
+
+85
+00:06:51,270 --> 00:06:53,760
+So it's almost like source control for the data.
+
+86
+00:06:53,800 --> 00:06:54,080
+Right.
+
+87
+00:06:54,480 --> 00:07:01,770
+And if you look at this, this migration file, you'll actually see here where it is insert data into
+
+88
+00:07:01,770 --> 00:07:02,520
+this table.
+
+89
+00:07:02,730 --> 00:07:06,870
+And these are the columns and those are the data volumes.
+
+90
+00:07:06,870 --> 00:07:07,330
+Right.
+
+91
+00:07:07,770 --> 00:07:12,740
+So it will go ahead and do all of that, right?
+
+92
+00:07:12,810 --> 00:07:13,180
+I don't know.
+
+93
+00:07:13,220 --> 00:07:17,510
+I turned my four point three to four point two, nine, nine and eight.
+
+94
+00:07:17,850 --> 00:07:23,930
+Not sure why, but that's just how it is going to reformat it so that they can do the insertions.
+
+95
+00:07:24,270 --> 00:07:32,250
+So the next thing that we want to do is update their database so that it can effectively carry out the
+
+96
+00:07:32,250 --> 00:07:34,850
+commands in the migration.
+
+97
+00:07:35,250 --> 00:07:37,110
+So it did see it done.
+
+98
+00:07:37,290 --> 00:07:40,920
+What I want to do is go back to my object explorer and then I'm going to right.
+
+99
+00:07:40,920 --> 00:07:44,310
+Click and view data on the country's table.
+
+100
+00:07:44,520 --> 00:07:45,470
+And there we go.
+
+101
+00:07:45,630 --> 00:07:47,910
+We have data in our database.
+
+102
+00:07:47,910 --> 00:07:55,590
+So we have successfully created our three countries and we can look at the matching.
+
+103
+00:07:56,700 --> 00:07:57,630
+Hotels.
+
+104
+00:07:58,680 --> 00:08:06,630
+All right, so that is how you can put initial data into your dominant core applications using entity,
+
+105
+00:08:06,630 --> 00:08:09,360
+framework core and the DB context.

@@ -1,0 +1,443 @@
+1
+00:00:00,490 --> 00:00:01,630
+All right, guys, welcome back.
+
+2
+00:00:01,660 --> 00:00:08,350
+So coming off the heels of setting up our authentication manager to issue generates and issue the tokens,
+
+3
+00:00:08,350 --> 00:00:14,680
+what we want to do is actually finish up our login endpoints to the tune where we actually validate
+
+4
+00:00:14,680 --> 00:00:21,190
+the token and allow our deny access to anybody passing in this token.
+
+5
+00:00:21,190 --> 00:00:21,400
+Right.
+
+6
+00:00:21,970 --> 00:00:29,920
+So the first thing that we want to do is inject our newly created office manager service so we know
+
+7
+00:00:29,920 --> 00:00:37,270
+how to do the injection or if they can just go ahead and hit pause and go ahead and complete this injection
+
+8
+00:00:37,270 --> 00:00:38,000
+operation.
+
+9
+00:00:38,710 --> 00:00:44,770
+So once you've added the new three lines, one for the private property, one into the constructor and
+
+10
+00:00:45,100 --> 00:00:49,660
+initialization, then we can go about creating or a log endpoint.
+
+11
+00:00:49,670 --> 00:00:52,620
+So you would have already commented on the login endpoint.
+
+12
+00:00:52,630 --> 00:00:58,810
+You can uncommented and I already have the revised version of it on screen, so let's just go through
+
+13
+00:00:58,810 --> 00:00:59,310
+it together.
+
+14
+00:00:59,320 --> 00:01:08,160
+So what we want to do is log on to validate our requested or the data coming in the detail.
+
+15
+00:01:08,500 --> 00:01:19,150
+Then I'm going to see if the off manager validate user, if not so easy to read this as equals for us
+
+16
+00:01:19,150 --> 00:01:20,470
+in case you need to see sharp.
+
+17
+00:01:20,800 --> 00:01:23,770
+If not, you just put the exclamation side.
+
+18
+00:01:23,800 --> 00:01:28,390
+So this means if it is not a valid user, then return on authorized because.
+
+19
+00:01:28,390 --> 00:01:33,100
+Well, if you tried to log in and you're not a valid user, then you're not authorized to go any further.
+
+20
+00:01:33,100 --> 00:01:33,380
+Right.
+
+21
+00:01:34,450 --> 00:01:42,460
+Otherwise we're going to return accepted our OK, whatever it is I'm saying accepted, accepted new
+
+22
+00:01:42,640 --> 00:01:48,280
+and a new object with with an expression called token.
+
+23
+00:01:48,490 --> 00:01:52,890
+And it will take the value of the token that is created.
+
+24
+00:01:52,900 --> 00:01:57,350
+So we see it on the score off manager, not create a token.
+
+25
+00:01:57,970 --> 00:02:03,790
+So remember that that's what we would have set up in our office manager just null create token goes
+
+26
+00:02:03,790 --> 00:02:10,000
+through, generates all of these bits and pieces of data and then returns the tokens.
+
+27
+00:02:10,000 --> 00:02:12,590
+So that's what that payload will have.
+
+28
+00:02:12,610 --> 00:02:15,150
+So on to go ahead and test that functionality.
+
+29
+00:02:15,520 --> 00:02:18,850
+So let's revisit our login endpoint.
+
+30
+00:02:18,850 --> 00:02:21,120
+I'm just going to use Soggier for this part of it.
+
+31
+00:02:21,130 --> 00:02:30,640
+So just try it out and put in a user that I know I created and is already registered and then I'm going
+
+32
+00:02:30,640 --> 00:02:31,900
+to click execute.
+
+33
+00:02:32,030 --> 00:02:33,090
+Let's see what happens.
+
+34
+00:02:33,820 --> 00:02:34,550
+All right.
+
+35
+00:02:34,570 --> 00:02:36,610
+And we're getting a token response.
+
+36
+00:02:36,910 --> 00:02:39,460
+So you see this big string.
+
+37
+00:02:39,850 --> 00:02:47,350
+So token, that's by virtue of the expression we put in the custom object and the value being passed
+
+38
+00:02:47,350 --> 00:02:49,510
+is the token that is here.
+
+39
+00:02:50,350 --> 00:02:55,690
+So if I if I take this token and go to our website to look at what's in tokens.
+
+40
+00:02:58,020 --> 00:03:04,980
+Based it then we'll see here that we have the algorithm, we have Trevor, for example, DOT, that's
+
+41
+00:03:04,980 --> 00:03:07,040
+the claim for the user.
+
+42
+00:03:07,200 --> 00:03:09,630
+We have the role right.
+
+43
+00:03:09,930 --> 00:03:12,890
+And we have the expiration time.
+
+44
+00:03:13,350 --> 00:03:18,790
+And if you hover, it will show you exactly the time from when it's issued and the issuer.
+
+45
+00:03:19,140 --> 00:03:19,640
+All right.
+
+46
+00:03:19,830 --> 00:03:23,010
+And then if you wanted to go as far as verifying the signature, we could do that.
+
+47
+00:03:23,010 --> 00:03:28,310
+But we already have the mechanism to do that internally, so we don't need to do that here.
+
+48
+00:03:28,740 --> 00:03:36,750
+So now what I want to do is experiment with actually preventing somebody access to our endpoint, someone
+
+49
+00:03:36,750 --> 00:03:42,090
+to use our hotel hotel controller for that exercise.
+
+50
+00:03:42,570 --> 00:03:48,480
+So let's say that the ability to get the list of hotels, everybody should be able to do that.
+
+51
+00:03:48,480 --> 00:03:53,120
+We should be able to call it without authenticating, which is what we have been doing up until now.
+
+52
+00:03:53,490 --> 00:04:03,200
+However, we want to add an authorized flag or annotation to the call to get to one hotel's details.
+
+53
+00:04:03,200 --> 00:04:11,700
+So we just put on authorized and actually you could extend the the annotation here for the HTP get and
+
+54
+00:04:11,700 --> 00:04:13,170
+add authorized right there.
+
+55
+00:04:13,630 --> 00:04:13,800
+Right.
+
+56
+00:04:13,890 --> 00:04:15,120
+So you could do it either way.
+
+57
+00:04:15,120 --> 00:04:17,540
+So if you have this one, you don't need this one.
+
+58
+00:04:17,970 --> 00:04:19,800
+Personally, I like to separate them.
+
+59
+00:04:20,220 --> 00:04:23,790
+So I have the HTP yet authorize.
+
+60
+00:04:23,910 --> 00:04:27,600
+I'd actually like to or prefer to put it at the top.
+
+61
+00:04:27,780 --> 00:04:31,640
+So as I see it, I know it's an authorized endpoint.
+
+62
+00:04:32,310 --> 00:04:32,670
+Right.
+
+63
+00:04:33,000 --> 00:04:38,280
+So what we want to do is test our call so this and the point.
+
+64
+00:04:38,760 --> 00:04:41,870
+Unauthorized and authorized.
+
+65
+00:04:42,090 --> 00:04:42,750
+So let's go.
+
+66
+00:04:44,170 --> 00:04:50,700
+And for this activity, I'm going to use Postman someone to firstly test the one that we haven't authorized
+
+67
+00:04:50,710 --> 00:04:52,570
+just to make sure that it still works.
+
+68
+00:04:52,870 --> 00:04:53,310
+All right.
+
+69
+00:04:53,320 --> 00:04:55,800
+There's a list of photos of three hotels.
+
+70
+00:04:55,810 --> 00:04:56,190
+Good.
+
+71
+00:04:56,620 --> 00:05:04,140
+Now I'm going to test the one with the endpoint that requires an ID value.
+
+72
+00:05:04,150 --> 00:05:04,480
+Right.
+
+73
+00:05:04,510 --> 00:05:11,770
+So when I click send, it's going to say for one unauthorized it's not saying for one unauthorized because
+
+74
+00:05:11,770 --> 00:05:19,210
+I didn't login or whatever, because I mean, this is already authorized and we set up the default schema
+
+75
+00:05:19,210 --> 00:05:24,430
+to see I need to see a token in order to authorize are not Soloff.
+
+76
+00:05:24,430 --> 00:05:26,470
+That's just happening automatically.
+
+77
+00:05:27,400 --> 00:05:34,000
+If we have an old token in there, which I do, this is a token that was issued more than 50 minutes
+
+78
+00:05:34,000 --> 00:05:39,560
+ago, then it will automatically also deny access.
+
+79
+00:05:39,580 --> 00:05:44,350
+So in a token is issued and then it expires.
+
+80
+00:05:44,590 --> 00:05:48,570
+It is the onus of the client calling up.
+
+81
+00:05:48,950 --> 00:05:54,850
+Applications are to go and fetch a new token, meaning go through the login process again, get a new
+
+82
+00:05:54,850 --> 00:05:59,080
+token, and then come back and try and access this endpoint.
+
+83
+00:05:59,920 --> 00:06:00,300
+All right.
+
+84
+00:06:00,670 --> 00:06:08,050
+So in Postman, what we want to do is go with the authorization and choose barer token from this dropdown
+
+85
+00:06:08,050 --> 00:06:08,410
+list.
+
+86
+00:06:08,620 --> 00:06:12,820
+Then we provide the token that we have, which is the first token.
+
+87
+00:06:13,060 --> 00:06:18,640
+And then when we do that and I'm still getting a four or one on authorized.
+
+88
+00:06:18,640 --> 00:06:23,750
+So that means there's some configuration that is missing.
+
+89
+00:06:23,830 --> 00:06:24,750
+Let me go.
+
+90
+00:06:24,910 --> 00:06:27,280
+More than likely to be the start of that series.
+
+91
+00:06:27,610 --> 00:06:32,640
+And I think I left off one of the middleware.
+
+92
+00:06:32,650 --> 00:06:37,650
+So I need to add up, not use authentication right here.
+
+93
+00:06:38,720 --> 00:06:39,240
+All right.
+
+94
+00:06:39,790 --> 00:06:44,710
+So make sure you have this user authentication and order Mutter's in this situation.
+
+95
+00:06:44,710 --> 00:06:51,760
+So authentication, then authorization and all of that before this are up, not MVC.
+
+96
+00:06:52,150 --> 00:06:57,300
+The different core versions of different middleware is being included.
+
+97
+00:06:57,310 --> 00:07:01,050
+So as long as you get that general theme, you should be good.
+
+98
+00:07:01,060 --> 00:07:03,460
+So let's try that same request again.
+
+99
+00:07:04,850 --> 00:07:07,280
+And we're having much better success.
+
+100
+00:07:07,490 --> 00:07:12,670
+All right, so we're getting a status 200, OK, and we're seeing the one quarter that we requested.
+
+101
+00:07:12,680 --> 00:07:19,460
+So now you see that we just protected our endpoint, because if I remove this sense or off and insurance
+
+102
+00:07:19,460 --> 00:07:25,850
+and again, I get to for one unauthorized once I include the beer all token, I get the status 200.
+
+103
+00:07:25,850 --> 00:07:33,050
+If I modify this beer token, then it's unauthorized because the token could not be validated against
+
+104
+00:07:33,050 --> 00:07:36,800
+the information that was encoded and put in originally.
+
+105
+00:07:37,100 --> 00:07:40,280
+So that is how you can go ahead and harden your API.
+
+106
+00:07:40,280 --> 00:07:48,830
+And once again, this just this JWT method is very secure because this payload, yes, it can be decoded,
+
+107
+00:07:48,830 --> 00:07:55,370
+but it wanted shouldn't contain any information that is too sensitive and information that it contains
+
+108
+00:07:55,370 --> 00:08:02,450
+should be information that if you see it, it's of no major consequence to the API and the underlying
+
+109
+00:08:02,450 --> 00:08:03,320
+infrastructure.
+
+110
+00:08:03,500 --> 00:08:09,980
+However, it is enough for me to verify who you are and that I am the one who gave you access to the
+
+111
+00:08:09,980 --> 00:08:10,460
+system.
